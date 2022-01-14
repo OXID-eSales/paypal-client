@@ -1,0 +1,104 @@
+{
+    "type": "object",
+    "title": "Item Details",
+    "description": "The item details.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "item_code": {
+            "type": "string",
+            "description": "An item code that identifies a merchant's goods or service.",
+            "maxLength": 1000
+        },
+        "item_name": {
+            "type": "string",
+            "description": "The item name.",
+            "maxLength": 200
+        },
+        "item_description": {
+            "type": "string",
+            "description": "The item description.",
+            "maxLength": 2000
+        },
+        "item_options": {
+            "type": "string",
+            "description": "The item options. Describes option choices on the purchase of the item in some detail.",
+            "maxLength": 4000
+        },
+        "item_quantity": {
+            "type": "string",
+            "description": "The number of purchased units of goods or a service.",
+            "maxLength": 4000
+        },
+        "item_unit_price": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The cost for each instance of goods or a service."
+        },
+        "item_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The amount of the payment for the item."
+        },
+        "discount_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The reduction in price associated with goods or a service."
+        },
+        "adjustment_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "An increment or decrement to a purchase amount."
+        },
+        "gift_wrap_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The amount of money charged for gift wrapping an item."
+        },
+        "tax_percentage": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/percentage.json",
+            "description": "A rate, expressed in hundreds, that is used to calculate a levy for the purchase of goods or services.",
+            "maxLength": 10,
+            "pattern": "^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$"
+        },
+        "tax_amounts": {
+            "type": "array",
+            "description": "An array of tax amounts levied by a government on the purchase of goods or services.",
+            "items": {
+                "$ref": "item_detail_tax_amount.json",
+                "x-publicDocsSchemaName": "tax_amount",
+                "description": "A tax levied by a government on the purchase of goods or services."
+            }
+        },
+        "basic_shipping_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The delivery cost."
+        },
+        "extra_shipping_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The cost for expedited delivery of the goods."
+        },
+        "handling_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "A charge for processing the purchase of goods or services."
+        },
+        "insurance_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "A charge for guaranteeing the quality of a product or delivery of a product."
+        },
+        "total_item_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The sum of all factors, item cost, discounts, tax, shipping, and so on, that goes into the cost of an item."
+        },
+        "invoice_number": {
+            "type": "string",
+            "description": "The invoice number. An alphanumeric string that identifies a billing for a merchant.",
+            "maxLength": 200
+        },
+        "checkout_options": {
+            "type": "array",
+            "description": "An array of checkout options. Each option has a name and value.",
+            "items": {
+                "$ref": "checkout_option.json",
+                "x-publicDocsSchemaName": "checkout_option",
+                "description": "A checkout option as a name-and-value pair."
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "title": "Transaction Details",
+    "description": "The transaction details.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "transaction_info": {
+            "$ref": "transaction_info.json",
+            "description": "The transaction information."
+        },
+        "payer_info": {
+            "$ref": "payer_info.json",
+            "description": "The payer information."
+        },
+        "shipping_info": {
+            "$ref": "shipping_info.json",
+            "description": "The shipping information."
+        },
+        "cart_info": {
+            "$ref": "cart_info.json",
+            "description": "The cart information."
+        },
+        "store_info": {
+            "$ref": "store_info.json",
+            "description": "The store information."
+        },
+        "auction_info": {
+            "$ref": "auction_info.json",
+            "description": "The auction information."
+        },
+        "incentive_info": {
+            "$ref": "incentive_info.json",
+            "description": "The incentive information."
+        }
+    }
+}

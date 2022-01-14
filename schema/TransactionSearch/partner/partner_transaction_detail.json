@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "title": "Transaction Details",
+    "description": "The transaction details.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "properties": {
+        "transaction_info": {
+            "description": "The transaction information.",
+            "$ref": "partner_transaction_info.json"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "title": "Error",
+    "description": "The error details.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "allOf": [
+        {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/error.json"
+        },
+        {
+            "properties": {
+                "total_items": {
+                    "type": "integer",
+                    "description": "The total number of transactions. Valid only for `RESULTSET_TOO_LARGE`.",
+                    "maximum": 2147483647,
+                    "minimum": 0
+                },
+                "maximum_items": {
+                    "type": "integer",
+                    "description": "The maximum number of transactions. Valid only for `RESULTSET_TOO_LARGE`.",
+                    "maximum": 2147483647,
+                    "minimum": 0
+                }
+            }
+        }
+    ]
+}

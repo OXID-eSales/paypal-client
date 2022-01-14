@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "title": "Tax Amount",
+    "description": "The tax levied by a government on the purchase of goods or services.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "tax_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The tax levied by a government on the purchase of goods or services."
+        }
+    }
+}

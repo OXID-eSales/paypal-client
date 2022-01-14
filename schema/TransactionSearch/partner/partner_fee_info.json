@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "title": "Transaction Fee Details",
+    "description": "The transaction fee details.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "properties": {
+        "type": {
+            "type": "string",
+            "description": "Type of the Fee. E.g. `PARTNER` or `PAYPAL` or `CHARGEBACK`.",
+            "maxLength": 50,
+            "minLength": 1,
+            "x-enum": [
+                {
+                    "value": "PARTNER",
+                    "description": "Partner fee on transaction amount."
+                },
+                {
+                    "value": "PAYPAL",
+                    "description": "PayPal fee on transaction amount."
+                },
+                {
+                    "value": "CHARGEBACK",
+                    "description": "Chargeback fee on transaction amount."
+                }
+            ]
+        },
+        "account_id": {
+            "description": "The ID of the PayPal account this fee went in or moved out.",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/account_id.json"
+        },
+        "amount": {
+            "description": "The fee amount for the given type.",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/money.json"
+        }
+    }
+}

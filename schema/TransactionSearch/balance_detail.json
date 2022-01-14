@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "title": "Balance Information",
+    "description": "The Balance information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "currency": {
+            "description": "Currency Code of the balances listed.",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/currency_code.json"
+        },
+        "primary": {
+            "type": "boolean",
+            "description": "Optional field representing if the currency is primary currency or not."
+        },
+        "total_balance": {
+            "description": "The total amount in PayPal account. It is the sum of all the other balances.",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/money.json"
+        },
+        "available_balance": {
+            "description": "The amount of cash in an Account which is at the customer's disposal. This amount is captured at settlement cutoff time in the user's time zone as defined for the user.",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/money.json"
+        },
+        "withheld_balance": {
+            "description": "Balance withheld in the account. The portion of funds that PayPal holds for the customer that is not currently at the customer's disposal.",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/money.json"
+        },
+        "payable_balance": {
+            "description": "An amount of money that PayPal owes to the customer (due to accumulated payments).",
+            "x-visibility": {
+                "extent": "INTERNAL"
+            },
+            "$ref": "common_components/v4/schema/json/openapi-2.0/money.json"
+        },
+        "receivable_balance": {
+            "description": "An amount of money the customer owes to PayPal (due to various types of loans).",
+            "x-visibility": {
+                "extent": "INTERNAL"
+            },
+            "$ref": "common_components/v4/schema/json/openapi-2.0/money.json"
+        }
+    },
+    "required": [
+        "currency",
+        "total_balance"
+    ]
+}

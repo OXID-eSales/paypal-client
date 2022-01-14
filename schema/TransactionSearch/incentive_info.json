@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "title": "Incentive Information",
+    "description": "The incentive details.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "incentive_details": {
+            "type": "array",
+            "description": "An array of incentive details.",
+            "items": {
+                "$ref": "incentive_detail.json",
+                "x-publicDocsSchemaName": "incentive_detail"
+            }
+        }
+    }
+}

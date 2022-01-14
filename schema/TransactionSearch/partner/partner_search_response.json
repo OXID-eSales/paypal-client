@@ -1,0 +1,80 @@
+{
+    "type": "object",
+    "title": "Search Response",
+    "description": "The search response information.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "properties": {
+        "transaction_details": {
+            "type": "array",
+            "description": "An array of transaction detail objects.",
+            "maxItems": 2147483647,
+            "minItems": 0,
+            "items": {
+                "x-publicDocsSchemaName": "transaction_detail",
+                "$ref": "partner_transaction_detail.json"
+            }
+        },
+        "account_id": {
+            "description": "The partner account number.",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/account_id.json"
+        },
+        "start_time": {
+            "description": "The start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/date_time.json"
+        },
+        "end_time": {
+            "description": "The end date and time or the last date when the data can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/date_time.json"
+        },
+        "last_refresh_time": {
+            "description": "The date and time when the data was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "$ref": "../common_components/v4/schema/json/openapi-2.0/date_time.json"
+        },
+        "total_items": {
+            "type": "integer",
+            "description": "The total number of transactions as an integer beginning with the specified `page` in the full result and not just in this response.",
+            "maximum": 2147483647,
+            "minimum": 0
+        },
+        "total_pages": {
+            "type": "integer",
+            "description": "The total number of pages, as an `integer`, when the `total_items` is divided into pages of the specified `page_size`.",
+            "maximum": 2147483647,
+            "minimum": 0
+        },
+        "links": {
+            "type": "array",
+            "description": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).",
+            "readOnly": true,
+            "items": {
+                "x-publicDocsSchemaName": "link_description",
+                "readOnly": true,
+                "$ref": "../common_components/v4/schema/json/openapi-2.0/link_description.json"
+            }
+        }
+    },
+    "x-links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions/new?transaction_date={transaction_date}&page={page}",
+            "rel": "self"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions/new?transaction_date={transaction_date}&page=1",
+            "rel": "first"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions/new?transaction_date={transaction_date}&page={total_pages}",
+            "rel": "last"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions/new?transaction_date={transaction_date}&page={next_page}",
+            "rel": "next"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions/new?transaction_date={transaction_date}&page={prev_page}",
+            "rel": "prev"
+        }
+    ]
+}

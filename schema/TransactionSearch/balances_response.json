@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "title": "Balances Response",
+    "description": "The balances response information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "balances": {
+            "type": "array",
+            "description": "An array of balance detail objects.",
+            "maxItems": 200,
+            "minItems": 0,
+            "items": {
+                "x-publicDocsSchemaName": "balance_detail",
+                "$ref": "balance_detail.json"
+            }
+        },
+        "account_id": {
+            "$ref": "common_components/v4/schema/json/openapi-2.0/account_id.json"
+        },
+        "as_of_time": {
+            "description": "The requested date and time or the last date and time when the balances can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/date_time.json"
+        },
+        "last_refresh_time": {
+            "description": "The date and time when the balances was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "$ref": "common_components/v4/schema/json/openapi-2.0/date_time.json"
+        }
+    }
+}

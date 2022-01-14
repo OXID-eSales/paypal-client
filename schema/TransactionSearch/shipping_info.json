@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "title": "Shipping Information",
+    "description": "The shipping information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The recipient's name.",
+            "maxLength": 500
+        },
+        "method": {
+            "type": "string",
+            "description": "The shipping method that is associated with this order.",
+            "maxLength": 500
+        },
+        "address": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/address.json",
+            "description": "The shipping address that is associated with this order."
+        },
+        "secondary_shipping_address": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/address.json",
+            "description": "The secondary shipping address that is associated with this order."
+        }
+    }
+}

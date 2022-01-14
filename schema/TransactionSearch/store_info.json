@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "title": "Store Information",
+    "description": "The store information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "store_id": {
+            "type": "string",
+            "description": "The ID of a store for a merchant in the system of record.",
+            "maxLength": 100
+        },
+        "terminal_id": {
+            "type": "string",
+            "description": "The terminal ID for the checkout stand in a merchant store.",
+            "maxLength": 60
+        }
+    }
+}

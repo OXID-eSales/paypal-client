@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "title": "Cart Information",
+    "description": "The cart information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "item_details": {
+            "type": "array",
+            "description": "An array of item details.",
+            "items": {
+                "$ref": "item_detail.json",
+                "x-publicDocsSchemaName": "item_detail"
+            }
+        },
+        "tax_inclusive": {
+            "type": "boolean",
+            "description": "Indicates whether the item amount or the shipping amount already includes tax.",
+            "default": false
+        },
+        "paypal_invoice_id": {
+            "type": "string",
+            "description": "The ID of the invoice. Appears for only PayPal-generated invoices."
+        }
+    }
+}

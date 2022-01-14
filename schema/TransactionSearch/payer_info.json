@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "title": "Payer Information",
+    "description": "The payer information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "account_id": {
+            "type": "string",
+            "description": "The PayPal` customer account ID.",
+            "maxLength": 13
+        },
+        "email_address": {
+            "description": "The email address of the payer.",
+            "$ref": "./common_components/v3/schema/json/openapi-2.0/email_address.json"
+        },
+        "phone_number": {
+            "description": "The primary phone number of the payer.",
+            "$ref": "./common_components/v3/schema/json/openapi-2.0/phone.json"
+        },
+        "address_status": {
+            "type": "string",
+            "description": "The address status of the payer. Value is either:<ul><li><code>Y</code>. Verified.</li><li><code>N</code>. Not verified.</li></ul>"
+        },
+        "payer_status": {
+            "type": "string",
+            "description": "The status of the payer. Value is `Y` or `N`."
+        },
+        "payer_name": {
+            "description": "The payer name.",
+            "$ref": "./common_components/v3/schema/json/openapi-2.0/name.json"
+        },
+        "country_code": {
+            "description": "The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country or region of the payer.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>",
+            "$ref": "./common_components/v3/schema/json/openapi-2.0/country_code.json"
+        },
+        "address": {
+            "description": "The payer address.",
+            "$ref": "./common_components/v3/schema/json/openapi-2.0/address.json"
+        }
+    }
+}

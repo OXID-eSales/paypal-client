@@ -1,0 +1,88 @@
+{
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 255,
+    "pattern": "^[0-9A-Z_]+$",
+    "description": "The payment instrument sub type.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "x-enum": [
+        {
+            "value": "AMEX",
+            "description": "AMEX card transaction"
+        },
+        {
+            "value": "CB_NATIONALE",
+            "description": "CB_NATIONALE card transaction"
+        },
+        {
+            "value": "CETELEM",
+            "description": "CETELEM card transaction"
+        },
+        {
+            "value": "COFIDIS",
+            "description": "COFIDIS card transaction"
+        },
+        {
+            "value": "COFINOGA",
+            "description": "COFINOGA card transaction"
+        },
+        {
+            "value": "CHINA_UNION_PAY",
+            "description": "CHINA_UNION_PAY card transaction"
+        },
+        {
+            "value": "DELTA",
+            "description": "DELTA card transaction"
+        },
+        {
+            "value": "DISCOVER",
+            "description": "DISCOVER card transaction"
+        },
+        {
+            "value": "ELECTRON",
+            "description": "ELECTRON card transaction"
+        },
+        {
+            "value": "ELO",
+            "description": "ELO card transaction"
+        },
+        {
+            "value": "HIPER",
+            "description": "HIPER card transaction"
+        },
+        {
+            "value": "HIPERCARD",
+            "description": "HIPERCARD card transaction"
+        },
+        {
+            "value": "JCB",
+            "description": "JCB card transaction"
+        },
+        {
+            "value": "MAESTRO",
+            "description": "MAESTRO card transaction"
+        },
+        {
+            "value": "MASTER_CARD",
+            "description": "MASTER_CARD card transaction"
+        },
+        {
+            "value": "SOLO",
+            "description": "SOLO card transaction"
+        },
+        {
+            "value": "STAR",
+            "description": "STAR card transaction"
+        },
+        {
+            "value": "SWITCH",
+            "description": "SWITCH card transaction"
+        },
+        {
+            "value": "VISA",
+            "description": "VISA card transaction"
+        }
+    ]
+}

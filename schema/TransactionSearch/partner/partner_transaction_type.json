@@ -1,0 +1,85 @@
+{
+    "type": "string",
+    "title": "Transaction Event Type",
+    "minLength": 1,
+    "maxLength": 255,
+    "pattern": "^[0-9A-Z_]+$",
+    "description": "Transaction event type Name.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "x-enum": [
+        {
+            "value": "AUTH",
+            "description": "Auth type transactions for Auth or Auth void."
+        },
+        {
+            "value": "BONUS",
+            "description": "Bonus type transactions."
+        },
+        {
+            "value": "CHARGEBACK",
+            "description": "Chargeback type transactions for Chargeback fee or Chargeback fee reversal."
+        },
+        {
+            "value": "CORRECTION",
+            "description": "Correction type transactions."
+        },
+        {
+            "value": "CURRENCY_CONVERSION",
+            "description": "Currency conversion type transactions."
+        },
+        {
+            "value": "DEPOSIT",
+            "description": "Deposit type transactions."
+        },
+        {
+            "value": "DISBURSEMENT",
+            "description": "Disbursement type transactions."
+        },
+        {
+            "value": "DISPUTE",
+            "description": "Dispute type transactions."
+        },
+        {
+            "value": "FEES",
+            "description": "Fees type transactions for Partner Fee, Payment Fee or Fee Reversal."
+        },
+        {
+            "value": "HOLD",
+            "description": "Hold type transactions."
+        },
+        {
+            "value": "HOLD_RELEASE",
+            "description": "Hold release type transactions."
+        },
+        {
+            "value": "INCENTIVES",
+            "description": "Incentives type transactions."
+        },
+        {
+            "value": "OTHERS",
+            "description": "Others type transactions."
+        },
+        {
+            "value": "PAYMENT",
+            "description": "Payment type transactions."
+        },
+        {
+            "value": "RECOUP",
+            "description": "Recoup type transactions done either from Bank or Loss Accounts"
+        },
+        {
+            "value": "REFUND",
+            "description": "Refund type transactions."
+        },
+        {
+            "value": "REVERSAL",
+            "description": "Reversal type transactions."
+        },
+        {
+            "value": "WITHDRAWAL",
+            "description": "Withdrawal type transactions."
+        }
+    ]
+}

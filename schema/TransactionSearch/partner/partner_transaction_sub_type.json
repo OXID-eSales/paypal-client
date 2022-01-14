@@ -1,0 +1,57 @@
+{
+    "type": "string",
+    "title": "Transaction Event Subtype",
+    "minLength": 1,
+    "maxLength": 255,
+    "pattern": "^[0-9A-Z_]+$",
+    "description": "Transaction event subtype Name.",
+    "x-visibility": {
+        "extent": "LIMITED_RELEASE"
+    },
+    "x-enum": [
+        {
+            "value": "VOID",
+            "description": "Void subtype transactions, applicable for transaction type Auth."
+        },
+        {
+            "value": "FEE",
+            "description": "Fee subtype transactions, applicable for transaction type Chargeback."
+        },
+        {
+            "value": "REVERSAL",
+            "description": "Reversal subtype transactions, applicable for transaction types Chargeback, Fees and Withdrawal."
+        },
+        {
+            "value": "PARTNER_FEE",
+            "description": "Partner fee subtype transactions, applicable for transaction type Fees."
+        },
+        {
+            "value": "PAYMENT_FEE",
+            "description": "Payment fee subtype transactions, applicable for transaction type Fees."
+        },
+        {
+            "value": "MASSPAY",
+            "description": "Masspay subtype transactions, applicable for transaction type Payment."
+        },
+        {
+            "value": "BANK",
+            "description": "Bank subtype transactions, applicable for transaction type Withdrawal."
+        },
+        {
+            "value": "LOSS_ACCOUNT",
+            "description": "Loss account subtype transactions, applicable for transaction type Recoup."
+        },
+        {
+            "value": "TO",
+            "description": "To subtype transactions, applicable for transaction type Currency conversion"
+        },
+        {
+            "value": "FROM",
+            "description": "From subtype transactions, applicable for transaction type Currency conversion"
+        },
+        {
+            "value": "REFUND",
+            "description": "Refund subtype transactions, applicable for transaction type Fees."
+        }
+    ]
+}

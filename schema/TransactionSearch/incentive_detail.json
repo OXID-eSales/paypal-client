@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "title": "Incentive Details",
+    "description": "The incentive details.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "incentive_type": {
+            "type": "string",
+            "description": "The type of incentive, such as a special offer or coupon.",
+            "maxLength": 500
+        },
+        "incentive_code": {
+            "type": "string",
+            "description": "The code that identifies an incentive, such as a coupon.",
+            "maxLength": 200
+        },
+        "incentive_amount": {
+            "$ref": "common_components/v3/schema/json/openapi-2.0/money.json",
+            "description": "The incentive amount."
+        },
+        "incentive_program_code": {
+            "type": "string",
+            "description": "The incentive program code that identifies a merchant loyalty or incentive program.",
+            "maxLength": 100
+        }
+    }
+}

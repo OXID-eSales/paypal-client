@@ -1,0 +1,87 @@
+{
+    "type": "object",
+    "title": "Search Response",
+    "description": "The search response information.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "transaction_details": {
+            "type": "array",
+            "description": "An array of transaction detail objects.",
+            "items": {
+                "$ref": "transaction_detail.json",
+                "x-publicDocsSchemaName": "transaction_detail"
+            }
+        },
+        "account_number": {
+            "type": "string",
+            "description": "The merchant account number."
+        },
+        "start_date": {
+            "type": "string",
+            "description": "The start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "maxLength": 25
+        },
+        "end_date": {
+            "type": "string",
+            "description": "The end date and time or the last date when the data can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "maxLength": 25
+        },
+        "last_refreshed_datetime": {
+            "type": "string",
+            "description": "The date and time when the data was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "maxLength": 25
+        },
+        "page": {
+            "type": "integer",
+            "description": "A zero-relative index of transactions.",
+            "maximum": 2147483647,
+            "minimum": 0
+        },
+        "total_items": {
+            "type": "integer",
+            "description": "The total number of transactions as an integer beginning with the specified `page` in the full result and not just in this response.",
+            "maximum": 2147483647,
+            "minimum": 0
+        },
+        "total_pages": {
+            "type": "integer",
+            "description": "The total number of pages, as an `integer`, when the `total_items` is divided into pages of the specified `page_size`.",
+            "maximum": 2147483647,
+            "minimum": 0
+        },
+        "links": {
+            "type": "array",
+            "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+            "readOnly": true,
+            "items": {
+                "$ref": "./common_components/v3/schema/json/openapi-2.0/link_description.json",
+                "x-publicDocsSchemaName": "link_description",
+                "readOnly": true
+            }
+        }
+    },
+    "x-links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions?transaction_date={transaction_date}&page={page}",
+            "rel": "self"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions?transaction_date={transaction_date}&page=1",
+            "rel": "first"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions?transaction_date={transaction_date}&page={total_pages}",
+            "rel": "last"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions?transaction_date={transaction_date}&page={next_page}",
+            "rel": "next"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/reporting/transactions?transaction_date={transaction_date}&page={prev_page}",
+            "rel": "prev"
+        }
+    ]
+}

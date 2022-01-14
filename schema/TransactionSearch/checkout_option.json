@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "title": "Checkout Option",
+    "description": "A checkout option as a name-and-value pair.",
+    "x-visibility": {
+        "extent": "EXTERNAL"
+    },
+    "properties": {
+        "checkout_option_name": {
+            "type": "string",
+            "description": "The checkout option name, such as `color` or `texture`.",
+            "maxLength": 200
+        },
+        "checkout_option_value": {
+            "type": "string",
+            "description": "The checkout option value. For example, the checkout option `color` might be `blue` or `red` while the checkout option `texture` might be `smooth` or `rippled`.",
+            "maxLength": 200
+        }
+    }
+}
