@@ -224,7 +224,7 @@ class Disputes extends BaseService
      *
      * @param $email string Filters the disputes in the response by a counter party's primary email.
      *
-     * @param $invoiceNumber string Filters the disputes in the response by a invoice, by ID.
+     * @param $invoiceNumber string Filters the disputes in the response by a https:\/\/developer.paypal.com\/docs\/api\/customer-disputes\/v1\/#errors, by ID.
      *
      * @param $disputeState string Filters the disputes in the response by a state. Separate multiple values with a
      * comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of
