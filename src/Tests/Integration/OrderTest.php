@@ -1,13 +1,13 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Tests\Integration;
+namespace OxidSolutionCatalysts\PayPalApi\Tests\Integration;
 
-use OxidSolutionCatalysts\PayPal\Api\Client;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\Payer;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\Order;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\OrderRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\PurchaseUnitRequest;
-use OxidSolutionCatalysts\PayPal\Api\Service\Orders;
+use OxidSolutionCatalysts\PayPalApi\Client;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\Payer;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\Order;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\PurchaseUnitRequest;
+use OxidSolutionCatalysts\PayPalApi\Service\Orders;
 use PHPUnit\Framework\TestCase;
 
 class OrderTest extends TestCase

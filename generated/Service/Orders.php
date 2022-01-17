@@ -1,15 +1,15 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\Order;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\OrderAuthorizeRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\OrderCaptureRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\OrderRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\OrderValidateRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\PaymentContextData;
-use OxidSolutionCatalysts\PayPal\Api\Model\Orders\PaymentDetailsRequest;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\Order;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderAuthorizeRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderCaptureRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderValidateRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentContextData;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentDetailsRequest;
 
 class Orders extends BaseService
 {

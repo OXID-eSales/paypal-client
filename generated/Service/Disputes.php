@@ -1,41 +1,41 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredAdjudicationInfo;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredDispute;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredDisputeCreateRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredDisputeCreateResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredEligibilityRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredEligibilityResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredReferredDisputes;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredRefundInfo;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ReferredSubsequentAction;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestAcceptClaim;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestAcceptOffer;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestAcknowledgeReturnItem;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestAdjudicate;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestCancel;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestChangeReason;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestDenyOffer;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestEligibility;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestEscalate;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestEvidences;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestMakeOffer;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestMetrics;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestProvideSupportingInfo;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestRequireEvidence;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\RequestSendMessage;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseDispute;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseDisputeCreate;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseDisputeEligibility;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseDisputeSearch;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseDisputesChangeReason;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseMetrics;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponsePartnerAction;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseSubsequentAction;
-use OxidSolutionCatalysts\PayPal\Api\Model\Disputes\ResponseSuggestionResponse;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredAdjudicationInfo;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredDispute;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredDisputeCreateRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredDisputeCreateResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredEligibilityRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredEligibilityResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredReferredDisputes;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredRefundInfo;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ReferredSubsequentAction;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestAcceptClaim;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestAcceptOffer;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestAcknowledgeReturnItem;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestAdjudicate;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestCancel;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestChangeReason;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestDenyOffer;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestEligibility;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestEscalate;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestEvidences;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestMakeOffer;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestMetrics;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestProvideSupportingInfo;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestRequireEvidence;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\RequestSendMessage;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseDispute;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseDisputeCreate;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseDisputeEligibility;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseDisputeSearch;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseDisputesChangeReason;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseMetrics;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponsePartnerAction;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseSubsequentAction;
+use OxidSolutionCatalysts\PayPalApi\Model\Disputes\ResponseSuggestionResponse;
 
 class Disputes extends BaseService
 {

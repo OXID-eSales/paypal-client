@@ -1,12 +1,12 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Tests\Integration;
+namespace OxidSolutionCatalysts\PayPalApi\Tests\Integration;
 
-use OxidSolutionCatalysts\PayPal\Api\Client;
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Catalog\Patch;
-use OxidSolutionCatalysts\PayPal\Api\Model\Catalog\ProductRequestPOST;
-use OxidSolutionCatalysts\PayPal\Api\Service\Catalog;
+use OxidSolutionCatalysts\PayPalApi\Client;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Catalog\Patch;
+use OxidSolutionCatalysts\PayPalApi\Model\Catalog\ProductRequestPOST;
+use OxidSolutionCatalysts\PayPalApi\Service\Catalog;
 use PHPUnit\Framework\TestCase;
 
 class CatalogTest extends TestCase

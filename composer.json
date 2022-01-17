@@ -2,7 +2,6 @@
     "name": "oxid-solution-catalysts/paypal-client",
     "description": "OXID eSales PayPal payment API-client for OXID",
     "type": "library",
-    "version": "0.0.1",
     "require": {
         "php" : ">=7.1",
         "guzzlehttp/guzzle": "~7",
@@ -17,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OxidSolutionCatalysts\\PayPal\\Api\\": ["src","generated"]
+            "OxidSolutionCatalysts\\PayPalApi\\": ["src","generated"]
         }
     }
 }

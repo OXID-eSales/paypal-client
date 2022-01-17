@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidSolutionCatalysts\PayPal\Api;
+namespace OxidSolutionCatalysts\PayPalApi;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;

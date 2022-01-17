@@ -1,11 +1,11 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\TransactionSearch\BalancesResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\TransactionSearch\PartnerSearchResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\TransactionSearch\SearchResponse;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\BalancesResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\PartnerSearchResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\SearchResponse;
 
 class TransactionSearch extends BaseService
 {

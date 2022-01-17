@@ -1,10 +1,10 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Model\TransactionSearch;
+namespace OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch;
 
 use JsonSerializable;
-use OxidSolutionCatalysts\PayPal\Api\Model\BaseModel;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\Money;
+use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\Money;
 use stdClass;
 use Webmozart\Assert\Assert;
 

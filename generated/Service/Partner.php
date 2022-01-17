@@ -1,11 +1,11 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\ReferralDataCreateReferralDataResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\ReferralDataReferralData;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\ReferralDataReferralDataResponse;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralDataCreateReferralDataResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralDataReferralData;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralDataReferralDataResponse;
 
 class Partner extends BaseService
 {

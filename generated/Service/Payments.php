@@ -1,16 +1,16 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\Authorization;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\AuthorizationRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\Capture;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\CaptureRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\OrderCaptureRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\ReauthorizeRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\Refund;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\RefundRequest;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\Authorization;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\AuthorizationRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\Capture;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\CaptureRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\OrderCaptureRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\ReauthorizeRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\Refund;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\RefundRequest;
 
 class Payments extends BaseService
 {
