@@ -20,11 +20,11 @@
  * @copyright (C) OXID eSales AG 2003-2020
  */
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Client;
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Payments\Authorization;
+use OxidSolutionCatalysts\PayPalApi\Client;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\Authorization;
 
 class GenericService extends BaseService
 {

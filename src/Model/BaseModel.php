@@ -1,6 +1,6 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Model;
+namespace OxidSolutionCatalysts\PayPalApi\Model;
 
 use Error;
 

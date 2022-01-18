@@ -1,11 +1,11 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Catalog\Product;
-use OxidSolutionCatalysts\PayPal\Api\Model\Catalog\ProductCollection;
-use OxidSolutionCatalysts\PayPal\Api\Model\Catalog\ProductRequestPOST;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Catalog\Product;
+use OxidSolutionCatalysts\PayPalApi\Model\Catalog\ProductCollection;
+use OxidSolutionCatalysts\PayPalApi\Model\Catalog\ProductRequestPOST;
 
 class Catalog extends BaseService
 {

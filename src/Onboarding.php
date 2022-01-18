@@ -1,12 +1,12 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api;
+namespace OxidSolutionCatalysts\PayPalApi;
 
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\Operation;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\ReferralData;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\RestApiIntegration;
-use OxidSolutionCatalysts\PayPal\Api\Model\Partner\RestApiIntegrationFirstPartyDetails;
-use OxidSolutionCatalysts\PayPal\Api\Service\Partner;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\Operation;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralData;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegration;
+use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegrationFirstPartyDetails;
+use OxidSolutionCatalysts\PayPalApi\Service\Partner;
 use Psr\Log\LoggerInterface;
 
 class Onboarding extends Client

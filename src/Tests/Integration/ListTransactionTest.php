@@ -1,9 +1,9 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Tests\Integration;
+namespace OxidSolutionCatalysts\PayPalApi\Tests\Integration;
 
-use OxidSolutionCatalysts\PayPal\Api\Client;
-use OxidSolutionCatalysts\PayPal\Api\Service\TransactionSearch;
+use OxidSolutionCatalysts\PayPalApi\Client;
+use OxidSolutionCatalysts\PayPalApi\Service\TransactionSearch;
 use PHPUnit\Framework\TestCase;
 
 class ListTransactionTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api;
+namespace OxidSolutionCatalysts\PayPalApi;
 
 use Exception;
 

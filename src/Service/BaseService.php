@@ -1,10 +1,10 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
-use OxidSolutionCatalysts\PayPal\Api\Client;
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Client;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Psr7\Query;
 

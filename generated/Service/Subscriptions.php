@@ -1,23 +1,23 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Service;
+namespace OxidSolutionCatalysts\PayPalApi\Service;
 
-use OxidSolutionCatalysts\PayPal\Api\Exception\ApiException;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\Plan;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\PlanCollection;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\PlanRequestPOST;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\Subscription;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionActivateRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionCancelRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionCaptureRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionCollection;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionRequestPost;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionReviseRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionReviseResponse;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionSaveRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\SubscriptionSuspendRequest;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\TransactionsList;
-use OxidSolutionCatalysts\PayPal\Api\Model\Subscriptions\UpdatePricingSchemesListRequest;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\Plan;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\PlanCollection;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\PlanRequestPOST;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\Subscription;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionActivateRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionCancelRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionCaptureRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionCollection;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionRequestPost;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionReviseRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionReviseResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionSaveRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\SubscriptionSuspendRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\TransactionsList;
+use OxidSolutionCatalysts\PayPalApi\Model\Subscriptions\UpdatePricingSchemesListRequest;
 
 class Subscriptions extends BaseService
 {

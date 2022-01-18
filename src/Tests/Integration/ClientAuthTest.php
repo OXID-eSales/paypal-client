@@ -1,8 +1,8 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Tests\Integration;
+namespace OxidSolutionCatalysts\PayPalApi\Tests\Integration;
 
-use OxidSolutionCatalysts\PayPal\Api\Client;
+use OxidSolutionCatalysts\PayPalApi\Client;
 use PHPUnit\Framework\TestCase;
 
 class ClientAuthTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Tests\Integration;
+namespace OxidSolutionCatalysts\PayPalApi\Tests\Integration;
 
-use OxidSolutionCatalysts\PayPal\Api\Onboarding;
+use OxidSolutionCatalysts\PayPalApi\Onboarding;
 use PHPUnit\Framework\TestCase;
 
 class OnboardingTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace OxidSolutionCatalysts\PayPal\Api\Model\Orders;
+namespace OxidSolutionCatalysts\PayPalApi\Model\Orders;
 
 use JsonSerializable;
-use OxidSolutionCatalysts\PayPal\Api\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
