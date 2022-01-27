@@ -4,10 +4,10 @@
     "title": "Partner Referrals",
     "x-serviceName": "partner",
     "x-publicDocsPath": "partner-referrals",
-    "description": "The Partner Referrals API enables a marketplace to add PayPal seller accounts. It supports the Connected Path marketplace models.<blockquote><strong>Important:</strong> PayPal for Marketplaces is a limited-release solution at this time. It is available to select partners for approved use cases. For more information, reach out to your PayPal account manager.</blockquote>In the <a href=\"/docs/platforms/seller-onboarding/\">Connected Path</a>, you host a button on your website that takes sellers to PayPal to create and configure a PayPal account. The Onboarding API enables you to collect seller data and pass it to the account creation and setup forms, reducing the burden on sellers during the signup and setup process. Call the <a href=\"#partner-referrals_create\">create partner referral</a> and <a href=\"#partner-referrals_read\">show referral data</a> methods for the Connected Path.",
-    "version": "2.2"
+    "description": "The Partner Referrals API enables a marketplace to add PayPal seller accounts. It supports the Connected Path marketplace models.<blockquote><strong>Important:</strong> PayPal for Marketplaces is a limited-release solution at this time. It is available to select partners for approved use cases. For more information, reach out to your PayPal account manager.</blockquote>In the <a href=\"/docs/marketplaces/integrate/connected/\">Connected Path</a>, you host a button on your website that takes sellers to PayPal to create and configure a PayPal account. The Onboarding API enables you to collect seller data and pass it to the account creation and setup forms, reducing the burden on sellers during the signup and setup process. Call the <a href=\"#partner-referrals_create\">create partner referral</a> and <a href=\"#partner-referrals_read\">show referral data</a> methods for the Connected Path.",
+    "version": "2.3"
   },
-  "host": "api.paypal.com",
+  "host": "api-m.paypal.com",
   "basePath": "/v2/customer",
   "schemes": [
     "https"
@@ -28,14 +28,14 @@
         "https://uri.paypal.com/services/customer/partner-referrals/readwrite": "Manage external referral data with PayPal",
         "https://uri.paypal.com/services/customer/partner-referrals": "Manage referral data shared by Partner with PayPal. To be used by only internal apps"
       },
-      "tokenUrl": "https://api.paypal.com/v1/oauth2/token"
+      "tokenUrl": "https://api-m.paypal.com/v1/oauth2/token"
     }
   },
   "paths": {
     "/partner-referrals": {
       "post": {
         "summary": "Create partner referral",
-        "description": "Creates a partner referral that is shared by the API caller. The referrals contains the client's personal, business, financial and operations that the partner wants to onbaord the client.",
+        "description": "Creates a partner referral that is shared by the API caller. The referrals contains the client's personal, business, financial and operations that the partner wants to onboard the client.",
         "operationId": "partner-referrals.create",
         "responses": {
           "201": {
@@ -467,7 +467,7 @@
     }
   ],
   "externalDocs": {
-    "url": "https://developer.paypal.com/docs/platforms/seller-onboarding/"
+    "url": "https://developer.paypal.com/docs/platforms/seller-onboarding/before-payment/"
   },
   "definitions": {
     "referral_data-create_referral_data_response.json": {
@@ -486,7 +486,7 @@
           "additionalProperties": true,
           "items": {
             "description": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.",
-            "$ref": "#/definitions/customized_x_unsupported_4349_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json",
+            "$ref": "#/definitions/customized_x_unsupported_9867_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json",
             "x-publicDocsSchemaName": "link_description"
           }
         }
@@ -1014,7 +1014,7 @@
               "$ref": "#/definitions/merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-email_address.json"
             },
             "preferred_language_code": {
-              "description": "The preferred [locale code](/docs/integration/direct/rest/locale-codes/) to use in the onboarding flow for the customer.",
+              "description": "The preferred [locale code](/docs/api/reference/locale-codes/) to use in the onboarding flow for the customer.",
               "$ref": "#/definitions/merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-language.json"
             },
             "tracking_id": {
@@ -1060,6 +1060,10 @@
               },
               "minItems": 1,
               "maxItems": 5
+            },
+            "payout_attributes": {
+              "description": "Payout specific attributes.",
+              "$ref": "#/definitions/referral_data-payout_attributes.json"
             }
           }
         }
@@ -1082,13 +1086,14 @@
           "description": "List of owners in the account. There should be only one primary account owner which is mentioned in their role_type.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_9657_customer_common_overrides-individual_owner.json"
+            "$ref": "#/definitions/customized_x_unsupported_5181_customer_common_overrides-individual_owner.json"
           },
           "minItems": 0,
           "maxItems": 2
         },
         "business_entity": {
           "description": "Business entity of the account.",
+          "type": "object",
           "$ref": "#/definitions/customer_common_overrides-business_entity.json"
         }
       }
@@ -1136,7 +1141,7 @@
           "description": "The name of the person.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_5585_customer_common-v1-schema-account_model-person_name.json"
+            "$ref": "#/definitions/customized_x_unsupported_1092_customer_common-v1-schema-account_model-person_name.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -1149,7 +1154,7 @@
           "description": "The list of addresses associated with the person.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_5100_customer_common_overrides-person_address_detail.json"
+            "$ref": "#/definitions/customized_x_unsupported_8724_customer_common_overrides-person_address_detail.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -1158,7 +1163,7 @@
           "description": "The list of phone numbers associated with the person.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_1799_customer_common_overrides-person_phone_detail.json"
+            "$ref": "#/definitions/customized_x_unsupported_5103_customer_common_overrides-person_phone_detail.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -1168,10 +1173,10 @@
           "$ref": "#/definitions/customer_common-v1-schema-account_model-birth_details.json"
         },
         "documents": {
-          "description": "A person's or party's related document data collected from the customer. For example SSN, ITIN, or business registration number collected from the user.",
+          "description": "A person's or party's related document data collected from the customer. For example SSN, ITIN, or business registration number collected from the user. <blockquote><strong>Note:</strong> This field is not applicable for POST [/v2/customer/partner-referrals](/docs/api/partner-referrals/v2/#partner-referrals_create) API calls.</blockquote>",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_5829_customer_common_overrides-person_document.json"
+            "$ref": "#/definitions/customized_x_unsupported_2184_customer_common_overrides-person_document.json"
           },
           "minItems": 0,
           "maxItems": 20
@@ -2238,7 +2243,7 @@
     },
     "customer_common-v1-schema-common_components-v4-schema-json-openapi-2.0-country_code.json": {
       "type": "string",
-      "description": "The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>",
+      "description": "The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>",
       "format": "ppaas_common_country_code_v2",
       "maxLength": 2,
       "minLength": 2,
@@ -3351,7 +3356,7 @@
               "description": "List of Directors present as part of the business entity.",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/customized_x_unsupported_296_customer_common_overrides-office_bearer.json"
+                "$ref": "#/definitions/customized_x_unsupported_8753_customer_common_overrides-office_bearer.json"
               },
               "minItems": 0,
               "maxItems": 5
@@ -3396,13 +3401,13 @@
         },
         "business_incorporation": {
           "description": "Information related to the business like the nature of business, started date etc.",
-          "$ref": "#/definitions/customized_x_unsupported_9859_customer_common-v1-schema-account_model-business_incorporation.json"
+          "$ref": "#/definitions/customized_x_unsupported_4368_customer_common-v1-schema-account_model-business_incorporation.json"
         },
         "names": {
           "description": "Name of the business.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_1503_customer_common-v1-schema-account_model-business_name_detail.json"
+            "$ref": "#/definitions/customized_x_unsupported_9856_customer_common-v1-schema-account_model-business_name_detail.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -3411,7 +3416,7 @@
           "description": "Email addresses of the business.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_1635_customer_common_overrides-email.json"
+            "$ref": "#/definitions/customized_x_unsupported_8605_customer_common_overrides-email.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -3426,7 +3431,7 @@
           "description": "List of addresses associated with the business entity.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_6338_customer_common_overrides-business_address_detail.json"
+            "$ref": "#/definitions/customized_x_unsupported_3356_customer_common_overrides-business_address_detail.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -3435,7 +3440,7 @@
           "description": "List of phone number associated with the business.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_8120_customer_common_overrides-business_phone_detail.json"
+            "$ref": "#/definitions/customized_x_unsupported_4124_customer_common_overrides-business_phone_detail.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -3444,7 +3449,7 @@
           "description": "Business Party related Document data collected from the customer.. For example SSN, ITIN, Business registration number that were collected from the user.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_4705_customer_common_overrides-business_document.json"
+            "$ref": "#/definitions/customized_x_unsupported_9267_customer_common_overrides-business_document.json"
           },
           "minItems": 0,
           "maxItems": 20
@@ -4931,7 +4936,7 @@
           "description": "Individual beneficial owners.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_9745_customer_common_overrides-individual_beneficial_owner.json"
+            "$ref": "#/definitions/customized_x_unsupported_1812_customer_common_overrides-individual_beneficial_owner.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -4940,7 +4945,7 @@
           "description": "Business beneficial owners.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customized_x_unsupported_5853_customer_common_overrides-business_beneficial_owner.json"
+            "$ref": "#/definitions/customized_x_unsupported_8073_customer_common_overrides-business_beneficial_owner.json"
           },
           "minItems": 0,
           "maxItems": 5
@@ -5305,7 +5310,7 @@
         },
         "branch_location": {
           "description": "The branch location, if applicable.",
-          "$ref": "#/definitions/customized_x_unsupported_4415_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-address_portable.json"
+          "$ref": "#/definitions/customized_x_unsupported_3352_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-address_portable.json"
         },
         "mandate": {
           "description": "Mandate for this bank account.",
@@ -6568,6 +6573,111 @@
       ],
       "x-publicDocsSchemaName": "legal_consent"
     },
+    "referral_data-payout_attributes.json": {
+      "type": "object",
+      "title": "Payout Attributes",
+      "additionalProperties": false,
+      "description": "Payout specific attributes.",
+      "x-visibility": {
+        "extent": "EXTERNAL"
+      },
+      "properties": {
+        "marketplace": {
+          "type": "boolean",
+          "description": "If `true`, specifies that the merchant or platform is offering goods or services on behalf of 3rd party sellers."
+        },
+        "kyc_required": {
+          "type": "boolean",
+          "description": "If `true`, specifies that the Kyc is required for the merchant."
+        },
+        "country_transfer_method_currency_selection": {
+          "type": "array",
+          "description": "Requested country, transfer method and currency.",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/definitions/referral_data-country_transfer_method_currency_selection.json"
+          }
+        }
+      }
+    },
+    "referral_data-country_transfer_method_currency_selection.json": {
+      "type": "object",
+      "title": "Requested country, transfer method and currency",
+      "additionalProperties": false,
+      "description": "Requested country, transfer method and currency.",
+      "x-visibility": {
+        "extent": "EXTERNAL"
+      },
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "Country.",
+          "items": {
+            "$ref": "#/definitions/customer_common-v1-schema-common_components-v4-schema-json-openapi-2.0-country_code.json"
+          }
+        },
+        "transfer_methods": {
+          "type": "array",
+          "description": "Requested transfer method and currency for a country.",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/definitions/referral_data-transfer_method.json"
+          }
+        }
+      }
+    },
+    "referral_data-transfer_method.json": {
+      "type": "object",
+      "title": "Requested transfer method and currency for a country",
+      "additionalProperties": false,
+      "description": "Requested transfer method and currency for a country.",
+      "x-visibility": {
+        "extent": "EXTERNAL"
+      },
+      "properties": {
+        "transfer_method_type": {
+          "type": "string",
+          "description": "Transfer Method type.",
+          "x-enum": [
+            {
+              "value": "BANK_ACCOUNT",
+              "description": "Transfer method type- Bank Account"
+            },
+            {
+              "value": "PAYPAL",
+              "description": "Transfer method type- Bank Account"
+            },
+            {
+              "value": "VENMO",
+              "description": "Transfer method type- Bank Account"
+            },
+            {
+              "value": "WIRE_ACCOUNT",
+              "description": "Transfer method type- Bank Account"
+            }
+          ]
+        },
+        "currencies": {
+          "type": "array",
+          "description": "Requested Currencies for a Transfer Method.",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/definitions/customer_common-v1-schema-common_components-v4-schema-json-openapi-2.0-currency_code.json"
+          }
+        }
+      }
+    },
+    "customer_common-v1-schema-common_components-v4-schema-json-openapi-2.0-currency_code.json": {
+      "description": "The [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) that identifies the currency.",
+      "type": "string",
+      "format": "ppaas_common_currency_code_v2",
+      "minLength": 3,
+      "maxLength": 3,
+      "properties": {}
+    },
     "referral_data-referral_data_response.json": {
       "type": "object",
       "title": "Referral Data Response",
@@ -6598,7 +6708,7 @@
           "additionalProperties": true,
           "items": {
             "x-publicDocsSchemaName": "link_description",
-            "$ref": "#/definitions/customized_x_unsupported_5411_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json"
+            "$ref": "#/definitions/customized_x_unsupported_6946_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json"
           },
           "minItems": 0,
           "maxItems": 2
@@ -6606,7 +6716,7 @@
       },
       "x-links": [
         {
-          "href": "https://api.paypal.com/v2/customer/partner-referrals/{partner_referral_id}",
+          "href": "https://api-m.paypal.com/v2/customer/partner-referrals/{partner_referral_id}",
           "rel": "self",
           "method": "GET"
         },
@@ -6618,7 +6728,7 @@
       ],
       "x-publicDocsSchemaName": "referral_data_response"
     },
-    "customized_x_unsupported_4349_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json": {
+    "customized_x_unsupported_9867_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json": {
       "type": "object",
       "description": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.",
       "required": [
@@ -6659,7 +6769,7 @@
         }
       }
     },
-    "customized_x_unsupported_9657_customer_common_overrides-individual_owner.json": {
+    "customized_x_unsupported_5181_customer_common_overrides-individual_owner.json": {
       "title": "Individual_owner",
       "description": "The individual owner of the account.",
       "allOf": [
@@ -6677,7 +6787,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_5585_customer_common-v1-schema-account_model-person_name.json": {
+    "customized_x_unsupported_1092_customer_common-v1-schema-account_model-person_name.json": {
       "type": "object",
       "title": "Person name",
       "description": "The name of the person.",
@@ -6699,7 +6809,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_5100_customer_common_overrides-person_address_detail.json": {
+    "customized_x_unsupported_8724_customer_common_overrides-person_address_detail.json": {
       "type": "object",
       "title": "Person address detail",
       "description": "A simple postal address with coarse-grained fields.",
@@ -6721,7 +6831,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_1799_customer_common_overrides-person_phone_detail.json": {
+    "customized_x_unsupported_5103_customer_common_overrides-person_phone_detail.json": {
       "type": "object",
       "title": "Phone details",
       "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).",
@@ -6743,7 +6853,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_5829_customer_common_overrides-person_document.json": {
+    "customized_x_unsupported_2184_customer_common_overrides-person_document.json": {
       "title": "Person document",
       "description": "The documents associated with the person.",
       "allOf": [
@@ -6761,7 +6871,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_296_customer_common_overrides-office_bearer.json": {
+    "customized_x_unsupported_8753_customer_common_overrides-office_bearer.json": {
       "title": "Office Bearers",
       "description": "The office bearer associated to the account.",
       "allOf": [
@@ -6779,7 +6889,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_9859_customer_common-v1-schema-account_model-business_incorporation.json": {
+    "customized_x_unsupported_4368_customer_common-v1-schema-account_model-business_incorporation.json": {
       "title": "Business_incorporation",
       "type": "object",
       "description": "Business incorporation information.",
@@ -6794,7 +6904,7 @@
         }
       }
     },
-    "customized_x_unsupported_1503_customer_common-v1-schema-account_model-business_name_detail.json": {
+    "customized_x_unsupported_9856_customer_common-v1-schema-account_model-business_name_detail.json": {
       "type": "object",
       "title": "Business name",
       "description": "Name of the business provided.",
@@ -6816,7 +6926,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_1635_customer_common_overrides-email.json": {
+    "customized_x_unsupported_8605_customer_common_overrides-email.json": {
       "title": "Email of a person orbusiness",
       "description": "An email address at which the person or business can be contacted.",
       "type": "object",
@@ -6847,7 +6957,7 @@
         "type"
       ]
     },
-    "customized_x_unsupported_6338_customer_common_overrides-business_address_detail.json": {
+    "customized_x_unsupported_3356_customer_common_overrides-business_address_detail.json": {
       "type": "object",
       "title": "Business_address_detail",
       "description": "A simple postal address with coarse-grained fields.",
@@ -6869,7 +6979,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_8120_customer_common_overrides-business_phone_detail.json": {
+    "customized_x_unsupported_4124_customer_common_overrides-business_phone_detail.json": {
       "type": "object",
       "title": "Phone details",
       "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).",
@@ -6891,7 +7001,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_4705_customer_common_overrides-business_document.json": {
+    "customized_x_unsupported_9267_customer_common_overrides-business_document.json": {
       "title": "Business document",
       "description": "The documents associated with the business.",
       "allOf": [
@@ -6909,7 +7019,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_9745_customer_common_overrides-individual_beneficial_owner.json": {
+    "customized_x_unsupported_1812_customer_common_overrides-individual_beneficial_owner.json": {
       "title": "Individual_beneficial_owner",
       "description": "The individual owner of the account.",
       "allOf": [
@@ -6927,7 +7037,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_5853_customer_common_overrides-business_beneficial_owner.json": {
+    "customized_x_unsupported_8073_customer_common_overrides-business_beneficial_owner.json": {
       "title": "Business_beneficial_owner",
       "description": "The business beneficial owner of the account.",
       "allOf": [
@@ -6945,7 +7055,7 @@
       ],
       "properties": {}
     },
-    "customized_x_unsupported_4415_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-address_portable.json": {
+    "customized_x_unsupported_3352_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-address_portable.json": {
       "type": "object",
       "title": "Portable Postal Address (Medium-Grained)",
       "description": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).",
@@ -6986,7 +7096,7 @@
         "country_code"
       ]
     },
-    "customized_x_unsupported_5411_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json": {
+    "customized_x_unsupported_6946_merchant_common_components-v1-schema-common_components-v4-schema-json-openapi-2.0-link_description.json": {
       "type": "object",
       "description": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.",
       "required": [

@@ -7,7 +7,7 @@
     "version": "1.0",
     "x-serviceName": "subnplanmgmtserv"
   },
-  "host": "api.paypal.com",
+  "host": "api-m.paypal.com",
   "basePath": "/v1/catalogs",
   "schemes": [
     "https"
@@ -443,7 +443,7 @@
     "Oauth2": {
       "type": "oauth2",
       "description": "Oauth 2.0 authentication",
-      "tokenUrl": "https://api.paypal.com/v1/oauth2/token",
+      "tokenUrl": "https://api-m.paypal.com/v1/oauth2/token",
       "flow": "application",
       "scopes": {
         "https://uri.paypal.com/services/subscriptions": "Create and manage products"
@@ -494,7 +494,7 @@
             },
             {
               "value": "DIGITAL",
-              "description": "Digital goods"
+              "description": "For digital goods, the value must be set to DIGITAL to get the best rates. For more details, please contact your account manager."
             },
             {
               "value": "SERVICE",
@@ -542,12 +542,12 @@
       },
       "x-links": [
         {
-          "href": "https://api.paypal.com/v1/catalogs/products/{id}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products/{id}",
           "rel": "self",
           "method": "GET"
         },
         {
-          "href": "https://api.paypal.com/v1/catalogs/products/{id}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products/{id}",
           "rel": "edit",
           "method": "PATCH"
         }
@@ -2673,7 +2673,7 @@
         },
         "type": {
           "type": "string",
-          "description": "The product type. Indicates whether the product is physical or tangible goods, or a service.",
+          "description": "The product type. Indicates whether the product is physical or digital goods, or a service.",
           "minLength": 1,
           "maxLength": 24,
           "pattern": "^[A-Z_]+$",
@@ -2685,7 +2685,7 @@
             },
             {
               "value": "DIGITAL",
-              "description": "Digital goods."
+              "description": "For digital goods, the value must be set to DIGITAL to get the best rates. For more details, please contact your account manager."
             },
             {
               "value": "SERVICE",
@@ -2760,27 +2760,27 @@
       },
       "x-links": [
         {
-          "href": "https://api.paypal.com/v1/catalogs/products?page_size={page_size}&page={page}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products?page_size={page_size}&page={page}",
           "rel": "self",
           "method": "GET"
         },
         {
-          "href": "https://api.paypal.com/v1/catalogs/products?page_size={page_size}&page=1",
+          "href": "https://api-m.paypal.com/v1/catalogs/products?page_size={page_size}&page=1",
           "rel": "first",
           "method": "GET"
         },
         {
-          "href": "https://api.paypal.com/v1/catalogs/products?page_size={page_size}&page={page+1}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products?page_size={page_size}&page={page+1}",
           "rel": "next",
           "method": "GET"
         },
         {
-          "href": "https://api.paypal.com/v1/catalogs/products?page_size={page_size}&page={page-1}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products?page_size={page_size}&page={page-1}",
           "rel": "prev",
           "method": "GET"
         },
         {
-          "href": "https://api.paypal.com/v1/catalogs/products?page_size={page_size}&page={last}",
+          "href": "https://api-m.paypal.com/v1/catalogs/products?page_size={page_size}&page={last}",
           "rel": "last",
           "method": "GET"
         }
