@@ -24,6 +24,12 @@ class BalancesResponse implements JsonSerializable
      */
     public $balances;
 
+    public $account_id;
+
+    public $as_of_time;
+
+    public $last_refresh_time;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -56,6 +62,18 @@ class BalancesResponse implements JsonSerializable
             foreach ($data['balances'] as $item) {
                 $this->balances[] = new BalanceDetail($item);
             }
+        }
+
+        if (isset($data['account_id'])) {
+            $this->account_id = $data['account_id'];
+        }
+
+        if (isset($data['last_refresh_time'])) {
+            $this->last_refresh_time = $data['last_refresh_time'];
+        }
+
+        if (isset($data['as_of_time'])) {
+            $this->as_of_time = $data['as_of_time'];
         }
     }
 

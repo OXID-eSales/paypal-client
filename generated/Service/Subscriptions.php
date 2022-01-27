@@ -385,7 +385,7 @@ class Subscriptions extends BaseService
 
 
         $params = [];
-        $params['fields'] = $fields;
+//        $params['fields'] = $fields;
 
         $body = null;
         $response = $this->send('GET', $path, $params, [], $body);
