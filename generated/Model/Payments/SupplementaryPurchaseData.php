@@ -21,6 +21,7 @@ class SupplementaryPurchaseData implements JsonSerializable
      * history and the emails that the payer receives.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $invoice_id;
@@ -30,6 +31,7 @@ class SupplementaryPurchaseData implements JsonSerializable
      * transactions. Appears in transaction and settlement reports.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $custom_id;
@@ -39,16 +41,18 @@ class SupplementaryPurchaseData implements JsonSerializable
      * that the payer receives.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 255
      */
     public $note_to_payer;
 
     /**
-     * <strong>Note:</strong> This field has been marked INTERNAL to ensure backward compatibility, please do not use
-     * this for any future integrations as this field is not supported for this end point. The payment descriptor
-     * that appears on the customer's credit card statement for this transaction.
+     * <blockquote><strong>Note:</strong> This field has been marked INTERNAL to ensure backward compatibility,
+     * please do not use this for any future integrations as this field is not supported for this end point. The
+     * payment descriptor that appears on the customer's credit card statement for this transaction.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 22
      */
     public $soft_descriptor;
@@ -56,20 +60,40 @@ class SupplementaryPurchaseData implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->invoice_id) || Assert::minLength(
+            $this->invoice_id,
+            1,
+            "invoice_id in SupplementaryPurchaseData must have minlength of 1 $within"
+        );
         !isset($this->invoice_id) || Assert::maxLength(
             $this->invoice_id,
             127,
             "invoice_id in SupplementaryPurchaseData must have maxlength of 127 $within"
+        );
+        !isset($this->custom_id) || Assert::minLength(
+            $this->custom_id,
+            1,
+            "custom_id in SupplementaryPurchaseData must have minlength of 1 $within"
         );
         !isset($this->custom_id) || Assert::maxLength(
             $this->custom_id,
             127,
             "custom_id in SupplementaryPurchaseData must have maxlength of 127 $within"
         );
+        !isset($this->note_to_payer) || Assert::minLength(
+            $this->note_to_payer,
+            1,
+            "note_to_payer in SupplementaryPurchaseData must have minlength of 1 $within"
+        );
         !isset($this->note_to_payer) || Assert::maxLength(
             $this->note_to_payer,
             255,
             "note_to_payer in SupplementaryPurchaseData must have maxlength of 255 $within"
+        );
+        !isset($this->soft_descriptor) || Assert::minLength(
+            $this->soft_descriptor,
+            1,
+            "soft_descriptor in SupplementaryPurchaseData must have minlength of 1 $within"
         );
         !isset($this->soft_descriptor) || Assert::maxLength(
             $this->soft_descriptor,

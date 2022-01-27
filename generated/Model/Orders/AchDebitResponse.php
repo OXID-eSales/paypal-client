@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * ACH bank details response object
+ * ACH bank details response object.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-ach_debit_response.json
  */
@@ -42,6 +42,13 @@ class AchDebitResponse implements JsonSerializable
      */
     public $account_holder_name;
 
+    /**
+     * ACH debit attributes response object.
+     *
+     * @var AchDebitAttributesResponse | null
+     */
+    public $attributes;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -75,6 +82,12 @@ class AchDebitResponse implements JsonSerializable
             300,
             "account_holder_name in AchDebitResponse must have maxlength of 300 $within"
         );
+        !isset($this->attributes) || Assert::isInstanceOf(
+            $this->attributes,
+            AchDebitAttributesResponse::class,
+            "attributes in AchDebitResponse must be instance of AchDebitAttributesResponse $within"
+        );
+        !isset($this->attributes) ||  $this->attributes->validate(AchDebitResponse::class);
     }
 
     private function map(array $data)
@@ -88,6 +101,9 @@ class AchDebitResponse implements JsonSerializable
         if (isset($data['account_holder_name'])) {
             $this->account_holder_name = $data['account_holder_name'];
         }
+        if (isset($data['attributes'])) {
+            $this->attributes = new AchDebitAttributesResponse($data['attributes']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -95,5 +111,10 @@ class AchDebitResponse implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initAttributes(): AchDebitAttributesResponse
+    {
+        return $this->attributes = new AchDebitAttributesResponse();
     }
 }

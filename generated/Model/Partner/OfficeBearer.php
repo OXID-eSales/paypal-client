@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The office bearer associated to the account.
  *
- * generated from: customized_x_unsupported_296_customer_common_overrides-office_bearer.json
+ * generated from: customized_x_unsupported_8753_customer_common_overrides-office_bearer.json
  */
 class OfficeBearer extends Person implements JsonSerializable
 {

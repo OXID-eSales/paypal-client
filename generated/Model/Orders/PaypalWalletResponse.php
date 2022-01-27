@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The Paypal Wallet response.
+ * The PayPal Wallet response.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-paypal_wallet_response.json
  */

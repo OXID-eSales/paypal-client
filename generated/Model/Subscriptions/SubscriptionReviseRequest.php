@@ -36,17 +36,6 @@ class SubscriptionReviseRequest implements JsonSerializable
     public $quantity;
 
     /**
-     * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-     * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
-     * expression provides guidance but does not reject all invalid dates.</blockquote>
-     *
-     * @var string | null
-     * minLength: 20
-     * maxLength: 64
-     */
-    public $effective_time;
-
-    /**
      * The currency and amount for a financial transaction, such as a balance or payment due.
      *
      * @var Money | null
@@ -69,7 +58,8 @@ class SubscriptionReviseRequest implements JsonSerializable
     public $application_context;
 
     /**
-     * The plan details to override at subscription level.
+     * An inline plan object to customise the subscription. You can override plan level default attributes by
+     * providing customised values for the subscription in this object.
      *
      * @var PlanOverride | null
      */
@@ -97,16 +87,6 @@ class SubscriptionReviseRequest implements JsonSerializable
             $this->quantity,
             32,
             "quantity in SubscriptionReviseRequest must have maxlength of 32 $within"
-        );
-        !isset($this->effective_time) || Assert::minLength(
-            $this->effective_time,
-            20,
-            "effective_time in SubscriptionReviseRequest must have minlength of 20 $within"
-        );
-        !isset($this->effective_time) || Assert::maxLength(
-            $this->effective_time,
-            64,
-            "effective_time in SubscriptionReviseRequest must have maxlength of 64 $within"
         );
         !isset($this->shipping_amount) || Assert::isInstanceOf(
             $this->shipping_amount,
@@ -141,9 +121,6 @@ class SubscriptionReviseRequest implements JsonSerializable
         }
         if (isset($data['quantity'])) {
             $this->quantity = $data['quantity'];
-        }
-        if (isset($data['effective_time'])) {
-            $this->effective_time = $data['effective_time'];
         }
         if (isset($data['shipping_amount'])) {
             $this->shipping_amount = new Money($data['shipping_amount']);

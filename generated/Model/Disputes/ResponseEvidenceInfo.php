@@ -18,21 +18,36 @@ class ResponseEvidenceInfo implements JsonSerializable
     /**
      * An array of relevant tracking information for the transaction involved in this dispute.
      *
-     * @var ResponseTrackingInfo[] | null
+     * @var ResponseTrackingInfo[]
+     * maxItems: 1
+     * maxItems: 10
      */
     public $tracking_info;
 
     /**
      * An array of refund IDs for the transaction involved in this dispute.
      *
-     * @var string[] | null
+     * @var string[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $refund_ids;
 
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->tracking_info) || Assert::isArray(
+        Assert::notNull($this->tracking_info, "tracking_info in ResponseEvidenceInfo must not be NULL $within");
+        Assert::minCount(
+            $this->tracking_info,
+            1,
+            "tracking_info in ResponseEvidenceInfo must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->tracking_info,
+            10,
+            "tracking_info in ResponseEvidenceInfo must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->tracking_info,
             "tracking_info in ResponseEvidenceInfo must be array $within"
         );
@@ -41,7 +56,18 @@ class ResponseEvidenceInfo implements JsonSerializable
                 $item->validate(ResponseEvidenceInfo::class);
             }
         }
-        !isset($this->refund_ids) || Assert::isArray(
+        Assert::notNull($this->refund_ids, "refund_ids in ResponseEvidenceInfo must not be NULL $within");
+        Assert::minCount(
+            $this->refund_ids,
+            1,
+            "refund_ids in ResponseEvidenceInfo must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->refund_ids,
+            100,
+            "refund_ids in ResponseEvidenceInfo must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->refund_ids,
             "refund_ids in ResponseEvidenceInfo must be array $within"
         );
@@ -65,6 +91,8 @@ class ResponseEvidenceInfo implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->tracking_info = [];
+        $this->refund_ids = [];
         if (isset($data)) {
             $this->map($data);
         }

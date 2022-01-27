@@ -25,11 +25,12 @@ class ResponseDocument implements JsonSerializable
     public $name;
 
     /**
-     * The document URI.
+     * The downloadable URL for the document for which the client has
+     * access.<br/><br/><blockquote><strong>Note:</strong> Document download may require some configuration setup and
+     * available as a limited release at this time. For more information, reach out to your PayPal account
+     * manager.</blockquote>.
      *
      * @var string | null
-     * minLength: 1
-     * maxLength: 2000
      */
     public $url;
 
@@ -45,16 +46,6 @@ class ResponseDocument implements JsonSerializable
             $this->name,
             2000,
             "name in ResponseDocument must have maxlength of 2000 $within"
-        );
-        !isset($this->url) || Assert::minLength(
-            $this->url,
-            1,
-            "url in ResponseDocument must have minlength of 1 $within"
-        );
-        !isset($this->url) || Assert::maxLength(
-            $this->url,
-            2000,
-            "url in ResponseDocument must have maxlength of 2000 $within"
         );
     }
 

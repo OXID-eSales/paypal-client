@@ -34,6 +34,26 @@ class CardResponseWithBillingAddress extends CardResponse implements JsonSeriali
      */
     public $billing_address;
 
+    /**
+     * The year and month, in ISO-8601 `YYYY-MM` date format. See [Internet date and time
+     * format](https://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @var string | null
+     * minLength: 7
+     * maxLength: 7
+     */
+    public $expiry;
+
+    /**
+     * The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies
+     * the currency.
+     *
+     * @var string | null
+     * minLength: 3
+     * maxLength: 3
+     */
+    public $currency_code;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -53,6 +73,26 @@ class CardResponseWithBillingAddress extends CardResponse implements JsonSeriali
             "billing_address in CardResponseWithBillingAddress must be instance of AddressPortable2 $within"
         );
         !isset($this->billing_address) ||  $this->billing_address->validate(CardResponseWithBillingAddress::class);
+        !isset($this->expiry) || Assert::minLength(
+            $this->expiry,
+            7,
+            "expiry in CardResponseWithBillingAddress must have minlength of 7 $within"
+        );
+        !isset($this->expiry) || Assert::maxLength(
+            $this->expiry,
+            7,
+            "expiry in CardResponseWithBillingAddress must have maxlength of 7 $within"
+        );
+        !isset($this->currency_code) || Assert::minLength(
+            $this->currency_code,
+            3,
+            "currency_code in CardResponseWithBillingAddress must have minlength of 3 $within"
+        );
+        !isset($this->currency_code) || Assert::maxLength(
+            $this->currency_code,
+            3,
+            "currency_code in CardResponseWithBillingAddress must have maxlength of 3 $within"
+        );
     }
 
     private function map(array $data)
@@ -62,6 +102,12 @@ class CardResponseWithBillingAddress extends CardResponse implements JsonSeriali
         }
         if (isset($data['billing_address'])) {
             $this->billing_address = new AddressPortable2($data['billing_address']);
+        }
+        if (isset($data['expiry'])) {
+            $this->expiry = $data['expiry'];
+        }
+        if (isset($data['currency_code'])) {
+            $this->currency_code = $data['currency_code'];
         }
     }
 

@@ -35,7 +35,7 @@ class ResponseSuggestionResponse implements JsonSerializable
     public $corrected_search_text;
 
     /**
-     * An array of request-related [HATEOAS links](/docs/api/hateoas-links/).
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
      *
      * @var array
      * maxItems: 1

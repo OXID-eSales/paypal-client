@@ -27,7 +27,7 @@ class RequestAdjudicate implements JsonSerializable
      * use one of constants defined in this class to set the value:
      * @see ADJUDICATION_OUTCOME_BUYER_FAVOR
      * @see ADJUDICATION_OUTCOME_SELLER_FAVOR
-     * @var string | null
+     * @var string
      * minLength: 1
      * maxLength: 255
      */
@@ -36,12 +36,13 @@ class RequestAdjudicate implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->adjudication_outcome) || Assert::minLength(
+        Assert::notNull($this->adjudication_outcome, "adjudication_outcome in RequestAdjudicate must not be NULL $within");
+        Assert::minLength(
             $this->adjudication_outcome,
             1,
             "adjudication_outcome in RequestAdjudicate must have minlength of 1 $within"
         );
-        !isset($this->adjudication_outcome) || Assert::maxLength(
+        Assert::maxLength(
             $this->adjudication_outcome,
             255,
             "adjudication_outcome in RequestAdjudicate must have maxlength of 255 $within"

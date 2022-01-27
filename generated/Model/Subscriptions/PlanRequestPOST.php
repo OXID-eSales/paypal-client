@@ -31,7 +31,7 @@ class PlanRequestPOST implements JsonSerializable
     public const USAGE_TYPE_METERED = 'METERED';
 
     /**
-     * The ID of the product.
+     * The ID of the product created through Catalog Products API.
      *
      * @var string
      * minLength: 6

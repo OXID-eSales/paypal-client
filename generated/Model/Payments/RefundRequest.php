@@ -28,6 +28,7 @@ class RefundRequest implements JsonSerializable
      * history and the emails that the payer receives.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $invoice_id;
@@ -37,6 +38,7 @@ class RefundRequest implements JsonSerializable
      * transactions. Appears in transaction and settlement reports.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $custom_id;
@@ -46,6 +48,7 @@ class RefundRequest implements JsonSerializable
      * receives.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 255
      */
     public $note_to_payer;
@@ -59,15 +62,30 @@ class RefundRequest implements JsonSerializable
             "amount in RefundRequest must be instance of Money $within"
         );
         !isset($this->amount) ||  $this->amount->validate(RefundRequest::class);
+        !isset($this->invoice_id) || Assert::minLength(
+            $this->invoice_id,
+            1,
+            "invoice_id in RefundRequest must have minlength of 1 $within"
+        );
         !isset($this->invoice_id) || Assert::maxLength(
             $this->invoice_id,
             127,
             "invoice_id in RefundRequest must have maxlength of 127 $within"
         );
+        !isset($this->custom_id) || Assert::minLength(
+            $this->custom_id,
+            1,
+            "custom_id in RefundRequest must have minlength of 1 $within"
+        );
         !isset($this->custom_id) || Assert::maxLength(
             $this->custom_id,
             127,
             "custom_id in RefundRequest must have maxlength of 127 $within"
+        );
+        !isset($this->note_to_payer) || Assert::minLength(
+            $this->note_to_payer,
+            1,
+            "note_to_payer in RefundRequest must have minlength of 1 $within"
         );
         !isset($this->note_to_payer) || Assert::maxLength(
             $this->note_to_payer,

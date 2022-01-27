@@ -158,6 +158,20 @@ class CardResponse implements JsonSerializable
      */
     public $bin;
 
+    /**
+     * Results of Authentication such as 3D Secure.
+     *
+     * @var AuthenticationResponse | null
+     */
+    public $authentication_result;
+
+    /**
+     * Additional attributes associated with the use of this card.
+     *
+     * @var CardAttributesResponse | null
+     */
+    public $attributes;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -186,6 +200,18 @@ class CardResponse implements JsonSerializable
             8,
             "bin in CardResponse must have maxlength of 8 $within"
         );
+        !isset($this->authentication_result) || Assert::isInstanceOf(
+            $this->authentication_result,
+            AuthenticationResponse::class,
+            "authentication_result in CardResponse must be instance of AuthenticationResponse $within"
+        );
+        !isset($this->authentication_result) ||  $this->authentication_result->validate(CardResponse::class);
+        !isset($this->attributes) || Assert::isInstanceOf(
+            $this->attributes,
+            CardAttributesResponse::class,
+            "attributes in CardResponse must be instance of CardAttributesResponse $within"
+        );
+        !isset($this->attributes) ||  $this->attributes->validate(CardResponse::class);
     }
 
     private function map(array $data)
@@ -211,6 +237,12 @@ class CardResponse implements JsonSerializable
         if (isset($data['bin'])) {
             $this->bin = $data['bin'];
         }
+        if (isset($data['authentication_result'])) {
+            $this->authentication_result = new AuthenticationResponse($data['authentication_result']);
+        }
+        if (isset($data['attributes'])) {
+            $this->attributes = new CardAttributesResponse($data['attributes']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -218,5 +250,15 @@ class CardResponse implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initAuthenticationResult(): AuthenticationResponse
+    {
+        return $this->authentication_result = new AuthenticationResponse();
+    }
+
+    public function initAttributes(): CardAttributesResponse
+    {
+        return $this->attributes = new CardAttributesResponse();
     }
 }

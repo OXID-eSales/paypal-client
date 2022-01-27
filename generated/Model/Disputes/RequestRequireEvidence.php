@@ -30,7 +30,7 @@ class RequestRequireEvidence implements JsonSerializable
      * use one of constants defined in this class to set the value:
      * @see ACTION_BUYER_EVIDENCE
      * @see ACTION_SELLER_EVIDENCE
-     * @var string | null
+     * @var string
      * minLength: 1
      * maxLength: 255
      */
@@ -39,12 +39,13 @@ class RequestRequireEvidence implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->action) || Assert::minLength(
+        Assert::notNull($this->action, "action in RequestRequireEvidence must not be NULL $within");
+        Assert::minLength(
             $this->action,
             1,
             "action in RequestRequireEvidence must have minlength of 1 $within"
         );
-        !isset($this->action) || Assert::maxLength(
+        Assert::maxLength(
             $this->action,
             255,
             "action in RequestRequireEvidence must have maxlength of 255 $within"

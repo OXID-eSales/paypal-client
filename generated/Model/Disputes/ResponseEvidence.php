@@ -7,7 +7,9 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * A merchant- or customer-submitted evidence document.
+ * A merchant- or customer-submitted evidence document. evidence_info is expected for
+ * PROOF_OF_FULFILLMENT,PROOF_OF_REFUND and PROOF_OF_RETURN evidence types. documents and notes can be given for
+ * rest of the evidence types.
  *
  * generated from: response-evidence.json
  */
@@ -195,6 +197,21 @@ class ResponseEvidence implements JsonSerializable
     /** Details of the last valid transaction made on the card. */
     public const EVIDENCE_TYPE_LAST_VALID_TRANSACTION_DETAILS = 'LAST_VALID_TRANSACTION_DETAILS';
 
+    /** Document to confirm that the item to be returned to the seller has been shipped. */
+    public const EVIDENCE_TYPE_ADDITIONAL_PROOF_OF_RETURN = 'ADDITIONAL_PROOF_OF_RETURN';
+
+    /** Signed declaration about the information provided. */
+    public const EVIDENCE_TYPE_DECLARATION = 'DECLARATION';
+
+    /** Image of open box with returned items and shipping label clearly visible. */
+    public const EVIDENCE_TYPE_PROOF_OF_MISSING_ITEMS = 'PROOF_OF_MISSING_ITEMS';
+
+    /** Image of empty box or returned items that are different from what were expected and shipping label clearly visible. */
+    public const EVIDENCE_TYPE_PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM = 'PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM';
+
+    /** Any proof about the non receipt of the item, such as screenshot of tracking info. */
+    public const EVIDENCE_TYPE_PROOF_OF_ITEM_NOT_RECEIVED = 'PROOF_OF_ITEM_NOT_RECEIVED';
+
     /** Other. */
     public const EVIDENCE_TYPE_OTHER = 'OTHER';
 
@@ -212,6 +229,30 @@ class ResponseEvidence implements JsonSerializable
 
     /** Evidence was submitted by the partner. */
     public const SOURCE_SUBMITTED_BY_PARTNER = 'SUBMITTED_BY_PARTNER';
+
+    /** The product has an issue. */
+    public const ITEM_TYPE_PRODUCT = 'PRODUCT';
+
+    /** The service has an issue. */
+    public const ITEM_TYPE_SERVICE = 'SERVICE';
+
+    /** The booking has an issue. */
+    public const ITEM_TYPE_BOOKING = 'BOOKING';
+
+    /** The digital download has an issue. */
+    public const ITEM_TYPE_DIGITAL_DOWNLOAD = 'DIGITAL_DOWNLOAD';
+
+    /** A customer and merchant interact in an attempt to resolve a dispute without escalation to PayPal. Occurs when the customer:<ul><li>Has not received goods or a service.</li><li>Reports that the received goods or service are not as described.</li><li>Needs more details, such as a copy of the transaction or a receipt.</li></ul> */
+    public const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
+
+    /** A customer or merchant escalates an inquiry to a claim, which authorizes PayPal to investigate the case and make a determination. Occurs only when the dispute channel is <code>INTERNAL</code>. This stage is a PayPal dispute lifecycle stage and not a credit card or debit card chargeback. All notes that the customer sends in this stage are visible to PayPal agents only. The customer must wait for PayPal’s response before the customer can take further action. In this stage, PayPal shares dispute details with the merchant, who can complete one of these actions:<ul><li>Accept the claim.</li><li>Submit evidence to challenge the claim.</li><li>Make an offer to the customer to resolve the claim.</li></ul> */
+    public const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
+
+    /** The first appeal stage for merchants. A merchant can appeal a chargeback if PayPal's decision is not in the merchant's favor. If the merchant does not appeal within the appeal period, PayPal considers the case resolved. */
+    public const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
+
+    /** The second appeal stage for merchants. A merchant can appeal a dispute for a second time if the first appeal was denied. If the merchant does not appeal within the appeal period, the case returns to a resolved status in pre-arbitration stage. */
+    public const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
 
     /**
      * The evidence type.
@@ -277,6 +318,11 @@ class ResponseEvidence implements JsonSerializable
      * @see EVIDENCE_TYPE_STATUS_OF_MERCHANDISE
      * @see EVIDENCE_TYPE_LOST_CARD_DETAILS
      * @see EVIDENCE_TYPE_LAST_VALID_TRANSACTION_DETAILS
+     * @see EVIDENCE_TYPE_ADDITIONAL_PROOF_OF_RETURN
+     * @see EVIDENCE_TYPE_DECLARATION
+     * @see EVIDENCE_TYPE_PROOF_OF_MISSING_ITEMS
+     * @see EVIDENCE_TYPE_PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM
+     * @see EVIDENCE_TYPE_PROOF_OF_ITEM_NOT_RECEIVED
      * @see EVIDENCE_TYPE_OTHER
      * @var string | null
      * minLength: 1
@@ -294,7 +340,9 @@ class ResponseEvidence implements JsonSerializable
     /**
      * An array of evidence documents.
      *
-     * @var ResponseDocument[] | null
+     * @var ResponseDocument[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $documents;
 
@@ -302,6 +350,7 @@ class ResponseEvidence implements JsonSerializable
      * Any evidence-related notes.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 2000
      */
     public $notes;
@@ -342,6 +391,42 @@ class ResponseEvidence implements JsonSerializable
      */
     public $item_id;
 
+    /**
+     * The type of the item which has the issue.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see ITEM_TYPE_PRODUCT
+     * @see ITEM_TYPE_SERVICE
+     * @see ITEM_TYPE_BOOKING
+     * @see ITEM_TYPE_DIGITAL_DOWNLOAD
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $item_type;
+
+    /**
+     * The extended properties for a evidence. Includes additional information such as the action for which the
+     * evidence was requested/submitted, and whether the evidence is mandatory.
+     *
+     * @var ResponseActionInfo | null
+     */
+    public $action_info;
+
+    /**
+     * The stage in the dispute lifecycle.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see DISPUTE_LIFE_CYCLE_STAGE_INQUIRY
+     * @see DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK
+     * @see DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION
+     * @see DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $dispute_life_cycle_stage;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -361,7 +446,18 @@ class ResponseEvidence implements JsonSerializable
             "evidence_info in ResponseEvidence must be instance of ResponseEvidenceInfo $within"
         );
         !isset($this->evidence_info) ||  $this->evidence_info->validate(ResponseEvidence::class);
-        !isset($this->documents) || Assert::isArray(
+        Assert::notNull($this->documents, "documents in ResponseEvidence must not be NULL $within");
+        Assert::minCount(
+            $this->documents,
+            1,
+            "documents in ResponseEvidence must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->documents,
+            100,
+            "documents in ResponseEvidence must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->documents,
             "documents in ResponseEvidence must be array $within"
         );
@@ -370,6 +466,11 @@ class ResponseEvidence implements JsonSerializable
                 $item->validate(ResponseEvidence::class);
             }
         }
+        !isset($this->notes) || Assert::minLength(
+            $this->notes,
+            1,
+            "notes in ResponseEvidence must have minlength of 1 $within"
+        );
         !isset($this->notes) || Assert::maxLength(
             $this->notes,
             2000,
@@ -405,6 +506,32 @@ class ResponseEvidence implements JsonSerializable
             255,
             "item_id in ResponseEvidence must have maxlength of 255 $within"
         );
+        !isset($this->item_type) || Assert::minLength(
+            $this->item_type,
+            1,
+            "item_type in ResponseEvidence must have minlength of 1 $within"
+        );
+        !isset($this->item_type) || Assert::maxLength(
+            $this->item_type,
+            255,
+            "item_type in ResponseEvidence must have maxlength of 255 $within"
+        );
+        !isset($this->action_info) || Assert::isInstanceOf(
+            $this->action_info,
+            ResponseActionInfo::class,
+            "action_info in ResponseEvidence must be instance of ResponseActionInfo $within"
+        );
+        !isset($this->action_info) ||  $this->action_info->validate(ResponseEvidence::class);
+        !isset($this->dispute_life_cycle_stage) || Assert::minLength(
+            $this->dispute_life_cycle_stage,
+            1,
+            "dispute_life_cycle_stage in ResponseEvidence must have minlength of 1 $within"
+        );
+        !isset($this->dispute_life_cycle_stage) || Assert::maxLength(
+            $this->dispute_life_cycle_stage,
+            255,
+            "dispute_life_cycle_stage in ResponseEvidence must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -433,10 +560,20 @@ class ResponseEvidence implements JsonSerializable
         if (isset($data['item_id'])) {
             $this->item_id = $data['item_id'];
         }
+        if (isset($data['item_type'])) {
+            $this->item_type = $data['item_type'];
+        }
+        if (isset($data['action_info'])) {
+            $this->action_info = new ResponseActionInfo($data['action_info']);
+        }
+        if (isset($data['dispute_life_cycle_stage'])) {
+            $this->dispute_life_cycle_stage = $data['dispute_life_cycle_stage'];
+        }
     }
 
     public function __construct(array $data = null)
     {
+        $this->documents = [];
         if (isset($data)) {
             $this->map($data);
         }
@@ -445,5 +582,10 @@ class ResponseEvidence implements JsonSerializable
     public function initEvidenceInfo(): ResponseEvidenceInfo
     {
         return $this->evidence_info = new ResponseEvidenceInfo();
+    }
+
+    public function initActionInfo(): ResponseActionInfo
+    {
+        return $this->action_info = new ResponseActionInfo();
     }
 }

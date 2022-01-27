@@ -137,6 +137,13 @@ class Plan implements JsonSerializable
     public $payee;
 
     /**
+     * The product details.
+     *
+     * @var Product2 | null
+     */
+    public $product;
+
+    /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
      * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
      * expression provides guidance but does not reject all invalid dates.</blockquote>
@@ -161,7 +168,9 @@ class Plan implements JsonSerializable
     /**
      * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
      *
-     * @var array | null
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
@@ -266,6 +275,12 @@ class Plan implements JsonSerializable
             "payee in Plan must be instance of Payee $within"
         );
         !isset($this->payee) ||  $this->payee->validate(Plan::class);
+        !isset($this->product) || Assert::isInstanceOf(
+            $this->product,
+            Product2::class,
+            "product in Plan must be instance of Product2 $within"
+        );
+        !isset($this->product) ||  $this->product->validate(Plan::class);
         !isset($this->create_time) || Assert::minLength(
             $this->create_time,
             20,
@@ -286,7 +301,18 @@ class Plan implements JsonSerializable
             64,
             "update_time in Plan must have maxlength of 64 $within"
         );
-        !isset($this->links) || Assert::isArray(
+        Assert::notNull($this->links, "links in Plan must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in Plan must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in Plan must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in Plan must be array $within"
         );
@@ -333,6 +359,9 @@ class Plan implements JsonSerializable
         if (isset($data['payee'])) {
             $this->payee = new Payee($data['payee']);
         }
+        if (isset($data['product'])) {
+            $this->product = new Product2($data['product']);
+        }
         if (isset($data['create_time'])) {
             $this->create_time = $data['create_time'];
         }
@@ -350,6 +379,7 @@ class Plan implements JsonSerializable
     public function __construct(array $data = null)
     {
         $this->billing_cycles = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }
@@ -368,5 +398,10 @@ class Plan implements JsonSerializable
     public function initPayee(): Payee
     {
         return $this->payee = new Payee();
+    }
+
+    public function initProduct(): Product2
+    {
+        return $this->product = new Product2();
     }
 }

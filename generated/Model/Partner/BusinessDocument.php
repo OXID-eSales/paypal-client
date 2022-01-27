@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The documents associated with the business.
  *
- * generated from: customized_x_unsupported_4705_customer_common_overrides-business_document.json
+ * generated from: customized_x_unsupported_9267_customer_common_overrides-business_document.json
  */
 class BusinessDocument extends Document implements JsonSerializable
 {

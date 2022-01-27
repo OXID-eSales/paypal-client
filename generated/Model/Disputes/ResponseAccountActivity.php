@@ -66,6 +66,9 @@ class ResponseAccountActivity implements JsonSerializable
     /** The account change occurred to close-ended credit. */
     public const ENTITY_SUBTYPE_CLOSE_ENDED_CREDIT = 'CLOSE_ENDED_CREDIT';
 
+    /** The account change occurred to a virtual card. */
+    public const ENTITY_SUBTYPE_VIRTUAL_CARD = 'VIRTUAL_CARD';
+
     /** The entity was added. */
     public const ACTION_PERFORMED_ADDED = 'ADDED';
 
@@ -98,6 +101,12 @@ class ResponseAccountActivity implements JsonSerializable
 
     /** The entity was reopened. */
     public const ACTION_PERFORMED_REOPENED = 'REOPENED';
+
+    /** The entity was applied for. */
+    public const ACTION_PERFORMED_APPLIED = 'APPLIED';
+
+    /** The entity was activated. */
+    public const ACTION_PERFORMED_ACTIVATED = 'ACTIVATED';
 
     /**
      * The ID of the activity log entry.
@@ -151,6 +160,7 @@ class ResponseAccountActivity implements JsonSerializable
      * @see ENTITY_SUBTYPE_WORKING_CAPITAL
      * @see ENTITY_SUBTYPE_REVOLVING_CREDIT
      * @see ENTITY_SUBTYPE_CLOSE_ENDED_CREDIT
+     * @see ENTITY_SUBTYPE_VIRTUAL_CARD
      * @var string | null
      * minLength: 1
      * maxLength: 255
@@ -172,6 +182,8 @@ class ResponseAccountActivity implements JsonSerializable
      * @see ACTION_PERFORMED_DEACTIVATED
      * @see ACTION_PERFORMED_REACTIVATED
      * @see ACTION_PERFORMED_REOPENED
+     * @see ACTION_PERFORMED_APPLIED
+     * @see ACTION_PERFORMED_ACTIVATED
      * @var string | null
      * minLength: 1
      * maxLength: 255
@@ -199,7 +211,9 @@ class ResponseAccountActivity implements JsonSerializable
      * An array of system actions that reversed the impact of the unauthorized event. Includes the system-defined
      * details of the reversal action.
      *
-     * @var ResponseReversalAction[] | null
+     * @var ResponseReversalAction[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $reversal_actions;
 
@@ -272,7 +286,18 @@ class ResponseAccountActivity implements JsonSerializable
             "activity_entity_info in ResponseAccountActivity must be instance of ResponseActivityEntityInfo $within"
         );
         !isset($this->activity_entity_info) ||  $this->activity_entity_info->validate(ResponseAccountActivity::class);
-        !isset($this->reversal_actions) || Assert::isArray(
+        Assert::notNull($this->reversal_actions, "reversal_actions in ResponseAccountActivity must not be NULL $within");
+        Assert::minCount(
+            $this->reversal_actions,
+            1,
+            "reversal_actions in ResponseAccountActivity must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->reversal_actions,
+            100,
+            "reversal_actions in ResponseAccountActivity must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->reversal_actions,
             "reversal_actions in ResponseAccountActivity must be array $within"
         );
@@ -316,6 +341,7 @@ class ResponseAccountActivity implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->reversal_actions = [];
         if (isset($data)) {
             $this->map($data);
         }

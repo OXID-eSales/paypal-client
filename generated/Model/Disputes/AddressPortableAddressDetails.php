@@ -8,9 +8,9 @@ use Webmozart\Assert\Assert;
 
 /**
  * The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios
- * where fine-grain address information might be needed. Not portable with common third party and opensource.
- * Redundant with core fields. For example, `address_portable.address_line_1` is usually a combination of
- * `address_details.street_number` and `street_name` and `street_type`.
+ * where fine-grain address information might be needed. Not portable with common third party and open source.
+ * Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of
+ * `address_details.street_number`, `street_name`, and `street_type`.
  *
  * generated from: AddressPortable_address_details
  */
@@ -22,7 +22,7 @@ class AddressPortableAddressDetails implements JsonSerializable
      * The street number.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $street_number;
 
@@ -30,7 +30,7 @@ class AddressPortableAddressDetails implements JsonSerializable
      * The street name. Just `Drury` in `Drury Lane`.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $street_name;
 
@@ -38,7 +38,7 @@ class AddressPortableAddressDetails implements JsonSerializable
      * The street type. For example, avenue, boulevard, road, or expressway.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $street_type;
 
@@ -46,7 +46,7 @@ class AddressPortableAddressDetails implements JsonSerializable
      * The delivery service. Post office box, bag number, or post office name.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $delivery_service;
 
@@ -55,16 +55,16 @@ class AddressPortableAddressDetails implements JsonSerializable
      * with a common name or number. For example, <code>Craven House</code>.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $building_name;
 
     /**
-     * The first-order entity below a named building or location that represents the sub-premise. Usually a single
+     * The first-order entity below a named building or location that represents the sub-premises. Usually a single
      * building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $sub_building;
 
@@ -73,33 +73,33 @@ class AddressPortableAddressDetails implements JsonSerializable
         $within = isset($from) ? "within $from" : "";
         !isset($this->street_number) || Assert::maxLength(
             $this->street_number,
-            300,
-            "street_number in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "street_number in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
         !isset($this->street_name) || Assert::maxLength(
             $this->street_name,
-            300,
-            "street_name in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "street_name in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
         !isset($this->street_type) || Assert::maxLength(
             $this->street_type,
-            300,
-            "street_type in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "street_type in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
         !isset($this->delivery_service) || Assert::maxLength(
             $this->delivery_service,
-            300,
-            "delivery_service in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "delivery_service in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
         !isset($this->building_name) || Assert::maxLength(
             $this->building_name,
-            300,
-            "building_name in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "building_name in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
         !isset($this->sub_building) || Assert::maxLength(
             $this->sub_building,
-            300,
-            "sub_building in AddressPortableAddressDetails must have maxlength of 300 $within"
+            100,
+            "sub_building in AddressPortableAddressDetails must have maxlength of 100 $within"
         );
     }
 

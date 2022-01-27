@@ -29,6 +29,15 @@ class Capture extends CaptureStatus implements JsonSerializable
     public $id;
 
     /**
+     * The sender side ID of the capture transaction. This ID will be populated only for Cross GEO transactions.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 22
+     */
+    public $sender_transaction_id;
+
+    /**
      * The currency and amount for a financial transaction, such as a balance or payment due.
      *
      * @var Money | null
@@ -77,7 +86,8 @@ class Capture extends CaptureStatus implements JsonSerializable
     public $final_capture = false;
 
     /**
-     * The detailed breakdown of the capture activity.
+     * The detailed breakdown of the capture activity. This is not available for transactions that are in pending
+     * state.
      *
      * @var SellerReceivableBreakdown | null
      */
@@ -115,13 +125,6 @@ class Capture extends CaptureStatus implements JsonSerializable
     public $processor_response;
 
     /**
-     * The supplementary data.
-     *
-     * @var SupplementaryData | null
-     */
-    public $supplementary_data;
-
-    /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
      * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
      * expression provides guidance but does not reject all invalid dates.</blockquote>
@@ -146,6 +149,16 @@ class Capture extends CaptureStatus implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->sender_transaction_id) || Assert::minLength(
+            $this->sender_transaction_id,
+            1,
+            "sender_transaction_id in Capture must have minlength of 1 $within"
+        );
+        !isset($this->sender_transaction_id) || Assert::maxLength(
+            $this->sender_transaction_id,
+            22,
+            "sender_transaction_id in Capture must have maxlength of 22 $within"
+        );
         !isset($this->amount) || Assert::isInstanceOf(
             $this->amount,
             Money::class,
@@ -185,12 +198,6 @@ class Capture extends CaptureStatus implements JsonSerializable
             "processor_response in Capture must be instance of ProcessorResponse $within"
         );
         !isset($this->processor_response) ||  $this->processor_response->validate(Capture::class);
-        !isset($this->supplementary_data) || Assert::isInstanceOf(
-            $this->supplementary_data,
-            SupplementaryData::class,
-            "supplementary_data in Capture must be instance of SupplementaryData $within"
-        );
-        !isset($this->supplementary_data) ||  $this->supplementary_data->validate(Capture::class);
         !isset($this->create_time) || Assert::minLength(
             $this->create_time,
             20,
@@ -217,6 +224,9 @@ class Capture extends CaptureStatus implements JsonSerializable
     {
         if (isset($data['id'])) {
             $this->id = $data['id'];
+        }
+        if (isset($data['sender_transaction_id'])) {
+            $this->sender_transaction_id = $data['sender_transaction_id'];
         }
         if (isset($data['amount'])) {
             $this->amount = new Money($data['amount']);
@@ -253,9 +263,6 @@ class Capture extends CaptureStatus implements JsonSerializable
         }
         if (isset($data['processor_response'])) {
             $this->processor_response = new ProcessorResponse($data['processor_response']);
-        }
-        if (isset($data['supplementary_data'])) {
-            $this->supplementary_data = new SupplementaryData($data['supplementary_data']);
         }
         if (isset($data['create_time'])) {
             $this->create_time = $data['create_time'];
@@ -296,10 +303,5 @@ class Capture extends CaptureStatus implements JsonSerializable
     public function initProcessorResponse(): ProcessorResponse
     {
         return $this->processor_response = new ProcessorResponse();
-    }
-
-    public function initSupplementaryData(): SupplementaryData
-    {
-        return $this->supplementary_data = new SupplementaryData();
     }
 }

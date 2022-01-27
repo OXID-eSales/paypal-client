@@ -30,8 +30,8 @@ class DocumentIssuer implements JsonSerializable
     public $country_code;
 
     /**
-     * The [state or province code that issued the identity document](/docs/integration/direct/rest/state-codes/), as
-     * defined by [ISO 3166-2:2013](https://www.iso.org/standard/63546.html).
+     * The [state or province code that issued the identity document](/docs/api/reference/state-codes/), as defined
+     * by [ISO 3166-2:2013](https://www.iso.org/standard/63546.html).
      *
      * @var string | null
      * minLength: 5

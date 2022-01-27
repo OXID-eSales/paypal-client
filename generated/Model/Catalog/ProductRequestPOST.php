@@ -18,7 +18,7 @@ class ProductRequestPOST implements JsonSerializable
     /** Physical goods. */
     public const TYPE_PHYSICAL = 'PHYSICAL';
 
-    /** Digital goods. */
+    /** For digital goods, the value must be set to DIGITAL to get the best rates. For more details, please contact your account manager. */
     public const TYPE_DIGITAL = 'DIGITAL';
 
     /** A service. For example, technical support. */
@@ -1391,7 +1391,7 @@ class ProductRequestPOST implements JsonSerializable
     public $description;
 
     /**
-     * The product type. Indicates whether the product is physical or tangible goods, or a service.
+     * The product type. Indicates whether the product is physical or digital goods, or a service.
      *
      * use one of constants defined in this class to set the value:
      * @see TYPE_PHYSICAL

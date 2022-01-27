@@ -30,17 +30,29 @@ class ResponseOfferHistory implements JsonSerializable
     /** The merchant or customer rejected the offer. */
     public const EVENT_TYPE_DENIED = 'DENIED';
 
-    /** The merchant must refund the customer without any item replacement or return. This offer type is valid in the chargeback phase and occurs when a merchant is willing to refund the dispute amount without any further action from customer. Omit the <code>refund_amount</code> and <code>return_shipping_address</code> parameters from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
+    /** The merchant must refund the customer without any item replacement or return. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount. Buyer acceptance is needed for partial refund offers and dispute is auto closed for full refunds. Include the <code>offer_amount</code> but omit the <code>return_shipping_address</code> parameters from the make offer request. */
     public const OFFER_TYPE_REFUND = 'REFUND';
 
-    /** The customer must return the item to the merchant and then merchant will refund the money. This offer type is valid in the chargeback phase and occurs when a merchant is willing to refund the dispute amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter in but omit the <code>refund_amount</code> parameter from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
+    /** The customer must return the item to the merchant and then merchant will refund the money. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter and the <code>offer_amount</code> parameter in the make offer request. */
     public const OFFER_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
 
-    /** The merchant must do a refund and then send a replacement item to the customer. This offer type is valid in the inquiry phase when a merchant is willing to refund a specific amount and send the replacement item. Include the <code>offer_amount</code> parameter in the <a href="/docs/api/customer-disputes/v1/#disputes-actions_make-offer">make offer to resolve dispute</a> call. */
+    /** The merchant must do a refund and then send a replacement item to the customer. This offer type is valid in the inquiry phase when a merchant is willing to refund a specific amount and send the replacement item. Include the <code>offer_amount</code> parameter in the make offer request. */
     public const OFFER_TYPE_REFUND_WITH_REPLACEMENT = 'REFUND_WITH_REPLACEMENT';
 
-    /** The merchant must send a replacement item to the customer with no additional refunds. This offer type is valid in the inquiry phase when a merchant is willing to replace the item without any refund. Omit the <code>offer_amount</code> parameter from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_make-offer">make offer to resolve dispute</a> call. */
+    /** The merchant must send a replacement item to the customer with no additional refunds. This offer type is valid in the inquiry phase when a merchant is willing to replace the item without any refund. Omit the <code>offer_amount</code> parameter from the make offer request. */
     public const OFFER_TYPE_REPLACEMENT_WITHOUT_REFUND = 'REPLACEMENT_WITHOUT_REFUND';
+
+    /** A customer and merchant interact in an attempt to resolve a dispute without escalation to PayPal. Occurs when the customer:<ul><li>Has not received goods or a service.</li><li>Reports that the received goods or service are not as described.</li><li>Needs more details, such as a copy of the transaction or a receipt.</li></ul> */
+    public const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
+
+    /** A customer or merchant escalates an inquiry to a claim, which authorizes PayPal to investigate the case and make a determination. Occurs only when the dispute channel is <code>INTERNAL</code>. This stage is a PayPal dispute lifecycle stage and not a credit card or debit card chargeback. All notes that the customer sends in this stage are visible to PayPal agents only. The customer must wait for PayPal’s response before the customer can take further action. In this stage, PayPal shares dispute details with the merchant, who can complete one of these actions:<ul><li>Accept the claim.</li><li>Submit evidence to challenge the claim.</li><li>Make an offer to the customer to resolve the claim.</li></ul> */
+    public const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
+
+    /** The first appeal stage for merchants. A merchant can appeal a chargeback if PayPal's decision is not in the merchant's favor. If the merchant does not appeal within the appeal period, PayPal considers the case resolved. */
+    public const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
+
+    /** The second appeal stage for merchants. A merchant can appeal a dispute for a second time if the first appeal was denied. If the merchant does not appeal within the appeal period, the case returns to a resolved status in pre-arbitration stage. */
+    public const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
@@ -99,6 +111,29 @@ class ResponseOfferHistory implements JsonSerializable
      */
     public $offer_amount;
 
+    /**
+     * The user submitted notes.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 2000
+     */
+    public $notes;
+
+    /**
+     * The stage in the dispute lifecycle.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see DISPUTE_LIFE_CYCLE_STAGE_INQUIRY
+     * @see DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK
+     * @see DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION
+     * @see DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $dispute_life_cycle_stage;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -148,6 +183,26 @@ class ResponseOfferHistory implements JsonSerializable
             "offer_amount in ResponseOfferHistory must be instance of Money $within"
         );
         !isset($this->offer_amount) ||  $this->offer_amount->validate(ResponseOfferHistory::class);
+        !isset($this->notes) || Assert::minLength(
+            $this->notes,
+            1,
+            "notes in ResponseOfferHistory must have minlength of 1 $within"
+        );
+        !isset($this->notes) || Assert::maxLength(
+            $this->notes,
+            2000,
+            "notes in ResponseOfferHistory must have maxlength of 2000 $within"
+        );
+        !isset($this->dispute_life_cycle_stage) || Assert::minLength(
+            $this->dispute_life_cycle_stage,
+            1,
+            "dispute_life_cycle_stage in ResponseOfferHistory must have minlength of 1 $within"
+        );
+        !isset($this->dispute_life_cycle_stage) || Assert::maxLength(
+            $this->dispute_life_cycle_stage,
+            255,
+            "dispute_life_cycle_stage in ResponseOfferHistory must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -166,6 +221,12 @@ class ResponseOfferHistory implements JsonSerializable
         }
         if (isset($data['offer_amount'])) {
             $this->offer_amount = new Money($data['offer_amount']);
+        }
+        if (isset($data['notes'])) {
+            $this->notes = $data['notes'];
+        }
+        if (isset($data['dispute_life_cycle_stage'])) {
+            $this->dispute_life_cycle_stage = $data['dispute_life_cycle_stage'];
         }
     }
 

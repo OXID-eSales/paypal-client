@@ -20,6 +20,7 @@ class ResponseMetrics implements JsonSerializable
      *
      * @var ResponseMetric[]
      * maxItems: 0
+     * maxItems: 50
      */
     public $metrics;
 
@@ -31,6 +32,11 @@ class ResponseMetrics implements JsonSerializable
             $this->metrics,
             0,
             "metrics in ResponseMetrics must have min. count of 0 $within"
+        );
+        Assert::maxCount(
+            $this->metrics,
+            50,
+            "metrics in ResponseMetrics must have max. count of 50 $within"
         );
         Assert::isArray(
             $this->metrics,

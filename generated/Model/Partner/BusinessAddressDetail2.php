@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * A simple postal address with coarse-grained fields.
  *
- * generated from: customized_x_unsupported_6338_customer_common_overrides-business_address_detail.json
+ * generated from: customized_x_unsupported_3356_customer_common_overrides-business_address_detail.json
  */
 class BusinessAddressDetail2 extends AddressPortable implements JsonSerializable
 {

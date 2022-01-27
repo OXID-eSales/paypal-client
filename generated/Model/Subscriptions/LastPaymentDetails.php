@@ -7,9 +7,9 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The details for the last payment of the subscription.
+ * The details for the last payment.
  *
- * generated from: last_payment_details.json
+ * generated from: merchant.CommonComponentsSpecification-v1-schema-last_payment_details.json
  */
 class LastPaymentDetails extends CaptureStatus2 implements JsonSerializable
 {

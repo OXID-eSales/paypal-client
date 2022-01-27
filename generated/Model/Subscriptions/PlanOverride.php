@@ -7,7 +7,8 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The plan details to override at subscription level.
+ * An inline plan object to customise the subscription. You can override plan level default attributes by
+ * providing customised values for the subscription in this object.
  *
  * generated from: plan_override.json
  */
@@ -25,8 +26,8 @@ class PlanOverride implements JsonSerializable
     public $name;
 
     /**
-     * An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and
-     * only one regular cycle.
+     * An array of billing cycles for trial billing and regular billing. The subscription billing cycle definition
+     * has to adhere to the plan billing cycle definition.
      *
      * @var BillingCycleOverride[]
      * maxItems: 1

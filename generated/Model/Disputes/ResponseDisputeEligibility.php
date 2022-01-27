@@ -69,6 +69,7 @@ class ResponseDisputeEligibility implements JsonSerializable
      *
      * @var ResponseEligibleDisputeReason[]
      * maxItems: 0
+     * maxItems: 50
      */
     public $eligible_dispute_reasons;
 
@@ -77,6 +78,7 @@ class ResponseDisputeEligibility implements JsonSerializable
      *
      * @var ResponseIneligibleDisputeReason[]
      * maxItems: 0
+     * maxItems: 50
      */
     public $ineligible_dispute_reasons;
 
@@ -131,6 +133,11 @@ class ResponseDisputeEligibility implements JsonSerializable
             0,
             "eligible_dispute_reasons in ResponseDisputeEligibility must have min. count of 0 $within"
         );
+        Assert::maxCount(
+            $this->eligible_dispute_reasons,
+            50,
+            "eligible_dispute_reasons in ResponseDisputeEligibility must have max. count of 50 $within"
+        );
         Assert::isArray(
             $this->eligible_dispute_reasons,
             "eligible_dispute_reasons in ResponseDisputeEligibility must be array $within"
@@ -145,6 +152,11 @@ class ResponseDisputeEligibility implements JsonSerializable
             $this->ineligible_dispute_reasons,
             0,
             "ineligible_dispute_reasons in ResponseDisputeEligibility must have min. count of 0 $within"
+        );
+        Assert::maxCount(
+            $this->ineligible_dispute_reasons,
+            50,
+            "ineligible_dispute_reasons in ResponseDisputeEligibility must have max. count of 50 $within"
         );
         Assert::isArray(
             $this->ineligible_dispute_reasons,

@@ -18,7 +18,9 @@ class ResponseDisputeSearch implements JsonSerializable
     /**
      * An array of disputes that match the filter criteria. Sorted in latest to earliest creation time order.
      *
-     * @var ResponseDisputeInfo[] | null
+     * @var ResponseDisputeInfo[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $items;
 
@@ -37,16 +39,29 @@ class ResponseDisputeSearch implements JsonSerializable
     public $total_pages;
 
     /**
-     * An array of request-related [HATEOAS links](/docs/api/hateoas-links/).
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
      *
-     * @var array | null
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->items) || Assert::isArray(
+        Assert::notNull($this->items, "items in ResponseDisputeSearch must not be NULL $within");
+        Assert::minCount(
+            $this->items,
+            1,
+            "items in ResponseDisputeSearch must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->items,
+            100,
+            "items in ResponseDisputeSearch must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->items,
             "items in ResponseDisputeSearch must be array $within"
         );
@@ -55,7 +70,18 @@ class ResponseDisputeSearch implements JsonSerializable
                 $item->validate(ResponseDisputeSearch::class);
             }
         }
-        !isset($this->links) || Assert::isArray(
+        Assert::notNull($this->links, "links in ResponseDisputeSearch must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in ResponseDisputeSearch must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in ResponseDisputeSearch must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in ResponseDisputeSearch must be array $within"
         );
@@ -85,6 +111,8 @@ class ResponseDisputeSearch implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->items = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }

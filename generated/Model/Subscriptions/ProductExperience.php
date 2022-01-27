@@ -136,6 +136,9 @@ class ProductExperience implements JsonSerializable
     /** The transaction is completed through Alternative Payment Zimpler. */
     public const PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
 
+    /** The transaction is essentially funded by Crypto. */
+    public const PAYMENT_METHOD_PAY_WITH_CRYPTO = 'PAY_WITH_CRYPTO';
+
     /** The transaction payment method is unknown. */
     public const PAYMENT_METHOD_UNKNOWN = 'UNKNOWN';
 
@@ -166,8 +169,11 @@ class ProductExperience implements JsonSerializable
     /** A buyer signing up for a billing agreement */
     public const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_CREATE = 'BUYER_APPROVAL_BILLING_AGREEMENT_CREATE';
 
-    /** A billing agreement modification flow intiated by consumer on paypal.com */
+    /** A billing agreement modification flow initiated by consumer on paypal.com */
     public const PRODUCT_FLOW_CONSUMER_EXP_BILLING_AGREEMENT_MODIFY = 'CONSUMER_EXP_BILLING_AGREEMENT_MODIFY';
+
+    /** A flow allowing consumer to change funding for a transaction, while buyer is present for the transaction */
+    public const PRODUCT_FLOW_ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT = 'ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT';
 
     /** A purchase flow which buyer also approves creation of a billing agreement */
     public const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE = 'BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE';
@@ -255,6 +261,7 @@ class ProductExperience implements JsonSerializable
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_SOFORT
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_WECHATPAY
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER
+     * @see PAYMENT_METHOD_PAY_WITH_CRYPTO
      * @see PAYMENT_METHOD_UNKNOWN
      * @var string | null
      * minLength: 1
@@ -286,6 +293,7 @@ class ProductExperience implements JsonSerializable
      * @see PRODUCT_FLOW_SMART_PAYMENT_BUTTONS
      * @see PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_CREATE
      * @see PRODUCT_FLOW_CONSUMER_EXP_BILLING_AGREEMENT_MODIFY
+     * @see PRODUCT_FLOW_ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT
      * @see PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE
      * @see PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS
      * @see PRODUCT_FLOW_CONSUMER_EXP_SUBSCRIPTIONS_MODIFY

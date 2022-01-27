@@ -26,6 +26,7 @@ class OrderAuthorizeRequest implements JsonSerializable
      * The API caller-provided external ID for the purchase unit. Required for multiple purchase units.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 256
      */
     public $reference_id;
@@ -37,6 +38,16 @@ class OrderAuthorizeRequest implements JsonSerializable
      */
     public $amount;
 
+    /**
+     * Customizes the payer experience during the approval process for the payment with
+     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+     * and <code>shipping_preference</code> during partner account setup, which overrides the request
+     * values.</blockquote>
+     *
+     * @var OrderApplicationContext2 | null
+     */
+    public $application_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -46,6 +57,11 @@ class OrderAuthorizeRequest implements JsonSerializable
             "payment_source in OrderAuthorizeRequest must be instance of PaymentSource $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderAuthorizeRequest::class);
+        !isset($this->reference_id) || Assert::minLength(
+            $this->reference_id,
+            1,
+            "reference_id in OrderAuthorizeRequest must have minlength of 1 $within"
+        );
         !isset($this->reference_id) || Assert::maxLength(
             $this->reference_id,
             256,
@@ -57,6 +73,12 @@ class OrderAuthorizeRequest implements JsonSerializable
             "amount in OrderAuthorizeRequest must be instance of Money $within"
         );
         !isset($this->amount) ||  $this->amount->validate(OrderAuthorizeRequest::class);
+        !isset($this->application_context) || Assert::isInstanceOf(
+            $this->application_context,
+            OrderApplicationContext2::class,
+            "application_context in OrderAuthorizeRequest must be instance of OrderApplicationContext2 $within"
+        );
+        !isset($this->application_context) ||  $this->application_context->validate(OrderAuthorizeRequest::class);
     }
 
     private function map(array $data)
@@ -69,6 +91,9 @@ class OrderAuthorizeRequest implements JsonSerializable
         }
         if (isset($data['amount'])) {
             $this->amount = new Money($data['amount']);
+        }
+        if (isset($data['application_context'])) {
+            $this->application_context = new OrderApplicationContext2($data['application_context']);
         }
     }
 
@@ -87,5 +112,10 @@ class OrderAuthorizeRequest implements JsonSerializable
     public function initAmount(): Money
     {
         return $this->amount = new Money();
+    }
+
+    public function initApplicationContext(): OrderApplicationContext2
+    {
+        return $this->application_context = new OrderApplicationContext2();
     }
 }

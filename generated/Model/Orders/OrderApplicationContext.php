@@ -46,6 +46,7 @@ class OrderApplicationContext implements JsonSerializable
      * The label that overrides the business name in the PayPal account on the PayPal site.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $brand_name;
@@ -71,6 +72,8 @@ class OrderApplicationContext implements JsonSerializable
      * @see LANDING_PAGE_BILLING
      * @see LANDING_PAGE_NO_PREFERENCE
      * @var string | null
+     * minLength: 1
+     * maxLength: 13
      */
     public $landing_page = 'NO_PREFERENCE';
 
@@ -84,6 +87,8 @@ class OrderApplicationContext implements JsonSerializable
      * @see SHIPPING_PREFERENCE_NO_SHIPPING
      * @see SHIPPING_PREFERENCE_SET_PROVIDED_ADDRESS
      * @var string | null
+     * minLength: 1
+     * maxLength: 20
      */
     public $shipping_preference = 'GET_FROM_FILE';
 
@@ -94,6 +99,8 @@ class OrderApplicationContext implements JsonSerializable
      * @see USER_ACTION_CONTINUE
      * @see USER_ACTION_PAY_NOW
      * @var string | null
+     * minLength: 1
+     * maxLength: 8
      */
     public $user_action = 'CONTINUE';
 
@@ -122,6 +129,7 @@ class OrderApplicationContext implements JsonSerializable
      * The internal client-generated token.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 19
      */
     public $payment_token;
@@ -148,9 +156,28 @@ class OrderApplicationContext implements JsonSerializable
      */
     public $preferred_payment_source;
 
+    /**
+     * Provides additional details to process a payment using a `payment_source` that has been stored or is intended
+     * to be stored (also referred to as stored_credential or card-on-file).<br/>Parameter
+     * compatibility:<br/><ul><li>`payment_type=ONE_TIME` is compatible only with
+     * `payment_initiator=CUSTOMER`.</li><li>`usage=FIRST` is compatible only with
+     * `payment_initiator=CUSTOMER`.</li><li>`previous_transaction_reference` or
+     * `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`.</li><li>Only
+     * one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.</li></ul>
+     *
+     * @var StoredPaymentSource | null
+     */
+    public $stored_payment_source;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->brand_name) || Assert::minLength(
+            $this->brand_name,
+            1,
+            "brand_name in OrderApplicationContext must have minlength of 1 $within"
+        );
         !isset($this->brand_name) || Assert::maxLength(
             $this->brand_name,
             127,
@@ -166,12 +193,47 @@ class OrderApplicationContext implements JsonSerializable
             10,
             "locale in OrderApplicationContext must have maxlength of 10 $within"
         );
+        !isset($this->landing_page) || Assert::minLength(
+            $this->landing_page,
+            1,
+            "landing_page in OrderApplicationContext must have minlength of 1 $within"
+        );
+        !isset($this->landing_page) || Assert::maxLength(
+            $this->landing_page,
+            13,
+            "landing_page in OrderApplicationContext must have maxlength of 13 $within"
+        );
+        !isset($this->shipping_preference) || Assert::minLength(
+            $this->shipping_preference,
+            1,
+            "shipping_preference in OrderApplicationContext must have minlength of 1 $within"
+        );
+        !isset($this->shipping_preference) || Assert::maxLength(
+            $this->shipping_preference,
+            20,
+            "shipping_preference in OrderApplicationContext must have maxlength of 20 $within"
+        );
+        !isset($this->user_action) || Assert::minLength(
+            $this->user_action,
+            1,
+            "user_action in OrderApplicationContext must have minlength of 1 $within"
+        );
+        !isset($this->user_action) || Assert::maxLength(
+            $this->user_action,
+            8,
+            "user_action in OrderApplicationContext must have maxlength of 8 $within"
+        );
         !isset($this->payment_method) || Assert::isInstanceOf(
             $this->payment_method,
             PaymentMethod::class,
             "payment_method in OrderApplicationContext must be instance of PaymentMethod $within"
         );
         !isset($this->payment_method) ||  $this->payment_method->validate(OrderApplicationContext::class);
+        !isset($this->payment_token) || Assert::minLength(
+            $this->payment_token,
+            1,
+            "payment_token in OrderApplicationContext must have minlength of 1 $within"
+        );
         !isset($this->payment_token) || Assert::maxLength(
             $this->payment_token,
             19,
@@ -189,6 +251,12 @@ class OrderApplicationContext implements JsonSerializable
             "preferred_payment_source in OrderApplicationContext must be instance of PaymentSource2 $within"
         );
         !isset($this->preferred_payment_source) ||  $this->preferred_payment_source->validate(OrderApplicationContext::class);
+        !isset($this->stored_payment_source) || Assert::isInstanceOf(
+            $this->stored_payment_source,
+            StoredPaymentSource::class,
+            "stored_payment_source in OrderApplicationContext must be instance of StoredPaymentSource $within"
+        );
+        !isset($this->stored_payment_source) ||  $this->stored_payment_source->validate(OrderApplicationContext::class);
     }
 
     private function map(array $data)
@@ -229,6 +297,9 @@ class OrderApplicationContext implements JsonSerializable
         if (isset($data['preferred_payment_source'])) {
             $this->preferred_payment_source = new PaymentSource2($data['preferred_payment_source']);
         }
+        if (isset($data['stored_payment_source'])) {
+            $this->stored_payment_source = new StoredPaymentSource($data['stored_payment_source']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -251,5 +322,10 @@ class OrderApplicationContext implements JsonSerializable
     public function initPreferredPaymentSource(): PaymentSource2
     {
         return $this->preferred_payment_source = new PaymentSource2();
+    }
+
+    public function initStoredPaymentSource(): StoredPaymentSource
+    {
+        return $this->stored_payment_source = new StoredPaymentSource();
     }
 }

@@ -7,8 +7,8 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Business category information. Refer:
- * https://developer.paypal.com/docs/commerce-platform/reference/categories-subcategories/.
+ * Business category information. For more information, see [Categories and
+ * subcategories](/docs/platforms/develop/categories-subcategories/).
  *
  * generated from: model-business_category.json
  */

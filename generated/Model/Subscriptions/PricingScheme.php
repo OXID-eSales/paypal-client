@@ -24,11 +24,11 @@ class PricingScheme implements JsonSerializable
     /** The pricing scheme is inactive. */
     public const STATUS_INACTIVE = 'INACTIVE';
 
-    /** A volume-tiered model. */
-    public const TIER_MODE_VOLUME = 'VOLUME';
+    /** A volume pricing model. */
+    public const PRICING_MODEL_VOLUME = 'VOLUME';
 
-    /** A graduated-tiered model. */
-    public const TIER_MODE_GRADUATED = 'GRADUATED';
+    /** A tiered pricing model. */
+    public const PRICING_MODEL_TIERED = 'TIERED';
 
     /**
      * The version of the pricing scheme.
@@ -61,16 +61,16 @@ class PricingScheme implements JsonSerializable
      * The pricing model for tiered plan. The `tiers` parameter is required.
      *
      * use one of constants defined in this class to set the value:
-     * @see TIER_MODE_VOLUME
-     * @see TIER_MODE_GRADUATED
+     * @see PRICING_MODEL_VOLUME
+     * @see PRICING_MODEL_TIERED
      * @var string | null
      * minLength: 1
      * maxLength: 24
      */
-    public $tier_mode;
+    public $pricing_model;
 
     /**
-     * An array of pricing tiers which are used for billing volume/graduated plans. tier_mode field has to be
+     * An array of pricing tiers which are used for billing volume/tiered plans. pricing_model field has to be
      * specified.
      *
      * @var PricingTier[]
@@ -78,14 +78,6 @@ class PricingScheme implements JsonSerializable
      * maxItems: 32
      */
     public $tiers;
-
-    /**
-     * The roll-out strategy for a pricing scheme update. After the pricing update, all new subscriptions are based
-     * on this pricing scheme and the values in this object determine the behavior for the existing subscriptions.
-     *
-     * @var RollOutStrategy | null
-     */
-    public $roll_out_strategy;
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
@@ -128,15 +120,15 @@ class PricingScheme implements JsonSerializable
             "fixed_price in PricingScheme must be instance of Money $within"
         );
         !isset($this->fixed_price) ||  $this->fixed_price->validate(PricingScheme::class);
-        !isset($this->tier_mode) || Assert::minLength(
-            $this->tier_mode,
+        !isset($this->pricing_model) || Assert::minLength(
+            $this->pricing_model,
             1,
-            "tier_mode in PricingScheme must have minlength of 1 $within"
+            "pricing_model in PricingScheme must have minlength of 1 $within"
         );
-        !isset($this->tier_mode) || Assert::maxLength(
-            $this->tier_mode,
+        !isset($this->pricing_model) || Assert::maxLength(
+            $this->pricing_model,
             24,
-            "tier_mode in PricingScheme must have maxlength of 24 $within"
+            "pricing_model in PricingScheme must have maxlength of 24 $within"
         );
         Assert::notNull($this->tiers, "tiers in PricingScheme must not be NULL $within");
         Assert::minCount(
@@ -158,12 +150,6 @@ class PricingScheme implements JsonSerializable
                 $item->validate(PricingScheme::class);
             }
         }
-        !isset($this->roll_out_strategy) || Assert::isInstanceOf(
-            $this->roll_out_strategy,
-            RollOutStrategy::class,
-            "roll_out_strategy in PricingScheme must be instance of RollOutStrategy $within"
-        );
-        !isset($this->roll_out_strategy) ||  $this->roll_out_strategy->validate(PricingScheme::class);
         !isset($this->create_time) || Assert::minLength(
             $this->create_time,
             20,
@@ -197,17 +183,14 @@ class PricingScheme implements JsonSerializable
         if (isset($data['fixed_price'])) {
             $this->fixed_price = new Money($data['fixed_price']);
         }
-        if (isset($data['tier_mode'])) {
-            $this->tier_mode = $data['tier_mode'];
+        if (isset($data['pricing_model'])) {
+            $this->pricing_model = $data['pricing_model'];
         }
         if (isset($data['tiers'])) {
             $this->tiers = [];
             foreach ($data['tiers'] as $item) {
                 $this->tiers[] = new PricingTier($item);
             }
-        }
-        if (isset($data['roll_out_strategy'])) {
-            $this->roll_out_strategy = new RollOutStrategy($data['roll_out_strategy']);
         }
         if (isset($data['create_time'])) {
             $this->create_time = $data['create_time'];
@@ -228,10 +211,5 @@ class PricingScheme implements JsonSerializable
     public function initFixedPrice(): Money
     {
         return $this->fixed_price = new Money();
-    }
-
-    public function initRollOutStrategy(): RollOutStrategy
-    {
-        return $this->roll_out_strategy = new RollOutStrategy();
     }
 }

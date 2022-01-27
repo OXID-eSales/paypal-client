@@ -50,9 +50,27 @@ class ResponseUnauthorizedDisputeProperties implements JsonSerializable
     /**
      * An array of transaction IDs that the user reported as unauthorized but that PayPal rejected.
      *
-     * @var string[] | null
+     * @var string[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $rejected_dispute_transactions;
+
+    /**
+     * The Fraud reversal details.
+     *
+     * @var ResponseFraudReversal | null
+     */
+    public $fraud_reversal;
+
+    /**
+     * An array of cancelled order ID.
+     *
+     * @var string[]
+     * maxItems: 1
+     * maxItems: 1000
+     */
+    public $cancelled_orders;
 
     public function validate($from = null)
     {
@@ -67,9 +85,41 @@ class ResponseUnauthorizedDisputeProperties implements JsonSerializable
             64,
             "review_sla in ResponseUnauthorizedDisputeProperties must have maxlength of 64 $within"
         );
-        !isset($this->rejected_dispute_transactions) || Assert::isArray(
+        Assert::notNull($this->rejected_dispute_transactions, "rejected_dispute_transactions in ResponseUnauthorizedDisputeProperties must not be NULL $within");
+        Assert::minCount(
+            $this->rejected_dispute_transactions,
+            1,
+            "rejected_dispute_transactions in ResponseUnauthorizedDisputeProperties must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->rejected_dispute_transactions,
+            1000,
+            "rejected_dispute_transactions in ResponseUnauthorizedDisputeProperties must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->rejected_dispute_transactions,
             "rejected_dispute_transactions in ResponseUnauthorizedDisputeProperties must be array $within"
+        );
+        !isset($this->fraud_reversal) || Assert::isInstanceOf(
+            $this->fraud_reversal,
+            ResponseFraudReversal::class,
+            "fraud_reversal in ResponseUnauthorizedDisputeProperties must be instance of ResponseFraudReversal $within"
+        );
+        !isset($this->fraud_reversal) ||  $this->fraud_reversal->validate(ResponseUnauthorizedDisputeProperties::class);
+        Assert::notNull($this->cancelled_orders, "cancelled_orders in ResponseUnauthorizedDisputeProperties must not be NULL $within");
+        Assert::minCount(
+            $this->cancelled_orders,
+            1,
+            "cancelled_orders in ResponseUnauthorizedDisputeProperties must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->cancelled_orders,
+            1000,
+            "cancelled_orders in ResponseUnauthorizedDisputeProperties must have max. count of 1000 $within"
+        );
+        Assert::isArray(
+            $this->cancelled_orders,
+            "cancelled_orders in ResponseUnauthorizedDisputeProperties must be array $within"
         );
     }
 
@@ -93,12 +143,28 @@ class ResponseUnauthorizedDisputeProperties implements JsonSerializable
                 $this->rejected_dispute_transactions[] = $item;
             }
         }
+        if (isset($data['fraud_reversal'])) {
+            $this->fraud_reversal = new ResponseFraudReversal($data['fraud_reversal']);
+        }
+        if (isset($data['cancelled_orders'])) {
+            $this->cancelled_orders = [];
+            foreach ($data['cancelled_orders'] as $item) {
+                $this->cancelled_orders[] = $item;
+            }
+        }
     }
 
     public function __construct(array $data = null)
     {
+        $this->rejected_dispute_transactions = [];
+        $this->cancelled_orders = [];
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initFraudReversal(): ResponseFraudReversal
+    {
+        return $this->fraud_reversal = new ResponseFraudReversal();
     }
 }

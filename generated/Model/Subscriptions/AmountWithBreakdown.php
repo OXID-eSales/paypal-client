@@ -27,6 +27,13 @@ class AmountWithBreakdown implements JsonSerializable
      *
      * @var Money | null
      */
+    public $total_item_amount;
+
+    /**
+     * The currency and amount for a financial transaction, such as a balance or payment due.
+     *
+     * @var Money | null
+     */
     public $fee_amount;
 
     /**
@@ -46,7 +53,7 @@ class AmountWithBreakdown implements JsonSerializable
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.
      *
-     * @var Money
+     * @var Money | null
      */
     public $net_amount;
 
@@ -60,6 +67,12 @@ class AmountWithBreakdown implements JsonSerializable
             "gross_amount in AmountWithBreakdown must be instance of Money $within"
         );
          $this->gross_amount->validate(AmountWithBreakdown::class);
+        !isset($this->total_item_amount) || Assert::isInstanceOf(
+            $this->total_item_amount,
+            Money::class,
+            "total_item_amount in AmountWithBreakdown must be instance of Money $within"
+        );
+        !isset($this->total_item_amount) ||  $this->total_item_amount->validate(AmountWithBreakdown::class);
         !isset($this->fee_amount) || Assert::isInstanceOf(
             $this->fee_amount,
             Money::class,
@@ -78,19 +91,21 @@ class AmountWithBreakdown implements JsonSerializable
             "tax_amount in AmountWithBreakdown must be instance of Money $within"
         );
         !isset($this->tax_amount) ||  $this->tax_amount->validate(AmountWithBreakdown::class);
-        Assert::notNull($this->net_amount, "net_amount in AmountWithBreakdown must not be NULL $within");
-        Assert::isInstanceOf(
+        !isset($this->net_amount) || Assert::isInstanceOf(
             $this->net_amount,
             Money::class,
             "net_amount in AmountWithBreakdown must be instance of Money $within"
         );
-         $this->net_amount->validate(AmountWithBreakdown::class);
+        !isset($this->net_amount) ||  $this->net_amount->validate(AmountWithBreakdown::class);
     }
 
     private function map(array $data)
     {
         if (isset($data['gross_amount'])) {
             $this->gross_amount = new Money($data['gross_amount']);
+        }
+        if (isset($data['total_item_amount'])) {
+            $this->total_item_amount = new Money($data['total_item_amount']);
         }
         if (isset($data['fee_amount'])) {
             $this->fee_amount = new Money($data['fee_amount']);
@@ -109,10 +124,14 @@ class AmountWithBreakdown implements JsonSerializable
     public function __construct(array $data = null)
     {
         $this->gross_amount = new Money();
-        $this->net_amount = new Money();
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initTotalItemAmount(): Money
+    {
+        return $this->total_item_amount = new Money();
     }
 
     public function initFeeAmount(): Money
@@ -128,5 +147,10 @@ class AmountWithBreakdown implements JsonSerializable
     public function initTaxAmount(): Money
     {
         return $this->tax_amount = new Money();
+    }
+
+    public function initNetAmount(): Money
+    {
+        return $this->net_amount = new Money();
     }
 }

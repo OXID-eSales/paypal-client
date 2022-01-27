@@ -33,10 +33,19 @@ class RequestAcceptClaim implements JsonSerializable
     /** This is the default value merchant can use if none of the above reasons apply */
     public const ACCEPT_CLAIM_REASON_REASON_NOT_SET = 'REASON_NOT_SET';
 
+    /** The merchant must refund the customer without any item replacement or return. This type is applicable when a merchant is willing to refund the entire dispute amount without any further action from customer. Omit the <code>refund_amount</code> and <code>return_shipping_address</code> parameters from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
+    public const ACCEPT_CLAIM_TYPE_REFUND = 'REFUND';
+
+    /** The customer must return the item to the merchant and then merchant will refund the money. This type is applicable when a merchant is willing to refund the dispute amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter in but omit the <code>refund_amount</code> parameter from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
+    public const ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
+
+    /** The merchant proposes a partial refund for the dispute.This type is applicable when a merchant is willing to refund an amount lesser than dispute amount. Include the <code>refund_amount</code> parameter. */
+    public const ACCEPT_CLAIM_TYPE_PARTIAL_REFUND = 'PARTIAL_REFUND';
+
     /**
      * The merchant's notes about the claim. PayPal can, but the customer cannot, view these notes.
      *
-     * @var string | null
+     * @var string
      * minLength: 1
      * maxLength: 2000
      */
@@ -85,15 +94,29 @@ class RequestAcceptClaim implements JsonSerializable
      */
     public $refund_amount;
 
+    /**
+     * The refund type proposed by the merchant for the dispute.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see ACCEPT_CLAIM_TYPE_REFUND
+     * @see ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN
+     * @see ACCEPT_CLAIM_TYPE_PARTIAL_REFUND
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $accept_claim_type;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->note) || Assert::minLength(
+        Assert::notNull($this->note, "note in RequestAcceptClaim must not be NULL $within");
+        Assert::minLength(
             $this->note,
             1,
             "note in RequestAcceptClaim must have minlength of 1 $within"
         );
-        !isset($this->note) || Assert::maxLength(
+        Assert::maxLength(
             $this->note,
             2000,
             "note in RequestAcceptClaim must have maxlength of 2000 $within"
@@ -130,6 +153,16 @@ class RequestAcceptClaim implements JsonSerializable
             "refund_amount in RequestAcceptClaim must be instance of Money $within"
         );
         !isset($this->refund_amount) ||  $this->refund_amount->validate(RequestAcceptClaim::class);
+        !isset($this->accept_claim_type) || Assert::minLength(
+            $this->accept_claim_type,
+            1,
+            "accept_claim_type in RequestAcceptClaim must have minlength of 1 $within"
+        );
+        !isset($this->accept_claim_type) || Assert::maxLength(
+            $this->accept_claim_type,
+            255,
+            "accept_claim_type in RequestAcceptClaim must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -148,6 +181,9 @@ class RequestAcceptClaim implements JsonSerializable
         }
         if (isset($data['refund_amount'])) {
             $this->refund_amount = new Money($data['refund_amount']);
+        }
+        if (isset($data['accept_claim_type'])) {
+            $this->accept_claim_type = $data['accept_claim_type'];
         }
     }
 

@@ -16,7 +16,7 @@ class ApplePayWalletResponse implements JsonSerializable
     use BaseModel;
 
     /**
-     * The Card from Apple Pay Wallet used to fund the payment
+     * The Card from Apple Pay Wallet used to fund the payment.
      *
      * @var ApplePayCardResponse | null
      */

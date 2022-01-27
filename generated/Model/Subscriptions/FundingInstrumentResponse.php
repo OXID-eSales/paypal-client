@@ -16,9 +16,9 @@ class FundingInstrumentResponse implements JsonSerializable
     use BaseModel;
 
     /**
-     * The payment card to use to fund a payment. Card can be a credit or debit card.
+     * The payment card used to fund the payment. Card can be a credit or debit card.
      *
-     * @var CardResponse | null
+     * @var CardResponseWithBillingAddress | null
      */
     public $card;
 
@@ -36,13 +36,20 @@ class FundingInstrumentResponse implements JsonSerializable
      */
     public $credit;
 
+    /**
+     * The PayPal Balance to fund a payment.
+     *
+     * @var BalanceResponse | null
+     */
+    public $balance;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
         !isset($this->card) || Assert::isInstanceOf(
             $this->card,
-            CardResponse::class,
-            "card in FundingInstrumentResponse must be instance of CardResponse $within"
+            CardResponseWithBillingAddress::class,
+            "card in FundingInstrumentResponse must be instance of CardResponseWithBillingAddress $within"
         );
         !isset($this->card) ||  $this->card->validate(FundingInstrumentResponse::class);
         !isset($this->bank_account) || Assert::isInstanceOf(
@@ -57,18 +64,27 @@ class FundingInstrumentResponse implements JsonSerializable
             "credit in FundingInstrumentResponse must be instance of PaypalCredit $within"
         );
         !isset($this->credit) ||  $this->credit->validate(FundingInstrumentResponse::class);
+        !isset($this->balance) || Assert::isInstanceOf(
+            $this->balance,
+            BalanceResponse::class,
+            "balance in FundingInstrumentResponse must be instance of BalanceResponse $within"
+        );
+        !isset($this->balance) ||  $this->balance->validate(FundingInstrumentResponse::class);
     }
 
     private function map(array $data)
     {
         if (isset($data['card'])) {
-            $this->card = new CardResponse($data['card']);
+            $this->card = new CardResponseWithBillingAddress($data['card']);
         }
         if (isset($data['bank_account'])) {
             $this->bank_account = new BankAccountResponse($data['bank_account']);
         }
         if (isset($data['credit'])) {
             $this->credit = new PaypalCredit($data['credit']);
+        }
+        if (isset($data['balance'])) {
+            $this->balance = new BalanceResponse($data['balance']);
         }
     }
 
@@ -79,9 +95,9 @@ class FundingInstrumentResponse implements JsonSerializable
         }
     }
 
-    public function initCard(): CardResponse
+    public function initCard(): CardResponseWithBillingAddress
     {
-        return $this->card = new CardResponse();
+        return $this->card = new CardResponseWithBillingAddress();
     }
 
     public function initBankAccount(): BankAccountResponse
@@ -92,5 +108,10 @@ class FundingInstrumentResponse implements JsonSerializable
     public function initCredit(): PaypalCredit
     {
         return $this->credit = new PaypalCredit();
+    }
+
+    public function initBalance(): BalanceResponse
+    {
+        return $this->balance = new BalanceResponse();
     }
 }

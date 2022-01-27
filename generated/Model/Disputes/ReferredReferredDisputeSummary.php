@@ -67,7 +67,9 @@ class ReferredReferredDisputeSummary implements JsonSerializable
     /**
      * The details about the partner disputes.
      *
-     * @var ReferredReferenceDispute[] | null
+     * @var ReferredReferenceDispute[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $reference_disputes;
 
@@ -117,9 +119,11 @@ class ReferredReferredDisputeSummary implements JsonSerializable
     public $dispute_flow;
 
     /**
-     * An array of request-related [HATEOAS links](/docs/api/hateoas-links/).
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
      *
-     * @var array | null
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
@@ -156,7 +160,18 @@ class ReferredReferredDisputeSummary implements JsonSerializable
             64,
             "update_time in ReferredReferredDisputeSummary must have maxlength of 64 $within"
         );
-        !isset($this->reference_disputes) || Assert::isArray(
+        Assert::notNull($this->reference_disputes, "reference_disputes in ReferredReferredDisputeSummary must not be NULL $within");
+        Assert::minCount(
+            $this->reference_disputes,
+            1,
+            "reference_disputes in ReferredReferredDisputeSummary must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->reference_disputes,
+            100,
+            "reference_disputes in ReferredReferredDisputeSummary must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->reference_disputes,
             "reference_disputes in ReferredReferredDisputeSummary must be array $within"
         );
@@ -201,7 +216,18 @@ class ReferredReferredDisputeSummary implements JsonSerializable
             255,
             "dispute_flow in ReferredReferredDisputeSummary must have maxlength of 255 $within"
         );
-        !isset($this->links) || Assert::isArray(
+        Assert::notNull($this->links, "links in ReferredReferredDisputeSummary must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in ReferredReferredDisputeSummary must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in ReferredReferredDisputeSummary must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in ReferredReferredDisputeSummary must be array $within"
         );
@@ -246,6 +272,8 @@ class ReferredReferredDisputeSummary implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->reference_disputes = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }

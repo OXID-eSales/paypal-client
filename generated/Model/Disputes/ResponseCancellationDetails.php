@@ -48,6 +48,8 @@ class ResponseCancellationDetails implements JsonSerializable
      * The cancellation number.
      *
      * @var string | null
+     * minLength: 1
+     * maxLength: 127
      */
     public $cancellation_number;
 
@@ -86,6 +88,16 @@ class ResponseCancellationDetails implements JsonSerializable
             $this->cancellation_date,
             64,
             "cancellation_date in ResponseCancellationDetails must have maxlength of 64 $within"
+        );
+        !isset($this->cancellation_number) || Assert::minLength(
+            $this->cancellation_number,
+            1,
+            "cancellation_number in ResponseCancellationDetails must have minlength of 1 $within"
+        );
+        !isset($this->cancellation_number) || Assert::maxLength(
+            $this->cancellation_number,
+            127,
+            "cancellation_number in ResponseCancellationDetails must have maxlength of 127 $within"
         );
         !isset($this->cancellation_mode) || Assert::minLength(
             $this->cancellation_mode,

@@ -20,6 +20,7 @@ class RequestEvidences implements JsonSerializable
      *
      * @var ResponseEvidence[]
      * maxItems: 0
+     * maxItems: 100
      */
     public $evidences;
 
@@ -41,6 +42,11 @@ class RequestEvidences implements JsonSerializable
             $this->evidences,
             0,
             "evidences in RequestEvidences must have min. count of 0 $within"
+        );
+        Assert::maxCount(
+            $this->evidences,
+            100,
+            "evidences in RequestEvidences must have max. count of 100 $within"
         );
         Assert::isArray(
             $this->evidences,

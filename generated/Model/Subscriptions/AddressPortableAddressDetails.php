@@ -60,7 +60,7 @@ class AddressPortableAddressDetails implements JsonSerializable
     public $building_name;
 
     /**
-     * The first-order entity below a named building or location that represents the sub-premise. Usually a single
+     * The first-order entity below a named building or location that represents the sub-premises. Usually a single
      * building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment.
      *
      * @var string | null

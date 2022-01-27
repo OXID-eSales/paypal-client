@@ -234,6 +234,9 @@ class ProcessorResponse implements JsonSerializable
     /** INCORRECT_PIN_REENTER. */
     public const RESPONSE_CODE_5500 = '5500';
 
+    /** TRANSACTION_NOT_PERMITTED. Outside of scope of accepted business. */
+    public const RESPONSE_CODE_5700 = '5700';
+
     /** REVERSAL_REJECTED. */
     public const RESPONSE_CODE_5800 = '5800';
 
@@ -630,6 +633,7 @@ class ProcessorResponse implements JsonSerializable
      * @see RESPONSE_CODE_5210
      * @see RESPONSE_CODE_5400
      * @see RESPONSE_CODE_5500
+     * @see RESPONSE_CODE_5700
      * @see RESPONSE_CODE_5800
      * @see RESPONSE_CODE_5900
      * @see RESPONSE_CODE_5910

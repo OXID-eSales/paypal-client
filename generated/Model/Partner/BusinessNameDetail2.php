@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * Name of the business provided.
  *
  * generated from:
- * customized_x_unsupported_1503_customer_common-v1-schema-account_model-business_name_detail.json
+ * customized_x_unsupported_9856_customer_common-v1-schema-account_model-business_name_detail.json
  */
 class BusinessNameDetail2 extends BusinessName implements JsonSerializable
 {

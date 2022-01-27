@@ -19,12 +19,18 @@ class OrderCaptureRequest extends CaptureRequest implements JsonSerializable
      * The identifier of the order for this capture.
      *
      * @var string | null
+     * maxLength: 19
      */
     public $order_id;
 
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->order_id) || Assert::maxLength(
+            $this->order_id,
+            19,
+            "order_id in OrderCaptureRequest must have maxlength of 19 $within"
+        );
     }
 
     private function map(array $data)

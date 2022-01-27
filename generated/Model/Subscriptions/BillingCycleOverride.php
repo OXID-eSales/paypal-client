@@ -7,7 +7,8 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The billing cycle details to override at subscription level.
+ * The billing cycle details to override at subscription level. The subscription billing cycle definition has to
+ * adhere to the plan billing cycle definition.
  *
  * generated from: billing_cycle_override.json
  */

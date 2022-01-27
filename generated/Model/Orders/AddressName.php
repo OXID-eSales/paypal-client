@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
  * generated from:
  * MerchantsCommonComponentsSpecification-v1-schema-common_components-v4-schema-json-openapi-2.0-address_name.json
  */
-class AddressName extends AddressPortable implements JsonSerializable
+class AddressName extends AddressPortable2 implements JsonSerializable
 {
     use BaseModel;
 

@@ -103,7 +103,8 @@ class SubscriptionRequestPost implements JsonSerializable
     public $custom_id;
 
     /**
-     * The plan details to override at subscription level.
+     * An inline plan object to customise the subscription. You can override plan level default attributes by
+     * providing customised values for the subscription in this object.
      *
      * @var PlanOverride | null
      */

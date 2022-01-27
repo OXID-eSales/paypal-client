@@ -26,9 +26,9 @@ class Account implements JsonSerializable
     public $individual_owners;
 
     /**
-     * The business entity of the account.
+     * Business entity of the account.
      *
-     * @var BusinessEntity | null
+     * @var AccountBusinessEntity | null
      */
     public $business_entity;
 
@@ -57,8 +57,8 @@ class Account implements JsonSerializable
         }
         !isset($this->business_entity) || Assert::isInstanceOf(
             $this->business_entity,
-            BusinessEntity::class,
-            "business_entity in Account must be instance of BusinessEntity $within"
+            AccountBusinessEntity::class,
+            "business_entity in Account must be instance of AccountBusinessEntity $within"
         );
         !isset($this->business_entity) ||  $this->business_entity->validate(Account::class);
     }
@@ -72,7 +72,7 @@ class Account implements JsonSerializable
             }
         }
         if (isset($data['business_entity'])) {
-            $this->business_entity = new BusinessEntity($data['business_entity']);
+            $this->business_entity = new AccountBusinessEntity($data['business_entity']);
         }
     }
 
@@ -84,8 +84,8 @@ class Account implements JsonSerializable
         }
     }
 
-    public function initBusinessEntity(): BusinessEntity
+    public function initBusinessEntity(): AccountBusinessEntity
     {
-        return $this->business_entity = new BusinessEntity();
+        return $this->business_entity = new AccountBusinessEntity();
     }
 }

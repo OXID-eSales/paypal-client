@@ -70,6 +70,13 @@ class CycleExecution implements JsonSerializable
     public $amount_payable_per_cycle;
 
     /**
+     * The breakdown details for the amount. Includes the gross, tax, fee, and shipping amounts.
+     *
+     * @var AmountWithBreakdown | null
+     */
+    public $total_price_per_cycle;
+
+    /**
      * The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite
      * number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular
      * billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a
@@ -101,6 +108,12 @@ class CycleExecution implements JsonSerializable
             "amount_payable_per_cycle in CycleExecution must be instance of Money $within"
         );
         !isset($this->amount_payable_per_cycle) ||  $this->amount_payable_per_cycle->validate(CycleExecution::class);
+        !isset($this->total_price_per_cycle) || Assert::isInstanceOf(
+            $this->total_price_per_cycle,
+            AmountWithBreakdown::class,
+            "total_price_per_cycle in CycleExecution must be instance of AmountWithBreakdown $within"
+        );
+        !isset($this->total_price_per_cycle) ||  $this->total_price_per_cycle->validate(CycleExecution::class);
     }
 
     private function map(array $data)
@@ -123,6 +136,9 @@ class CycleExecution implements JsonSerializable
         if (isset($data['amount_payable_per_cycle'])) {
             $this->amount_payable_per_cycle = new Money($data['amount_payable_per_cycle']);
         }
+        if (isset($data['total_price_per_cycle'])) {
+            $this->total_price_per_cycle = new AmountWithBreakdown($data['total_price_per_cycle']);
+        }
         if (isset($data['total_cycles'])) {
             $this->total_cycles = $data['total_cycles'];
         }
@@ -138,5 +154,10 @@ class CycleExecution implements JsonSerializable
     public function initAmountPayablePerCycle(): Money
     {
         return $this->amount_payable_per_cycle = new Money();
+    }
+
+    public function initTotalPricePerCycle(): AmountWithBreakdown
+    {
+        return $this->total_price_per_cycle = new AmountWithBreakdown();
     }
 }

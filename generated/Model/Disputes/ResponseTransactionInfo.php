@@ -54,6 +54,12 @@ class ResponseTransactionInfo implements JsonSerializable
     /** Merchants are protected in the subsequent case if an internal case is communicated as resolved in merchant favor. */
     public const SELLER_PROTECTION_TYPE_DOUBLE_JEOPARDY_PROTECTION = 'DOUBLE_JEOPARDY_PROTECTION';
 
+    /** Merchants who are covered need not respond and paypal takes the loss for all unbranded external unuath chargebacks. */
+    public const SELLER_PROTECTION_TYPE_EFFORTLESS_CHARGEBACK_PROTECTION = 'EFFORTLESS_CHARGEBACK_PROTECTION';
+
+    /** Merchants who are covered need to provide proof of fulfillment and paypal takes the loss(unless paypal contests the case and wins) for all unbranded external unuath chargebacks. */
+    public const SELLER_PROTECTION_TYPE_CHARGEBACK_PROTECTION = 'CHARGEBACK_PROTECTION';
+
     /** Not applicable. */
     public const PROVISIONAL_CREDIT_STATUS_NOT_APPLICABLE = 'NOT_APPLICABLE';
 
@@ -86,6 +92,15 @@ class ResponseTransactionInfo implements JsonSerializable
      * maxLength: 255
      */
     public $seller_transaction_id;
+
+    /**
+     * The ID, as seen by the partner, for this transaction.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $reference_id;
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
@@ -169,7 +184,9 @@ class ResponseTransactionInfo implements JsonSerializable
     /**
      * An array of items that were purchased as part of the transaction.
      *
-     * @var ResponseItemInfo[] | null
+     * @var ResponseItemInfo[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $items;
 
@@ -187,6 +204,8 @@ class ResponseTransactionInfo implements JsonSerializable
      * @see SELLER_PROTECTION_TYPE_EXPANDED_SELLER_PROTECTION
      * @see SELLER_PROTECTION_TYPE_EFFORTLESS_SELLER_PROTECTION
      * @see SELLER_PROTECTION_TYPE_DOUBLE_JEOPARDY_PROTECTION
+     * @see SELLER_PROTECTION_TYPE_EFFORTLESS_CHARGEBACK_PROTECTION
+     * @see SELLER_PROTECTION_TYPE_CHARGEBACK_PROTECTION
      * @var string | null
      * minLength: 1
      * maxLength: 255
@@ -215,6 +234,15 @@ class ResponseTransactionInfo implements JsonSerializable
      */
     public $provisional_credit_status;
 
+    /**
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
+     *
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
+     */
+    public $links;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -237,6 +265,16 @@ class ResponseTransactionInfo implements JsonSerializable
             $this->seller_transaction_id,
             255,
             "seller_transaction_id in ResponseTransactionInfo must have maxlength of 255 $within"
+        );
+        !isset($this->reference_id) || Assert::minLength(
+            $this->reference_id,
+            1,
+            "reference_id in ResponseTransactionInfo must have minlength of 1 $within"
+        );
+        !isset($this->reference_id) || Assert::maxLength(
+            $this->reference_id,
+            255,
+            "reference_id in ResponseTransactionInfo must have maxlength of 255 $within"
         );
         !isset($this->create_time) || Assert::minLength(
             $this->create_time,
@@ -302,7 +340,18 @@ class ResponseTransactionInfo implements JsonSerializable
             "facilitator in ResponseTransactionInfo must be instance of ResponseFacilitator $within"
         );
         !isset($this->facilitator) ||  $this->facilitator->validate(ResponseTransactionInfo::class);
-        !isset($this->items) || Assert::isArray(
+        Assert::notNull($this->items, "items in ResponseTransactionInfo must not be NULL $within");
+        Assert::minCount(
+            $this->items,
+            1,
+            "items in ResponseTransactionInfo must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->items,
+            100,
+            "items in ResponseTransactionInfo must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->items,
             "items in ResponseTransactionInfo must be array $within"
         );
@@ -337,6 +386,21 @@ class ResponseTransactionInfo implements JsonSerializable
             255,
             "provisional_credit_status in ResponseTransactionInfo must have maxlength of 255 $within"
         );
+        Assert::notNull($this->links, "links in ResponseTransactionInfo must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in ResponseTransactionInfo must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in ResponseTransactionInfo must have max. count of 10 $within"
+        );
+        Assert::isArray(
+            $this->links,
+            "links in ResponseTransactionInfo must be array $within"
+        );
     }
 
     private function map(array $data)
@@ -346,6 +410,9 @@ class ResponseTransactionInfo implements JsonSerializable
         }
         if (isset($data['seller_transaction_id'])) {
             $this->seller_transaction_id = $data['seller_transaction_id'];
+        }
+        if (isset($data['reference_id'])) {
+            $this->reference_id = $data['reference_id'];
         }
         if (isset($data['create_time'])) {
             $this->create_time = $data['create_time'];
@@ -389,10 +456,18 @@ class ResponseTransactionInfo implements JsonSerializable
         if (isset($data['provisional_credit_status'])) {
             $this->provisional_credit_status = $data['provisional_credit_status'];
         }
+        if (isset($data['links'])) {
+            $this->links = [];
+            foreach ($data['links'] as $item) {
+                $this->links[] = $item;
+            }
+        }
     }
 
     public function __construct(array $data = null)
     {
+        $this->items = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }

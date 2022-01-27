@@ -47,6 +47,9 @@ class ClientConfiguration implements JsonSerializable
     /** Paypal Connect payments solution. */
     public const PRODUCT_CODE_PAYPAL_IDENTITY_LINKING = 'PAYPAL_IDENTITY_LINKING';
 
+    /** The payment product features transactions where PayPal collects monthly fees from pro merchants. */
+    public const PRODUCT_CODE_PAYPAL_PRO = 'PAYPAL_PRO';
+
     /** The default value for most payment products. */
     public const PRODUCT_FEATURE_NONE = 'NONE';
 
@@ -86,6 +89,9 @@ class ClientConfiguration implements JsonSerializable
     /** Paypal legacy Billing API. */
     public const API_LEGACY_BILLING_API = 'LEGACY_BILLING_API';
 
+    /** Paypal legacy Billing API via NVP/SOAP - SetCustomerBillingAgreement. */
+    public const API_LEGACY_BILLING_CBA_API = 'LEGACY_BILLING_CBA_API';
+
     /** Subscriptions V1 API. */
     public const API_SUBSCRIPTIONS_V1 = 'SUBSCRIPTIONS_V1';
 
@@ -98,7 +104,7 @@ class ClientConfiguration implements JsonSerializable
     /** The transaction / experience does not involve API interaction */
     public const API_NONE = 'NONE';
 
-    /** PayPal's JavaScript SDK, for checkout. This includes PayPal branded payments ( Paypal wallet, Venmo, PayPal Credit), Alternative payment methods and Hosted card processing capabilities */
+    /** PayPal's JavaScript SDK, for checkout. This includes PayPal branded payments ( PayPal Wallet, Venmo, PayPal Credit), Alternative payment methods and Hosted card processing capabilities */
     public const INTEGRATION_ARTIFACT_PAYPAL_JS_SDK = 'PAYPAL_JS_SDK';
 
     /** Paypal's client side javascript, Version 3, for checkout. */
@@ -130,6 +136,7 @@ class ClientConfiguration implements JsonSerializable
      * @see PRODUCT_CODE_VAULT
      * @see PRODUCT_CODE_INVOICING
      * @see PRODUCT_CODE_PAYPAL_IDENTITY_LINKING
+     * @see PRODUCT_CODE_PAYPAL_PRO
      * @var string | null
      * minLength: 1
      * maxLength: 255
@@ -163,6 +170,7 @@ class ClientConfiguration implements JsonSerializable
      * @see API_INVOICING_V1
      * @see API_INVOICING_V2
      * @see API_LEGACY_BILLING_API
+     * @see API_LEGACY_BILLING_CBA_API
      * @see API_SUBSCRIPTIONS_V1
      * @see API_RECURRING_PAYMENTS_V1
      * @see API_LEGACY_RECURRING_PAYMENTS
@@ -195,6 +203,14 @@ class ClientConfiguration implements JsonSerializable
      * @var ProductExperience | null
      */
     public $experience;
+
+    /**
+     * The initiator product for current transaction. This object determines the layer through which the transaction
+     * is initiated.
+     *
+     * @var Initiator | null
+     */
+    public $initiator;
 
     public function validate($from = null)
     {
@@ -245,6 +261,12 @@ class ClientConfiguration implements JsonSerializable
             "experience in ClientConfiguration must be instance of ProductExperience $within"
         );
         !isset($this->experience) ||  $this->experience->validate(ClientConfiguration::class);
+        !isset($this->initiator) || Assert::isInstanceOf(
+            $this->initiator,
+            Initiator::class,
+            "initiator in ClientConfiguration must be instance of Initiator $within"
+        );
+        !isset($this->initiator) ||  $this->initiator->validate(ClientConfiguration::class);
     }
 
     private function map(array $data)
@@ -264,6 +286,9 @@ class ClientConfiguration implements JsonSerializable
         if (isset($data['experience'])) {
             $this->experience = new ProductExperience($data['experience']);
         }
+        if (isset($data['initiator'])) {
+            $this->initiator = new Initiator($data['initiator']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -276,5 +301,10 @@ class ClientConfiguration implements JsonSerializable
     public function initExperience(): ProductExperience
     {
         return $this->experience = new ProductExperience();
+    }
+
+    public function initInitiator(): Initiator
+    {
+        return $this->initiator = new Initiator();
     }
 }

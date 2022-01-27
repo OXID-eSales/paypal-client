@@ -63,6 +63,69 @@ class Card implements JsonSerializable
     /** China union pay credit card. */
     public const CARD_TYPE_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
+    /** A credit card. */
+    public const TYPE_CREDIT = 'CREDIT';
+
+    /** A debit card. */
+    public const TYPE_DEBIT = 'DEBIT';
+
+    /** A Prepaid card. */
+    public const TYPE_PREPAID = 'PREPAID';
+
+    /** A store card. */
+    public const TYPE_STORE = 'STORE';
+
+    /** Card type cannot be determined. */
+    public const TYPE_UNKNOWN = 'UNKNOWN';
+
+    /** Visa card. */
+    public const BRAND_VISA = 'VISA';
+
+    /** Mastecard card. */
+    public const BRAND_MASTERCARD = 'MASTERCARD';
+
+    /** Discover card. */
+    public const BRAND_DISCOVER = 'DISCOVER';
+
+    /** American Express card. */
+    public const BRAND_AMEX = 'AMEX';
+
+    /** Solo debit card. */
+    public const BRAND_SOLO = 'SOLO';
+
+    /** Japan Credit Bureau card. */
+    public const BRAND_JCB = 'JCB';
+
+    /** Military Star card. */
+    public const BRAND_STAR = 'STAR';
+
+    /** Delta Airlines card. */
+    public const BRAND_DELTA = 'DELTA';
+
+    /** Switch credit card. */
+    public const BRAND_SWITCH = 'SWITCH';
+
+    /** Maestro credit card. */
+    public const BRAND_MAESTRO = 'MAESTRO';
+
+    /** Carte Bancaire (CB) credit card. */
+    public const BRAND_CB_NATIONALE = 'CB_NATIONALE';
+
+    /** Configoga credit card. */
+    public const BRAND_CONFIGOGA = 'CONFIGOGA';
+
+    /** Confidis credit card. */
+    public const BRAND_CONFIDIS = 'CONFIDIS';
+
+    /** Visa Electron credit card. */
+    public const BRAND_ELECTRON = 'ELECTRON';
+
+    /** Cetelem credit card. */
+    public const BRAND_CETELEM = 'CETELEM';
+
+    /** China union pay credit card. */
+    public const BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+
     /**
      * The PayPal-generated ID for the card.
      *
@@ -98,7 +161,8 @@ class Card implements JsonSerializable
     public $expiry;
 
     /**
-     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID.
+     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This
+     * parameter cannot be present in the request when `payment_initiator=MERCHANT`.
      *
      * @var string | null
      */
@@ -138,6 +202,47 @@ class Card implements JsonSerializable
     public $card_type;
 
     /**
+     * Type of card. i.e Credit, Debit and so on.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see TYPE_CREDIT
+     * @see TYPE_DEBIT
+     * @see TYPE_PREPAID
+     * @see TYPE_STORE
+     * @see TYPE_UNKNOWN
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $type;
+
+    /**
+     * The card network or brand. Applies to credit, debit, gift, and payment cards.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see BRAND_VISA
+     * @see BRAND_MASTERCARD
+     * @see BRAND_DISCOVER
+     * @see BRAND_AMEX
+     * @see BRAND_SOLO
+     * @see BRAND_JCB
+     * @see BRAND_STAR
+     * @see BRAND_DELTA
+     * @see BRAND_SWITCH
+     * @see BRAND_MAESTRO
+     * @see BRAND_CB_NATIONALE
+     * @see BRAND_CONFIGOGA
+     * @see BRAND_CONFIDIS
+     * @see BRAND_ELECTRON
+     * @see BRAND_CETELEM
+     * @see BRAND_CHINA_UNION_PAY
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $brand;
+
+    /**
      * The portable international postal address. Maps to
      * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and
      * HTML 5.1 [Autofilling form controls: the autocomplete
@@ -148,7 +253,8 @@ class Card implements JsonSerializable
     public $billing_address;
 
     /**
-     * A list of authentication results.
+     * A list of authentication results. This parameter cannot be present in the request when
+     * `payment_initiator=MERCHANT`.
      *
      * @var ThreedsResult[] | null
      * maxItems: 1
@@ -156,7 +262,7 @@ class Card implements JsonSerializable
     public $authentication_results;
 
     /**
-     * Additional attributes associated with the use of this card
+     * Additional attributes associated with the use of this card.
      *
      * @var CardAttributes | null
      */
@@ -201,6 +307,26 @@ class Card implements JsonSerializable
             $this->card_type,
             255,
             "card_type in Card must have maxlength of 255 $within"
+        );
+        !isset($this->type) || Assert::minLength(
+            $this->type,
+            1,
+            "type in Card must have minlength of 1 $within"
+        );
+        !isset($this->type) || Assert::maxLength(
+            $this->type,
+            255,
+            "type in Card must have maxlength of 255 $within"
+        );
+        !isset($this->brand) || Assert::minLength(
+            $this->brand,
+            1,
+            "brand in Card must have minlength of 1 $within"
+        );
+        !isset($this->brand) || Assert::maxLength(
+            $this->brand,
+            255,
+            "brand in Card must have maxlength of 255 $within"
         );
         !isset($this->billing_address) || Assert::isInstanceOf(
             $this->billing_address,
@@ -252,6 +378,12 @@ class Card implements JsonSerializable
         }
         if (isset($data['card_type'])) {
             $this->card_type = $data['card_type'];
+        }
+        if (isset($data['type'])) {
+            $this->type = $data['type'];
+        }
+        if (isset($data['brand'])) {
+            $this->brand = $data['brand'];
         }
         if (isset($data['billing_address'])) {
             $this->billing_address = new AddressPortable2($data['billing_address']);

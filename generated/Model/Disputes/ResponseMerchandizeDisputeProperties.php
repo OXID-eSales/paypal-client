@@ -21,6 +21,9 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
     /** The service has an issue. */
     public const ISSUE_TYPE_SERVICE = 'SERVICE';
 
+    /** The policy allows free return shipping for buyers */
+    public const RETURN_POLICY_BUYER_FREE_RETURN_SHIPPING = 'BUYER_FREE_RETURN_SHIPPING';
+
     /**
      * The issue type.
      *
@@ -48,6 +51,13 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
     public $service_details;
 
     /**
+     * The cancellation details.
+     *
+     * @var ResponseCancellationDetails | null
+     */
+    public $cancellation_details;
+
+    /**
      * The portable international postal address. Maps to
      * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and
      * HTML 5.1 [Autofilling form controls: the autocomplete
@@ -56,6 +66,17 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
      * @var AddressPortable | null
      */
     public $return_shipping_address;
+
+    /**
+     * The return shipping policy for buyer.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see RETURN_POLICY_BUYER_FREE_RETURN_SHIPPING
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $return_policy;
 
     public function validate($from = null)
     {
@@ -82,12 +103,28 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
             "service_details in ResponseMerchandizeDisputeProperties must be instance of ResponseServiceDetails $within"
         );
         !isset($this->service_details) ||  $this->service_details->validate(ResponseMerchandizeDisputeProperties::class);
+        !isset($this->cancellation_details) || Assert::isInstanceOf(
+            $this->cancellation_details,
+            ResponseCancellationDetails::class,
+            "cancellation_details in ResponseMerchandizeDisputeProperties must be instance of ResponseCancellationDetails $within"
+        );
+        !isset($this->cancellation_details) ||  $this->cancellation_details->validate(ResponseMerchandizeDisputeProperties::class);
         !isset($this->return_shipping_address) || Assert::isInstanceOf(
             $this->return_shipping_address,
             AddressPortable::class,
             "return_shipping_address in ResponseMerchandizeDisputeProperties must be instance of AddressPortable $within"
         );
         !isset($this->return_shipping_address) ||  $this->return_shipping_address->validate(ResponseMerchandizeDisputeProperties::class);
+        !isset($this->return_policy) || Assert::minLength(
+            $this->return_policy,
+            1,
+            "return_policy in ResponseMerchandizeDisputeProperties must have minlength of 1 $within"
+        );
+        !isset($this->return_policy) || Assert::maxLength(
+            $this->return_policy,
+            255,
+            "return_policy in ResponseMerchandizeDisputeProperties must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -101,8 +138,14 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
         if (isset($data['service_details'])) {
             $this->service_details = new ResponseServiceDetails($data['service_details']);
         }
+        if (isset($data['cancellation_details'])) {
+            $this->cancellation_details = new ResponseCancellationDetails($data['cancellation_details']);
+        }
         if (isset($data['return_shipping_address'])) {
             $this->return_shipping_address = new AddressPortable($data['return_shipping_address']);
+        }
+        if (isset($data['return_policy'])) {
+            $this->return_policy = $data['return_policy'];
         }
     }
 
@@ -121,6 +164,11 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
     public function initServiceDetails(): ResponseServiceDetails
     {
         return $this->service_details = new ResponseServiceDetails();
+    }
+
+    public function initCancellationDetails(): ResponseCancellationDetails
+    {
+        return $this->cancellation_details = new ResponseCancellationDetails();
     }
 
     public function initReturnShippingAddress(): AddressPortable

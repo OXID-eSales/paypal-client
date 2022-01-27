@@ -18,12 +18,18 @@ class CreditFinancingOffer implements JsonSerializable
     /** Issued by PayPal. */
     public const ISSUER_PAYPAL = 'PAYPAL';
 
+    /** Issued by card issuer. */
+    public const ISSUER_CARD_ISSUER_INSTALLMENTS = 'CARD_ISSUER_INSTALLMENTS';
+
     /**
      * The issuer of the credit financing offer.
      *
      * use one of constants defined in this class to set the value:
      * @see ISSUER_PAYPAL
+     * @see ISSUER_CARD_ISSUER_INSTALLMENTS
      * @var string | null
+     * minLength: 1
+     * maxLength: 40
      */
     public $issuer;
 
@@ -58,6 +64,16 @@ class CreditFinancingOffer implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->issuer) || Assert::minLength(
+            $this->issuer,
+            1,
+            "issuer in CreditFinancingOffer must have minlength of 1 $within"
+        );
+        !isset($this->issuer) || Assert::maxLength(
+            $this->issuer,
+            40,
+            "issuer in CreditFinancingOffer must have maxlength of 40 $within"
+        );
         !isset($this->total_payment) || Assert::isInstanceOf(
             $this->total_payment,
             Money::class,

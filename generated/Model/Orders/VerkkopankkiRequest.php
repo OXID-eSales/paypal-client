@@ -16,7 +16,7 @@ class VerkkopankkiRequest implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string
      * minLength: 3
@@ -51,8 +51,8 @@ class VerkkopankkiRequest implements JsonSerializable
 
     /**
      * The numeric bank identifier of the account holder associated with this payment method. Valid bank ids at the
-     * moment are 50 (Aktia), 3 (Danske Bank), 6 (Handelsbanken), 1 Nordea, 61 (Oma Säästöpankki), 2
-     * (Osuuspankki), 51 (POP Pankki), (10) S-Pankki, (52) Säästöpankki, (5) Ålandsbanken
+     * moment are 50 (Aktia), 3 (Danske Bank), 6 (Handelsbanken), 1 Nordea, 61 (Oma Säästöpankki), 2
+     * (Osuuspankki), 51 (POP Pankki), (10) S-Pankki, (52) Säästöpankki, (5) Ålandsbanken.
      *
      * @var string | null
      * minLength: 1

@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
  *
  * generated from:
- * customized_x_unsupported_352_merchant.CommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-address_portable.json
+ * customized_x_unsupported_361_merchant.CommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-address_portable.json
  */
 class AddressPortable2 implements JsonSerializable
 {

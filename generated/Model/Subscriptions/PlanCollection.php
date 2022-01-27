@@ -41,7 +41,9 @@ class PlanCollection implements JsonSerializable
     /**
      * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
      *
-     * @var array | null
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
@@ -68,7 +70,18 @@ class PlanCollection implements JsonSerializable
                 $item->validate(PlanCollection::class);
             }
         }
-        !isset($this->links) || Assert::isArray(
+        Assert::notNull($this->links, "links in PlanCollection must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in PlanCollection must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in PlanCollection must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in PlanCollection must be array $within"
         );
@@ -99,6 +112,7 @@ class PlanCollection implements JsonSerializable
     public function __construct(array $data = null)
     {
         $this->plans = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }

@@ -71,6 +71,7 @@ class RequestChangeReason implements JsonSerializable
      * A note.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 1048576
      */
     public $note;
@@ -86,14 +87,18 @@ class RequestChangeReason implements JsonSerializable
     /**
      * An array of customer-reported unauthorized account activities.
      *
-     * @var ResponseAccountActivity[] | null
+     * @var ResponseAccountActivity[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $disputed_account_activities;
 
     /**
      * An array of transaction IDs to add to the unauthorized issue.
      *
-     * @var string[] | null
+     * @var string[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $transaction_ids;
 
@@ -109,7 +114,9 @@ class RequestChangeReason implements JsonSerializable
      * to <a
      * href="/docs/integration/direct/customer-disputes/integration-guide/#merchandise_or_service_not_as_described"><code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code></a>.
      *
-     * @var ResponseItemInfo[] | null
+     * @var ResponseItemInfo[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $item_info;
 
@@ -126,6 +133,11 @@ class RequestChangeReason implements JsonSerializable
             255,
             "reason in RequestChangeReason must have maxlength of 255 $within"
         );
+        !isset($this->note) || Assert::minLength(
+            $this->note,
+            1,
+            "note in RequestChangeReason must have minlength of 1 $within"
+        );
         !isset($this->note) || Assert::maxLength(
             $this->note,
             1048576,
@@ -137,7 +149,18 @@ class RequestChangeReason implements JsonSerializable
             "extensions in RequestChangeReason must be instance of ResponseExtensions $within"
         );
         !isset($this->extensions) ||  $this->extensions->validate(RequestChangeReason::class);
-        !isset($this->disputed_account_activities) || Assert::isArray(
+        Assert::notNull($this->disputed_account_activities, "disputed_account_activities in RequestChangeReason must not be NULL $within");
+        Assert::minCount(
+            $this->disputed_account_activities,
+            1,
+            "disputed_account_activities in RequestChangeReason must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->disputed_account_activities,
+            1000,
+            "disputed_account_activities in RequestChangeReason must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->disputed_account_activities,
             "disputed_account_activities in RequestChangeReason must be array $within"
         );
@@ -146,7 +169,18 @@ class RequestChangeReason implements JsonSerializable
                 $item->validate(RequestChangeReason::class);
             }
         }
-        !isset($this->transaction_ids) || Assert::isArray(
+        Assert::notNull($this->transaction_ids, "transaction_ids in RequestChangeReason must not be NULL $within");
+        Assert::minCount(
+            $this->transaction_ids,
+            1,
+            "transaction_ids in RequestChangeReason must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->transaction_ids,
+            100,
+            "transaction_ids in RequestChangeReason must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->transaction_ids,
             "transaction_ids in RequestChangeReason must be array $within"
         );
@@ -156,7 +190,18 @@ class RequestChangeReason implements JsonSerializable
             "buyer_requested_amount in RequestChangeReason must be instance of Money $within"
         );
         !isset($this->buyer_requested_amount) ||  $this->buyer_requested_amount->validate(RequestChangeReason::class);
-        !isset($this->item_info) || Assert::isArray(
+        Assert::notNull($this->item_info, "item_info in RequestChangeReason must not be NULL $within");
+        Assert::minCount(
+            $this->item_info,
+            1,
+            "item_info in RequestChangeReason must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->item_info,
+            100,
+            "item_info in RequestChangeReason must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->item_info,
             "item_info in RequestChangeReason must be array $within"
         );
@@ -203,6 +248,9 @@ class RequestChangeReason implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->disputed_account_activities = [];
+        $this->transaction_ids = [];
+        $this->item_info = [];
         if (isset($data)) {
             $this->map($data);
         }

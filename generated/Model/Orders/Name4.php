@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * The name of the party.
  *
  * generated from:
- * customized_x_unsupported_5492_MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-name.json
+ * customized_x_unsupported_3238_MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-name.json
  */
 class Name4 implements JsonSerializable
 {

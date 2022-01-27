@@ -16,7 +16,7 @@ class Multibanco implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string | null
      * minLength: 3
@@ -36,6 +36,24 @@ class Multibanco implements JsonSerializable
      * maxLength: 2
      */
     public $country_code;
+
+    /**
+     * Payment entity ID required by the account holder to complete the payment.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $payment_entity;
+
+    /**
+     * Payment reference number required by the account holder to complete the payment.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $payment_reference;
 
     public function validate($from = null)
     {
@@ -60,6 +78,26 @@ class Multibanco implements JsonSerializable
             2,
             "country_code in Multibanco must have maxlength of 2 $within"
         );
+        !isset($this->payment_entity) || Assert::minLength(
+            $this->payment_entity,
+            1,
+            "payment_entity in Multibanco must have minlength of 1 $within"
+        );
+        !isset($this->payment_entity) || Assert::maxLength(
+            $this->payment_entity,
+            255,
+            "payment_entity in Multibanco must have maxlength of 255 $within"
+        );
+        !isset($this->payment_reference) || Assert::minLength(
+            $this->payment_reference,
+            1,
+            "payment_reference in Multibanco must have minlength of 1 $within"
+        );
+        !isset($this->payment_reference) || Assert::maxLength(
+            $this->payment_reference,
+            255,
+            "payment_reference in Multibanco must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -69,6 +107,12 @@ class Multibanco implements JsonSerializable
         }
         if (isset($data['country_code'])) {
             $this->country_code = $data['country_code'];
+        }
+        if (isset($data['payment_entity'])) {
+            $this->payment_entity = $data['payment_entity'];
+        }
+        if (isset($data['payment_reference'])) {
+            $this->payment_reference = $data['payment_reference'];
         }
     }
 

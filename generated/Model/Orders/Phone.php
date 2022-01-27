@@ -7,11 +7,11 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The phone number, in its canonical international [E.164 numbering plan
+ * The phone number in its canonical international [E.164 numbering plan
  * format](https://www.itu.int/rec/T-REC-E.164/en).
  *
  * generated from:
- * MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-phone.json
+ * MerchantsCommonComponentsSpecification-v1-schema-common_components-v4-schema-json-openapi-2.0-phone.json
  */
 class Phone implements JsonSerializable
 {
@@ -23,7 +23,7 @@ class Phone implements JsonSerializable
      * not be greater than 15 digits. The national number consists of a national destination code (NDC) and
      * subscriber number (SN).
      *
-     * @var string | null
+     * @var string
      * minLength: 1
      * maxLength: 3
      */
@@ -53,12 +53,13 @@ class Phone implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->country_code) || Assert::minLength(
+        Assert::notNull($this->country_code, "country_code in Phone must not be NULL $within");
+        Assert::minLength(
             $this->country_code,
             1,
             "country_code in Phone must have minlength of 1 $within"
         );
-        !isset($this->country_code) || Assert::maxLength(
+        Assert::maxLength(
             $this->country_code,
             3,
             "country_code in Phone must have maxlength of 3 $within"

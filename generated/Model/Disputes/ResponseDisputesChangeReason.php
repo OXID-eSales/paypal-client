@@ -16,16 +16,29 @@ class ResponseDisputesChangeReason implements JsonSerializable
     use BaseModel;
 
     /**
-     * An array of request-related [HATEOAS links](/docs/api/hateoas-links/).
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
      *
-     * @var array | null
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->links) || Assert::isArray(
+        Assert::notNull($this->links, "links in ResponseDisputesChangeReason must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in ResponseDisputesChangeReason must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in ResponseDisputesChangeReason must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in ResponseDisputesChangeReason must be array $within"
         );
@@ -43,6 +56,7 @@ class ResponseDisputesChangeReason implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }

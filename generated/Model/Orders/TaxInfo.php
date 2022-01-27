@@ -16,15 +16,14 @@ class TaxInfo implements JsonSerializable
 {
     use BaseModel;
 
-    /** The individual tax ID type. */
+    /** The individual tax ID type, typically is 11 characters long. */
     public const TAX_ID_TYPE_BR_CPF = 'BR_CPF';
 
-    /** The business tax ID type. */
+    /** The business tax ID type, typically is 14 characters long. */
     public const TAX_ID_TYPE_BR_CNPJ = 'BR_CNPJ';
 
     /**
-     * The customer's tax ID. Supported for the PayPal payment method only. Typically, the tax ID is 11 characters
-     * long for individuals and 14 characters long for businesses.
+     * The customer's tax ID value.
      *
      * @var string
      * maxLength: 14
@@ -32,7 +31,7 @@ class TaxInfo implements JsonSerializable
     public $tax_id;
 
     /**
-     * The customer's tax ID type. Supported for the PayPal payment method only.
+     * The customer's tax ID type.
      *
      * use one of constants defined in this class to set the value:
      * @see TAX_ID_TYPE_BR_CPF

@@ -60,6 +60,13 @@ class AchDebit implements JsonSerializable
      */
     public $account_holder_name;
 
+    /**
+     * ACH debit attributes object.
+     *
+     * @var AchDebitAttributes | null
+     */
+    public $attributes;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -106,6 +113,12 @@ class AchDebit implements JsonSerializable
             300,
             "account_holder_name in AchDebit must have maxlength of 300 $within"
         );
+        !isset($this->attributes) || Assert::isInstanceOf(
+            $this->attributes,
+            AchDebitAttributes::class,
+            "attributes in AchDebit must be instance of AchDebitAttributes $within"
+        );
+        !isset($this->attributes) ||  $this->attributes->validate(AchDebit::class);
     }
 
     private function map(array $data)
@@ -122,6 +135,9 @@ class AchDebit implements JsonSerializable
         if (isset($data['account_holder_name'])) {
             $this->account_holder_name = $data['account_holder_name'];
         }
+        if (isset($data['attributes'])) {
+            $this->attributes = new AchDebitAttributes($data['attributes']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -129,5 +145,10 @@ class AchDebit implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initAttributes(): AchDebitAttributes
+    {
+        return $this->attributes = new AchDebitAttributes();
     }
 }

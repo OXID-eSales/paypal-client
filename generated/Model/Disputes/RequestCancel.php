@@ -34,6 +34,7 @@ class RequestCancel implements JsonSerializable
      * The note, if any, about why the merchant canceled the dispute.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 1048576
      */
     public $note;
@@ -42,12 +43,14 @@ class RequestCancel implements JsonSerializable
      * An array of encrypted transaction IDs for a canceled unauthorized dispute. If you omit this ID for
      * unauthorized disputes, the issue is automatically canceled. Optional for other dispute types.
      *
-     * @var string[] | null
+     * @var string[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $transaction_ids;
 
     /**
-     * The reason the merchant cancelled the item.
+     * The reason the customer cancelled the dispute.
      *
      * use one of constants defined in this class to set the value:
      * @see CANCELLATION_REASON_ITEM_RECEIVED
@@ -64,12 +67,28 @@ class RequestCancel implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->note) || Assert::minLength(
+            $this->note,
+            1,
+            "note in RequestCancel must have minlength of 1 $within"
+        );
         !isset($this->note) || Assert::maxLength(
             $this->note,
             1048576,
             "note in RequestCancel must have maxlength of 1048576 $within"
         );
-        !isset($this->transaction_ids) || Assert::isArray(
+        Assert::notNull($this->transaction_ids, "transaction_ids in RequestCancel must not be NULL $within");
+        Assert::minCount(
+            $this->transaction_ids,
+            1,
+            "transaction_ids in RequestCancel must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->transaction_ids,
+            1000,
+            "transaction_ids in RequestCancel must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->transaction_ids,
             "transaction_ids in RequestCancel must be array $within"
         );
@@ -103,6 +122,7 @@ class RequestCancel implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->transaction_ids = [];
         if (isset($data)) {
             $this->map($data);
         }

@@ -97,7 +97,7 @@ class Business extends Party implements JsonSerializable
     public $names;
 
     /**
-     * The business types classified.
+     * The business types classified
      *
      * use one of constants defined in this class to set the value:
      * @see TYPE_ANY_OTHER_BUSINESS_ENTITY
@@ -131,8 +131,8 @@ class Business extends Party implements JsonSerializable
     public $type;
 
     /**
-     * Business category information. Refer:
-     * https://developer.paypal.com/docs/commerce-platform/reference/categories-subcategories/.
+     * Business category information. For more information, see [Categories and
+     * subcategories](/docs/platforms/develop/categories-subcategories/).
      *
      * @var BusinessCategory | null
      */

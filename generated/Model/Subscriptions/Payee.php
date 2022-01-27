@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The merchant who receives the funds and fulfills the order. The merchant is also known as the payee.
  *
- * generated from: customized_x_unsupported_1272_merchant.CommonComponentsSpecification-v1-schema-payee.json
+ * generated from: customized_x_unsupported_4908_merchant.CommonComponentsSpecification-v1-schema-payee.json
  */
 class Payee extends PayeeBase implements JsonSerializable
 {

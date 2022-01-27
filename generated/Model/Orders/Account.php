@@ -15,13 +15,13 @@ class Account implements JsonSerializable
 {
     use BaseModel;
 
-    /** PayPal Business account. */
+    /** PayPal Business account */
     public const TIER_BUSINESS = 'BUSINESS';
 
-    /** PayPal personal account. */
+    /** PayPal personal account */
     public const TIER_PERSONAL = 'PERSONAL';
 
-    /** PayPal Premier account. */
+    /** PayPal Premier account */
     public const TIER_PREMIER = 'PREMIER';
 
     /**
@@ -45,7 +45,7 @@ class Account implements JsonSerializable
     public $account_id;
 
     /**
-     * Paypal account type.
+     * Paypal account type
      *
      * use one of constants defined in this class to set the value:
      * @see TIER_BUSINESS

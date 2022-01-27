@@ -16,7 +16,7 @@ class Trustly implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string | null
      * minLength: 3
@@ -39,7 +39,7 @@ class Trustly implements JsonSerializable
 
     /**
      * The business identification code (BIC). In payments systems, a BIC is used to identify a specific business,
-     * most commonly a bank
+     * most commonly a bank.
      *
      * @var string | null
      * minLength: 8

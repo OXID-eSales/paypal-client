@@ -66,8 +66,6 @@ class ResponseServiceDetails implements JsonSerializable
      * The URL of the merchant or marketplace site where the customer purchased the service.
      *
      * @var string | null
-     * minLength: 1
-     * maxLength: 2000
      */
     public $purchase_url;
 
@@ -107,16 +105,6 @@ class ResponseServiceDetails implements JsonSerializable
         !isset($this->sub_reasons) || Assert::isArray(
             $this->sub_reasons,
             "sub_reasons in ResponseServiceDetails must be array $within"
-        );
-        !isset($this->purchase_url) || Assert::minLength(
-            $this->purchase_url,
-            1,
-            "purchase_url in ResponseServiceDetails must have minlength of 1 $within"
-        );
-        !isset($this->purchase_url) || Assert::maxLength(
-            $this->purchase_url,
-            2000,
-            "purchase_url in ResponseServiceDetails must have maxlength of 2000 $within"
         );
     }
 

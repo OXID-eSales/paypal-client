@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-payer.json
  */
-class Payer implements JsonSerializable
+class Payer extends PayerBase implements JsonSerializable
 {
     use BaseModel;
 
@@ -21,26 +21,6 @@ class Payer implements JsonSerializable
      * @var Name3 | null
      */
     public $name;
-
-    /**
-     * The internationalized email address.<blockquote><strong>Note:</strong> Up to 64 characters are allowed before
-     * and 255 characters are allowed after the <code>@</code> sign. However, the generally accepted maximum length
-     * for an email address is 254 characters. The pattern verifies that an unquoted <code>@</code> sign
-     * exists.</blockquote>
-     *
-     * @var string | null
-     * maxLength: 254
-     */
-    public $email_address;
-
-    /**
-     * The account identifier for a PayPal account.
-     *
-     * @var string | null
-     * minLength: 13
-     * maxLength: 13
-     */
-    public $payer_id;
 
     /**
      * The phone information.
@@ -75,7 +55,7 @@ class Payer implements JsonSerializable
      * HTML 5.1 [Autofilling form controls: the autocomplete
      * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
      *
-     * @var AddressPortable2 | null
+     * @var AddressPortable3 | null
      */
     public $address;
 
@@ -88,21 +68,6 @@ class Payer implements JsonSerializable
             "name in Payer must be instance of Name3 $within"
         );
         !isset($this->name) ||  $this->name->validate(Payer::class);
-        !isset($this->email_address) || Assert::maxLength(
-            $this->email_address,
-            254,
-            "email_address in Payer must have maxlength of 254 $within"
-        );
-        !isset($this->payer_id) || Assert::minLength(
-            $this->payer_id,
-            13,
-            "payer_id in Payer must have minlength of 13 $within"
-        );
-        !isset($this->payer_id) || Assert::maxLength(
-            $this->payer_id,
-            13,
-            "payer_id in Payer must have maxlength of 13 $within"
-        );
         !isset($this->phone) || Assert::isInstanceOf(
             $this->phone,
             PhoneWithType::class,
@@ -127,8 +92,8 @@ class Payer implements JsonSerializable
         !isset($this->tax_info) ||  $this->tax_info->validate(Payer::class);
         !isset($this->address) || Assert::isInstanceOf(
             $this->address,
-            AddressPortable2::class,
-            "address in Payer must be instance of AddressPortable2 $within"
+            AddressPortable3::class,
+            "address in Payer must be instance of AddressPortable3 $within"
         );
         !isset($this->address) ||  $this->address->validate(Payer::class);
     }
@@ -137,12 +102,6 @@ class Payer implements JsonSerializable
     {
         if (isset($data['name'])) {
             $this->name = new Name3($data['name']);
-        }
-        if (isset($data['email_address'])) {
-            $this->email_address = $data['email_address'];
-        }
-        if (isset($data['payer_id'])) {
-            $this->payer_id = $data['payer_id'];
         }
         if (isset($data['phone'])) {
             $this->phone = new PhoneWithType($data['phone']);
@@ -154,12 +113,13 @@ class Payer implements JsonSerializable
             $this->tax_info = new TaxInfo($data['tax_info']);
         }
         if (isset($data['address'])) {
-            $this->address = new AddressPortable2($data['address']);
+            $this->address = new AddressPortable3($data['address']);
         }
     }
 
     public function __construct(array $data = null)
     {
+        parent::__construct($data);
         if (isset($data)) {
             $this->map($data);
         }
@@ -180,8 +140,8 @@ class Payer implements JsonSerializable
         return $this->tax_info = new TaxInfo();
     }
 
-    public function initAddress(): AddressPortable2
+    public function initAddress(): AddressPortable3
     {
-        return $this->address = new AddressPortable2();
+        return $this->address = new AddressPortable3();
     }
 }

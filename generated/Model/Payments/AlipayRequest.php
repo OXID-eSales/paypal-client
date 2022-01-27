@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Information needed to pay using Alipay
+ * Information needed to pay using Alipay.
  *
  * generated from: MerchantCommonComponentsSpecification-v1-schema-alipay_request.json
  */
@@ -16,7 +16,7 @@ class AlipayRequest implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string
      * minLength: 3

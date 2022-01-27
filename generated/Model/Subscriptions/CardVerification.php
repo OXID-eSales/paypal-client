@@ -23,6 +23,8 @@ class CardVerification implements JsonSerializable
     public const METHOD_AVS_CVV = 'AVS_CVV';
 
     /**
+     * The method used for card verification.
+     *
      * use one of constants defined in this class to set the value:
      * @see METHOD_3D_SECURE
      * @see METHOD_AVS_CVV

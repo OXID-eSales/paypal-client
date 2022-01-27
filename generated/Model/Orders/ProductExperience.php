@@ -82,9 +82,6 @@ class ProductExperience implements JsonSerializable
     /** The transaction is initiated from Alternative Payment Zimpler. */
     public const ENTRY_POINT_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
 
-    /** The action is initiated on PayPal.com website */
-    public const ENTRY_POINT_PAYPAL_SITE = 'PAYPAL_SITE';
-
     /** The transaction source is unknown. */
     public const ENTRY_POINT_UNKNOWN = 'UNKNOWN';
 
@@ -138,6 +135,9 @@ class ProductExperience implements JsonSerializable
 
     /** The transaction is completed through Alternative Payment Zimpler. */
     public const PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
+
+    /** The transaction is essentially funded by Crypto. */
+    public const PAYMENT_METHOD_PAY_WITH_CRYPTO = 'PAY_WITH_CRYPTO';
 
     /** The transaction payment method is unknown. */
     public const PAYMENT_METHOD_UNKNOWN = 'UNKNOWN';
@@ -196,6 +196,9 @@ class ProductExperience implements JsonSerializable
     /** Collection flow with the system initiating payments to resolve negative balance on sink accounts. */
     public const PRODUCT_FLOW_NEGATIVE_BALANCE_COLLECTION = 'NEGATIVE_BALANCE_COLLECTION';
 
+    /** Identifies give at checkout transactions - customer consents and initiates a donation when checkout with paypal. */
+    public const PRODUCT_FLOW_GIVE_AT_CHECKOUT = 'GIVE_AT_CHECKOUT';
+
     /**
      * The user experience flow for the PayPal transaction.
      *
@@ -232,7 +235,6 @@ class ProductExperience implements JsonSerializable
      * @see ENTRY_POINT_PAY_WITH_ALTPAY_SOFORT
      * @see ENTRY_POINT_PAY_WITH_ALTPAY_WECHATPAY
      * @see ENTRY_POINT_PAY_WITH_ALTPAY_ZIMPLER
-     * @see ENTRY_POINT_PAYPAL_SITE
      * @see ENTRY_POINT_UNKNOWN
      * @var string | null
      * minLength: 1
@@ -262,6 +264,7 @@ class ProductExperience implements JsonSerializable
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_SOFORT
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_WECHATPAY
      * @see PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER
+     * @see PAYMENT_METHOD_PAY_WITH_CRYPTO
      * @see PAYMENT_METHOD_UNKNOWN
      * @var string | null
      * minLength: 1
@@ -301,6 +304,7 @@ class ProductExperience implements JsonSerializable
      * @see PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS_PRICING_CHANGE
      * @see PRODUCT_FLOW_BUYER_INSTRUMENT_AUTHENTICATION_BILLING_AGREEMENT
      * @see PRODUCT_FLOW_NEGATIVE_BALANCE_COLLECTION
+     * @see PRODUCT_FLOW_GIVE_AT_CHECKOUT
      * @var string | null
      * minLength: 1
      * maxLength: 255

@@ -15,6 +15,15 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
 {
     use BaseModel;
 
+    /** The customer was charged for a free trial period. */
+    public const SUB_REASON_CHARGED_FOR_FREE_TRIAL = 'CHARGED_FOR_FREE_TRIAL';
+
+    /** The customer wasn’t notified of the renewal or change in charges. */
+    public const SUB_REASON_NOT_NOTIFIED_OF_CHARGES = 'NOT_NOTIFIED_OF_CHARGES';
+
+    /** The customer was charged for a canceled automatic payment. */
+    public const SUB_REASON_CHARGED_AFTER_CANCELLATION = 'CHARGED_AFTER_CANCELLATION';
+
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.
      *
@@ -28,6 +37,26 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
      * @var ResponseCancellationDetails | null
      */
     public $cancellation_details;
+
+    /**
+     * The subscription details.
+     *
+     * @var ResponseSubscriptionDetails | null
+     */
+    public $subscription_details;
+
+    /**
+     * The sub-reason for the recurring billing issue.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see SUB_REASON_CHARGED_FOR_FREE_TRIAL
+     * @see SUB_REASON_NOT_NOTIFIED_OF_CHARGES
+     * @see SUB_REASON_CHARGED_AFTER_CANCELLATION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $sub_reason;
 
     public function validate($from = null)
     {
@@ -44,6 +73,22 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
             "cancellation_details in ResponseCanceledRecurringBilling must be instance of ResponseCancellationDetails $within"
         );
         !isset($this->cancellation_details) ||  $this->cancellation_details->validate(ResponseCanceledRecurringBilling::class);
+        !isset($this->subscription_details) || Assert::isInstanceOf(
+            $this->subscription_details,
+            ResponseSubscriptionDetails::class,
+            "subscription_details in ResponseCanceledRecurringBilling must be instance of ResponseSubscriptionDetails $within"
+        );
+        !isset($this->subscription_details) ||  $this->subscription_details->validate(ResponseCanceledRecurringBilling::class);
+        !isset($this->sub_reason) || Assert::minLength(
+            $this->sub_reason,
+            1,
+            "sub_reason in ResponseCanceledRecurringBilling must have minlength of 1 $within"
+        );
+        !isset($this->sub_reason) || Assert::maxLength(
+            $this->sub_reason,
+            255,
+            "sub_reason in ResponseCanceledRecurringBilling must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -53,6 +98,12 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
         }
         if (isset($data['cancellation_details'])) {
             $this->cancellation_details = new ResponseCancellationDetails($data['cancellation_details']);
+        }
+        if (isset($data['subscription_details'])) {
+            $this->subscription_details = new ResponseSubscriptionDetails($data['subscription_details']);
+        }
+        if (isset($data['sub_reason'])) {
+            $this->sub_reason = $data['sub_reason'];
         }
     }
 
@@ -71,5 +122,10 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
     public function initCancellationDetails(): ResponseCancellationDetails
     {
         return $this->cancellation_details = new ResponseCancellationDetails();
+    }
+
+    public function initSubscriptionDetails(): ResponseSubscriptionDetails
+    {
+        return $this->subscription_details = new ResponseSubscriptionDetails();
     }
 }

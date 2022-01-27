@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * The application context, which customizes the payer experience during the subscription approval process with
  * PayPal.
  *
- * generated from: customized_x_unsupported_9557_application_context.json
+ * generated from: customized_x_unsupported_7455_application_context.json
  */
 class ApplicationContext2 implements JsonSerializable
 {
@@ -63,7 +63,7 @@ class ApplicationContext2 implements JsonSerializable
     /**
      * The customer and merchant payment preferences.
      *
-     * @var PaymentMethod | null
+     * @var PaymentMethod2 | null
      */
     public $payment_method;
 
@@ -120,8 +120,8 @@ class ApplicationContext2 implements JsonSerializable
         );
         !isset($this->payment_method) || Assert::isInstanceOf(
             $this->payment_method,
-            PaymentMethod::class,
-            "payment_method in ApplicationContext2 must be instance of PaymentMethod $within"
+            PaymentMethod2::class,
+            "payment_method in ApplicationContext2 must be instance of PaymentMethod2 $within"
         );
         !isset($this->payment_method) ||  $this->payment_method->validate(ApplicationContext2::class);
         Assert::notNull($this->return_url, "return_url in ApplicationContext2 must not be NULL $within");
@@ -160,7 +160,7 @@ class ApplicationContext2 implements JsonSerializable
             $this->shipping_preference = $data['shipping_preference'];
         }
         if (isset($data['payment_method'])) {
-            $this->payment_method = new PaymentMethod($data['payment_method']);
+            $this->payment_method = new PaymentMethod2($data['payment_method']);
         }
         if (isset($data['return_url'])) {
             $this->return_url = $data['return_url'];
@@ -177,8 +177,8 @@ class ApplicationContext2 implements JsonSerializable
         }
     }
 
-    public function initPaymentMethod(): PaymentMethod
+    public function initPaymentMethod(): PaymentMethod2
     {
-        return $this->payment_method = new PaymentMethod();
+        return $this->payment_method = new PaymentMethod2();
     }
 }

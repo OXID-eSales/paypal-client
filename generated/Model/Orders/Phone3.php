@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
  * format](https://www.itu.int/rec/T-REC-E.164/en).
  *
  * generated from:
- * customized_x_unsupported_4120_MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-phone.json
+ * customized_x_requiredOverride_75801_customized_x_unsupported_3449_MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-phone.json
  */
 class Phone3 implements JsonSerializable
 {

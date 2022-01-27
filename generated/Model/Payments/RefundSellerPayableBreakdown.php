@@ -34,7 +34,21 @@ class RefundSellerPayableBreakdown implements JsonSerializable
      *
      * @var Money | null
      */
+    public $paypal_fee_in_receivable_currency;
+
+    /**
+     * The currency and amount for a financial transaction, such as a balance or payment due.
+     *
+     * @var Money | null
+     */
     public $net_amount;
+
+    /**
+     * The currency and amount for a financial transaction, such as a balance or payment due.
+     *
+     * @var Money | null
+     */
+    public $net_amount_in_receivable_currency;
 
     /**
      * An array of platform or partner fees, commissions, or brokerage fees for the refund.
@@ -75,12 +89,24 @@ class RefundSellerPayableBreakdown implements JsonSerializable
             "paypal_fee in RefundSellerPayableBreakdown must be instance of Money $within"
         );
         !isset($this->paypal_fee) ||  $this->paypal_fee->validate(RefundSellerPayableBreakdown::class);
+        !isset($this->paypal_fee_in_receivable_currency) || Assert::isInstanceOf(
+            $this->paypal_fee_in_receivable_currency,
+            Money::class,
+            "paypal_fee_in_receivable_currency in RefundSellerPayableBreakdown must be instance of Money $within"
+        );
+        !isset($this->paypal_fee_in_receivable_currency) ||  $this->paypal_fee_in_receivable_currency->validate(RefundSellerPayableBreakdown::class);
         !isset($this->net_amount) || Assert::isInstanceOf(
             $this->net_amount,
             Money::class,
             "net_amount in RefundSellerPayableBreakdown must be instance of Money $within"
         );
         !isset($this->net_amount) ||  $this->net_amount->validate(RefundSellerPayableBreakdown::class);
+        !isset($this->net_amount_in_receivable_currency) || Assert::isInstanceOf(
+            $this->net_amount_in_receivable_currency,
+            Money::class,
+            "net_amount_in_receivable_currency in RefundSellerPayableBreakdown must be instance of Money $within"
+        );
+        !isset($this->net_amount_in_receivable_currency) ||  $this->net_amount_in_receivable_currency->validate(RefundSellerPayableBreakdown::class);
         Assert::notNull($this->platform_fees, "platform_fees in RefundSellerPayableBreakdown must not be NULL $within");
         Assert::minCount(
             $this->platform_fees,
@@ -126,8 +152,14 @@ class RefundSellerPayableBreakdown implements JsonSerializable
         if (isset($data['paypal_fee'])) {
             $this->paypal_fee = new Money($data['paypal_fee']);
         }
+        if (isset($data['paypal_fee_in_receivable_currency'])) {
+            $this->paypal_fee_in_receivable_currency = new Money($data['paypal_fee_in_receivable_currency']);
+        }
         if (isset($data['net_amount'])) {
             $this->net_amount = new Money($data['net_amount']);
+        }
+        if (isset($data['net_amount_in_receivable_currency'])) {
+            $this->net_amount_in_receivable_currency = new Money($data['net_amount_in_receivable_currency']);
         }
         if (isset($data['platform_fees'])) {
             $this->platform_fees = [];
@@ -164,9 +196,19 @@ class RefundSellerPayableBreakdown implements JsonSerializable
         return $this->paypal_fee = new Money();
     }
 
+    public function initPaypalFeeInReceivableCurrency(): Money
+    {
+        return $this->paypal_fee_in_receivable_currency = new Money();
+    }
+
     public function initNetAmount(): Money
     {
         return $this->net_amount = new Money();
+    }
+
+    public function initNetAmountInReceivableCurrency(): Money
+    {
+        return $this->net_amount_in_receivable_currency = new Money();
     }
 
     public function initTotalRefundedAmount(): Money

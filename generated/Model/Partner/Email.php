@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * An email address at which the person or business can be contacted.
  *
- * generated from: customized_x_unsupported_1635_customer_common_overrides-email.json
+ * generated from: customized_x_unsupported_8605_customer_common_overrides-email.json
  */
 class Email implements JsonSerializable
 {

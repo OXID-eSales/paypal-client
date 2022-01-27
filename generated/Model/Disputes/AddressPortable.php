@@ -40,17 +40,17 @@ class AddressPortable implements JsonSerializable
      * `next to Walmart`, or a landmark in an Indian address.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $address_line_3;
 
     /**
      * The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The
-     * postal sorting code that is used in Guernsey and many French territories, such as French Guiana.</li><li>The
-     * fine-grained administrative levels in China.</li></ul>
+     * postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained
+     * administrative levels in China.</li></ul>
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $admin_area_4;
 
@@ -60,7 +60,7 @@ class AddressPortable implements JsonSerializable
      * always available but a sub-locality or district can be a very small area.</li></ul>
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 100
      */
     public $admin_area_3;
 
@@ -68,7 +68,7 @@ class AddressPortable implements JsonSerializable
      * A city, town, or village. Smaller than `admin_area_level_1`.
      *
      * @var string | null
-     * maxLength: 300
+     * maxLength: 120
      */
     public $admin_area_2;
 
@@ -93,8 +93,8 @@ class AddressPortable implements JsonSerializable
     public $postal_code;
 
     /**
-     * The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country
-     * or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
+     * The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or
+     * region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
      * <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China
      * worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border
      * transactions.</blockquote>
@@ -107,9 +107,9 @@ class AddressPortable implements JsonSerializable
 
     /**
      * The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios
-     * where fine-grain address information might be needed. Not portable with common third party and opensource.
-     * Redundant with core fields. For example, `address_portable.address_line_1` is usually a combination of
-     * `address_details.street_number` and `street_name` and `street_type`.
+     * where fine-grain address information might be needed. Not portable with common third party and open source.
+     * Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of
+     * `address_details.street_number`, `street_name`, and `street_type`.
      *
      * @var AddressPortableAddressDetails | null
      */
@@ -130,23 +130,23 @@ class AddressPortable implements JsonSerializable
         );
         !isset($this->address_line_3) || Assert::maxLength(
             $this->address_line_3,
-            300,
-            "address_line_3 in AddressPortable must have maxlength of 300 $within"
+            100,
+            "address_line_3 in AddressPortable must have maxlength of 100 $within"
         );
         !isset($this->admin_area_4) || Assert::maxLength(
             $this->admin_area_4,
-            300,
-            "admin_area_4 in AddressPortable must have maxlength of 300 $within"
+            100,
+            "admin_area_4 in AddressPortable must have maxlength of 100 $within"
         );
         !isset($this->admin_area_3) || Assert::maxLength(
             $this->admin_area_3,
-            300,
-            "admin_area_3 in AddressPortable must have maxlength of 300 $within"
+            100,
+            "admin_area_3 in AddressPortable must have maxlength of 100 $within"
         );
         !isset($this->admin_area_2) || Assert::maxLength(
             $this->admin_area_2,
-            300,
-            "admin_area_2 in AddressPortable must have maxlength of 300 $within"
+            120,
+            "admin_area_2 in AddressPortable must have maxlength of 120 $within"
         );
         !isset($this->admin_area_1) || Assert::maxLength(
             $this->admin_area_1,

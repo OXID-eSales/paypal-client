@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Information used to pay using P24(Przelewy24)
+ * Information used to pay using P24(Przelewy24).
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-p24.json
  */
@@ -16,7 +16,7 @@ class PTwoFour implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string | null
      * minLength: 3
@@ -68,7 +68,7 @@ class PTwoFour implements JsonSerializable
     public $method_id;
 
     /**
-     * Friendly name of the payment scheme or bank used for the payment
+     * Friendly name of the payment scheme or bank used for the payment.
      *
      * @var string | null
      * minLength: 1

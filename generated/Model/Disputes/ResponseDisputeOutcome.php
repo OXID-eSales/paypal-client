@@ -27,10 +27,10 @@ class ResponseDisputeOutcome implements JsonSerializable
     /** The customer canceled the dispute. */
     public const OUTCOME_CODE_CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
 
-    /** PayPal accepted the dispute. */
+    /** DEPRECATED. PayPal accepted the dispute. */
     public const OUTCOME_CODE_ACCEPTED = 'ACCEPTED';
 
-    /** PayPal denied the dispute. */
+    /** DEPRECATED. PayPal denied the dispute. */
     public const OUTCOME_CODE_DENIED = 'DENIED';
 
     /** A dispute was created for the same transaction ID, and the previous dispute was closed without any decision. */

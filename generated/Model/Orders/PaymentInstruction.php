@@ -7,9 +7,8 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Any additional payment instructions for PayPal Commerce Platform customers. Enables features for the PayPal
- * Commerce Platform, such as delayed disbursement and collection of a platform fee. Applies during order
- * creation for captured payments or during capture of authorized payments.
+ * Any additional payment instructions to be consider during payment processing. This processing instruction is
+ * applicable for Capturing an order or Authorizing an Order.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-payment_instruction.json
  */
@@ -24,7 +23,8 @@ class PaymentInstruction implements JsonSerializable
     public const DISBURSEMENT_MODE_DELAYED = 'DELAYED';
 
     /**
-     * An array of various fees, commissions, tips, or donations.
+     * An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that
+     * been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability.
      *
      * @var PlatformFee[]
      * maxItems: 0
@@ -41,6 +41,18 @@ class PaymentInstruction implements JsonSerializable
      * @var string | null
      */
     public $disbursement_mode = 'INSTANT';
+
+    /**
+     * This field is only enabled for selected merchants/partners to use and provides the ability to trigger a
+     * specific pricing rate/plan for a payment transaction. The list of eligible 'payee_pricing_tier_id' would be
+     * provided to you by your Account Manager. Specifying values other than the one provided to you by your account
+     * manager would result in an error.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 20
+     */
+    public $payee_pricing_tier_id;
 
     public function validate($from = null)
     {
@@ -65,6 +77,16 @@ class PaymentInstruction implements JsonSerializable
                 $item->validate(PaymentInstruction::class);
             }
         }
+        !isset($this->payee_pricing_tier_id) || Assert::minLength(
+            $this->payee_pricing_tier_id,
+            1,
+            "payee_pricing_tier_id in PaymentInstruction must have minlength of 1 $within"
+        );
+        !isset($this->payee_pricing_tier_id) || Assert::maxLength(
+            $this->payee_pricing_tier_id,
+            20,
+            "payee_pricing_tier_id in PaymentInstruction must have maxlength of 20 $within"
+        );
     }
 
     private function map(array $data)
@@ -77,6 +99,9 @@ class PaymentInstruction implements JsonSerializable
         }
         if (isset($data['disbursement_mode'])) {
             $this->disbursement_mode = $data['disbursement_mode'];
+        }
+        if (isset($data['payee_pricing_tier_id'])) {
+            $this->payee_pricing_tier_id = $data['payee_pricing_tier_id'];
         }
     }
 

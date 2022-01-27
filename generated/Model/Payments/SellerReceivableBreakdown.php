@@ -7,7 +7,8 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The detailed breakdown of the capture activity.
+ * The detailed breakdown of the capture activity. This is not available for transactions that are in pending
+ * state.
  *
  * generated from: MerchantCommonComponentsSpecification-v1-schema-seller_receivable_breakdown.json
  */

@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The individual owner of the account.
  *
- * generated from: customized_x_unsupported_9657_customer_common_overrides-individual_owner.json
+ * generated from: customized_x_unsupported_5181_customer_common_overrides-individual_owner.json
  */
 class IndividualOwner extends Person implements JsonSerializable
 {

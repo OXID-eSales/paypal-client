@@ -18,7 +18,7 @@ class RequestDenyOffer implements JsonSerializable
     /**
      * The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes.
      *
-     * @var string | null
+     * @var string
      * minLength: 1
      * maxLength: 2000
      */
@@ -27,12 +27,13 @@ class RequestDenyOffer implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->note) || Assert::minLength(
+        Assert::notNull($this->note, "note in RequestDenyOffer must not be NULL $within");
+        Assert::minLength(
             $this->note,
             1,
             "note in RequestDenyOffer must have minlength of 1 $within"
         );
-        !isset($this->note) || Assert::maxLength(
+        Assert::maxLength(
             $this->note,
             2000,
             "note in RequestDenyOffer must have maxlength of 2000 $within"

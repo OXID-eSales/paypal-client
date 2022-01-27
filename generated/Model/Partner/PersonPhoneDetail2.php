@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * The phone number, in its canonical international [E.164 numbering plan
  * format](https://www.itu.int/rec/T-REC-E.164/en).
  *
- * generated from: customized_x_unsupported_1799_customer_common_overrides-person_phone_detail.json
+ * generated from: customized_x_unsupported_5103_customer_common_overrides-person_phone_detail.json
  */
 class PersonPhoneDetail2 extends Phone implements JsonSerializable
 {

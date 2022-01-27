@@ -26,15 +26,85 @@ class OrderValidateApplicationContext implements JsonSerializable
      */
     public $vault = false;
 
+    /**
+     * The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to localize the
+     * error-related strings, such as messages, issues, and suggested actions. The tag is made up of the [ISO 639-2
+     * language code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924 script
+     * tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2 country
+     * code](/docs/integration/direct/rest/country-codes/).
+     *
+     * @var string | null
+     * minLength: 2
+     * maxLength: 10
+     */
+    public $locale;
+
+    /**
+     * The URL where the customer is redirected after the customer approves the payment.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 2048
+     */
+    public $return_url;
+
+    /**
+     * The URL where the customer is redirected after the customer cancels the payment.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 2048
+     */
+    public $cancel_url;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->locale) || Assert::minLength(
+            $this->locale,
+            2,
+            "locale in OrderValidateApplicationContext must have minlength of 2 $within"
+        );
+        !isset($this->locale) || Assert::maxLength(
+            $this->locale,
+            10,
+            "locale in OrderValidateApplicationContext must have maxlength of 10 $within"
+        );
+        !isset($this->return_url) || Assert::minLength(
+            $this->return_url,
+            1,
+            "return_url in OrderValidateApplicationContext must have minlength of 1 $within"
+        );
+        !isset($this->return_url) || Assert::maxLength(
+            $this->return_url,
+            2048,
+            "return_url in OrderValidateApplicationContext must have maxlength of 2048 $within"
+        );
+        !isset($this->cancel_url) || Assert::minLength(
+            $this->cancel_url,
+            1,
+            "cancel_url in OrderValidateApplicationContext must have minlength of 1 $within"
+        );
+        !isset($this->cancel_url) || Assert::maxLength(
+            $this->cancel_url,
+            2048,
+            "cancel_url in OrderValidateApplicationContext must have maxlength of 2048 $within"
+        );
     }
 
     private function map(array $data)
     {
         if (isset($data['vault'])) {
             $this->vault = $data['vault'];
+        }
+        if (isset($data['locale'])) {
+            $this->locale = $data['locale'];
+        }
+        if (isset($data['return_url'])) {
+            $this->return_url = $data['return_url'];
+        }
+        if (isset($data['cancel_url'])) {
+            $this->cancel_url = $data['cancel_url'];
         }
     }
 

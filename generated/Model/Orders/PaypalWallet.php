@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * A resource that identies that a paypal wallet is used for payment.
+ * A resource that identies that a PayPal Wallet is used for payment.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-paypal_wallet.json
  */
@@ -34,7 +34,7 @@ class PaypalWallet implements JsonSerializable
     public $payment_method_preference = 'UNRESTRICTED';
 
     /**
-     * Additional attributes associated with the use of this paypal wallet
+     * Additional attributes associated with the use of this PayPal Wallet.
      *
      * @var PaypalWalletAttributes | null
      */

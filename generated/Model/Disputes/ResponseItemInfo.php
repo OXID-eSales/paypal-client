@@ -45,6 +45,18 @@ class ResponseItemInfo implements JsonSerializable
     /** Other. */
     public const REASON_OTHER = 'OTHER';
 
+    /** The product has an issue. */
+    public const ITEM_TYPE_PRODUCT = 'PRODUCT';
+
+    /** The service has an issue. */
+    public const ITEM_TYPE_SERVICE = 'SERVICE';
+
+    /** The booking has an issue. */
+    public const ITEM_TYPE_BOOKING = 'BOOKING';
+
+    /** The digital download has an issue. */
+    public const ITEM_TYPE_DIGITAL_DOWNLOAD = 'DIGITAL_DOWNLOAD';
+
     /**
      * The item ID. If the merchant provides multiple pieces of evidence and the transaction has multiple item IDs,
      * the merchant can use this value to associate a piece of evidence with an item ID.
@@ -54,6 +66,15 @@ class ResponseItemInfo implements JsonSerializable
      * maxLength: 255
      */
     public $item_id;
+
+    /**
+     * The item name.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 2000
+     */
+    public $item_name;
 
     /**
      * The item description.
@@ -68,6 +89,7 @@ class ResponseItemInfo implements JsonSerializable
      * The count of the item in the dispute. Must be a whole number.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 10
      */
     public $item_quantity;
@@ -120,6 +142,69 @@ class ResponseItemInfo implements JsonSerializable
      */
     public $notes;
 
+    /**
+     * The type of the item which has the issue.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see ITEM_TYPE_PRODUCT
+     * @see ITEM_TYPE_SERVICE
+     * @see ITEM_TYPE_BOOKING
+     * @see ITEM_TYPE_DIGITAL_DOWNLOAD
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $item_type;
+
+    /**
+     * The product information - item.
+     *
+     * @var ResponseItemProductDetails | null
+     */
+    public $product_details;
+
+    /**
+     * The service details - item.
+     *
+     * @var ResponseItemServiceDetails | null
+     */
+    public $service_details;
+
+    /**
+     * The Booking information.
+     *
+     * @var ResponseItemBookingDetails | null
+     */
+    public $booking_details;
+
+    /**
+     * The Digital download information.
+     *
+     * @var ResponseItemDigitalDownloadDetails | null
+     */
+    public $digital_download_details;
+
+    /**
+     * The cancellation details - item.
+     *
+     * @var ResponseItemCancellationDetails | null
+     */
+    public $cancellation_details;
+
+    /**
+     * Details of Agreed Refund between customer and merchant.
+     *
+     * @var ResponseItemAgreedRefundDetails | null
+     */
+    public $agreed_refund_details;
+
+    /**
+     * The currency and amount for a financial transaction, such as a balance or payment due.
+     *
+     * @var Money | null
+     */
+    public $expected_refund;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -133,6 +218,16 @@ class ResponseItemInfo implements JsonSerializable
             255,
             "item_id in ResponseItemInfo must have maxlength of 255 $within"
         );
+        !isset($this->item_name) || Assert::minLength(
+            $this->item_name,
+            1,
+            "item_name in ResponseItemInfo must have minlength of 1 $within"
+        );
+        !isset($this->item_name) || Assert::maxLength(
+            $this->item_name,
+            2000,
+            "item_name in ResponseItemInfo must have maxlength of 2000 $within"
+        );
         !isset($this->item_description) || Assert::minLength(
             $this->item_description,
             1,
@@ -142,6 +237,11 @@ class ResponseItemInfo implements JsonSerializable
             $this->item_description,
             2000,
             "item_description in ResponseItemInfo must have maxlength of 2000 $within"
+        );
+        !isset($this->item_quantity) || Assert::minLength(
+            $this->item_quantity,
+            1,
+            "item_quantity in ResponseItemInfo must have minlength of 1 $within"
         );
         !isset($this->item_quantity) || Assert::maxLength(
             $this->item_quantity,
@@ -184,12 +284,67 @@ class ResponseItemInfo implements JsonSerializable
             2000,
             "notes in ResponseItemInfo must have maxlength of 2000 $within"
         );
+        !isset($this->item_type) || Assert::minLength(
+            $this->item_type,
+            1,
+            "item_type in ResponseItemInfo must have minlength of 1 $within"
+        );
+        !isset($this->item_type) || Assert::maxLength(
+            $this->item_type,
+            255,
+            "item_type in ResponseItemInfo must have maxlength of 255 $within"
+        );
+        !isset($this->product_details) || Assert::isInstanceOf(
+            $this->product_details,
+            ResponseItemProductDetails::class,
+            "product_details in ResponseItemInfo must be instance of ResponseItemProductDetails $within"
+        );
+        !isset($this->product_details) ||  $this->product_details->validate(ResponseItemInfo::class);
+        !isset($this->service_details) || Assert::isInstanceOf(
+            $this->service_details,
+            ResponseItemServiceDetails::class,
+            "service_details in ResponseItemInfo must be instance of ResponseItemServiceDetails $within"
+        );
+        !isset($this->service_details) ||  $this->service_details->validate(ResponseItemInfo::class);
+        !isset($this->booking_details) || Assert::isInstanceOf(
+            $this->booking_details,
+            ResponseItemBookingDetails::class,
+            "booking_details in ResponseItemInfo must be instance of ResponseItemBookingDetails $within"
+        );
+        !isset($this->booking_details) ||  $this->booking_details->validate(ResponseItemInfo::class);
+        !isset($this->digital_download_details) || Assert::isInstanceOf(
+            $this->digital_download_details,
+            ResponseItemDigitalDownloadDetails::class,
+            "digital_download_details in ResponseItemInfo must be instance of ResponseItemDigitalDownloadDetails $within"
+        );
+        !isset($this->digital_download_details) ||  $this->digital_download_details->validate(ResponseItemInfo::class);
+        !isset($this->cancellation_details) || Assert::isInstanceOf(
+            $this->cancellation_details,
+            ResponseItemCancellationDetails::class,
+            "cancellation_details in ResponseItemInfo must be instance of ResponseItemCancellationDetails $within"
+        );
+        !isset($this->cancellation_details) ||  $this->cancellation_details->validate(ResponseItemInfo::class);
+        !isset($this->agreed_refund_details) || Assert::isInstanceOf(
+            $this->agreed_refund_details,
+            ResponseItemAgreedRefundDetails::class,
+            "agreed_refund_details in ResponseItemInfo must be instance of ResponseItemAgreedRefundDetails $within"
+        );
+        !isset($this->agreed_refund_details) ||  $this->agreed_refund_details->validate(ResponseItemInfo::class);
+        !isset($this->expected_refund) || Assert::isInstanceOf(
+            $this->expected_refund,
+            Money::class,
+            "expected_refund in ResponseItemInfo must be instance of Money $within"
+        );
+        !isset($this->expected_refund) ||  $this->expected_refund->validate(ResponseItemInfo::class);
     }
 
     private function map(array $data)
     {
         if (isset($data['item_id'])) {
             $this->item_id = $data['item_id'];
+        }
+        if (isset($data['item_name'])) {
+            $this->item_name = $data['item_name'];
         }
         if (isset($data['item_description'])) {
             $this->item_description = $data['item_description'];
@@ -209,6 +364,30 @@ class ResponseItemInfo implements JsonSerializable
         if (isset($data['notes'])) {
             $this->notes = $data['notes'];
         }
+        if (isset($data['item_type'])) {
+            $this->item_type = $data['item_type'];
+        }
+        if (isset($data['product_details'])) {
+            $this->product_details = new ResponseItemProductDetails($data['product_details']);
+        }
+        if (isset($data['service_details'])) {
+            $this->service_details = new ResponseItemServiceDetails($data['service_details']);
+        }
+        if (isset($data['booking_details'])) {
+            $this->booking_details = new ResponseItemBookingDetails($data['booking_details']);
+        }
+        if (isset($data['digital_download_details'])) {
+            $this->digital_download_details = new ResponseItemDigitalDownloadDetails($data['digital_download_details']);
+        }
+        if (isset($data['cancellation_details'])) {
+            $this->cancellation_details = new ResponseItemCancellationDetails($data['cancellation_details']);
+        }
+        if (isset($data['agreed_refund_details'])) {
+            $this->agreed_refund_details = new ResponseItemAgreedRefundDetails($data['agreed_refund_details']);
+        }
+        if (isset($data['expected_refund'])) {
+            $this->expected_refund = new Money($data['expected_refund']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -221,5 +400,40 @@ class ResponseItemInfo implements JsonSerializable
     public function initDisputeAmount(): Money
     {
         return $this->dispute_amount = new Money();
+    }
+
+    public function initProductDetails(): ResponseItemProductDetails
+    {
+        return $this->product_details = new ResponseItemProductDetails();
+    }
+
+    public function initServiceDetails(): ResponseItemServiceDetails
+    {
+        return $this->service_details = new ResponseItemServiceDetails();
+    }
+
+    public function initBookingDetails(): ResponseItemBookingDetails
+    {
+        return $this->booking_details = new ResponseItemBookingDetails();
+    }
+
+    public function initDigitalDownloadDetails(): ResponseItemDigitalDownloadDetails
+    {
+        return $this->digital_download_details = new ResponseItemDigitalDownloadDetails();
+    }
+
+    public function initCancellationDetails(): ResponseItemCancellationDetails
+    {
+        return $this->cancellation_details = new ResponseItemCancellationDetails();
+    }
+
+    public function initAgreedRefundDetails(): ResponseItemAgreedRefundDetails
+    {
+        return $this->agreed_refund_details = new ResponseItemAgreedRefundDetails();
+    }
+
+    public function initExpectedRefund(): Money
+    {
+        return $this->expected_refund = new Money();
     }
 }

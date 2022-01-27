@@ -16,7 +16,7 @@ class SofortRequest implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string
      * minLength: 3
@@ -36,16 +36,6 @@ class SofortRequest implements JsonSerializable
      * maxLength: 2
      */
     public $country_code;
-
-    /**
-     * The business identification code (BIC). In payments systems, a BIC is used to identify a specific business,
-     * most commonly a bank
-     *
-     * @var string | null
-     * minLength: 8
-     * maxLength: 11
-     */
-    public $bic;
 
     public function validate($from = null)
     {
@@ -72,16 +62,6 @@ class SofortRequest implements JsonSerializable
             2,
             "country_code in SofortRequest must have maxlength of 2 $within"
         );
-        !isset($this->bic) || Assert::minLength(
-            $this->bic,
-            8,
-            "bic in SofortRequest must have minlength of 8 $within"
-        );
-        !isset($this->bic) || Assert::maxLength(
-            $this->bic,
-            11,
-            "bic in SofortRequest must have maxlength of 11 $within"
-        );
     }
 
     private function map(array $data)
@@ -91,9 +71,6 @@ class SofortRequest implements JsonSerializable
         }
         if (isset($data['country_code'])) {
             $this->country_code = $data['country_code'];
-        }
-        if (isset($data['bic'])) {
-            $this->bic = $data['bic'];
         }
     }
 

@@ -98,7 +98,8 @@ class Card implements JsonSerializable
     public $expiry;
 
     /**
-     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID.
+     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This
+     * parameter cannot be present in the request when `payment_initiator=MERCHANT`.
      *
      * @var string | null
      */
@@ -148,7 +149,8 @@ class Card implements JsonSerializable
     public $billing_address;
 
     /**
-     * A list of authentication results.
+     * A list of authentication results. This parameter cannot be present in the request when
+     * `payment_initiator=MERCHANT`.
      *
      * @var ThreedsResult[] | null
      * maxItems: 1
@@ -156,7 +158,7 @@ class Card implements JsonSerializable
     public $authentication_results;
 
     /**
-     * Additional attributes associated with the use of this card
+     * Additional attributes associated with the use of this card.
      *
      * @var CardAttributes | null
      */

@@ -32,7 +32,7 @@ class SubscriptionBillingInfo implements JsonSerializable
     public $cycle_executions;
 
     /**
-     * The details for the last payment of the subscription.
+     * The details for the last payment.
      *
      * @var LastPaymentDetails | null
      */
@@ -88,6 +88,14 @@ class SubscriptionBillingInfo implements JsonSerializable
      * @var Money | null
      */
     public $total_paid_amount;
+
+    /**
+     * Time interval (in days) after which the future subscription billing cycles are affected with the new pricing
+     * change.
+     *
+     * @var int | null
+     */
+    public $price_change_effective_after;
 
     public function validate($from = null)
     {
@@ -197,6 +205,9 @@ class SubscriptionBillingInfo implements JsonSerializable
         }
         if (isset($data['total_paid_amount'])) {
             $this->total_paid_amount = new Money($data['total_paid_amount']);
+        }
+        if (isset($data['price_change_effective_after'])) {
+            $this->price_change_effective_after = $data['price_change_effective_after'];
         }
     }
 

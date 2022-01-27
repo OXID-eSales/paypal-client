@@ -21,6 +21,7 @@ class PurchaseUnitRequest implements JsonSerializable
      * sets this value to `default`.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 256
      */
     public $reference_id;
@@ -45,18 +46,21 @@ class PurchaseUnitRequest implements JsonSerializable
     public $payee;
 
     /**
-     * Any additional payment instructions for PayPal Commerce Platform customers. Enables features for the PayPal
-     * Commerce Platform, such as delayed disbursement and collection of a platform fee. Applies during order
-     * creation for captured payments or during capture of authorized payments.
+     * Any additional payment instructions to be consider during payment processing. This processing instruction is
+     * applicable for Capturing an order or Authorizing an Order.
      *
      * @var PaymentInstruction | null
      */
     public $payment_instruction;
 
     /**
-     * The purchase description.
+     * The purchase description. The maximum length of the character is dependent on the type of characters used. The
+     * character length is specified assuming a US ASCII character. Depending on type of character; (e.g. accented
+     * character, Japanese characters) the number of characters that that can be specified as input might not equal
+     * the permissible max length.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $description;
@@ -66,6 +70,7 @@ class PurchaseUnitRequest implements JsonSerializable
      * in transaction and settlement reports but is not visible to the payer.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $custom_id;
@@ -75,6 +80,7 @@ class PurchaseUnitRequest implements JsonSerializable
      * history and the emails that the payer receives.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $invoice_id;
@@ -93,6 +99,7 @@ class PurchaseUnitRequest implements JsonSerializable
      * statement descriptor on the card is <code>PAYPAL * Janes Gift 80</code>.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 22
      */
     public $soft_descriptor;
@@ -121,6 +128,11 @@ class PurchaseUnitRequest implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->reference_id) || Assert::minLength(
+            $this->reference_id,
+            1,
+            "reference_id in PurchaseUnitRequest must have minlength of 1 $within"
+        );
         !isset($this->reference_id) || Assert::maxLength(
             $this->reference_id,
             256,
@@ -145,20 +157,40 @@ class PurchaseUnitRequest implements JsonSerializable
             "payment_instruction in PurchaseUnitRequest must be instance of PaymentInstruction $within"
         );
         !isset($this->payment_instruction) ||  $this->payment_instruction->validate(PurchaseUnitRequest::class);
+        !isset($this->description) || Assert::minLength(
+            $this->description,
+            1,
+            "description in PurchaseUnitRequest must have minlength of 1 $within"
+        );
         !isset($this->description) || Assert::maxLength(
             $this->description,
             127,
             "description in PurchaseUnitRequest must have maxlength of 127 $within"
+        );
+        !isset($this->custom_id) || Assert::minLength(
+            $this->custom_id,
+            1,
+            "custom_id in PurchaseUnitRequest must have minlength of 1 $within"
         );
         !isset($this->custom_id) || Assert::maxLength(
             $this->custom_id,
             127,
             "custom_id in PurchaseUnitRequest must have maxlength of 127 $within"
         );
+        !isset($this->invoice_id) || Assert::minLength(
+            $this->invoice_id,
+            1,
+            "invoice_id in PurchaseUnitRequest must have minlength of 1 $within"
+        );
         !isset($this->invoice_id) || Assert::maxLength(
             $this->invoice_id,
             127,
             "invoice_id in PurchaseUnitRequest must have maxlength of 127 $within"
+        );
+        !isset($this->soft_descriptor) || Assert::minLength(
+            $this->soft_descriptor,
+            1,
+            "soft_descriptor in PurchaseUnitRequest must have minlength of 1 $within"
         );
         !isset($this->soft_descriptor) || Assert::maxLength(
             $this->soft_descriptor,

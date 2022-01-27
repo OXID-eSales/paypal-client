@@ -21,6 +21,9 @@ class PaymentMethod implements JsonSerializable
     /** PayPal. */
     public const PAYER_SELECTED_PAYPAL = 'PAYPAL';
 
+    /** PayPal Buy Now Pay Later. */
+    public const PAYER_SELECTED_PAYPAL_PAY_LATER = 'PAYPAL_PAY_LATER';
+
     /** Accepts any type of payment from the customer. */
     public const PAYEE_PREFERRED_UNRESTRICTED = 'UNRESTRICTED';
 
@@ -45,6 +48,7 @@ class PaymentMethod implements JsonSerializable
      * use one of constants defined in this class to set the value:
      * @see PAYER_SELECTED_PAYPAL_CREDIT
      * @see PAYER_SELECTED_PAYPAL
+     * @see PAYER_SELECTED_PAYPAL_PAY_LATER
      * @var string | null
      * minLength: 1
      */

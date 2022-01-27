@@ -61,6 +61,13 @@ class ResponseCreditNotProcessed implements JsonSerializable
      */
     public $service_details;
 
+    /**
+     * Details of Agreed Refund between customer and merchant.
+     *
+     * @var ResponseAgreedRefundDetails | null
+     */
+    public $agreed_refund_details;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -98,6 +105,12 @@ class ResponseCreditNotProcessed implements JsonSerializable
             "service_details in ResponseCreditNotProcessed must be instance of ResponseServiceDetails $within"
         );
         !isset($this->service_details) ||  $this->service_details->validate(ResponseCreditNotProcessed::class);
+        !isset($this->agreed_refund_details) || Assert::isInstanceOf(
+            $this->agreed_refund_details,
+            ResponseAgreedRefundDetails::class,
+            "agreed_refund_details in ResponseCreditNotProcessed must be instance of ResponseAgreedRefundDetails $within"
+        );
+        !isset($this->agreed_refund_details) ||  $this->agreed_refund_details->validate(ResponseCreditNotProcessed::class);
     }
 
     private function map(array $data)
@@ -116,6 +129,9 @@ class ResponseCreditNotProcessed implements JsonSerializable
         }
         if (isset($data['service_details'])) {
             $this->service_details = new ResponseServiceDetails($data['service_details']);
+        }
+        if (isset($data['agreed_refund_details'])) {
+            $this->agreed_refund_details = new ResponseAgreedRefundDetails($data['agreed_refund_details']);
         }
     }
 
@@ -144,5 +160,10 @@ class ResponseCreditNotProcessed implements JsonSerializable
     public function initServiceDetails(): ResponseServiceDetails
     {
         return $this->service_details = new ResponseServiceDetails();
+    }
+
+    public function initAgreedRefundDetails(): ResponseAgreedRefundDetails
+    {
+        return $this->agreed_refund_details = new ResponseAgreedRefundDetails();
     }
 }

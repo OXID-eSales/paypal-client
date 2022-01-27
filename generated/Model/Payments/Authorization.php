@@ -56,6 +56,27 @@ class Authorization extends AuthorizationStatus implements JsonSerializable
     public $alternate_id;
 
     /**
+     * The sender side ID of the authorization transaction. This ID will be populated only for Cross GEO
+     * transactions.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 22
+     */
+    public $sender_transaction_id;
+
+    /**
+     * Consolidated verification results(encoded in base64) for instruments provided by the instrument issuing
+     * system. Sample - Id:1&AVS:A&CVV:M|Id:2&AVS:A&CVV:M . Encoded string:
+     * SWQ6MSZBVlM6QSZDVlY6TXxJZDoyJkFWUzpBJkNWVjpN.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 250
+     */
+    public $instrument_verification_results;
+
+    /**
      * The level of protection offered as defined by [PayPal Seller Protection for
      * Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
      *
@@ -127,6 +148,26 @@ class Authorization extends AuthorizationStatus implements JsonSerializable
             22,
             "alternate_id in Authorization must have maxlength of 22 $within"
         );
+        !isset($this->sender_transaction_id) || Assert::minLength(
+            $this->sender_transaction_id,
+            1,
+            "sender_transaction_id in Authorization must have minlength of 1 $within"
+        );
+        !isset($this->sender_transaction_id) || Assert::maxLength(
+            $this->sender_transaction_id,
+            22,
+            "sender_transaction_id in Authorization must have maxlength of 22 $within"
+        );
+        !isset($this->instrument_verification_results) || Assert::minLength(
+            $this->instrument_verification_results,
+            1,
+            "instrument_verification_results in Authorization must have minlength of 1 $within"
+        );
+        !isset($this->instrument_verification_results) || Assert::maxLength(
+            $this->instrument_verification_results,
+            250,
+            "instrument_verification_results in Authorization must have maxlength of 250 $within"
+        );
         !isset($this->seller_protection) || Assert::isInstanceOf(
             $this->seller_protection,
             SellerProtection::class,
@@ -185,6 +226,12 @@ class Authorization extends AuthorizationStatus implements JsonSerializable
         }
         if (isset($data['alternate_id'])) {
             $this->alternate_id = $data['alternate_id'];
+        }
+        if (isset($data['sender_transaction_id'])) {
+            $this->sender_transaction_id = $data['sender_transaction_id'];
+        }
+        if (isset($data['instrument_verification_results'])) {
+            $this->instrument_verification_results = $data['instrument_verification_results'];
         }
         if (isset($data['seller_protection'])) {
             $this->seller_protection = new SellerProtection($data['seller_protection']);

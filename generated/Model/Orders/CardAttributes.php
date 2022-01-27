@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Additional attributes associated with the use of this card
+ * Additional attributes associated with the use of this card.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-card_attributes.json
  */
@@ -30,6 +30,13 @@ class CardAttributes implements JsonSerializable
      */
     public $verification;
 
+    /**
+     * The details of the selected installment option.
+     *
+     * @var Installments | null
+     */
+    public $installments;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -45,6 +52,12 @@ class CardAttributes implements JsonSerializable
             "verification in CardAttributes must be instance of CardVerification $within"
         );
         !isset($this->verification) ||  $this->verification->validate(CardAttributes::class);
+        !isset($this->installments) || Assert::isInstanceOf(
+            $this->installments,
+            Installments::class,
+            "installments in CardAttributes must be instance of Installments $within"
+        );
+        !isset($this->installments) ||  $this->installments->validate(CardAttributes::class);
     }
 
     private function map(array $data)
@@ -54,6 +67,9 @@ class CardAttributes implements JsonSerializable
         }
         if (isset($data['verification'])) {
             $this->verification = new CardVerification($data['verification']);
+        }
+        if (isset($data['installments'])) {
+            $this->installments = new Installments($data['installments']);
         }
     }
 
@@ -72,5 +88,10 @@ class CardAttributes implements JsonSerializable
     public function initVerification(): CardVerification
     {
         return $this->verification = new CardVerification();
+    }
+
+    public function initInstallments(): Installments
+    {
+        return $this->installments = new Installments();
     }
 }

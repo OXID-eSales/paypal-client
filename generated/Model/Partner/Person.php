@@ -43,8 +43,8 @@ class Person implements JsonSerializable
     public $names;
 
     /**
-     * The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country
-     * or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
+     * The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or
+     * region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
      * <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China
      * worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border
      * transactions.</blockquote>
@@ -82,7 +82,9 @@ class Person implements JsonSerializable
 
     /**
      * A person's or party's related document data collected from the customer. For example SSN, ITIN, or business
-     * registration number collected from the user.
+     * registration number collected from the user. <blockquote><strong>Note:</strong> This field is not applicable
+     * for POST [/v2/customer/partner-referrals](/docs/api/partner-referrals/v2/#partner-referrals_create) API
+     * calls.</blockquote>
      *
      * @var PersonDocument[]
      * maxItems: 0

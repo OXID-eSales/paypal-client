@@ -19,6 +19,7 @@ class AuthorizationRequest implements JsonSerializable
      * The identifier of the order for this authorization.
      *
      * @var string
+     * maxLength: 19
      */
     public $order_id;
 
@@ -52,6 +53,7 @@ class AuthorizationRequest implements JsonSerializable
      * Description of the authorization transaction.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $description;
@@ -61,6 +63,7 @@ class AuthorizationRequest implements JsonSerializable
      * transactions. Appears in transaction and settlement reports.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $custom_id;
@@ -69,6 +72,7 @@ class AuthorizationRequest implements JsonSerializable
      * The API caller-provided external invoice ID for this order.
      *
      * @var string | null
+     * minLength: 1
      * maxLength: 127
      */
     public $invoice_id;
@@ -76,7 +80,9 @@ class AuthorizationRequest implements JsonSerializable
     /**
      * An array of items that the customer purchases from the merchant.
      *
-     * @var Item[] | null
+     * @var Item[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $items;
 
@@ -91,6 +97,11 @@ class AuthorizationRequest implements JsonSerializable
     {
         $within = isset($from) ? "within $from" : "";
         Assert::notNull($this->order_id, "order_id in AuthorizationRequest must not be NULL $within");
+        Assert::maxLength(
+            $this->order_id,
+            19,
+            "order_id in AuthorizationRequest must have maxlength of 19 $within"
+        );
         !isset($this->payment_source) || Assert::isInstanceOf(
             $this->payment_source,
             PaymentSource::class,
@@ -110,22 +121,48 @@ class AuthorizationRequest implements JsonSerializable
             "payee in AuthorizationRequest must be instance of Payee $within"
         );
         !isset($this->payee) ||  $this->payee->validate(AuthorizationRequest::class);
+        !isset($this->description) || Assert::minLength(
+            $this->description,
+            1,
+            "description in AuthorizationRequest must have minlength of 1 $within"
+        );
         !isset($this->description) || Assert::maxLength(
             $this->description,
             127,
             "description in AuthorizationRequest must have maxlength of 127 $within"
+        );
+        !isset($this->custom_id) || Assert::minLength(
+            $this->custom_id,
+            1,
+            "custom_id in AuthorizationRequest must have minlength of 1 $within"
         );
         !isset($this->custom_id) || Assert::maxLength(
             $this->custom_id,
             127,
             "custom_id in AuthorizationRequest must have maxlength of 127 $within"
         );
+        !isset($this->invoice_id) || Assert::minLength(
+            $this->invoice_id,
+            1,
+            "invoice_id in AuthorizationRequest must have minlength of 1 $within"
+        );
         !isset($this->invoice_id) || Assert::maxLength(
             $this->invoice_id,
             127,
             "invoice_id in AuthorizationRequest must have maxlength of 127 $within"
         );
-        !isset($this->items) || Assert::isArray(
+        Assert::notNull($this->items, "items in AuthorizationRequest must not be NULL $within");
+        Assert::minCount(
+            $this->items,
+            1,
+            "items in AuthorizationRequest must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->items,
+            100,
+            "items in AuthorizationRequest must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->items,
             "items in AuthorizationRequest must be array $within"
         );
@@ -179,6 +216,7 @@ class AuthorizationRequest implements JsonSerializable
     public function __construct(array $data = null)
     {
         $this->amount = new AmountWithBreakdown();
+        $this->items = [];
         if (isset($data)) {
             $this->map($data);
         }

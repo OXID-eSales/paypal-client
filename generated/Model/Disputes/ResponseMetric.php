@@ -34,7 +34,9 @@ class ResponseMetric implements JsonSerializable
     /**
      * An array of the sums of amounts for each currency.
      *
-     * @var Money[] | null
+     * @var Money[]
+     * maxItems: 1
+     * maxItems: 200
      */
     public $amount;
 
@@ -51,7 +53,18 @@ class ResponseMetric implements JsonSerializable
             255,
             "key in ResponseMetric must have maxlength of 255 $within"
         );
-        !isset($this->amount) || Assert::isArray(
+        Assert::notNull($this->amount, "amount in ResponseMetric must not be NULL $within");
+        Assert::minCount(
+            $this->amount,
+            1,
+            "amount in ResponseMetric must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->amount,
+            200,
+            "amount in ResponseMetric must have max. count of 200 $within"
+        );
+        Assert::isArray(
             $this->amount,
             "amount in ResponseMetric must be array $within"
         );
@@ -80,6 +93,7 @@ class ResponseMetric implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->amount = [];
         if (isset($data)) {
             $this->map($data);
         }

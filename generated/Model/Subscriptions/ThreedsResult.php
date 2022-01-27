@@ -102,7 +102,7 @@ class ThreedsResult extends AuthenticationResultType implements JsonSerializable
     /** Challenge required; decoupled authentication confirmed. */
     public const PARES_STATUS_D = 'D';
 
-    /** Informational anly; 3DS requestor challenge preference acknowledged. */
+    /** Informational only; 3DS requestor challenge preference acknowledged. */
     public const PARES_STATUS_I = 'I';
 
     /** Indicates fixed password. */

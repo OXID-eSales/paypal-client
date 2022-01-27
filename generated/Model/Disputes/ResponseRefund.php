@@ -15,6 +15,12 @@ class ResponseRefund implements JsonSerializable
 {
     use BaseModel;
 
+    /** The refund was successful. */
+    public const STATUS_COMPLETED = 'COMPLETED';
+
+    /** The refund had failed. */
+    public const STATUS_FAILED = 'FAILED';
+
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.
      *
@@ -50,6 +56,18 @@ class ResponseRefund implements JsonSerializable
      * maxLength: 127
      */
     public $invoice_number;
+
+    /**
+     * The status of the refund.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see STATUS_COMPLETED
+     * @see STATUS_FAILED
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $status;
 
     public function validate($from = null)
     {
@@ -90,6 +108,16 @@ class ResponseRefund implements JsonSerializable
             127,
             "invoice_number in ResponseRefund must have maxlength of 127 $within"
         );
+        !isset($this->status) || Assert::minLength(
+            $this->status,
+            1,
+            "status in ResponseRefund must have minlength of 1 $within"
+        );
+        !isset($this->status) || Assert::maxLength(
+            $this->status,
+            255,
+            "status in ResponseRefund must have maxlength of 255 $within"
+        );
     }
 
     private function map(array $data)
@@ -105,6 +133,9 @@ class ResponseRefund implements JsonSerializable
         }
         if (isset($data['invoice_number'])) {
             $this->invoice_number = $data['invoice_number'];
+        }
+        if (isset($data['status'])) {
+            $this->status = $data['status'];
         }
     }
 

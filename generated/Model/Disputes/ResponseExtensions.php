@@ -98,6 +98,17 @@ class ResponseExtensions implements JsonSerializable
     public $buyer_contacted_time;
 
     /**
+     * The channel through which the buyer contacted the partner to file a dispute. Partners that allow buyers to
+     * create dispute from multiple channels can use this field to help identify which channel was used for each
+     * individual dispute.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 255
+     */
+    public $buyer_contacted_channel;
+
+    /**
      * The billing issue details.
      *
      * @var ResponseBillingDisputesProperties | null
@@ -124,6 +135,13 @@ class ResponseExtensions implements JsonSerializable
      * @var ResponseExternalCaseProperties | null
      */
     public $external_case_properties;
+
+    /**
+     * The customer-entered issue details for a remittance dispute.
+     *
+     * @var ResponseRemittanceDisputeProperties | null
+     */
+    public $remittance_dispute_properties;
 
     public function validate($from = null)
     {
@@ -168,6 +186,16 @@ class ResponseExtensions implements JsonSerializable
             64,
             "buyer_contacted_time in ResponseExtensions must have maxlength of 64 $within"
         );
+        !isset($this->buyer_contacted_channel) || Assert::minLength(
+            $this->buyer_contacted_channel,
+            1,
+            "buyer_contacted_channel in ResponseExtensions must have minlength of 1 $within"
+        );
+        !isset($this->buyer_contacted_channel) || Assert::maxLength(
+            $this->buyer_contacted_channel,
+            255,
+            "buyer_contacted_channel in ResponseExtensions must have maxlength of 255 $within"
+        );
         !isset($this->billing_dispute_properties) || Assert::isInstanceOf(
             $this->billing_dispute_properties,
             ResponseBillingDisputesProperties::class,
@@ -192,6 +220,12 @@ class ResponseExtensions implements JsonSerializable
             "external_case_properties in ResponseExtensions must be instance of ResponseExternalCaseProperties $within"
         );
         !isset($this->external_case_properties) ||  $this->external_case_properties->validate(ResponseExtensions::class);
+        !isset($this->remittance_dispute_properties) || Assert::isInstanceOf(
+            $this->remittance_dispute_properties,
+            ResponseRemittanceDisputeProperties::class,
+            "remittance_dispute_properties in ResponseExtensions must be instance of ResponseRemittanceDisputeProperties $within"
+        );
+        !isset($this->remittance_dispute_properties) ||  $this->remittance_dispute_properties->validate(ResponseExtensions::class);
     }
 
     private function map(array $data)
@@ -211,6 +245,9 @@ class ResponseExtensions implements JsonSerializable
         if (isset($data['buyer_contacted_time'])) {
             $this->buyer_contacted_time = $data['buyer_contacted_time'];
         }
+        if (isset($data['buyer_contacted_channel'])) {
+            $this->buyer_contacted_channel = $data['buyer_contacted_channel'];
+        }
         if (isset($data['billing_dispute_properties'])) {
             $this->billing_dispute_properties = new ResponseBillingDisputesProperties($data['billing_dispute_properties']);
         }
@@ -222,6 +259,9 @@ class ResponseExtensions implements JsonSerializable
         }
         if (isset($data['external_case_properties'])) {
             $this->external_case_properties = new ResponseExternalCaseProperties($data['external_case_properties']);
+        }
+        if (isset($data['remittance_dispute_properties'])) {
+            $this->remittance_dispute_properties = new ResponseRemittanceDisputeProperties($data['remittance_dispute_properties']);
         }
     }
 
@@ -250,5 +290,10 @@ class ResponseExtensions implements JsonSerializable
     public function initExternalCaseProperties(): ResponseExternalCaseProperties
     {
         return $this->external_case_properties = new ResponseExternalCaseProperties();
+    }
+
+    public function initRemittanceDisputeProperties(): ResponseRemittanceDisputeProperties
+    {
+        return $this->remittance_dispute_properties = new ResponseRemittanceDisputeProperties();
     }
 }

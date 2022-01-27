@@ -16,7 +16,7 @@ class BancontactRequest implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string
      * minLength: 3

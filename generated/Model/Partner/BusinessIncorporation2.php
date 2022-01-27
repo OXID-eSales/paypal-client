@@ -10,15 +10,15 @@ use Webmozart\Assert\Assert;
  * Business incorporation information.
  *
  * generated from:
- * customized_x_unsupported_9859_customer_common-v1-schema-account_model-business_incorporation.json
+ * customized_x_unsupported_4368_customer_common-v1-schema-account_model-business_incorporation.json
  */
 class BusinessIncorporation2 implements JsonSerializable
 {
     use BaseModel;
 
     /**
-     * The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country
-     * or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
+     * The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or
+     * region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not
      * <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China
      * worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border
      * transactions.</blockquote>

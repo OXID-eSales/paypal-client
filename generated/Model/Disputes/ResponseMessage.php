@@ -56,6 +56,15 @@ class ResponseMessage implements JsonSerializable
      */
     public $content;
 
+    /**
+     * An array of metadata for the documents which contains any additional info about the message posted.
+     *
+     * @var ResponseDocument[]
+     * maxItems: 1
+     * maxItems: 10
+     */
+    public $documents;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -84,6 +93,26 @@ class ResponseMessage implements JsonSerializable
             2000,
             "content in ResponseMessage must have maxlength of 2000 $within"
         );
+        Assert::notNull($this->documents, "documents in ResponseMessage must not be NULL $within");
+        Assert::minCount(
+            $this->documents,
+            1,
+            "documents in ResponseMessage must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->documents,
+            10,
+            "documents in ResponseMessage must have max. count of 10 $within"
+        );
+        Assert::isArray(
+            $this->documents,
+            "documents in ResponseMessage must be array $within"
+        );
+        if (isset($this->documents)) {
+            foreach ($this->documents as $item) {
+                $item->validate(ResponseMessage::class);
+            }
+        }
     }
 
     private function map(array $data)
@@ -97,10 +126,17 @@ class ResponseMessage implements JsonSerializable
         if (isset($data['content'])) {
             $this->content = $data['content'];
         }
+        if (isset($data['documents'])) {
+            $this->documents = [];
+            foreach ($data['documents'] as $item) {
+                $this->documents[] = new ResponseDocument($item);
+            }
+        }
     }
 
     public function __construct(array $data = null)
     {
+        $this->documents = [];
         if (isset($data)) {
             $this->map($data);
         }

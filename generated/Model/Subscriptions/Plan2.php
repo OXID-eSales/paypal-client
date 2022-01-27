@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The plan details.
  *
- * generated from: customized_x_unsupported_7444_plan.json
+ * generated from: customized_x_unsupported_2182_plan.json
  */
 class Plan2 implements JsonSerializable
 {
@@ -72,6 +72,13 @@ class Plan2 implements JsonSerializable
      * @var boolean | null
      */
     public $quantity_supported = false;
+
+    /**
+     * The product details.
+     *
+     * @var Product2 | null
+     */
+    public $product;
 
     public function validate($from = null)
     {
@@ -138,6 +145,12 @@ class Plan2 implements JsonSerializable
             "taxes in Plan2 must be instance of Taxes $within"
         );
         !isset($this->taxes) ||  $this->taxes->validate(Plan2::class);
+        !isset($this->product) || Assert::isInstanceOf(
+            $this->product,
+            Product2::class,
+            "product in Plan2 must be instance of Product2 $within"
+        );
+        !isset($this->product) ||  $this->product->validate(Plan2::class);
     }
 
     private function map(array $data)
@@ -166,6 +179,9 @@ class Plan2 implements JsonSerializable
         if (isset($data['quantity_supported'])) {
             $this->quantity_supported = $data['quantity_supported'];
         }
+        if (isset($data['product'])) {
+            $this->product = new Product2($data['product']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -184,5 +200,10 @@ class Plan2 implements JsonSerializable
     public function initTaxes(): Taxes
     {
         return $this->taxes = new Taxes();
+    }
+
+    public function initProduct(): Product2
+    {
+        return $this->product = new Product2();
     }
 }

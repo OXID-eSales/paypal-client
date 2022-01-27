@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * Resource consolidating common request and response attirbutes for vaulting PayPal Wallet.
  *
  * generated from:
- * customized_x_unsupported_7804_MerchantCommonComponentsSpecification-v1-schema-vault_paypal_wallet_base.json
+ * customized_x_unsupported_1437_MerchantCommonComponentsSpecification-v1-schema-vault_paypal_wallet_base.json
  */
 class VaultPaypalWalletBase2 implements JsonSerializable
 {

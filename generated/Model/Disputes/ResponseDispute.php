@@ -187,14 +187,18 @@ class ResponseDispute implements JsonSerializable
     /**
      * An array of transactions for which disputes were created.
      *
-     * @var ResponseTransactionInfo[] | null
+     * @var ResponseTransactionInfo[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $disputed_transactions;
 
     /**
      * An array of merchant account activities.
      *
-     * @var ResponseAccountActivity[] | null
+     * @var ResponseAccountActivity[]
+     * maxItems: 0
+     * maxItems: 1000
      */
     public $disputed_account_activities;
 
@@ -244,15 +248,8 @@ class ResponseDispute implements JsonSerializable
     public $dispute_amount;
 
     /**
-     * The currency and amount for a financial transaction, such as a balance or payment due.
-     *
-     * @var Money | null
-     */
-    public $dispute_fee;
-
-    /**
-     * Policy that determines whether the fee needs to be retained or returned while moving the money as part of
-     * dispute process.
+     * Policy that determines whether the fee needs to be charged, retained or returned while moving the money as
+     * part of dispute process.
      *
      * @var ResponseFeePolicy | null
      */
@@ -275,6 +272,24 @@ class ResponseDispute implements JsonSerializable
      * @var ResponseDisputeOutcome | null
      */
     public $dispute_outcome;
+
+    /**
+     * The Teammate Adjudication details for the dispute.
+     *
+     * @var ResponseAdjudication[]
+     * maxItems: 1
+     * maxItems: 10
+     */
+    public $adjudications;
+
+    /**
+     * The Money movement details for the dispute.
+     *
+     * @var ResponseMoneyMovement[]
+     * maxItems: 1
+     * maxItems: 50
+     */
+    public $money_movements;
 
     /**
      * The stage in the dispute lifecycle.
@@ -305,7 +320,9 @@ class ResponseDispute implements JsonSerializable
     /**
      * An array of customer- or merchant-posted messages for the dispute.
      *
-     * @var ResponseMessage[] | null
+     * @var ResponseMessage[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $messages;
 
@@ -320,7 +337,9 @@ class ResponseDispute implements JsonSerializable
     /**
      * An array of evidence documents.
      *
-     * @var ResponseEvidence[] | null
+     * @var ResponseEvidence[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $evidences;
 
@@ -347,9 +366,20 @@ class ResponseDispute implements JsonSerializable
     public $seller_response_due_date;
 
     /**
+     * An array of actions with their eligibility criteria.
+     *
+     * @var ResponseActionEligibility[]
+     * maxItems: 1
+     * maxItems: 10
+     */
+    public $actions_eligibility;
+
+    /**
      * An array of history objects.
      *
-     * @var ResponseHistory[] | null
+     * @var ResponseHistory[]
+     * maxItems: 1
+     * maxItems: 1000
      */
     public $history;
 
@@ -411,14 +441,25 @@ class ResponseDispute implements JsonSerializable
     /**
      * An array of all the supporting information that are associated to this dispute.
      *
-     * @var ResponseSupportingInfo[] | null
+     * @var ResponseSupportingInfo[]
+     * maxItems: 1
+     * maxItems: 100
      */
     public $supporting_info;
 
     /**
-     * An array of request-related [HATEOAS links](/docs/api/hateoas-links/).
+     * The allowed response options for the buyer/seller update actions.
      *
-     * @var array | null
+     * @var ResponseAllowedResponseOptions | null
+     */
+    public $allowed_response_options;
+
+    /**
+     * An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
+     *
+     * @var array
+     * maxItems: 1
+     * maxItems: 10
      */
     public $links;
 
@@ -455,7 +496,18 @@ class ResponseDispute implements JsonSerializable
             64,
             "update_time in ResponseDispute must have maxlength of 64 $within"
         );
-        !isset($this->disputed_transactions) || Assert::isArray(
+        Assert::notNull($this->disputed_transactions, "disputed_transactions in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->disputed_transactions,
+            1,
+            "disputed_transactions in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->disputed_transactions,
+            1000,
+            "disputed_transactions in ResponseDispute must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->disputed_transactions,
             "disputed_transactions in ResponseDispute must be array $within"
         );
@@ -464,7 +516,18 @@ class ResponseDispute implements JsonSerializable
                 $item->validate(ResponseDispute::class);
             }
         }
-        !isset($this->disputed_account_activities) || Assert::isArray(
+        Assert::notNull($this->disputed_account_activities, "disputed_account_activities in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->disputed_account_activities,
+            0,
+            "disputed_account_activities in ResponseDispute must have min. count of 0 $within"
+        );
+        Assert::maxCount(
+            $this->disputed_account_activities,
+            1000,
+            "disputed_account_activities in ResponseDispute must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->disputed_account_activities,
             "disputed_account_activities in ResponseDispute must be array $within"
         );
@@ -499,12 +562,6 @@ class ResponseDispute implements JsonSerializable
             "dispute_amount in ResponseDispute must be instance of Money $within"
         );
         !isset($this->dispute_amount) ||  $this->dispute_amount->validate(ResponseDispute::class);
-        !isset($this->dispute_fee) || Assert::isInstanceOf(
-            $this->dispute_fee,
-            Money::class,
-            "dispute_fee in ResponseDispute must be instance of Money $within"
-        );
-        !isset($this->dispute_fee) ||  $this->dispute_fee->validate(ResponseDispute::class);
         !isset($this->fee_policy) || Assert::isInstanceOf(
             $this->fee_policy,
             ResponseFeePolicy::class,
@@ -527,6 +584,46 @@ class ResponseDispute implements JsonSerializable
             "dispute_outcome in ResponseDispute must be instance of ResponseDisputeOutcome $within"
         );
         !isset($this->dispute_outcome) ||  $this->dispute_outcome->validate(ResponseDispute::class);
+        Assert::notNull($this->adjudications, "adjudications in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->adjudications,
+            1,
+            "adjudications in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->adjudications,
+            10,
+            "adjudications in ResponseDispute must have max. count of 10 $within"
+        );
+        Assert::isArray(
+            $this->adjudications,
+            "adjudications in ResponseDispute must be array $within"
+        );
+        if (isset($this->adjudications)) {
+            foreach ($this->adjudications as $item) {
+                $item->validate(ResponseDispute::class);
+            }
+        }
+        Assert::notNull($this->money_movements, "money_movements in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->money_movements,
+            1,
+            "money_movements in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->money_movements,
+            50,
+            "money_movements in ResponseDispute must have max. count of 50 $within"
+        );
+        Assert::isArray(
+            $this->money_movements,
+            "money_movements in ResponseDispute must be array $within"
+        );
+        if (isset($this->money_movements)) {
+            foreach ($this->money_movements as $item) {
+                $item->validate(ResponseDispute::class);
+            }
+        }
         !isset($this->dispute_life_cycle_stage) || Assert::minLength(
             $this->dispute_life_cycle_stage,
             1,
@@ -547,7 +644,18 @@ class ResponseDispute implements JsonSerializable
             255,
             "dispute_channel in ResponseDispute must have maxlength of 255 $within"
         );
-        !isset($this->messages) || Assert::isArray(
+        Assert::notNull($this->messages, "messages in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->messages,
+            1,
+            "messages in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->messages,
+            1000,
+            "messages in ResponseDispute must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->messages,
             "messages in ResponseDispute must be array $within"
         );
@@ -562,7 +670,18 @@ class ResponseDispute implements JsonSerializable
             "extensions in ResponseDispute must be instance of ResponseExtensions $within"
         );
         !isset($this->extensions) ||  $this->extensions->validate(ResponseDispute::class);
-        !isset($this->evidences) || Assert::isArray(
+        Assert::notNull($this->evidences, "evidences in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->evidences,
+            1,
+            "evidences in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->evidences,
+            100,
+            "evidences in ResponseDispute must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->evidences,
             "evidences in ResponseDispute must be array $within"
         );
@@ -591,7 +710,38 @@ class ResponseDispute implements JsonSerializable
             64,
             "seller_response_due_date in ResponseDispute must have maxlength of 64 $within"
         );
-        !isset($this->history) || Assert::isArray(
+        Assert::notNull($this->actions_eligibility, "actions_eligibility in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->actions_eligibility,
+            1,
+            "actions_eligibility in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->actions_eligibility,
+            10,
+            "actions_eligibility in ResponseDispute must have max. count of 10 $within"
+        );
+        Assert::isArray(
+            $this->actions_eligibility,
+            "actions_eligibility in ResponseDispute must be array $within"
+        );
+        if (isset($this->actions_eligibility)) {
+            foreach ($this->actions_eligibility as $item) {
+                $item->validate(ResponseDispute::class);
+            }
+        }
+        Assert::notNull($this->history, "history in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->history,
+            1,
+            "history in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->history,
+            1000,
+            "history in ResponseDispute must have max. count of 1000 $within"
+        );
+        Assert::isArray(
             $this->history,
             "history in ResponseDispute must be array $within"
         );
@@ -628,7 +778,18 @@ class ResponseDispute implements JsonSerializable
             "communication_details in ResponseDispute must be instance of ResponseCommunicationDetails $within"
         );
         !isset($this->communication_details) ||  $this->communication_details->validate(ResponseDispute::class);
-        !isset($this->supporting_info) || Assert::isArray(
+        Assert::notNull($this->supporting_info, "supporting_info in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->supporting_info,
+            1,
+            "supporting_info in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->supporting_info,
+            100,
+            "supporting_info in ResponseDispute must have max. count of 100 $within"
+        );
+        Assert::isArray(
             $this->supporting_info,
             "supporting_info in ResponseDispute must be array $within"
         );
@@ -637,7 +798,24 @@ class ResponseDispute implements JsonSerializable
                 $item->validate(ResponseDispute::class);
             }
         }
-        !isset($this->links) || Assert::isArray(
+        !isset($this->allowed_response_options) || Assert::isInstanceOf(
+            $this->allowed_response_options,
+            ResponseAllowedResponseOptions::class,
+            "allowed_response_options in ResponseDispute must be instance of ResponseAllowedResponseOptions $within"
+        );
+        !isset($this->allowed_response_options) ||  $this->allowed_response_options->validate(ResponseDispute::class);
+        Assert::notNull($this->links, "links in ResponseDispute must not be NULL $within");
+        Assert::minCount(
+            $this->links,
+            1,
+            "links in ResponseDispute must have min. count of 1 $within"
+        );
+        Assert::maxCount(
+            $this->links,
+            10,
+            "links in ResponseDispute must have max. count of 10 $within"
+        );
+        Assert::isArray(
             $this->links,
             "links in ResponseDispute must be array $within"
         );
@@ -675,9 +853,6 @@ class ResponseDispute implements JsonSerializable
         if (isset($data['dispute_amount'])) {
             $this->dispute_amount = new Money($data['dispute_amount']);
         }
-        if (isset($data['dispute_fee'])) {
-            $this->dispute_fee = new Money($data['dispute_fee']);
-        }
         if (isset($data['fee_policy'])) {
             $this->fee_policy = new ResponseFeePolicy($data['fee_policy']);
         }
@@ -686,6 +861,18 @@ class ResponseDispute implements JsonSerializable
         }
         if (isset($data['dispute_outcome'])) {
             $this->dispute_outcome = new ResponseDisputeOutcome($data['dispute_outcome']);
+        }
+        if (isset($data['adjudications'])) {
+            $this->adjudications = [];
+            foreach ($data['adjudications'] as $item) {
+                $this->adjudications[] = new ResponseAdjudication($item);
+            }
+        }
+        if (isset($data['money_movements'])) {
+            $this->money_movements = [];
+            foreach ($data['money_movements'] as $item) {
+                $this->money_movements[] = new ResponseMoneyMovement($item);
+            }
         }
         if (isset($data['dispute_life_cycle_stage'])) {
             $this->dispute_life_cycle_stage = $data['dispute_life_cycle_stage'];
@@ -714,6 +901,12 @@ class ResponseDispute implements JsonSerializable
         if (isset($data['seller_response_due_date'])) {
             $this->seller_response_due_date = $data['seller_response_due_date'];
         }
+        if (isset($data['actions_eligibility'])) {
+            $this->actions_eligibility = [];
+            foreach ($data['actions_eligibility'] as $item) {
+                $this->actions_eligibility[] = new ResponseActionEligibility($item);
+            }
+        }
         if (isset($data['history'])) {
             $this->history = [];
             foreach ($data['history'] as $item) {
@@ -738,6 +931,9 @@ class ResponseDispute implements JsonSerializable
                 $this->supporting_info[] = new ResponseSupportingInfo($item);
             }
         }
+        if (isset($data['allowed_response_options'])) {
+            $this->allowed_response_options = new ResponseAllowedResponseOptions($data['allowed_response_options']);
+        }
         if (isset($data['links'])) {
             $this->links = [];
             foreach ($data['links'] as $item) {
@@ -748,6 +944,16 @@ class ResponseDispute implements JsonSerializable
 
     public function __construct(array $data = null)
     {
+        $this->disputed_transactions = [];
+        $this->disputed_account_activities = [];
+        $this->adjudications = [];
+        $this->money_movements = [];
+        $this->messages = [];
+        $this->evidences = [];
+        $this->actions_eligibility = [];
+        $this->history = [];
+        $this->supporting_info = [];
+        $this->links = [];
         if (isset($data)) {
             $this->map($data);
         }
@@ -756,11 +962,6 @@ class ResponseDispute implements JsonSerializable
     public function initDisputeAmount(): Money
     {
         return $this->dispute_amount = new Money();
-    }
-
-    public function initDisputeFee(): Money
-    {
-        return $this->dispute_fee = new Money();
     }
 
     public function initFeePolicy(): ResponseFeePolicy
@@ -791,5 +992,10 @@ class ResponseDispute implements JsonSerializable
     public function initCommunicationDetails(): ResponseCommunicationDetails
     {
         return $this->communication_details = new ResponseCommunicationDetails();
+    }
+
+    public function initAllowedResponseOptions(): ResponseAllowedResponseOptions
+    {
+        return $this->allowed_response_options = new ResponseAllowedResponseOptions();
     }
 }

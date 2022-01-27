@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
  *
  * generated from:
- * customized_x_unsupported_8759_MerchantsCommonComponentsSpecification-v1-schema-common_components-v3-schema-json-openapi-2.0-address_portable.json
+ * MerchantsCommonComponentsSpecification-v1-schema-common_components-v4-schema-json-openapi-2.0-address_portable.json
  */
 class AddressPortable2 implements JsonSerializable
 {
@@ -35,6 +35,35 @@ class AddressPortable2 implements JsonSerializable
      * maxLength: 300
      */
     public $address_line_2;
+
+    /**
+     * The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as
+     * `next to Walmart`, or a landmark in an Indian address.
+     *
+     * @var string | null
+     * maxLength: 100
+     */
+    public $address_line_3;
+
+    /**
+     * The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The
+     * postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained
+     * administrative levels in China.</li></ul>
+     *
+     * @var string | null
+     * maxLength: 100
+     */
+    public $admin_area_4;
+
+    /**
+     * A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil.
+     * Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not
+     * always available but a sub-locality or district can be a very small area.</li></ul>
+     *
+     * @var string | null
+     * maxLength: 100
+     */
+    public $admin_area_3;
 
     /**
      * A city, town, or village. Smaller than `admin_area_level_1`.
@@ -77,6 +106,16 @@ class AddressPortable2 implements JsonSerializable
      */
     public $country_code;
 
+    /**
+     * The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios
+     * where fine-grain address information might be needed. Not portable with common third party and open source.
+     * Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of
+     * `address_details.street_number`, `street_name`, and `street_type`.
+     *
+     * @var AddressPortableTwoAddressDetails | null
+     */
+    public $address_details;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -89,6 +128,21 @@ class AddressPortable2 implements JsonSerializable
             $this->address_line_2,
             300,
             "address_line_2 in AddressPortable2 must have maxlength of 300 $within"
+        );
+        !isset($this->address_line_3) || Assert::maxLength(
+            $this->address_line_3,
+            100,
+            "address_line_3 in AddressPortable2 must have maxlength of 100 $within"
+        );
+        !isset($this->admin_area_4) || Assert::maxLength(
+            $this->admin_area_4,
+            100,
+            "admin_area_4 in AddressPortable2 must have maxlength of 100 $within"
+        );
+        !isset($this->admin_area_3) || Assert::maxLength(
+            $this->admin_area_3,
+            100,
+            "admin_area_3 in AddressPortable2 must have maxlength of 100 $within"
         );
         !isset($this->admin_area_2) || Assert::maxLength(
             $this->admin_area_2,
@@ -116,6 +170,12 @@ class AddressPortable2 implements JsonSerializable
             2,
             "country_code in AddressPortable2 must have maxlength of 2 $within"
         );
+        !isset($this->address_details) || Assert::isInstanceOf(
+            $this->address_details,
+            AddressPortableTwoAddressDetails::class,
+            "address_details in AddressPortable2 must be instance of AddressPortableTwoAddressDetails $within"
+        );
+        !isset($this->address_details) ||  $this->address_details->validate(AddressPortable2::class);
     }
 
     private function map(array $data)
@@ -125,6 +185,15 @@ class AddressPortable2 implements JsonSerializable
         }
         if (isset($data['address_line_2'])) {
             $this->address_line_2 = $data['address_line_2'];
+        }
+        if (isset($data['address_line_3'])) {
+            $this->address_line_3 = $data['address_line_3'];
+        }
+        if (isset($data['admin_area_4'])) {
+            $this->admin_area_4 = $data['admin_area_4'];
+        }
+        if (isset($data['admin_area_3'])) {
+            $this->admin_area_3 = $data['admin_area_3'];
         }
         if (isset($data['admin_area_2'])) {
             $this->admin_area_2 = $data['admin_area_2'];
@@ -138,6 +207,9 @@ class AddressPortable2 implements JsonSerializable
         if (isset($data['country_code'])) {
             $this->country_code = $data['country_code'];
         }
+        if (isset($data['address_details'])) {
+            $this->address_details = new AddressPortableTwoAddressDetails($data['address_details']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -145,5 +217,10 @@ class AddressPortable2 implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initAddressDetails(): AddressPortableTwoAddressDetails
+    {
+        return $this->address_details = new AddressPortableTwoAddressDetails();
     }
 }

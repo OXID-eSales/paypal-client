@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Additional attributes associated with the use of this paypal wallet
+ * Additional attributes associated with the use of this PayPal Wallet.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-paypal_wallet_attributes.json
  */

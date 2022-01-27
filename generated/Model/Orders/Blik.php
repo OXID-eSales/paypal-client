@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Information used to pay using BLIK
+ * Information used to pay using BLIK.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-blik.json
  */
@@ -16,7 +16,7 @@ class Blik implements JsonSerializable
     use BaseModel;
 
     /**
-     * The full name representation like Mr J Smith
+     * The full name representation like Mr J Smith.
      *
      * @var string | null
      * minLength: 3

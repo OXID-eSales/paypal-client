@@ -18,8 +18,20 @@ class Order extends ActivityTimestamps implements JsonSerializable
     /** The merchant intends to capture payment immediately after the customer makes a payment. */
     public const INTENT_CAPTURE = 'CAPTURE';
 
-    /** The merchant intends to authorize a payment and place funds on hold after the customer makes a payment. Authorized payments are guaranteed for up to three days but are available to capture for up to 29 days. After the three-day honor period, the original authorized payment expires and you must re-authorize the payment. You must make a separate request to capture payments on demand. This intent is not supported when you have more than one `purchase_unit` within your order. */
+    /** The merchant intends to authorize a payment and place funds on hold after the customer makes a payment. Authorized payments are best captured within three days of authorization but are available to capture for up to 29 days. After the three-day honor period, the original authorized payment expires and you must re-authorize the payment. You must make a separate request to capture payments on demand. This intent is not supported when you have more than one `purchase_unit` within your order. */
     public const INTENT_AUTHORIZE = 'AUTHORIZE';
+
+    /** The API caller saves the order for future payment processing by making an explicit <code>v2/checkout/orders/id/save</code> call after the payer approves the order. */
+    public const PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY = 'ORDER_SAVED_EXPLICITLY';
+
+    /** PayPal implicitly saves the order on behalf of the API caller after the payer approves the order. Note that this option is not currently supported. */
+    public const PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL = 'ORDER_SAVED_ON_BUYER_APPROVAL';
+
+    /** API Caller expects the Order to be auto completed (i.e. for PayPal to authorize or capture depending on the intent) on completion of payer approval. This option is not relevant for payment_source that typically do not require a payer approval or interaction. This option is currently only available for the following payment_source: Alipay, Bancontact, BLIK, eps, giropay, Multibanco, MyBank, P24, PayU, POLi, Sofort, Trustly, TrustPay, Verkkopankki, WeChat Pay */
+    public const PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL = 'ORDER_COMPLETE_ON_PAYMENT_APPROVAL';
+
+    /** The API caller intends to authorize <code>v2/checkout/orders/id/authorize</code> or capture <code>v2/checkout/orders/id/capture</code> after the payer approves the order. */
+    public const PROCESSING_INSTRUCTION_NO_INSTRUCTION = 'NO_INSTRUCTION';
 
     /** The order was created with the specified context. */
     public const STATUS_CREATED = 'CREATED';
@@ -36,7 +48,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
     /** The payment was authorized or the authorized payment was captured for the order. */
     public const STATUS_COMPLETED = 'COMPLETED';
 
-    /** The order requires an action from the payer (e.g. 3DS authentication). Redirect the payer to the "rel":"payer_action" HATEOAS link returned as part of the response prior to authorizing or capturing the order. */
+    /** The order requires an action from the payer (e.g. 3DS authentication). Redirect the payer to the "rel":"payer-action" HATEOAS link returned as part of the response prior to authorizing or capturing the order. */
     public const STATUS_PAYER_ACTION_REQUIRED = 'PAYER_ACTION_REQUIRED';
 
     /** Some of the 'purchase_units' within the Order could not be successfully authorized or captured. This status is only applicable if you have multiple 'purchase_units' for an order. */
@@ -50,7 +62,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public $id;
 
     /**
-     * The payment source used to fund the payment
+     * The payment source used to fund the payment.
      *
      * @var PaymentSourceResponse | null
      */
@@ -65,6 +77,20 @@ class Order extends ActivityTimestamps implements JsonSerializable
      * @var string | null
      */
     public $intent;
+
+    /**
+     * The instruction to process an order.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL
+     * @see PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL
+     * @see PROCESSING_INSTRUCTION_NO_INSTRUCTION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 36
+     */
+    public $processing_instruction = 'NO_INSTRUCTION';
 
     /**
      * The customer who approves and pays for the order. The customer is also known as the payer.
@@ -107,6 +133,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
      * @see STATUS_PAYER_ACTION_REQUIRED
      * @see STATUS_PARTIALLY_COMPLETED
      * @var string | null
+     * minLength: 1
+     * maxLength: 255
      */
     public $status;
 
@@ -114,11 +142,10 @@ class Order extends ActivityTimestamps implements JsonSerializable
      * An array of request-related HATEOAS links. To complete payer approval, use the `approve` link to redirect the
      * payer. The API caller has 3 hours (default setting, this which can be changed by your account manager to
      * 24/48/72 hours to accommodate your use case) from the time the order is created, to redirect your payer. Once
-     * redirected, the API caller has 72 hours for the payer to approve the order and either authorize or capture the
-     * order. If you are not using PayPal's Payment SDK (JS) (e.g.
-     * https://developer.paypal.com/docs/checkout/integrate/#4-set-up-the-transaction) to initiate the PayPal
-     * Checkout Experience (in context) ensure that you include application_context.return_url is specified or you
-     * will get "We're sorry, Things don't appear to be working at the moment" after the payer approves the payment.
+     * redirected, the API caller has 3 hours for the payer to approve the order and either authorize or capture the
+     * order. If you are not using the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you
+     * include `application_context.return_url` is specified or you will get "We're sorry, Things don't appear to be
+     * working at the moment" after the payer approves the payment.
      *
      * @var array | null
      */
@@ -131,6 +158,16 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
+    /**
+     * Customizes the payer experience during the approval process for the payment with
+     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+     * and <code>shipping_preference</code> during partner account setup, which overrides the request
+     * values.</blockquote>
+     *
+     * @var OrderApplicationContext2 | null
+     */
+    public $application_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -140,6 +177,16 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "payment_source in Order must be instance of PaymentSourceResponse $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(Order::class);
+        !isset($this->processing_instruction) || Assert::minLength(
+            $this->processing_instruction,
+            1,
+            "processing_instruction in Order must have minlength of 1 $within"
+        );
+        !isset($this->processing_instruction) || Assert::maxLength(
+            $this->processing_instruction,
+            36,
+            "processing_instruction in Order must have maxlength of 36 $within"
+        );
         !isset($this->payer) || Assert::isInstanceOf(
             $this->payer,
             Payer::class,
@@ -176,6 +223,16 @@ class Order extends ActivityTimestamps implements JsonSerializable
                 $item->validate(Order::class);
             }
         }
+        !isset($this->status) || Assert::minLength(
+            $this->status,
+            1,
+            "status in Order must have minlength of 1 $within"
+        );
+        !isset($this->status) || Assert::maxLength(
+            $this->status,
+            255,
+            "status in Order must have maxlength of 255 $within"
+        );
         !isset($this->links) || Assert::isArray(
             $this->links,
             "links in Order must be array $within"
@@ -186,6 +243,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
         !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
+        !isset($this->application_context) || Assert::isInstanceOf(
+            $this->application_context,
+            OrderApplicationContext2::class,
+            "application_context in Order must be instance of OrderApplicationContext2 $within"
+        );
+        !isset($this->application_context) ||  $this->application_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -198,6 +261,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         }
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
+        }
+        if (isset($data['processing_instruction'])) {
+            $this->processing_instruction = $data['processing_instruction'];
         }
         if (isset($data['payer'])) {
             $this->payer = new Payer($data['payer']);
@@ -223,6 +289,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['credit_financing_offer'])) {
             $this->credit_financing_offer = new CreditFinancingOffer($data['credit_financing_offer']);
         }
+        if (isset($data['application_context'])) {
+            $this->application_context = new OrderApplicationContext2($data['application_context']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -247,5 +316,10 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public function initCreditFinancingOffer(): CreditFinancingOffer
     {
         return $this->credit_financing_offer = new CreditFinancingOffer();
+    }
+
+    public function initApplicationContext(): OrderApplicationContext2
+    {
+        return $this->application_context = new OrderApplicationContext2();
     }
 }

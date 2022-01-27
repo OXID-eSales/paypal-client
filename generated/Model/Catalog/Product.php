@@ -18,7 +18,7 @@ class Product implements JsonSerializable
     /** Physical goods */
     public const TYPE_PHYSICAL = 'PHYSICAL';
 
-    /** Digital goods */
+    /** For digital goods, the value must be set to DIGITAL to get the best rates. For more details, please contact your account manager. */
     public const TYPE_DIGITAL = 'DIGITAL';
 
     /** Product representing a service. Example: Tech Support */

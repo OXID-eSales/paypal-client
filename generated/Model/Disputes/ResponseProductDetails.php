@@ -47,6 +47,15 @@ class ResponseProductDetails implements JsonSerializable
     public $product_received;
 
     /**
+     * The customer-provided note explaining the reason for filing the claim.
+     *
+     * @var string | null
+     * minLength: 1
+     * maxLength: 2000
+     */
+    public $note;
+
+    /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
      * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
      * expression provides guidance but does not reject all invalid dates.</blockquote>
@@ -56,6 +65,17 @@ class ResponseProductDetails implements JsonSerializable
      * maxLength: 64
      */
     public $product_received_time;
+
+    /**
+     * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+     * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
+     * expression provides guidance but does not reject all invalid dates.</blockquote>
+     *
+     * @var string | null
+     * minLength: 20
+     * maxLength: 64
+     */
+    public $expected_delivery_date;
 
     /**
      * An array of sub-reasons for the product issue.
@@ -68,8 +88,6 @@ class ResponseProductDetails implements JsonSerializable
      * The URL where the customer purchased the product.
      *
      * @var string | null
-     * minLength: 1
-     * maxLength: 2000
      */
     public $purchase_url;
 
@@ -103,6 +121,16 @@ class ResponseProductDetails implements JsonSerializable
             255,
             "product_received in ResponseProductDetails must have maxlength of 255 $within"
         );
+        !isset($this->note) || Assert::minLength(
+            $this->note,
+            1,
+            "note in ResponseProductDetails must have minlength of 1 $within"
+        );
+        !isset($this->note) || Assert::maxLength(
+            $this->note,
+            2000,
+            "note in ResponseProductDetails must have maxlength of 2000 $within"
+        );
         !isset($this->product_received_time) || Assert::minLength(
             $this->product_received_time,
             20,
@@ -113,19 +141,19 @@ class ResponseProductDetails implements JsonSerializable
             64,
             "product_received_time in ResponseProductDetails must have maxlength of 64 $within"
         );
+        !isset($this->expected_delivery_date) || Assert::minLength(
+            $this->expected_delivery_date,
+            20,
+            "expected_delivery_date in ResponseProductDetails must have minlength of 20 $within"
+        );
+        !isset($this->expected_delivery_date) || Assert::maxLength(
+            $this->expected_delivery_date,
+            64,
+            "expected_delivery_date in ResponseProductDetails must have maxlength of 64 $within"
+        );
         !isset($this->sub_reasons) || Assert::isArray(
             $this->sub_reasons,
             "sub_reasons in ResponseProductDetails must be array $within"
-        );
-        !isset($this->purchase_url) || Assert::minLength(
-            $this->purchase_url,
-            1,
-            "purchase_url in ResponseProductDetails must have minlength of 1 $within"
-        );
-        !isset($this->purchase_url) || Assert::maxLength(
-            $this->purchase_url,
-            2000,
-            "purchase_url in ResponseProductDetails must have maxlength of 2000 $within"
         );
         !isset($this->return_details) || Assert::isInstanceOf(
             $this->return_details,
@@ -143,8 +171,14 @@ class ResponseProductDetails implements JsonSerializable
         if (isset($data['product_received'])) {
             $this->product_received = $data['product_received'];
         }
+        if (isset($data['note'])) {
+            $this->note = $data['note'];
+        }
         if (isset($data['product_received_time'])) {
             $this->product_received_time = $data['product_received_time'];
+        }
+        if (isset($data['expected_delivery_date'])) {
+            $this->expected_delivery_date = $data['expected_delivery_date'];
         }
         if (isset($data['sub_reasons'])) {
             $this->sub_reasons = [];

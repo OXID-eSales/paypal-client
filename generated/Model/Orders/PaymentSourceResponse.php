@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * The payment source used to fund the payment
+ * The payment source used to fund the payment.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-payment_source_response.json
  */
@@ -23,7 +23,7 @@ class PaymentSourceResponse implements JsonSerializable
     public $card;
 
     /**
-     * The Paypal Wallet response.
+     * The PayPal Wallet response.
      *
      * @var PaypalWalletResponse | null
      */
@@ -37,7 +37,7 @@ class PaymentSourceResponse implements JsonSerializable
     public $wallet;
 
     /**
-     * The bank source used to fund the payment
+     * The bank source used to fund the payment.
      *
      * @var BankResponse | null
      */
@@ -58,11 +58,18 @@ class PaymentSourceResponse implements JsonSerializable
     public $bancontact;
 
     /**
-     * Information used to pay using BLIK
+     * Information used to pay using BLIK.
      *
      * @var Blik | null
      */
     public $blik;
+
+    /**
+     * Information used to pay using Boleto Bancário.
+     *
+     * @var Boletobancario | null
+     */
+    public $boletobancario;
 
     /**
      * Information used to pay using eps.
@@ -100,6 +107,13 @@ class PaymentSourceResponse implements JsonSerializable
     public $mybank;
 
     /**
+     * Information used to pay using OXXO.
+     *
+     * @var Oxxo | null
+     */
+    public $oxxo;
+
+    /**
      * Information needed to pay using PayU.
      *
      * @var Payu | null
@@ -107,18 +121,25 @@ class PaymentSourceResponse implements JsonSerializable
     public $payu;
 
     /**
-     * Information used to pay using P24(Przelewy24)
+     * Information used to pay using P24(Przelewy24).
      *
      * @var PTwoFour | null
      */
     public $p24;
 
     /**
-     * Information used to pay using POLi.
+     * Information needed to pay using SafetyPay.
      *
-     * @var Poli | null
+     * @var Safetypay | null
      */
-    public $poli;
+    public $safetypay;
+
+    /**
+     * Information used to pay using SatisPay.
+     *
+     * @var Satispay | null
+     */
+    public $satispay;
 
     /**
      * Information used to pay using Sofort.
@@ -135,13 +156,6 @@ class PaymentSourceResponse implements JsonSerializable
     public $trustly;
 
     /**
-     * Information used to pay using TrustPay.
-     *
-     * @var Trustpay | null
-     */
-    public $trustpay;
-
-    /**
      * Information used to pay using Verkkopankki (Finnish Online Banking).
      *
      * @var Verkkopankki | null
@@ -154,6 +168,13 @@ class PaymentSourceResponse implements JsonSerializable
      * @var Wechatpay | null
      */
     public $wechatpay;
+
+    /**
+     * Information needed to pay using ApplePay.
+     *
+     * @var ApplePay | null
+     */
+    public $apple_pay;
 
     public function validate($from = null)
     {
@@ -200,6 +221,12 @@ class PaymentSourceResponse implements JsonSerializable
             "blik in PaymentSourceResponse must be instance of Blik $within"
         );
         !isset($this->blik) ||  $this->blik->validate(PaymentSourceResponse::class);
+        !isset($this->boletobancario) || Assert::isInstanceOf(
+            $this->boletobancario,
+            Boletobancario::class,
+            "boletobancario in PaymentSourceResponse must be instance of Boletobancario $within"
+        );
+        !isset($this->boletobancario) ||  $this->boletobancario->validate(PaymentSourceResponse::class);
         !isset($this->eps) || Assert::isInstanceOf(
             $this->eps,
             Eps::class,
@@ -230,6 +257,12 @@ class PaymentSourceResponse implements JsonSerializable
             "mybank in PaymentSourceResponse must be instance of Mybank $within"
         );
         !isset($this->mybank) ||  $this->mybank->validate(PaymentSourceResponse::class);
+        !isset($this->oxxo) || Assert::isInstanceOf(
+            $this->oxxo,
+            Oxxo::class,
+            "oxxo in PaymentSourceResponse must be instance of Oxxo $within"
+        );
+        !isset($this->oxxo) ||  $this->oxxo->validate(PaymentSourceResponse::class);
         !isset($this->payu) || Assert::isInstanceOf(
             $this->payu,
             Payu::class,
@@ -242,12 +275,18 @@ class PaymentSourceResponse implements JsonSerializable
             "p24 in PaymentSourceResponse must be instance of PTwoFour $within"
         );
         !isset($this->p24) ||  $this->p24->validate(PaymentSourceResponse::class);
-        !isset($this->poli) || Assert::isInstanceOf(
-            $this->poli,
-            Poli::class,
-            "poli in PaymentSourceResponse must be instance of Poli $within"
+        !isset($this->safetypay) || Assert::isInstanceOf(
+            $this->safetypay,
+            Safetypay::class,
+            "safetypay in PaymentSourceResponse must be instance of Safetypay $within"
         );
-        !isset($this->poli) ||  $this->poli->validate(PaymentSourceResponse::class);
+        !isset($this->safetypay) ||  $this->safetypay->validate(PaymentSourceResponse::class);
+        !isset($this->satispay) || Assert::isInstanceOf(
+            $this->satispay,
+            Satispay::class,
+            "satispay in PaymentSourceResponse must be instance of Satispay $within"
+        );
+        !isset($this->satispay) ||  $this->satispay->validate(PaymentSourceResponse::class);
         !isset($this->sofort) || Assert::isInstanceOf(
             $this->sofort,
             Sofort::class,
@@ -260,12 +299,6 @@ class PaymentSourceResponse implements JsonSerializable
             "trustly in PaymentSourceResponse must be instance of Trustly $within"
         );
         !isset($this->trustly) ||  $this->trustly->validate(PaymentSourceResponse::class);
-        !isset($this->trustpay) || Assert::isInstanceOf(
-            $this->trustpay,
-            Trustpay::class,
-            "trustpay in PaymentSourceResponse must be instance of Trustpay $within"
-        );
-        !isset($this->trustpay) ||  $this->trustpay->validate(PaymentSourceResponse::class);
         !isset($this->verkkopankki) || Assert::isInstanceOf(
             $this->verkkopankki,
             Verkkopankki::class,
@@ -278,6 +311,12 @@ class PaymentSourceResponse implements JsonSerializable
             "wechatpay in PaymentSourceResponse must be instance of Wechatpay $within"
         );
         !isset($this->wechatpay) ||  $this->wechatpay->validate(PaymentSourceResponse::class);
+        !isset($this->apple_pay) || Assert::isInstanceOf(
+            $this->apple_pay,
+            ApplePay::class,
+            "apple_pay in PaymentSourceResponse must be instance of ApplePay $within"
+        );
+        !isset($this->apple_pay) ||  $this->apple_pay->validate(PaymentSourceResponse::class);
     }
 
     private function map(array $data)
@@ -303,6 +342,9 @@ class PaymentSourceResponse implements JsonSerializable
         if (isset($data['blik'])) {
             $this->blik = new Blik($data['blik']);
         }
+        if (isset($data['boletobancario'])) {
+            $this->boletobancario = new Boletobancario($data['boletobancario']);
+        }
         if (isset($data['eps'])) {
             $this->eps = new Eps($data['eps']);
         }
@@ -318,14 +360,20 @@ class PaymentSourceResponse implements JsonSerializable
         if (isset($data['mybank'])) {
             $this->mybank = new Mybank($data['mybank']);
         }
+        if (isset($data['oxxo'])) {
+            $this->oxxo = new Oxxo($data['oxxo']);
+        }
         if (isset($data['payu'])) {
             $this->payu = new Payu($data['payu']);
         }
         if (isset($data['p24'])) {
             $this->p24 = new PTwoFour($data['p24']);
         }
-        if (isset($data['poli'])) {
-            $this->poli = new Poli($data['poli']);
+        if (isset($data['safetypay'])) {
+            $this->safetypay = new Safetypay($data['safetypay']);
+        }
+        if (isset($data['satispay'])) {
+            $this->satispay = new Satispay($data['satispay']);
         }
         if (isset($data['sofort'])) {
             $this->sofort = new Sofort($data['sofort']);
@@ -333,14 +381,14 @@ class PaymentSourceResponse implements JsonSerializable
         if (isset($data['trustly'])) {
             $this->trustly = new Trustly($data['trustly']);
         }
-        if (isset($data['trustpay'])) {
-            $this->trustpay = new Trustpay($data['trustpay']);
-        }
         if (isset($data['verkkopankki'])) {
             $this->verkkopankki = new Verkkopankki($data['verkkopankki']);
         }
         if (isset($data['wechatpay'])) {
             $this->wechatpay = new Wechatpay($data['wechatpay']);
+        }
+        if (isset($data['apple_pay'])) {
+            $this->apple_pay = new ApplePay($data['apple_pay']);
         }
     }
 
@@ -386,6 +434,11 @@ class PaymentSourceResponse implements JsonSerializable
         return $this->blik = new Blik();
     }
 
+    public function initBoletobancario(): Boletobancario
+    {
+        return $this->boletobancario = new Boletobancario();
+    }
+
     public function initEps(): Eps
     {
         return $this->eps = new Eps();
@@ -411,6 +464,11 @@ class PaymentSourceResponse implements JsonSerializable
         return $this->mybank = new Mybank();
     }
 
+    public function initOxxo(): Oxxo
+    {
+        return $this->oxxo = new Oxxo();
+    }
+
     public function initPayu(): Payu
     {
         return $this->payu = new Payu();
@@ -421,9 +479,14 @@ class PaymentSourceResponse implements JsonSerializable
         return $this->p24 = new PTwoFour();
     }
 
-    public function initPoli(): Poli
+    public function initSafetypay(): Safetypay
     {
-        return $this->poli = new Poli();
+        return $this->safetypay = new Safetypay();
+    }
+
+    public function initSatispay(): Satispay
+    {
+        return $this->satispay = new Satispay();
     }
 
     public function initSofort(): Sofort
@@ -436,11 +499,6 @@ class PaymentSourceResponse implements JsonSerializable
         return $this->trustly = new Trustly();
     }
 
-    public function initTrustpay(): Trustpay
-    {
-        return $this->trustpay = new Trustpay();
-    }
-
     public function initVerkkopankki(): Verkkopankki
     {
         return $this->verkkopankki = new Verkkopankki();
@@ -449,5 +507,10 @@ class PaymentSourceResponse implements JsonSerializable
     public function initWechatpay(): Wechatpay
     {
         return $this->wechatpay = new Wechatpay();
+    }
+
+    public function initApplePay(): ApplePay
+    {
+        return $this->apple_pay = new ApplePay();
     }
 }

@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * The status of a captured payment.
  *
  * generated from:
- * customized_x_unsupported_2422_merchant.CommonComponentsSpecification-v1-schema-capture_status.json
+ * customized_x_unsupported_455_merchant.CommonComponentsSpecification-v1-schema-capture_status.json
  */
 class CaptureStatus2 implements JsonSerializable
 {

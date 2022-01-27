@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
  * The payment card to use to fund a payment. Card can be a credit or debit card.
  *
  * generated from:
- * customized_x_unsupported_2856_MerchantsCommonComponentsSpecification-v1-schema-card_response.json
+ * customized_x_unsupported_9135_MerchantsCommonComponentsSpecification-v1-schema-card_response.json
  */
 class CardResponse2 implements JsonSerializable
 {
@@ -75,6 +75,25 @@ class CardResponse2 implements JsonSerializable
 
     /** Card type cannot be determined. */
     public const TYPE_UNKNOWN = 'UNKNOWN';
+
+    /**
+     * The card holder's name as it appears on the card.
+     *
+     * @var string | null
+     * minLength: 2
+     * maxLength: 300
+     */
+    public $name;
+
+    /**
+     * The portable international postal address. Maps to
+     * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and
+     * HTML 5.1 [Autofilling form controls: the autocomplete
+     * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
+     *
+     * @var AddressPortable3 | null
+     */
+    public $billing_address;
 
     /**
      * The last digits of the payment card.
@@ -149,6 +168,22 @@ class CardResponse2 implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
+        !isset($this->name) || Assert::minLength(
+            $this->name,
+            2,
+            "name in CardResponse2 must have minlength of 2 $within"
+        );
+        !isset($this->name) || Assert::maxLength(
+            $this->name,
+            300,
+            "name in CardResponse2 must have maxlength of 300 $within"
+        );
+        !isset($this->billing_address) || Assert::isInstanceOf(
+            $this->billing_address,
+            AddressPortable3::class,
+            "billing_address in CardResponse2 must be instance of AddressPortable3 $within"
+        );
+        !isset($this->billing_address) ||  $this->billing_address->validate(CardResponse2::class);
         !isset($this->brand) || Assert::minLength(
             $this->brand,
             1,
@@ -185,6 +220,12 @@ class CardResponse2 implements JsonSerializable
 
     private function map(array $data)
     {
+        if (isset($data['name'])) {
+            $this->name = $data['name'];
+        }
+        if (isset($data['billing_address'])) {
+            $this->billing_address = new AddressPortable3($data['billing_address']);
+        }
         if (isset($data['last_digits'])) {
             $this->last_digits = $data['last_digits'];
         }
@@ -210,6 +251,11 @@ class CardResponse2 implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initBillingAddress(): AddressPortable3
+    {
+        return $this->billing_address = new AddressPortable3();
     }
 
     public function initAuthenticationResult(): AuthenticationResponse

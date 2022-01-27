@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 /**
  * The payment card to use to fund a payment. Can be a credit or debit card.
  *
- * generated from: customized_x_unsupported_1754_merchant.CommonComponentsSpecification-v1-schema-card.json
+ * generated from: customized_x_unsupported_1063_merchant.CommonComponentsSpecification-v1-schema-card.json
  */
 class Card2 implements JsonSerializable
 {
@@ -43,7 +43,8 @@ class Card2 implements JsonSerializable
     public $expiry;
 
     /**
-     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID.
+     * The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This
+     * parameter cannot be present in the request when `payment_initiator=MERCHANT`.
      *
      * @var string | null
      */
@@ -55,12 +56,12 @@ class Card2 implements JsonSerializable
      * HTML 5.1 [Autofilling form controls: the autocomplete
      * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
      *
-     * @var AddressPortable | null
+     * @var AddressPortable2 | null
      */
     public $billing_address;
 
     /**
-     * Additional attributes associated with the use of this card
+     * Additional attributes associated with the use of this card.
      *
      * @var CardAttributes | null
      */
@@ -98,8 +99,8 @@ class Card2 implements JsonSerializable
         );
         !isset($this->billing_address) || Assert::isInstanceOf(
             $this->billing_address,
-            AddressPortable::class,
-            "billing_address in Card2 must be instance of AddressPortable $within"
+            AddressPortable2::class,
+            "billing_address in Card2 must be instance of AddressPortable2 $within"
         );
         !isset($this->billing_address) ||  $this->billing_address->validate(Card2::class);
         !isset($this->attributes) || Assert::isInstanceOf(
@@ -125,7 +126,7 @@ class Card2 implements JsonSerializable
             $this->security_code = $data['security_code'];
         }
         if (isset($data['billing_address'])) {
-            $this->billing_address = new AddressPortable($data['billing_address']);
+            $this->billing_address = new AddressPortable2($data['billing_address']);
         }
         if (isset($data['attributes'])) {
             $this->attributes = new CardAttributes($data['attributes']);
@@ -139,9 +140,9 @@ class Card2 implements JsonSerializable
         }
     }
 
-    public function initBillingAddress(): AddressPortable
+    public function initBillingAddress(): AddressPortable2
     {
-        return $this->billing_address = new AddressPortable();
+        return $this->billing_address = new AddressPortable2();
     }
 
     public function initAttributes(): CardAttributes

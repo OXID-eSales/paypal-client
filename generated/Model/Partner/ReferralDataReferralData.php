@@ -92,6 +92,13 @@ class ReferralDataReferralData extends Account implements JsonSerializable
      */
     public $legal_consents;
 
+    /**
+     * Payout specific attributes.
+     *
+     * @var ReferralDataPayoutAttributes | null
+     */
+    public $payout_attributes;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -193,6 +200,12 @@ class ReferralDataReferralData extends Account implements JsonSerializable
                 $item->validate(ReferralDataReferralData::class);
             }
         }
+        !isset($this->payout_attributes) || Assert::isInstanceOf(
+            $this->payout_attributes,
+            ReferralDataPayoutAttributes::class,
+            "payout_attributes in ReferralDataReferralData must be instance of ReferralDataPayoutAttributes $within"
+        );
+        !isset($this->payout_attributes) ||  $this->payout_attributes->validate(ReferralDataReferralData::class);
     }
 
     private function map(array $data)
@@ -230,6 +243,9 @@ class ReferralDataReferralData extends Account implements JsonSerializable
                 $this->legal_consents[] = new ReferralDataLegalConsent($item);
             }
         }
+        if (isset($data['payout_attributes'])) {
+            $this->payout_attributes = new ReferralDataPayoutAttributes($data['payout_attributes']);
+        }
     }
 
     public function __construct(array $data = null)
@@ -251,5 +267,10 @@ class ReferralDataReferralData extends Account implements JsonSerializable
     public function initFinancialInstruments(): ReferralDataFinancialInstruments
     {
         return $this->financial_instruments = new ReferralDataFinancialInstruments();
+    }
+
+    public function initPayoutAttributes(): ReferralDataPayoutAttributes
+    {
+        return $this->payout_attributes = new ReferralDataPayoutAttributes();
     }
 }
