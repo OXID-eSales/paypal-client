@@ -62,6 +62,14 @@ class Subscriptions extends BaseService
      *
      * @param $planIds string Filters the response by list of plan IDs. Filter supports upto 10 plan IDs.
      *
+     * @param $sortOrder string Sort order of the plans that are returned in the response. Valid values are asc and
+     * desc.
+     *
+     * @param $statuses string Filters the response by list of plan statuses.
+     *
+     * @param $sortBy string Sort the plans result. Valid values are create_time and status. If not set, the result
+     * will be sorted by create_time.
+     *
      * @param $totalRequired boolean Indicates whether to show the total count in the response.
      *
      * @param $page integer A non-zero integer which is the start index of the entire list of items to return in the
@@ -83,6 +91,9 @@ class Subscriptions extends BaseService
         $payPalSubjectAccount,
         $productId,
         $planIds,
+        $sortOrder,
+        $statuses,
+        $sortBy = 'create_time',
         $totalRequired = false,
         $page = 1,
         $pageSize = 10,
@@ -97,6 +108,9 @@ class Subscriptions extends BaseService
         $params = [];
         $params['product_id'] = $productId;
         $params['plan_ids'] = $planIds;
+        $params['sort_order'] = $sortOrder;
+        $params['statuses'] = $statuses;
+        $params['sort_by'] = $sortBy;
         $params['total_required'] = var_export($totalRequired, true);
         $params['page'] = $page;
         $params['page_size'] = $pageSize;
@@ -117,10 +131,13 @@ class Subscriptions extends BaseService
      *
      * @param $version integer The version of the plan.
      *
+     * @param $fields string List of fields that are to be returned in the response. Possible value for field is
+     * <code>Product</code>.
+     *
      * @throws ApiException
      * @return Plan
      */
-    public function showPlanDetails($payPalSubjectAccount, $id, $version): Plan
+    public function showPlanDetails($payPalSubjectAccount, $id, $version, $fields): Plan
     {
         $path = "/plans/{$id}";
 
@@ -129,6 +146,7 @@ class Subscriptions extends BaseService
 
         $params = [];
         $params['version'] = $version;
+        $params['fields'] = $fields;
 
         $body = null;
         $response = $this->send('GET', $path, $params, $headers, $body);
@@ -139,7 +157,7 @@ class Subscriptions extends BaseService
     /**
      * Updates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, you can make only status
      * updates.<br/>You can patch these attributes and objects:<table><thead><tr><th>Attribute or
-     * object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr></tbody></table>
+     * object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr><tr><td><code>name</code></td><td>replace</td></tr></tbody></table>
      *
      * @param $id string The ID of the plan.
      *
@@ -294,6 +312,12 @@ class Subscriptions extends BaseService
      *
      * @param $payerIds string Filters the response by list of payer IDs.
      *
+     * @param $sortOrder string Sort order of the subscriptions that are returned in the response. Valid values are
+     * asc and desc.
+     *
+     * @param $sortBy string Sort the subscriptions result. Valid or default value is create_time. If not set, the
+     * result will be sorted by create_time.
+     *
      * @param $totalRequired boolean Indicates whether to show the total count in the response.
      *
      * @param $page integer A non-zero integer which is the start index of the entire list of items to return in the
@@ -314,6 +338,8 @@ class Subscriptions extends BaseService
         $statusUpdatedAfter,
         $filter,
         $payerIds,
+        $sortOrder,
+        $sortBy = 'create_time',
         $totalRequired = false,
         $page = 1,
         $pageSize = 10
@@ -330,6 +356,8 @@ class Subscriptions extends BaseService
         $params['status_updated_after'] = $statusUpdatedAfter;
         $params['filter'] = $filter;
         $params['payer_ids'] = $payerIds;
+        $params['sort_order'] = $sortOrder;
+        $params['sort_by'] = $sortBy;
         $params['total_required'] = var_export($totalRequired, true);
         $params['page'] = $page;
         $params['page_size'] = $pageSize;
@@ -357,7 +385,7 @@ class Subscriptions extends BaseService
 
 
         $params = [];
-//        $params['fields'] = $fields;
+        $params['fields'] = $fields;
 
         $body = null;
         $response = $this->send('GET', $path, $params, [], $body);
@@ -366,34 +394,15 @@ class Subscriptions extends BaseService
     }
 
     /**
-     * Updates a subscription which could be in `ACTIVE` or `SUSPENDED` status.<br /> Following are the fields
-     * eligible for patch.<table><thead><tr><th>Attribute or
-     * object</th><th>Operations</th><th>Visibility</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td><td>External</td></tr><tr><td><code>custom_id
-     * (supported only for V1
-     * subscriptions)</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].pricing_scheme.fixed_price</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].shipping_amount
-     * (not supported for V1
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].taxes.amount
-     * (not supported for V1
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].total_cycles</code></td><td>replace</td><td>External</td></tr><tr><td><code>plan.name
-     * (not supported for V1
-     * subscriptions)</code></td><td>replace</td><td>Internal</td></tr><tr><td><code>plan.payment_preferences.auto_bill_outstanding</code></td><td>replace</td><td>External</td></tr><tr><td><code>plan.payment_preferences.payment_failure_threshold</code></td><td>replace</td><td>External</td></tr><tr><td><code>plan.taxes.inclusive
-     * (supported only for V1
-     * subscriptions)</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>plan.taxes.percentage
-     * (supported only for V1
-     * subscriptions)</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>shipping_amount (supported
-     * only for V1 subscriptions)</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>start_time (for
-     * subscription whose start time is in
-     * future)</code></td><td>replace</td><td>External</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td><td>External</td></tr><tr><td><code>subscriber.payment_source
-     * (for subscriptions funded by card
-     * payments)</code></td><td>replace</td><td>External</td></tr><tr><td><code>subscriber.name.given_name (for
-     * unbranded
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>subscriber.name.surname (for
-     * unbranded
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>subscriber.email_address
-     * (for unbranded
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>subscriber.phone.phone_number
-     * (for unbranded
-     * subscriptions)</code></td><td>add,replace</td><td>Internal</td></tr><tr><td><code>status_change_note</code></td><td>add,replace</td><td>Internal</td></tr></tbody></table>
+     * Updates a subscription which could be in <code>ACTIVE</code> or <code>SUSPENDED</code> status. You can
+     * override plan level default attributes by providing customised values for plan path in the patch request.<br
+     * /> <ul> <li>You cannot update attributes that have already completed (Example - trial cycles can’t be
+     * updated if completed).</li> <li>Once overridden, changes to plan resource will not impact subscription.</li>
+     * <li>Any price update will not impact billing cycles within next 10 days (Applicable only for subscriptions
+     * funded by PayPal account).</li> </ul> Following are the fields eligible for
+     * patch.<table><thead><tr><th>Attribute or
+     * object</th><th>Operations</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td></tr><tr><td><code>custom_id</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.fixed_price</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.tiers</code></td><td>replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>total_cycles</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>plan.taxes.inclusive</code></td><td>add,replace</td></tr><tr><td><code>plan.taxes.percentage</code></td><td>add,replace</td></tr><tr><td><code>shipping_amount</code></td><td>add,replace</td></tr><tr><td><code>start_time</code></td><td>replace</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td></tr><tr><td><code>subscriber.payment_source
+     * (for subscriptions funded<br/>by card payments)</code></td><td>replace</td></tr></tbody></table>
      *
      * @param $id string The ID for the subscription.
      *
@@ -426,7 +435,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return SubscriptionReviseResponse
      */
-    public function updateQuantityOfProductOrServiceInSubscription($id, SubscriptionReviseRequest $subscriptionReviseRequest): SubscriptionReviseResponse
+    public function revisePlanOrQuantityOfSubscription($id, SubscriptionReviseRequest $subscriptionReviseRequest): SubscriptionReviseResponse
     {
         $path = "/subscriptions/{$id}/revise";
 

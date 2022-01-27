@@ -4,7 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Service;
 
 use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
 use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\BalancesResponse;
-use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\PartnerSearchResponse;
+use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\PartnerPartnerSearchResponse;
 use OxidSolutionCatalysts\PayPalApi\Model\TransactionSearch\SearchResponse;
 
 class TransactionSearch extends BaseService
@@ -19,7 +19,7 @@ class TransactionSearch extends BaseService
      * three years.</li></ul></blockquote>
      *
      * @param $transactionId string Filters the transactions in the response by a PayPal transaction ID. A valid
-     * transaction ID is 17 characters long, except for an <a href="/docs/api/payments/#definition-order">order
+     * transaction ID is 17 characters long, except for an <a href="/docs/api/payments/v1/#definition-order">order
      * ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the
      * reporting system. The response can list two transactions with the same ID. One transaction can be balance
      * affecting while the other is non-balance affecting.</blockquote>
@@ -30,12 +30,12 @@ class TransactionSearch extends BaseService
      * @param $transactionStatus string Filters the transactions in the response by a PayPal transaction status code.
      * Value
      * is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal
-     * or merchant rules denied the transaction.</td></tr><tr><td><code>F</code></td><td>The original recipient
-     * partially refunded the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The
-     * transaction was created but waits for another payment process to complete, such as an ACH transaction, before
-     * the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully
-     * completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A
-     * successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>
+     * or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending.
+     * The transaction was created but waits for another payment process to complete, such as an ACH transaction,
+     * before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction
+     * successfully completed without a denial and after any pending
+     * statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were
+     * refunded to the original sender.</td></tr></tbody></table>
      *
      * @param $transactionAmount string Filters the transactions in the response by a gross transaction amount range.
      * Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross
@@ -44,7 +44,7 @@ class TransactionSearch extends BaseService
      * 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>
      *
      * @param $transactionCurrency string Filters the transactions in the response by a [three-character ISO-4217
-     * currency code](/docs/integration/direct/rest/currency-codes/) for the PayPal transaction currency.
+     * currency code](/docs/api/reference/currency-codes/) for the PayPal transaction currency.
      *
      * @param $transactionDate string Deprecated. Filters the transactions in the response by a PayPal transaction
      * date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6), with the from and
@@ -67,7 +67,7 @@ class TransactionSearch extends BaseService
      *
      * @param $endDate string Filters the transactions in the response by an end date and time, in [Internet date and
      * time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are
-     * optional.
+     * optional. The maximum supported range is 31 days.
      *
      * @param $paymentInstrumentType string Filters the transactions in the response by a payment instrument type.
      * Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding
@@ -173,12 +173,16 @@ class TransactionSearch extends BaseService
      * refreshed balance in the system when not provided.
      *
      * @param $currencyCode string Filters the transactions in the response by a [three-character ISO-4217 currency
-     * code](/docs/integration/direct/rest/currency-codes/) for the PayPal transaction currency.
+     * code](/docs/api/reference/currency-codes/) for the PayPal transaction currency.
+     *
+     * @param $includeCryptoCurrencies boolean Indicates whether the response list balances including crypto
+     * transactions. Value is either:<ul><li><code>false</code>. The default. The response doesn't include crypto
+     * transactions.</li><li><code>true</code>. The response also includes crypto transactions.</li></ul>
      *
      * @throws ApiException
      * @return BalancesResponse
      */
-    public function listAllBalances($asOfTime, $currencyCode): BalancesResponse
+    public function listAllBalances($asOfTime, $currencyCode, $includeCryptoCurrencies = 'false'): BalancesResponse
     {
         $path = "/balances";
 
@@ -186,6 +190,7 @@ class TransactionSearch extends BaseService
         $params = [];
         $params['as_of_time'] = $asOfTime;
         $params['currency_code'] = $currencyCode;
+        $params['include_crypto_currencies'] = var_export($includeCryptoCurrencies, true);
 
         $body = null;
         $response = $this->send('GET', $path, $params, [], $body);
@@ -219,9 +224,9 @@ class TransactionSearch extends BaseService
      * items.
      *
      * @throws ApiException
-     * @return PartnerSearchResponse
+     * @return PartnerPartnerSearchResponse
      */
-    public function listPartnerTransactions($integrationId, $accountId, $startTime, $endTime, $page = 1, $pageSize = 100): PartnerSearchResponse
+    public function listPartnerTransactions($integrationId, $accountId, $startTime, $endTime, $page = 1, $pageSize = 100): PartnerPartnerSearchResponse
     {
         $path = "/partner-transactions";
 
@@ -237,6 +242,6 @@ class TransactionSearch extends BaseService
         $body = null;
         $response = $this->send('GET', $path, $params, [], $body);
         $jsonData = json_decode($response->getBody(), true);
-        return new PartnerSearchResponse($jsonData);
+        return new PartnerPartnerSearchResponse($jsonData);
     }
 }

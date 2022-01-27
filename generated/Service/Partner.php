@@ -13,7 +13,7 @@ class Partner extends BaseService
 
     /**
      * Creates a partner referral that is shared by the API caller. The referrals contains the client's personal,
-     * business, financial and operations that the partner wants to onbaord the client.
+     * business, financial and operations that the partner wants to onboard the client.
      *
      * @param $referralData mixed
      *

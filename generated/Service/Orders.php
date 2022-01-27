@@ -3,6 +3,7 @@
 namespace OxidSolutionCatalysts\PayPalApi\Service;
 
 use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\ConfirmOrderRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\Order;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderAuthorizeRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderCaptureRequest;
@@ -10,13 +11,16 @@ use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderValidateRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentContextData;
 use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentDetailsRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentSessionRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaymentSessionResponse;
 
 class Orders extends BaseService
 {
     protected $basePath = '/v2/checkout';
 
     /**
-     * Creates an order. Supports orders with only one purchase unit.
+     * Creates an order.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a
+     * href="/docs/api/reference/orders-v2-errors/#create-order">Orders v2 errors</a>.</blockquote>
      *
      * @param $order mixed
      *
@@ -51,45 +55,54 @@ class Orders extends BaseService
     }
 
     /**
-     * Shows details for an order, by ID.
+     * Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting,
+     * see <a href="/docs/api/reference/orders-v2-errors/#get-order">Orders v2 errors</a>.</blockquote>
      *
      * @param $id string The ID of the order for which to show details.
+     *
+     * @param $fields string A comma-separated list of fields that should be returned for the order. Valid filter
+     * field is `payment_source`.
      *
      * @throws ApiException
      * @return Order
      */
-    public function showOrderDetails($id): Order
+    public function showOrderDetails($id, $fields): Order
     {
         $path = "/orders/{$id}";
 
 
+        $params = [];
+        $params['fields'] = $fields;
 
         $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->send('GET', $path, $params, [], $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
 
     /**
-     * Updates an order with the `CREATED` or `APPROVED` status.<br/>You cannot update an order with the `COMPLETED`
-     * status.<br/>To make an update, you must provide a `reference_id`.<br/>If you omit a `reference_id` for an
-     * order with one purchase unit, PayPal defaults to a `reference_id` of `default`, which enables you to use a
-     * path:<pre>"path": "/purchase_units/@reference_id=='default'/{attribute-or-object}"</pre>.<br/>You can patch
-     * these attributes and objects to complete these operations:<ul><li><code>intent</code> &mdash;
-     * replace.</li><li><code>purchase_units</code> &mdash; replace,
-     * add.</li><li><code>purchase_units[].custom_id</code> &mdash; replace, add,
-     * remove.</li><li><code>purchase_units[].description</code> &mdash; replace, add,
-     * remove.</li><li><code>purchase_units[].payee.email</code> &mdash;
-     * replace.</li><li><code>purchase_units[].shipping.name</code> &mdash; replace,
-     * add.</li><li><code>purchase_units[].shipping.address</code> &mdash; replace,
-     * add.</li><li><code>purchase_units[].soft_descriptor</code> &mdash; replace,
-     * remove.</li><li><code>purchase_units[].amount</code> &mdash;
-     * replace.</li><li><code>purchase_units[].invoice_id</code> &mdash; replace, add,
-     * remove.</li><li><code>purchase_units[].payment_instruction</code> &mdash;
-     * replace.</li><li><code>purchase_units[].payment_instruction.disbursement_mode</code> &mdash;
-     * replace.<blockquote><strong>Note:</strong> By default, <code>disbursement_mode</code> is
-     * <code>INSTANT</code>.</blockquote></li><li><code>purchase_units[].payment_instruction.platform_fees</code>
-     * &mdash; replace, add, remove.</li></ul>
+     * Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the `COMPLETED`
+     * status.<br/><br/>To make an update, you must provide a `reference_id`. If you omit this value with an order
+     * that contains only one purchase unit, PayPal sets the value to `default` which enables you to use the path:
+     * <code>"/purchase_units/@reference_id=='default'/{attribute-or-object}"</code>.<blockquote><strong>Note:</strong>
+     * For error handling and troubleshooting, see <a href="/docs/api/reference/orders-v2-errors/#patch-order">Orders
+     * v2 errors</a>.</blockquote>Patchable attributes or
+     * objects:<br/><br/><table><thead><th>Attribute</th><th>Op</th><th>Notes</th></thead><tbody><tr><td><code>intent</code></td><td>replace</td><td></td></tr><tr><td><code>payer</code></td><td>replace,
+     * add</td><td>Using replace op for <code>payer</code> will replace the whole <code>payer</code> object with the
+     * value sent in request.</td></tr><tr><td><code>purchase_units</code></td><td>replace,
+     * add</td><td></td></tr><tr><td><code>purchase_units[].custom_id</code></td><td>replace, add,
+     * remove</td><td></td></tr><tr><td><code>purchase_units[].description</code></td><td>replace, add,
+     * remove</td><td></td></tr><tr><td><code>purchase_units[].payee.email</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].shipping.name</code></td><td>replace,
+     * add</td><td></td></tr><tr><td><code>purchase_units[].shipping.address</code></td><td>replace,
+     * add</td><td></td></tr><tr><td><code>purchase_units[].shipping.type</code></td><td>replace,
+     * add</td><td></td></tr><tr><td><code>purchase_units[].soft_descriptor</code></td><td>replace,
+     * remove</td><td></td></tr><tr><td><code>purchase_units[].amount</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].invoice_id</code></td><td>replace,
+     * add,
+     * remove</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction</code></td><td>replace</td><td></td></tr><tr><td><code>purchase_units[].payment_instruction.disbursement_mode</code></td><td>replace</td><td>By
+     * default, <code>disbursement_mode</code> is
+     * <code>INSTANT</code>.</td></tr><tr><td><code>purchase_units[].payment_instruction.platform_fees</code></td><td>replace,
+     * add, remove</td><td></td></tr><tr><td><code>application_context.client_configuration</code></td><td>replace,
+     * add</td><td></td></tr></tbody></table>
      *
      * @param $id string The ID of the order to update.
      *
@@ -138,9 +151,45 @@ class Orders extends BaseService
     }
 
     /**
+     * Payer confirms their intent to pay for the the Order with the given payment source.
+     *
+     * @param $payPalClientMetadataId string
+     *
+     * @param $id string The ID of the order for which the payer confirms their intent to pay.
+     *
+     * @param $confirmOrderRequest mixed
+     *
+     * @param $prefer string The preferred server response upon successful completion of the request. Value
+     * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
+     * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
+     * and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource
+     * representation, including the current state of the resource.</li></ul>
+     *
+     * @throws ApiException
+     * @return Order
+     */
+    public function confirmTheOrder($payPalClientMetadataId, $id, ConfirmOrderRequest $confirmOrderRequest, $prefer = 'return=minimal'): Order
+    {
+        $path = "/orders/{$id}/confirm-payment-source";
+
+        $headers = [];
+        $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
+        $headers['Content-Type'] = 'application/json';
+        $headers['Prefer'] = $prefer;
+
+
+        $body = json_encode($confirmOrderRequest, true);
+        $response = $this->send('POST', $path, [], $headers, $body);
+        $jsonData = json_decode($response->getBody(), true);
+        return new Order($jsonData);
+    }
+
+    /**
      * Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve
      * the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being
-     * redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.
+     * redirected to the rel:approve URL that was returned in the HATEOAS links in the create order
+     * response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a
+     * href="/docs/api/reference/orders-v2-errors/#authorize-order">Orders v2 errors</a>.</blockquote>
      *
      * @param $payPalClientMetadataId string
      *
@@ -181,7 +230,9 @@ class Orders extends BaseService
     /**
      * Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the
      * order or a valid payment_source must be provided in the request. A buyer can approve the order upon being
-     * redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.
+     * redirected to the rel:approve URL that was returned in the HATEOAS links in the create order
+     * response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a
+     * href="/docs/api/reference/orders-v2-errors/#capture-order">Orders v2 errors</a>.</blockquote>
      *
      * @param $payPalClientMetadataId string
      *
@@ -321,5 +372,33 @@ class Orders extends BaseService
 
         $body = json_encode($paymentDetails, true);
         $response = $this->send('POST', $path, [], $headers, $body);
+    }
+
+    /**
+     * This api is will create external payment session with 3rd party payment gateway system.
+     *
+     * @param $xPAYPALSECURITYCONTEXT string Contains the credentials to authenticate a user agent with a server.
+     *
+     * @param $paypalApplicationContext string Contains application permission to execute operation.
+     *
+     * @param $paymentSessionRequest mixed
+     *
+     * @throws ApiException
+     * @return PaymentSessionResponse
+     */
+    public function createPaymentSessionWith3rdPartyPaymentGateway($xPAYPALSECURITYCONTEXT, $paypalApplicationContext, PaymentSessionRequest $paymentSessionRequest): PaymentSessionResponse
+    {
+        $path = "/payment-sessions";
+
+        $headers = [];
+        $headers['X-PAYPAL-SECURITY-CONTEXT'] = $xPAYPALSECURITYCONTEXT;
+        $headers['paypal-application-context'] = $paypalApplicationContext;
+        $headers['Content-Type'] = 'application/json';
+
+
+        $body = json_encode($paymentSessionRequest, true);
+        $response = $this->send('POST', $path, [], $headers, $body);
+        $jsonData = json_decode($response->getBody(), true);
+        return new PaymentSessionResponse($jsonData);
     }
 }

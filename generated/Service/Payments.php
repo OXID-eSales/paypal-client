@@ -5,6 +5,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Service;
 use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
 use OxidSolutionCatalysts\PayPalApi\Model\Payments\Authorization;
 use OxidSolutionCatalysts\PayPalApi\Model\Payments\AuthorizationRequest;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\AuthorizationVoidRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Payments\Capture;
 use OxidSolutionCatalysts\PayPalApi\Model\Payments\CaptureRequest;
 use OxidSolutionCatalysts\PayPalApi\Model\Payments\OrderCaptureRequest;
@@ -101,13 +102,14 @@ class Payments extends BaseService
 
     /**
      * Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still available,
-     * reauthorize a payment after its initial three-day honor period expires. You can reauthorize a payment only
-     * once from days four to 29.<br/><br/>If 30 days have transpired since the date of the original authorization,
-     * you must create an authorized payment instead of reauthorizing the original authorized payment.<br/><br/>A
-     * reauthorized payment itself has a new honor period of three days.<br/><br/>You can reauthorize an authorized
-     * payment once for up to 115% of the original authorized amount, not to exceed an increase of $75
-     * USD.<br/><br/>Supports only the `amount` request parameter.<blockquote><strong>Note:</strong> This request is
-     * currently not supported for Partner use cases.</blockquote>
+     * reauthorize a payment after its initial three-day honor period expires. Within the 29-day authorization
+     * period, you can issue multiple re-authorizations after the honor period expires.<br/><br/>If 30 days have
+     * transpired since the date of the original authorization, you must create an authorized payment instead of
+     * reauthorizing the original authorized payment.<br/><br/>A reauthorized payment itself has a new honor period
+     * of three days.<br/><br/>You can reauthorize an authorized payment once for up to 115% of the original
+     * authorized amount, not to exceed an increase of $75 USD.<br/><br/>Supports only the `amount` request
+     * parameter.<blockquote><strong>Note:</strong> This request is currently not supported for Partner use
+     * cases.</blockquote>
      *
      * @param $authorizationId string The PayPal-generated ID for the authorized payment to reauthorize.
      *
@@ -144,8 +146,8 @@ class Payments extends BaseService
      * @param $authorizationId string The PayPal-generated ID for the authorized payment to void.
      *
      * @param $payPalAuthAssertion string An API-caller-provided JSON Web Token (JWT) assertion that identifies the
-     * merchant. For details, see <a
-     * href="docs/api/reference/api-requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.<blockquote><strong>Note:</strong>For
+     * merchant. For details, see
+     * [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For
      * three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner
      * must identify the merchant using either a PayPal-Auth-Assertion header or an access token with
      * target_subject.</blockquote>
@@ -223,8 +225,8 @@ class Payments extends BaseService
      * @param $refundRequest mixed
      *
      * @param $payPalAuthAssertion string An API-caller-provided JSON Web Token (JWT) assertion that identifies the
-     * merchant. For details, see <a
-     * href="docs/api/reference/api-requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.<blockquote><strong>Note:</strong>For
+     * merchant. For details, see
+     * [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For
      * three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner
      * must identify the merchant using either a PayPal-Auth-Assertion header or an access token with
      * target_subject.</blockquote>
@@ -272,5 +274,39 @@ class Payments extends BaseService
         $response = $this->send('GET', $path, [], [], $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Refund($jsonData);
+    }
+
+    /**
+     * Voids, or cancels, an authorized payment, by passing the alternate identifiers like invoice id.
+     *
+     * @param $paymentVoid mixed
+     *
+     * @param $payPalAuthAssertion string An API-caller-provided JSON Web Token (JWT) assertion that identifies the
+     * merchant. For details, see
+     * [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For
+     * three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner
+     * must identify the merchant using either a PayPal-Auth-Assertion header or an access token with
+     * target_subject.</blockquote>
+     *
+     * @param $prefer string The preferred server response upon successful completion of the request. Value
+     * is:<ul><li><code>return=minimal</code>. The server returns no response with a HTTP <code>204
+     * OK</code></li><li><code>return=representation</code>. The server returns a complete resource representation,
+     * including the current state of the resource with a HTTP <code>200 OK</code>.</li></ul>
+     *
+     * @throws ApiException
+     * @return void
+     */
+    public function voidAuthorizedPaymentUsingAlternateIdentifier(AuthorizationVoidRequest $paymentVoid, $payPalAuthAssertion, $prefer = 'return=minimal'): void
+    {
+        $path = "/void";
+
+        $headers = [];
+        $headers['Content-Type'] = 'application/json';
+        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
+        $headers['Prefer'] = $prefer;
+
+
+        $body = json_encode($paymentVoid, true);
+        $response = $this->send('POST', $path, [], $headers, $body);
     }
 }
