@@ -92,6 +92,9 @@ class ReferralDataReferralData extends Account implements JsonSerializable
      */
     public $legal_consents;
 
+    /** @var array */
+    public $capabilities = [];
+
     /**
      * Payout specific attributes.
      *

@@ -4,6 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Model\Partner;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Partner\AccountBusinessEntity;
 use Webmozart\Assert\Assert;
 
 /**
