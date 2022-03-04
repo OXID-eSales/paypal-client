@@ -29,9 +29,8 @@ class Client
     public const CONTENT_TYPE_JSON      = 'application/json';
     public const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
     public const CONTENT_TYPE_MULTIPART = 'application/x-www-form-urlencoded';
-    public const PAYPAL_PARTNER_ATTR_ID = 'Oxid_Cart_6Cart_Plus, Oxid_Cart_ECS_Shortcut, OXID_Cart_ProfessionalECS';
+    public const PAYPAL_PARTNER_ATTR_ID = 'Oxid_Cart_Payments, Oxid_Cart_PymtsShortcut, oxid_Cart_Instbanners';
     public const PAYPAL_PARTNER_ATTR_ID_HEADER = 'PayPal-Partner-Attribution-Id';
-
 
     /**
      * @var string
