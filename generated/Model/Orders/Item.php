@@ -56,6 +56,14 @@ class Item implements JsonSerializable
     public $quantity;
 
     /**
+     * The item tax rate. Must be a whole number.
+     *
+     * @var string
+     * maxLength: 10
+     */
+    public $tax_rate;
+
+    /**
      * The detailed item description.
      *
      * @var string | null
@@ -117,6 +125,11 @@ class Item implements JsonSerializable
             10,
             "quantity in Item must have maxlength of 10 $within"
         );
+        Assert::maxLength(
+            $this->tax_rate,
+            10,
+            "tax_rate in Item must have maxlength of 10 $within"
+        );
         !isset($this->description) || Assert::maxLength(
             $this->description,
             127,
@@ -152,6 +165,9 @@ class Item implements JsonSerializable
         }
         if (isset($data['quantity'])) {
             $this->quantity = $data['quantity'];
+        }
+        if (isset($data['tax_rate'])) {
+            $this->tax_rate = $data['tax_rate'];
         }
         if (isset($data['description'])) {
             $this->description = $data['description'];
