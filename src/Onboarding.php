@@ -17,6 +17,11 @@ class Onboarding extends Client
     private $partnerId;
 
     /**
+     * @var string
+     */
+    private $sellerId;
+
+    /**
      * during onboarding you do not have shop owners credentials
      * so you initialize the client with the technical oxid account credentials
      * Onboarding constructor.
@@ -24,7 +29,8 @@ class Onboarding extends Client
      * @param $endpoint string the base API url
      * @param $oxidClientId string the client id from the technical oxid account
      * @param $oxidClientSecret string the client secret from the technical oxid account
-     * @param $oxidPartnerId string Not sure if needed for any onboarding related request
+     * @param $oxidPartnerId string for getting credentials and informations for successful onboarding
+     * @param $sellerId string for getting informations for successful onboarding
      * @param bool $debug set to true to debug request sent to paypal on the console
      */
     public function __construct(
@@ -33,9 +39,11 @@ class Onboarding extends Client
         $oxidClientId,
         $oxidClientSecret,
         $oxidPartnerId,
+        $sellerId,
         $debug = false
     ) {
         $this->partnerId = $oxidPartnerId;
+        $this->sellerId = $sellerId;
         parent::__construct($logger, $endpoint, $oxidClientId, $oxidClientSecret, '', $debug);
     }
 
@@ -82,6 +90,19 @@ class Onboarding extends Client
         $request = $this->createRequest(
             'GET',
             "/v1/customer/partners/{$partnerId}/merchant-integrations/credentials",
+            []
+        );
+        $response = $this->send($request);
+        return json_decode($response->getBody(), true);
+    }
+
+    public function getMerchantInformations()
+    {
+        $partnerId = $this->partnerId;
+        $sellerId = $this->sellerId;
+        $request = $this->createRequest(
+            'GET',
+            "/v1/customer/partners/{$partnerId}/merchant-integrations/{$sellerId}",
             []
         );
         $response = $this->send($request);
