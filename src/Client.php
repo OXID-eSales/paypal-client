@@ -28,9 +28,6 @@ class Client
     public const PRODUCTION_URL         = "https://api.paypal.com";
     public const CONTENT_TYPE_JSON      = 'application/json';
     public const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
-    public const CONTENT_TYPE_MULTIPART = 'application/x-www-form-urlencoded';
-    public const PAYPAL_PARTNER_ATTR_ID = 'Oxid_Cart_Payments, Oxid_Cart_PymtsShortcut, oxid_Cart_Instbanners';
-    public const PAYPAL_PARTNER_ATTR_ID_HEADER = 'PayPal-Partner-Attribution-Id';
 
     /**
      * @var string
@@ -223,7 +220,6 @@ class Client
             $headers['PayPal-Auth-Assertion'] = "{$joseHeader}.{$payload}.";
         }
 
-        $headers[self::PAYPAL_PARTNER_ATTR_ID_HEADER] = self::PAYPAL_PARTNER_ATTR_ID;
         foreach ($headers as $headerName => $headerValue) {
             $request = $request->withHeader($headerName, $headerValue);
         }
