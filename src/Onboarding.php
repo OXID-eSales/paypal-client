@@ -68,7 +68,6 @@ class Onboarding extends Client
         $url = $this->endpoint . "/v1/oauth2/token";
         $headers = [
             "Authorization" => "Basic $authBase64",
-            "PayPal-Partner-Attribution-Id" => self::PAYPAL_PARTNER_ATTR_ID,
             "Accept" => self::CONTENT_TYPE_JSON
         ];
 
