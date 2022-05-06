@@ -64,10 +64,10 @@ class GenericService extends BaseService
      *
      * @param array $headers
      *
-     * @return Authorization
+     * @return array
      * @throws ApiException
      */
-    public function request($method, $body = null, $params = [], $headers = [])
+    public function request($method, $body = null, $params = [], $headers = []): array
     {
         $requestHeaders = $this->headers;
         $requestHeaders['Content-Type'] = 'application/json';
