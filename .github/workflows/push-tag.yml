@@ -1,0 +1,33 @@
+name: Push Tag
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+
+  get_latest_tag:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.latest_tag.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Get latest tag'
+        id: latest_tag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+  dispatch:
+    needs: get_latest_tag
+    strategy:
+      matrix:
+        repo: ['OXID-eSales/paypal-module', 'OXID-eSales/module-demoshop-images']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ matrix.repo }}
+          event-type: push-tag
+          client-payload: '{"tag": "${{ ${{needs.get_tatest_Tag.outputs.tag}} }}"}'
