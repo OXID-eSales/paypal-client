@@ -24,7 +24,7 @@ jobs:
         repo: ['OXID-eSales/paypal-module', 'OXID-eSales/module-demoshop-images']
     runs-on: ubuntu-latest
     env:
-      TAG: ${{ steps.get_latest_tag.outputs.tag }}
+      TAG: ${{ needs.get_latest_tag.outputs.tag }}
     steps:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
