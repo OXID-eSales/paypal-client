@@ -30,4 +30,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: push-tag
-          client-payload: '{"tag": "${{ ${{needs.get_tatest_Tag.outputs.tag}} }}"}'
+          client-payload: '{"tag": "${{needs.get_tatest_Tag.outputs.tag}}"}'
