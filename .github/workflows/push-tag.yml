@@ -23,6 +23,8 @@ jobs:
       matrix:
         repo: ['OXID-eSales/paypal-module', 'OXID-eSales/module-demoshop-images']
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ steps.get_latest_tag.outputs.tag }}
     steps:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
@@ -30,4 +32,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: push-tag
-          client-payload: '{"tag": "${{ needs.get_tatest_Tag.outputs.tag }}"}'
+          client-payload: '{"tag": "${{ env.TAG }}"}'
