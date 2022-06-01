@@ -122,6 +122,13 @@ class PaymentSource2 implements JsonSerializable
     public $p24;
 
     /**
+     * Information needed to pay using Pui.
+     *
+     * @var PuiRequest | null
+     */
+    public $pay_upon_invoice;
+
+    /**
      * Information needed to pay using SafetyPay.
      *
      * @var SafetypayRequest | null
@@ -262,7 +269,13 @@ class PaymentSource2 implements JsonSerializable
             PTwoFourRequest::class,
             "p24 in PaymentSource2 must be instance of PTwoFourRequest $within"
         );
-        !isset($this->p24) ||  $this->p24->validate(PaymentSource2::class);
+        !isset($this->p24) ||  $this->p24->validate(PaymentSource::class);
+        !isset($this->pay_upon_invoice) || Assert::isInstanceOf(
+            $this->pay_upon_invoice,
+            PuiRequest::class,
+            "pay_upon_invoice in PaymentSource2 must be instance of PuiRequest $within"
+        );
+        !isset($this->pay_upon_invoice) ||  $this->pay_upon_invoice->validate(PaymentSource::class);
         !isset($this->safetypay) || Assert::isInstanceOf(
             $this->safetypay,
             SafetypayRequest::class,
@@ -354,6 +367,9 @@ class PaymentSource2 implements JsonSerializable
         if (isset($data['p24'])) {
             $this->p24 = new PTwoFourRequest($data['p24']);
         }
+        if (isset($data['pay_upon_invoice'])) {
+            $this->pay_upon_invoice = new PuiRequest($data['pay_upon_invoice']);
+        }
         if (isset($data['safetypay'])) {
             $this->safetypay = new SafetypayRequest($data['safetypay']);
         }
@@ -382,6 +398,11 @@ class PaymentSource2 implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initCard(): Card
+    {
+        return $this->card = new Card();
     }
 
     public function initToken(): Token
@@ -457,6 +478,11 @@ class PaymentSource2 implements JsonSerializable
     public function initP24(): PTwoFourRequest
     {
         return $this->p24 = new PTwoFourRequest();
+    }
+
+    public function initPui(): PuiRequest
+    {
+        return $this->pay_upon_invoice = new PuiRequest();
     }
 
     public function initSafetypay(): SafetypayRequest

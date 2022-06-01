@@ -128,6 +128,13 @@ class PaymentSourceResponse implements JsonSerializable
     public $p24;
 
     /**
+     * Information used to pay using Pui.
+     *
+     * @var Pui | null
+     */
+    public $pay_upon_invoice;
+
+    /**
      * Information needed to pay using SafetyPay.
      *
      * @var Safetypay | null
@@ -275,6 +282,12 @@ class PaymentSourceResponse implements JsonSerializable
             "p24 in PaymentSourceResponse must be instance of PTwoFour $within"
         );
         !isset($this->p24) ||  $this->p24->validate(PaymentSourceResponse::class);
+        !isset($this->pay_upon_invoice) || Assert::isInstanceOf(
+            $this->pay_upon_invoice,
+            Pui::class,
+            "pay_upon_invoice in PaymentSourceResponse must be instance of Pui $within"
+        );
+        !isset($this->pay_upon_invoice) ||  $this->pay_upon_invoice->validate(PaymentSourceResponse::class);
         !isset($this->safetypay) || Assert::isInstanceOf(
             $this->safetypay,
             Safetypay::class,
@@ -368,6 +381,9 @@ class PaymentSourceResponse implements JsonSerializable
         }
         if (isset($data['p24'])) {
             $this->p24 = new PTwoFour($data['p24']);
+        }
+        if (isset($data['pay_upon_invoice'])) {
+            $this->pay_upon_invoice = new Pui($data['pay_upon_invoice']);
         }
         if (isset($data['safetypay'])) {
             $this->safetypay = new Safetypay($data['safetypay']);
@@ -477,6 +493,11 @@ class PaymentSourceResponse implements JsonSerializable
     public function initP24(): PTwoFour
     {
         return $this->p24 = new PTwoFour();
+    }
+
+    public function initPui(): Pui
+    {
+        return $this->pay_upon_invoice = new Pui();
     }
 
     public function initSafetypay(): Safetypay
