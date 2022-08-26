@@ -180,6 +180,26 @@ class Pui implements JsonSerializable
         if (isset($data['payment_reference'])) {
             $this->payment_reference = $data['payment_reference'];
         }
+
+        //Structure of payment_source->pay_upon_invoice as in sandbox response
+        if (isset($data['bic'])) {
+            $this->bic = $data['bic'];
+        }
+        if (isset($data['bank_name'])) {
+            $this->bank_name = $data['bank_name'];
+        }
+        if (isset($data['iban'])) {
+            $this->iban = $data['iban'];
+        }
+        if (isset($dat['account_holder_name'])) {
+            $this->account_holder_name = $data['account_holder_name'];
+        }
+        if (isset($data['payment_reference'])) {
+            $this->payment_reference = $data['payment_reference'];
+        }
+        if (isset($data['account_holder_name'])) {
+            $this->account_holder_name = $data['account_holder_name'];
+        }
     }
 
     public function __construct(array $data = null)
