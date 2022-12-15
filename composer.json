@@ -3,15 +3,15 @@
     "description": "OXID eSales PayPal payment API-client for OXID",
     "type": "library",
     "require": {
-        "php" : ">=7.1",
-        "guzzlehttp/guzzle": "~6.5 || ~7",
+        "php" : ">=7.0",
+        "guzzlehttp/guzzle": "^6.5 || ~7",
         "psr/log": "^1.1",
         "league/oauth2-client": "^2.4",
-        "webmozart/assert": "^1.5 || ^1.6 || ^1.7 || ^1.8 || ^1.9"
+        "webmozart/assert": "^1.7 || ^1.8 || ^1.9"
     },
     "require-dev": {
-        "php" : "^7.1",
-        "phpunit/phpunit": "^7.5.20",
+        "php" : "^7.0",
+        "phpunit/phpunit": "^6.5 || ^7.5.20",
         "ext-json": "*"
     },
     "autoload": {
