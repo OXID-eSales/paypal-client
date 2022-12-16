@@ -24,10 +24,10 @@ use Psr\Log\LoggerInterface;
  */
 class Client
 {
-    public const SANDBOX_URL            = "https://api.sandbox.paypal.com";
-    public const PRODUCTION_URL         = "https://api.paypal.com";
-    public const CONTENT_TYPE_JSON      = 'application/json';
-    public const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
+    const SANDBOX_URL            = "https://api.sandbox.paypal.com";
+    const PRODUCTION_URL         = "https://api.paypal.com";
+    const CONTENT_TYPE_JSON      = 'application/json';
+    const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
 
     /**
      * @var string
