@@ -24,10 +24,10 @@ use Psr\Log\LoggerInterface;
  */
 class Client
 {
-    public const SANDBOX_URL            = "https://api.sandbox.paypal.com";
-    public const PRODUCTION_URL         = "https://api.paypal.com";
-    public const CONTENT_TYPE_JSON      = 'application/json';
-    public const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
+    const SANDBOX_URL            = "https://api.sandbox.paypal.com";
+    const PRODUCTION_URL         = "https://api.paypal.com";
+    const CONTENT_TYPE_JSON      = 'application/json';
+    const CONTENT_TYPE_X_WWW     = 'application/x-www-form-urlencoded';
 
     /**
      * @var string
@@ -40,9 +40,9 @@ class Client
     protected $httpClient;
 
     /**
-     * @var array
+     * @var null|string
      */
-    protected $tokenResponse;
+    protected $tokenResponse = null;
 
     /**
      * @var string
@@ -60,6 +60,11 @@ class Client
     private $merchantPayerId;
 
     /**
+     * @var string
+     */
+    private $tokenCacheFilename;
+
+    /**
      * Client constructor.
      * @param LoggerInterface $logger
      * @param string $endpoint
@@ -68,21 +73,24 @@ class Client
      * @param string $clientSecret
      * seller/merchant or partner clientSecret depending on if it is a first party or a third party
      * request. Usually you want to use the sellers credentials if they are available
+     * @param string $tokenCacheFilename the filename for the cached token
      * @param string $payerId the technical oxid paypal account client id used as meta information in requests
      * @param bool $debug
      */
     public function __construct(
         LoggerInterface $logger,
-        $endpoint,
-        $clientId,
-        $clientSecret,
-        $payerId = "",
-        $debug = false
+                        $endpoint,
+                        $clientId,
+                        $clientSecret,
+                        $tokenCacheFilename,
+                        $payerId = "",
+                        $debug = false
     ) {
         $this->endpoint = $endpoint;
         $this->merchantClientId = $clientId;
         $this->merchantClientSecret = $clientSecret;
         $this->merchantPayerId = $payerId;
+        $this->tokenCacheFilename = $tokenCacheFilename;
         $stack = HandlerStack::create();
         if ($debug) {
             $stack->push(
@@ -167,24 +175,27 @@ class Client
             ]
         ]);
 
-        $this->setTokenResponse(json_decode('' . $res->getBody(), true));
+        $rawTokenResponse = json_decode('' . $res->getBody(), true);
+
+        $this->setTokenResponse($rawTokenResponse['access_token']);
 
         return $this;
     }
 
     public function isAuthenticated()
     {
-        return isset($this->tokenResponse['access_token']);
+        return !is_null($this->getTokenResponse());
     }
 
     /**
      * use this if you want to inject a token into the auth headers set by this client.
      * You may want to use this with the return from getTokenResponse() so you are able to cache the
      * the auth between requests.
-     * @param $tokenResponse
+     * @param null|string $tokenResponse
      */
     public function setTokenResponse($tokenResponse)
     {
+        file_put_contents($this->tokenCacheFilename, $tokenResponse);
         $this->tokenResponse = $tokenResponse;
     }
 
@@ -195,6 +206,12 @@ class Client
      */
     public function getTokenResponse()
     {
+        if (!$this->tokenResponse) {
+            $tokenResponse = file_get_contents($this->tokenCacheFilename);
+            if ($tokenResponse) {
+                $this->tokenResponse = $tokenResponse;
+            }
+        }
         return $this->tokenResponse;
     }
 
@@ -208,7 +225,7 @@ class Client
             $this->auth();
         }
 
-        $headers["Authorization"] = "Bearer " . $this->tokenResponse['access_token'];
+        $headers["Authorization"] = "Bearer " . $this->getTokenResponse();
 
         $joseHeader = base64_encode('{"alg":"none"}');
 

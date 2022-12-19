@@ -16,16 +16,17 @@ abstract class ClientFactory
             $class,
             $setting['clientId'],
             $setting['clientSecret'],
+            'paypaltoken.txt',
             '',
             $setting['debug']
         );
     }
 
-    public static function createCustomClient($class, $clientId, $clientSecret, $payerId, $debug)
+    public static function createCustomClient($class, $clientId, $clientSecret, $tokenCacheFilename, $payerId, $debug)
     {
         assert(is_a($class, Client::class, true));
         $output = new ConsoleOutput(OutputInterface::VERBOSITY_DEBUG);
         $logger = new ConsoleLogger($output);
-        return new $class($logger, Client::SANDBOX_URL, $clientId, $clientSecret, $payerId, $debug);
+        return new $class($logger, Client::SANDBOX_URL, $clientId, $clientSecret, $tokenCacheFilename, $payerId, $debug);
     }
 }
