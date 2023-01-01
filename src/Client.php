@@ -202,11 +202,11 @@ class Client
     /**
      * use this if you want to store the auth response for later reuse
      * see also setTokenResponse
-     * @return array the token response from the auth call
+     * @return string|null the token response from the auth call
      */
     public function getTokenResponse()
     {
-        if (!$this->tokenResponse) {
+        if (is_null($this->tokenResponse)) {
             $tokenResponse = file_get_contents($this->tokenCacheFilename);
             if ($tokenResponse) {
                 $this->tokenResponse = $tokenResponse;
