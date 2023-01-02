@@ -26,27 +26,28 @@ class Onboarding extends Client
      * so you initialize the client with the technical oxid account credentials
      * Onboarding constructor.
      * @param LoggerInterface $logger
-     * @param $endpoint string the base API url
-     * @param $oxidClientId string the client id from the technical oxid account
-     * @param $oxidClientSecret string the client secret from the technical oxid account
-     * @param $oxidPartnerId string for getting credentials and informations for successful onboarding
-     * @param $sellerId string for getting informations for successful onboarding
-     * @param bool $debug set to true to debug request sent to paypal on the console
+     * @param string $endpoint the base API url
+     * @param string $oxidClientId the client id from the technical oxid account
+     * @param string $oxidClientSecret the client secret from the technical oxid account
+     * @param string $oxidPartnerId for getting credentials and information for successful onboarding
+     * @param string $sellerId for getting information for successful onboarding
+     * @param string $tokenCacheFilename the filename for the cached token
+     * @param bool $debug  set to true to debug request sent to PayPal on the console
      */
     public function __construct(
         LoggerInterface $logger,
-        $endpoint,
-        $oxidClientId,
-        $oxidClientSecret,
-        $oxidPartnerId,
-        $sellerId,
-        $debug = false
+                        $endpoint,
+                        $oxidClientId,
+                        $oxidClientSecret,
+                        $oxidPartnerId,
+                        $sellerId,
+                        $tokenCacheFilename,
+                        $debug = false
     ) {
         $this->partnerId = $oxidPartnerId;
         $this->sellerId = $sellerId;
-        parent::__construct($logger, $endpoint, $oxidClientId, $oxidClientSecret, '', $debug);
+        parent::__construct($logger, $endpoint, $oxidClientId, $oxidClientSecret, $tokenCacheFilename, '', $debug);
     }
-
 
     /**
      * Auth after seller used on browser to login into the paypal account
@@ -80,7 +81,9 @@ class Onboarding extends Client
             ]
         ]);
 
-        $this->tokenResponse = json_decode('' . $res->getBody(), true);
+        $rawTokenResponse = json_decode('' . $res->getBody(), true);
+
+        $this->setTokenResponse($rawTokenResponse['access_token']);
     }
 
     public function getCredentials()
