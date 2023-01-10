@@ -16,19 +16,19 @@ class UpdateCaptureRequest implements JsonSerializable
     use BaseModel;
 
     /** The funds for this captured payment were credited to the payee's PayPal account. */
-    public const STATUS_COMPLETED = 'COMPLETED';
+    const STATUS_COMPLETED = 'COMPLETED';
 
     /** The funds could not be captured. */
-    public const STATUS_DECLINED = 'DECLINED';
+    const STATUS_DECLINED = 'DECLINED';
 
     /** An amount less than this captured payment's amount was partially refunded to the payer. */
-    public const STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
+    const STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
 
     /** The funds for this captured payment was not yet credited to the payee's PayPal account. For more information, see <code>status.details</code> */
-    public const STATUS_PENDING = 'PENDING';
+    const STATUS_PENDING = 'PENDING';
 
     /** An amount greater than or equal to this captured payment's amount was refunded to the payer. */
-    public const STATUS_REFUNDED = 'REFUNDED';
+    const STATUS_REFUNDED = 'REFUNDED';
 
     /**
      * The transaction ID for the captured payment.

@@ -16,61 +16,61 @@ class ReferredReferredItemInfo implements JsonSerializable
     use BaseModel;
 
     /** Computer or related accessories. */
-    public const CATEGORY_COMPUTERS = 'COMPUTERS';
+    const CATEGORY_COMPUTERS = 'COMPUTERS';
 
     /** Home appliances. */
-    public const CATEGORY_HOME = 'HOME';
+    const CATEGORY_HOME = 'HOME';
 
     /** Decorative items, ornaments, and so on. */
-    public const CATEGORY_JEWELRY = 'JEWELRY';
+    const CATEGORY_JEWELRY = 'JEWELRY';
 
     /** Antiques and collectible items. */
-    public const CATEGORY_ANTIQUES = 'ANTIQUES';
+    const CATEGORY_ANTIQUES = 'ANTIQUES';
 
     /** Entertainment goods, such as video games, DVDs, and so on. */
-    public const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
+    const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
 
     /** Other material goods. */
-    public const CATEGORY_OTHER_TANGIBLES = 'OTHER_TANGIBLES';
+    const CATEGORY_OTHER_TANGIBLES = 'OTHER_TANGIBLES';
 
     /** Travel items and travel needs. */
-    public const CATEGORY_TRAVEL = 'TRAVEL';
+    const CATEGORY_TRAVEL = 'TRAVEL';
 
     /** Services, such as installation, repair, and so on. */
-    public const CATEGORY_SERVICE = 'SERVICE';
+    const CATEGORY_SERVICE = 'SERVICE';
 
     /** Non-physical objects, such as online games. */
-    public const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
+    const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
 
     /** Other intangible goods. */
-    public const CATEGORY_OTHER_INTANGIBLES = 'OTHER_INTANGIBLES';
+    const CATEGORY_OTHER_INTANGIBLES = 'OTHER_INTANGIBLES';
 
     /** Tickets for events, such as sports, concerts, and so on. */
-    public const CATEGORY_TICKETS = 'TICKETS';
+    const CATEGORY_TICKETS = 'TICKETS';
 
     /** The customer did not receive the merchandise or service. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The order is incomplete. It has missing parts or an incorrect quantity. */
-    public const SUB_REASON_INCOMPLETE_ORDER = 'INCOMPLETE_ORDER';
+    const SUB_REASON_INCOMPLETE_ORDER = 'INCOMPLETE_ORDER';
 
     /** The goods are damaged. */
-    public const SUB_REASON_DAMAGED = 'DAMAGED';
+    const SUB_REASON_DAMAGED = 'DAMAGED';
 
     /** The item is fake. */
-    public const SUB_REASON_FAKE = 'FAKE';
+    const SUB_REASON_FAKE = 'FAKE';
 
     /** The item is materially different. It is a different item, the wrong size or model,the wrong color, or used instead of new. */
-    public const SUB_REASON_MATERIALLY_DIFFERENT = 'MATERIALLY_DIFFERENT';
+    const SUB_REASON_MATERIALLY_DIFFERENT = 'MATERIALLY_DIFFERENT';
 
     /** The item is unusable or ruined. */
-    public const SUB_REASON_UNUSABLE = 'UNUSABLE';
+    const SUB_REASON_UNUSABLE = 'UNUSABLE';
 
     /** The surcharge is incorrect. */
-    public const SUB_REASON_EXCESSIVE_SURCHARGE = 'EXCESSIVE_SURCHARGE';
+    const SUB_REASON_EXCESSIVE_SURCHARGE = 'EXCESSIVE_SURCHARGE';
 
     /**
      * The ID of the item.

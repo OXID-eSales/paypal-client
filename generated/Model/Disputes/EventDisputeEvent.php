@@ -16,64 +16,64 @@ class EventDisputeEvent implements JsonSerializable
     use BaseModel;
 
     /** The customer did not receive the merchandise or service. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The customer did not authorize purchase of the merchandise or service. */
-    public const REASON_UNAUTHORISED = 'UNAUTHORISED';
+    const REASON_UNAUTHORISED = 'UNAUTHORISED';
 
     /** The refund or credit was not processed for the customer. */
-    public const REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
+    const REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
 
     /** The transaction was a duplicate. */
-    public const REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
+    const REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
 
     /** The customer was charged an incorrect amount. */
-    public const REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
+    const REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
 
     /** The customer paid for the transaction through other means. */
-    public const REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
+    const REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
 
     /** The customer was being charged for a subscription or a recurring transaction that was canceled. */
-    public const REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
+    const REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
 
     /** A problem occurred with the remittance. */
-    public const REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
+    const REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
 
     /** Other. */
-    public const REASON_OTHER = 'OTHER';
+    const REASON_OTHER = 'OTHER';
 
     /** A customer and merchant interact in an attempt to resolve a dispute without escalation to PayPal. Occurs when the customer:<ul><li>Has not received goods or a service.</li><li>Reports that the received goods or service are not as described.</li><li>Needs more details, such as a copy of the transaction or a receipt.</li></ul> */
-    public const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
+    const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
 
     /** A customer or merchant escalates an inquiry to a claim, which authorizes PayPal to investigate the case and make a determination. Occurs only when the dispute channel is <code>INTERNAL</code>. This stage is a PayPal dispute lifecycle stage and not a credit card or debit card chargeback. All notes that the customer sends in this stage are visible to PayPal agents only. The customer must wait for PayPal’s response before the customer can take further action. In this stage, PayPal shares dispute details with the merchant, who can complete one of these actions:<ul><li>Accept the claim.</li><li>Submit evidence to challenge the claim.</li><li>Make an offer to the customer to resolve the claim.</li></ul> */
-    public const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
+    const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
 
     /** The first appeal stage for merchants. A merchant can appeal a chargeback if PayPal's decision is not in the merchant's favor. If the merchant does not appeal within the appeal period, PayPal considers the case resolved. */
-    public const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
+    const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
 
     /** The second appeal stage for merchants. A merchant can appeal a dispute for a second time if the first appeal was denied. If the merchant does not appeal within the appeal period, the case returns to a resolved status in pre-arbitration stage. */
-    public const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
+    const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
 
     /** The customer contacts PayPal to file a dispute with the merchant. */
-    public const DISPUTE_CHANNEL_INTERNAL = 'INTERNAL';
+    const DISPUTE_CHANNEL_INTERNAL = 'INTERNAL';
 
     /** The customer contacts their card issuer or bank to request a refund. */
-    public const DISPUTE_CHANNEL_EXTERNAL = 'EXTERNAL';
+    const DISPUTE_CHANNEL_EXTERNAL = 'EXTERNAL';
 
     /** The Resolution center channel. */
-    public const EVENT_CHANNEL_RESOLUTION_CENTER = 'RESOLUTION_CENTER';
+    const EVENT_CHANNEL_RESOLUTION_CENTER = 'RESOLUTION_CENTER';
 
     /** The Front office teammates channel. */
-    public const EVENT_CHANNEL_FRONT_OFFICE = 'FRONT_OFFICE';
+    const EVENT_CHANNEL_FRONT_OFFICE = 'FRONT_OFFICE';
 
     /** The Back office teammates channel. */
-    public const EVENT_CHANNEL_BACK_OFFICE = 'BACK_OFFICE';
+    const EVENT_CHANNEL_BACK_OFFICE = 'BACK_OFFICE';
 
     /** The customer relationship management tool channel. */
-    public const EVENT_CHANNEL_CRM_TOOL = 'CRM_TOOL';
+    const EVENT_CHANNEL_CRM_TOOL = 'CRM_TOOL';
 
     /**
      * The ID of the dispute.

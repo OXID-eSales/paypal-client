@@ -16,13 +16,13 @@ class Account implements JsonSerializable
     use BaseModel;
 
     /** PayPal Business account */
-    public const TIER_BUSINESS = 'BUSINESS';
+    const TIER_BUSINESS = 'BUSINESS';
 
     /** PayPal personal account */
-    public const TIER_PERSONAL = 'PERSONAL';
+    const TIER_PERSONAL = 'PERSONAL';
 
     /** PayPal Premier account */
-    public const TIER_PREMIER = 'PREMIER';
+    const TIER_PREMIER = 'PREMIER';
 
     /**
      * Unique account number.

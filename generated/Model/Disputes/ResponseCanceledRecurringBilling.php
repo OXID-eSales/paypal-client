@@ -16,13 +16,13 @@ class ResponseCanceledRecurringBilling implements JsonSerializable
     use BaseModel;
 
     /** The customer was charged for a free trial period. */
-    public const SUB_REASON_CHARGED_FOR_FREE_TRIAL = 'CHARGED_FOR_FREE_TRIAL';
+    const SUB_REASON_CHARGED_FOR_FREE_TRIAL = 'CHARGED_FOR_FREE_TRIAL';
 
     /** The customer wasn’t notified of the renewal or change in charges. */
-    public const SUB_REASON_NOT_NOTIFIED_OF_CHARGES = 'NOT_NOTIFIED_OF_CHARGES';
+    const SUB_REASON_NOT_NOTIFIED_OF_CHARGES = 'NOT_NOTIFIED_OF_CHARGES';
 
     /** The customer was charged for a canceled automatic payment. */
-    public const SUB_REASON_CHARGED_AFTER_CANCELLATION = 'CHARGED_AFTER_CANCELLATION';
+    const SUB_REASON_CHARGED_AFTER_CANCELLATION = 'CHARGED_AFTER_CANCELLATION';
 
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.

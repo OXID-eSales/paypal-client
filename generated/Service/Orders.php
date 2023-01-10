@@ -114,7 +114,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updateOrder($id, array $patchRequest): void
+    public function updateOrder($id, array $patchRequest)
     {
         $path = "/orders/{$id}";
 
@@ -320,7 +320,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function voidOrder($payPalClientMetadataId, $id, $prefer = 'return=minimal'): void
+    public function voidOrder($payPalClientMetadataId, $id, $prefer = 'return=minimal')
     {
         $path = "/orders/{$id}/void";
 
@@ -365,7 +365,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updatePaymentDetailsForTheOrder($id, PaymentDetailsRequest $paymentDetails): void
+    public function updatePaymentDetailsForTheOrder($id, PaymentDetailsRequest $paymentDetails)
     {
         $path = "/orders/{$id}/update-paymentDetails";
 

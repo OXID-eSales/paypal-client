@@ -16,43 +16,43 @@ class Order extends ActivityTimestamps implements JsonSerializable
     use BaseModel;
 
     /** The merchant intends to capture payment immediately after the customer makes a payment. */
-    public const INTENT_CAPTURE = 'CAPTURE';
+    const INTENT_CAPTURE = 'CAPTURE';
 
     /** The merchant intends to authorize a payment and place funds on hold after the customer makes a payment. Authorized payments are best captured within three days of authorization but are available to capture for up to 29 days. After the three-day honor period, the original authorized payment expires and you must re-authorize the payment. You must make a separate request to capture payments on demand. This intent is not supported when you have more than one `purchase_unit` within your order. */
-    public const INTENT_AUTHORIZE = 'AUTHORIZE';
+    const INTENT_AUTHORIZE = 'AUTHORIZE';
 
     /** The API caller saves the order for future payment processing by making an explicit <code>v2/checkout/orders/id/save</code> call after the payer approves the order. */
-    public const PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY = 'ORDER_SAVED_EXPLICITLY';
+    const PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY = 'ORDER_SAVED_EXPLICITLY';
 
     /** PayPal implicitly saves the order on behalf of the API caller after the payer approves the order. Note that this option is not currently supported. */
-    public const PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL = 'ORDER_SAVED_ON_BUYER_APPROVAL';
+    const PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL = 'ORDER_SAVED_ON_BUYER_APPROVAL';
 
     /** API Caller expects the Order to be auto completed (i.e. for PayPal to authorize or capture depending on the intent) on completion of payer approval. This option is not relevant for payment_source that typically do not require a payer approval or interaction. This option is currently only available for the following payment_source: Alipay, Bancontact, BLIK, eps, giropay, Multibanco, MyBank, P24, PayU, POLi, Sofort, Trustly, TrustPay, Verkkopankki, WeChat Pay */
-    public const PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL = 'ORDER_COMPLETE_ON_PAYMENT_APPROVAL';
+    const PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL = 'ORDER_COMPLETE_ON_PAYMENT_APPROVAL';
 
     /** The API caller intends to authorize <code>v2/checkout/orders/id/authorize</code> or capture <code>v2/checkout/orders/id/capture</code> after the payer approves the order. */
-    public const PROCESSING_INSTRUCTION_NO_INSTRUCTION = 'NO_INSTRUCTION';
+    const PROCESSING_INSTRUCTION_NO_INSTRUCTION = 'NO_INSTRUCTION';
 
     /** The order was created with the specified context. */
-    public const STATUS_CREATED = 'CREATED';
+    const STATUS_CREATED = 'CREATED';
 
     /** The order was saved and persisted. The order status continues to be in progress until a capture is made with <code>final_capture = true</code> for all purchase units within the order. */
-    public const STATUS_SAVED = 'SAVED';
+    const STATUS_SAVED = 'SAVED';
 
     /** The customer approved the payment through the PayPal wallet or another form of guest or unbranded payment. For example, a card, bank account, or so on. */
-    public const STATUS_APPROVED = 'APPROVED';
+    const STATUS_APPROVED = 'APPROVED';
 
     /** All purchase units in the order are voided. */
-    public const STATUS_VOIDED = 'VOIDED';
+    const STATUS_VOIDED = 'VOIDED';
 
     /** The payment was authorized or the authorized payment was captured for the order. */
-    public const STATUS_COMPLETED = 'COMPLETED';
+    const STATUS_COMPLETED = 'COMPLETED';
 
     /** The order requires an action from the payer (e.g. 3DS authentication). Redirect the payer to the "rel":"payer-action" HATEOAS link returned as part of the response prior to authorizing or capturing the order. */
-    public const STATUS_PAYER_ACTION_REQUIRED = 'PAYER_ACTION_REQUIRED';
+    const STATUS_PAYER_ACTION_REQUIRED = 'PAYER_ACTION_REQUIRED';
 
     /** Some of the 'purchase_units' within the Order could not be successfully authorized or captured. This status is only applicable if you have multiple 'purchase_units' for an order. */
-    public const STATUS_PARTIALLY_COMPLETED = 'PARTIALLY_COMPLETED';
+    const STATUS_PARTIALLY_COMPLETED = 'PARTIALLY_COMPLETED';
 
     /**
      * The ID of the order.

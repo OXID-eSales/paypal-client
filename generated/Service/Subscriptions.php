@@ -166,7 +166,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updatePlan($id, array $patchRequest): void
+    public function updatePlan($id, array $patchRequest)
     {
         $path = "/plans/{$id}";
 
@@ -188,7 +188,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function replacePlan($id, Plan $plan): void
+    public function replacePlan($id, Plan $plan)
     {
         $path = "/plans/{$id}";
 
@@ -208,7 +208,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function activatePlan($id): void
+    public function activatePlan($id)
     {
         $path = "/plans/{$id}/activate";
 
@@ -226,7 +226,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function deactivatePlan($id): void
+    public function deactivatePlan($id)
     {
         $path = "/plans/{$id}/deactivate";
 
@@ -247,7 +247,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updatePricing($id, UpdatePricingSchemesListRequest $updatePricingSchemesListRequest): void
+    public function updatePricing($id, UpdatePricingSchemesListRequest $updatePricingSchemesListRequest)
     {
         $path = "/plans/{$id}/update-pricing-schemes";
 
@@ -411,7 +411,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updateSubscription($id, array $patchRequest): void
+    public function updateSubscription($id, array $patchRequest)
     {
         $path = "/subscriptions/{$id}";
 
@@ -460,7 +460,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function saveSubscription($id, SubscriptionSaveRequest $subscriptionSaveRequest): void
+    public function saveSubscription($id, SubscriptionSaveRequest $subscriptionSaveRequest)
     {
         $path = "/subscriptions/{$id}/save";
 
@@ -482,7 +482,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function suspendSubscription($id, SubscriptionSuspendRequest $subscriptionSuspendRequest): void
+    public function suspendSubscription($id, SubscriptionSuspendRequest $subscriptionSuspendRequest)
     {
         $path = "/subscriptions/{$id}/suspend";
 
@@ -504,7 +504,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function cancelSubscription($id, SubscriptionCancelRequest $subscriptionCancelRequest): void
+    public function cancelSubscription($id, SubscriptionCancelRequest $subscriptionCancelRequest)
     {
         $path = "/subscriptions/{$id}/cancel";
 
@@ -526,7 +526,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function activateSubscription($id, SubscriptionActivateRequest $subscriptionActivateRequest): void
+    public function activateSubscription($id, SubscriptionActivateRequest $subscriptionActivateRequest)
     {
         $path = "/subscriptions/{$id}/activate";
 
@@ -548,7 +548,7 @@ class Subscriptions extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function captureAuthorizedPaymentOnSubscription($id, SubscriptionCaptureRequest $subscriptionCaptureRequest): void
+    public function captureAuthorizedPaymentOnSubscription($id, SubscriptionCaptureRequest $subscriptionCaptureRequest)
     {
         $path = "/subscriptions/{$id}/capture";
 

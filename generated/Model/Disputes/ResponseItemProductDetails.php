@@ -16,76 +16,76 @@ class ResponseItemProductDetails implements JsonSerializable
     use BaseModel;
 
     /** The product was damaged. */
-    public const SUB_REASON_DAMAGED = 'DAMAGED';
+    const SUB_REASON_DAMAGED = 'DAMAGED';
 
     /** The product was different from what was expected. */
-    public const SUB_REASON_DIFFERENT = 'DIFFERENT';
+    const SUB_REASON_DIFFERENT = 'DIFFERENT';
 
     /** The product had missing parts. */
-    public const SUB_REASON_MISSING_PARTS = 'MISSING_PARTS';
+    const SUB_REASON_MISSING_PARTS = 'MISSING_PARTS';
 
     /** The product was defective. */
-    public const SUB_REASON_DEFECTIVE = 'DEFECTIVE';
+    const SUB_REASON_DEFECTIVE = 'DEFECTIVE';
 
     /** The product was counterfeit. */
-    public const SUB_REASON_COUNTERFEIT = 'COUNTERFEIT';
+    const SUB_REASON_COUNTERFEIT = 'COUNTERFEIT';
 
     /** The package was empty. */
-    public const SUB_REASON_EMPTY = 'EMPTY';
+    const SUB_REASON_EMPTY = 'EMPTY';
 
     /** The product stopped functioning. */
-    public const SUB_REASON_NOT_WORKING = 'NOT_WORKING';
+    const SUB_REASON_NOT_WORKING = 'NOT_WORKING';
 
     /** The product was not delivered. */
-    public const SUB_REASON_NOT_DELIVERED = 'NOT_DELIVERED';
+    const SUB_REASON_NOT_DELIVERED = 'NOT_DELIVERED';
 
     /** The tracking info was not received. */
-    public const SUB_REASON_TRACKING_INFO_NOT_RECEIVED = 'TRACKING_INFO_NOT_RECEIVED';
+    const SUB_REASON_TRACKING_INFO_NOT_RECEIVED = 'TRACKING_INFO_NOT_RECEIVED';
 
     /** The product was not available during a store pick up. */
-    public const SUB_REASON_STORE_PICKUP_UNAVAILABLE = 'STORE_PICKUP_UNAVAILABLE';
+    const SUB_REASON_STORE_PICKUP_UNAVAILABLE = 'STORE_PICKUP_UNAVAILABLE';
 
     /** The product was delivered to the wrong shipping address. */
-    public const SUB_REASON_WRONGLY_DELIVERED = 'WRONGLY_DELIVERED';
+    const SUB_REASON_WRONGLY_DELIVERED = 'WRONGLY_DELIVERED';
 
     /** The customer was not satisfied with the delivered product. */
-    public const SUB_REASON_NOT_SATISFIED = 'NOT_SATISFIED';
+    const SUB_REASON_NOT_SATISFIED = 'NOT_SATISFIED';
 
     /** The customer received an item which is not related to the order. */
-    public const SUB_REASON_UNRELATED = 'UNRELATED';
+    const SUB_REASON_UNRELATED = 'UNRELATED';
 
     /** The product was cancelled. */
-    public const SUB_REASON_CANCELLED = 'CANCELLED';
+    const SUB_REASON_CANCELLED = 'CANCELLED';
 
     /** The product was returned. */
-    public const SUB_REASON_RETURNED = 'RETURNED';
+    const SUB_REASON_RETURNED = 'RETURNED';
 
     /** The product was delivered with delay. */
-    public const SUB_REASON_DELAYED = 'DELAYED';
+    const SUB_REASON_DELAYED = 'DELAYED';
 
     /** Computer or related accessories. */
-    public const CATEGORY_COMPUTERS = 'COMPUTERS';
+    const CATEGORY_COMPUTERS = 'COMPUTERS';
 
     /** Home goods, appliances and so on. */
-    public const CATEGORY_HOME = 'HOME';
+    const CATEGORY_HOME = 'HOME';
 
     /** Decorative items, ornaments, and so on. */
-    public const CATEGORY_JEWELRY = 'JEWELRY';
+    const CATEGORY_JEWELRY = 'JEWELRY';
 
     /** Antiques and collectible items. */
-    public const CATEGORY_ANTIQUES = 'ANTIQUES';
+    const CATEGORY_ANTIQUES = 'ANTIQUES';
 
     /** Entertainment goods, such as video games, DVDs, and so on. */
-    public const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
+    const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
 
     /** Vehicle needs. */
-    public const CATEGORY_VEHICLE = 'VEHICLE';
+    const CATEGORY_VEHICLE = 'VEHICLE';
 
     /** Gift or pre-paid cards. */
-    public const CATEGORY_GIFT_CARD = 'GIFT_CARD';
+    const CATEGORY_GIFT_CARD = 'GIFT_CARD';
 
     /** Other material goods. */
-    public const CATEGORY_OTHER = 'OTHER';
+    const CATEGORY_OTHER = 'OTHER';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

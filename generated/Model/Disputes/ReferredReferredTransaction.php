@@ -16,34 +16,34 @@ class ReferredReferredTransaction implements JsonSerializable
     use BaseModel;
 
     /** The transaction processing is complete. */
-    public const STATUS_COMPLETED = 'COMPLETED';
+    const STATUS_COMPLETED = 'COMPLETED';
 
     /** The items in the transaction are unclaimed. If they are not claimed within 30 days, the funds are returned to the sender. */
-    public const STATUS_UNCLAIMED = 'UNCLAIMED';
+    const STATUS_UNCLAIMED = 'UNCLAIMED';
 
     /** The transaction was denied. */
-    public const STATUS_DENIED = 'DENIED';
+    const STATUS_DENIED = 'DENIED';
 
     /** The transaction failed. */
-    public const STATUS_FAILED = 'FAILED';
+    const STATUS_FAILED = 'FAILED';
 
     /** The transaction is on hold. */
-    public const STATUS_HELD = 'HELD';
+    const STATUS_HELD = 'HELD';
 
     /** The transaction is waiting to be processed. */
-    public const STATUS_PENDING = 'PENDING';
+    const STATUS_PENDING = 'PENDING';
 
     /** The payment for the transaction was partially refunded. */
-    public const STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
+    const STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
 
     /** The payment for the transaction was successfully refunded. */
-    public const STATUS_REFUNDED = 'REFUNDED';
+    const STATUS_REFUNDED = 'REFUNDED';
 
     /** The payment for the transaction was reversed due to a chargeback or another type of reversal. */
-    public const STATUS_REVERSED = 'REVERSED';
+    const STATUS_REVERSED = 'REVERSED';
 
     /** The payment for the transaction was canceled. */
-    public const STATUS_CANCELED = 'CANCELED';
+    const STATUS_CANCELED = 'CANCELED';
 
     /**
      * The ID of the PayPal transaction.

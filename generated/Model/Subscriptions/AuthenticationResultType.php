@@ -16,7 +16,7 @@ class AuthenticationResultType implements JsonSerializable
     use BaseModel;
 
     /** The card was authenticated using 3D Secure (3DS) authentication scheme. */
-    public const TYPE_THREE_DS_AUTHENTICATION = 'THREE_DS_AUTHENTICATION';
+    const TYPE_THREE_DS_AUTHENTICATION = 'THREE_DS_AUTHENTICATION';
 
     /**
      * The type of authentication used on the financial instrument.

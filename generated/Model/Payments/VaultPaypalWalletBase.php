@@ -16,16 +16,16 @@ class VaultPaypalWalletBase implements JsonSerializable
     use BaseModel;
 
     /** The PayPal Payment Token will be used for future transaction directly with a merchant. */
-    public const USAGE_TYPE_MERCHANT = 'MERCHANT';
+    const USAGE_TYPE_MERCHANT = 'MERCHANT';
 
     /** The PayPal Payment Token will be used for future transaction on a platform. A platform is typically a marketplace or a channel that a payer can purchase goods and services from multiple merchants. */
-    public const USAGE_TYPE_PLATFORM = 'PLATFORM';
+    const USAGE_TYPE_PLATFORM = 'PLATFORM';
 
     /** The customer vaulting the PayPal payment token is a consumer on the merchant / platform. */
-    public const CUSTOMER_TYPE_CONSUMER = 'CONSUMER';
+    const CUSTOMER_TYPE_CONSUMER = 'CONSUMER';
 
     /** The customer vaulting the PayPal payment token is a business on merchant / platform. */
-    public const CUSTOMER_TYPE_BUSINESS = 'BUSINESS';
+    const CUSTOMER_TYPE_BUSINESS = 'BUSINESS';
 
     /**
      * The description displayed to PayPal consumer on the approval flow for PayPal, as well as on the PayPal payment

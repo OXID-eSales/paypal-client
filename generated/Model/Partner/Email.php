@@ -16,7 +16,7 @@ class Email implements JsonSerializable
     use BaseModel;
 
     /** The email ID to be used to contact the customer service of the business. */
-    public const TYPE_CUSTOMER_SERVICE = 'CUSTOMER_SERVICE';
+    const TYPE_CUSTOMER_SERVICE = 'CUSTOMER_SERVICE';
 
     /**
      * The role of the email address.

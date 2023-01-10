@@ -16,10 +16,10 @@ class ReferralDataBank implements JsonSerializable
     use BaseModel;
 
     /** Checking account. */
-    public const ACCOUNT_TYPE_CHECKING = 'CHECKING';
+    const ACCOUNT_TYPE_CHECKING = 'CHECKING';
 
     /** Savings account. */
-    public const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
+    const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
 
     /**
      * The user-provided short name for the user's bank account.

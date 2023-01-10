@@ -16,25 +16,25 @@ class ResponseRegulationInfo implements JsonSerializable
     use BaseModel;
 
     /** No regulation. */
-    public const REGULATION_COVERED_NONE = 'NONE';
+    const REGULATION_COVERED_NONE = 'NONE';
 
     /** E regulation. */
-    public const REGULATION_COVERED_REG_E = 'REG_E';
+    const REGULATION_COVERED_REG_E = 'REG_E';
 
     /** Z regulation. */
-    public const REGULATION_COVERED_REG_Z = 'REG_Z';
+    const REGULATION_COVERED_REG_Z = 'REG_Z';
 
     /** ZCAD regulation. */
-    public const REGULATION_COVERED_REG_ZCAD = 'REG_ZCAD';
+    const REGULATION_COVERED_REG_ZCAD = 'REG_ZCAD';
 
     /** PPBP regulation. */
-    public const REGULATION_COVERED_PPBP = 'PPBP';
+    const REGULATION_COVERED_PPBP = 'PPBP';
 
     /** Deferred claim regulation. */
-    public const REGULATION_COVERED_DEFERRED_CLAIM = 'DEFERRED_CLAIM';
+    const REGULATION_COVERED_DEFERRED_CLAIM = 'DEFERRED_CLAIM';
 
     /** LUX AGGR regulation. */
-    public const REGULATION_COVERED_LUX_AGGR = 'LUX_AGGR';
+    const REGULATION_COVERED_LUX_AGGR = 'LUX_AGGR';
 
     /**
      * The regulation under which the transaction is covered.

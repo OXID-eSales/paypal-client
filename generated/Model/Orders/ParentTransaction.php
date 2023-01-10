@@ -16,10 +16,10 @@ class ParentTransaction implements JsonSerializable
     use BaseModel;
 
     /** The parent transaction is an authorization. */
-    public const TYPE_AUTHORIZATION = 'AUTHORIZATION';
+    const TYPE_AUTHORIZATION = 'AUTHORIZATION';
 
     /** The parent transaction is an order. */
-    public const TYPE_ORDER = 'ORDER';
+    const TYPE_ORDER = 'ORDER';
 
     /**
      * The PayPal-generated ID for Authorization or Order this transaction is capturing.

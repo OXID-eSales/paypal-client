@@ -16,10 +16,10 @@ class SepaMandate implements JsonSerializable
     use BaseModel;
 
     /** SEPA mandate of type ONE_OFF. */
-    public const TYPE_ONE_OFF = 'ONE_OFF';
+    const TYPE_ONE_OFF = 'ONE_OFF';
 
     /** SEPA mandate of type RECURRENT. */
-    public const TYPE_RECURRENT = 'RECURRENT';
+    const TYPE_RECURRENT = 'RECURRENT';
 
     /**
      * Represents the type of mandate. If not provided, default is ONE_OFF.

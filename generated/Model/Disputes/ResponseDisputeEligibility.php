@@ -16,34 +16,34 @@ class ResponseDisputeEligibility implements JsonSerializable
     use BaseModel;
 
     /** The customer did not receive the merchandise or service. */
-    public const RECOMMENDED_DISPUTE_REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const RECOMMENDED_DISPUTE_REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const RECOMMENDED_DISPUTE_REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const RECOMMENDED_DISPUTE_REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The customer did not authorize purchase of the merchandise or service. */
-    public const RECOMMENDED_DISPUTE_REASON_UNAUTHORISED = 'UNAUTHORISED';
+    const RECOMMENDED_DISPUTE_REASON_UNAUTHORISED = 'UNAUTHORISED';
 
     /** The refund or credit was not processed for the customer. */
-    public const RECOMMENDED_DISPUTE_REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
+    const RECOMMENDED_DISPUTE_REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
 
     /** The transaction was a duplicate. */
-    public const RECOMMENDED_DISPUTE_REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
+    const RECOMMENDED_DISPUTE_REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
 
     /** The customer was charged an incorrect amount. */
-    public const RECOMMENDED_DISPUTE_REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
+    const RECOMMENDED_DISPUTE_REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
 
     /** The customer paid for the transaction through other means. */
-    public const RECOMMENDED_DISPUTE_REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
+    const RECOMMENDED_DISPUTE_REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
 
     /** The customer was being charged for a subscription or a recurring transaction that was canceled. */
-    public const RECOMMENDED_DISPUTE_REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
+    const RECOMMENDED_DISPUTE_REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
 
     /** A problem occurred with the remittance. */
-    public const RECOMMENDED_DISPUTE_REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
+    const RECOMMENDED_DISPUTE_REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
 
     /** Other. */
-    public const RECOMMENDED_DISPUTE_REASON_OTHER = 'OTHER';
+    const RECOMMENDED_DISPUTE_REASON_OTHER = 'OTHER';
 
     /**
      * The seller transaction ID that is associated with the encrypted transaction ID that is passed in the request.

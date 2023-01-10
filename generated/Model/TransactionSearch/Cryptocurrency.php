@@ -16,16 +16,16 @@ class Cryptocurrency implements JsonSerializable
     use BaseModel;
 
     /** The ticker symbol for <b>Bitcoin</b>. https://en.wikipedia.org/wiki/Bitcoin */
-    public const ASSET_SYMBOL_BTC = 'BTC';
+    const ASSET_SYMBOL_BTC = 'BTC';
 
     /** The ticker symbol for <b>Ethereum</b>. https://en.wikipedia.org/wiki/Ethereum */
-    public const ASSET_SYMBOL_ETH = 'ETH';
+    const ASSET_SYMBOL_ETH = 'ETH';
 
     /** The ticker symbol for <b>Bitcoin Cash</b>. https://en.wikipedia.org/wiki/Bitcoin_Cash */
-    public const ASSET_SYMBOL_BCH = 'BCH';
+    const ASSET_SYMBOL_BCH = 'BCH';
 
     /** The ticker symbol for <b>Litecoin</b>. https://en.wikipedia.org/wiki/Litecoin */
-    public const ASSET_SYMBOL_LTC = 'LTC';
+    const ASSET_SYMBOL_LTC = 'LTC';
 
     /**
      * The Cryptocurrency ticker symbol / code as assigned by liquidity providers (exchanges).

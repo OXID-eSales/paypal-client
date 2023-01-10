@@ -16,10 +16,10 @@ class FlightLeg implements JsonSerializable
     use BaseModel;
 
     /** Stopover allowed. */
-    public const STOPOVER_CODE_O = 'O';
+    const STOPOVER_CODE_O = 'O';
 
     /** Stopover not allowed. */
-    public const STOPOVER_CODE_X = 'X';
+    const STOPOVER_CODE_X = 'X';
 
     /**
      * The flight number of the current leg.

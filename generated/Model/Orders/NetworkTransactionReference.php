@@ -16,52 +16,52 @@ class NetworkTransactionReference implements JsonSerializable
     use BaseModel;
 
     /** Visa card. */
-    public const NETWORK_VISA = 'VISA';
+    const NETWORK_VISA = 'VISA';
 
     /** Mastecard card. */
-    public const NETWORK_MASTERCARD = 'MASTERCARD';
+    const NETWORK_MASTERCARD = 'MASTERCARD';
 
     /** Discover card. */
-    public const NETWORK_DISCOVER = 'DISCOVER';
+    const NETWORK_DISCOVER = 'DISCOVER';
 
     /** American Express card. */
-    public const NETWORK_AMEX = 'AMEX';
+    const NETWORK_AMEX = 'AMEX';
 
     /** Solo debit card. */
-    public const NETWORK_SOLO = 'SOLO';
+    const NETWORK_SOLO = 'SOLO';
 
     /** Japan Credit Bureau card. */
-    public const NETWORK_JCB = 'JCB';
+    const NETWORK_JCB = 'JCB';
 
     /** Military Star card. */
-    public const NETWORK_STAR = 'STAR';
+    const NETWORK_STAR = 'STAR';
 
     /** Delta Airlines card. */
-    public const NETWORK_DELTA = 'DELTA';
+    const NETWORK_DELTA = 'DELTA';
 
     /** Switch credit card. */
-    public const NETWORK_SWITCH = 'SWITCH';
+    const NETWORK_SWITCH = 'SWITCH';
 
     /** Maestro credit card. */
-    public const NETWORK_MAESTRO = 'MAESTRO';
+    const NETWORK_MAESTRO = 'MAESTRO';
 
     /** Carte Bancaire (CB) credit card. */
-    public const NETWORK_CB_NATIONALE = 'CB_NATIONALE';
+    const NETWORK_CB_NATIONALE = 'CB_NATIONALE';
 
     /** Configoga credit card. */
-    public const NETWORK_CONFIGOGA = 'CONFIGOGA';
+    const NETWORK_CONFIGOGA = 'CONFIGOGA';
 
     /** Confidis credit card. */
-    public const NETWORK_CONFIDIS = 'CONFIDIS';
+    const NETWORK_CONFIDIS = 'CONFIDIS';
 
     /** Visa Electron credit card. */
-    public const NETWORK_ELECTRON = 'ELECTRON';
+    const NETWORK_ELECTRON = 'ELECTRON';
 
     /** Cetelem credit card. */
-    public const NETWORK_CETELEM = 'CETELEM';
+    const NETWORK_CETELEM = 'CETELEM';
 
     /** China union pay credit card. */
-    public const NETWORK_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const NETWORK_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /**
      * Transaction reference id returned by the scheme. For Visa and Amex, this is the "Tran id" field in response.

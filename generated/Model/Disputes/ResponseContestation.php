@@ -16,13 +16,13 @@ class ResponseContestation implements JsonSerializable
     use BaseModel;
 
     /** The contestation has been generated and shared with the processor. The processor must update the status with `ACCEPTED` or `DENIED` after processing the contestation. */
-    public const STATUS_CONTESTED = 'CONTESTED';
+    const STATUS_CONTESTED = 'CONTESTED';
 
     /** The processor has accepted the contestation. */
-    public const STATUS_ACCEPTED = 'ACCEPTED';
+    const STATUS_ACCEPTED = 'ACCEPTED';
 
     /** The processor has rejected the contestation. */
-    public const STATUS_DENIED = 'DENIED';
+    const STATUS_DENIED = 'DENIED';
 
     /**
      * An array of contestation documents.

@@ -16,76 +16,76 @@ class Business extends Party implements JsonSerializable
     use BaseModel;
 
     /** The any other business entity. */
-    public const TYPE_ANY_OTHER_BUSINESS_ENTITY = 'ANY_OTHER_BUSINESS_ENTITY';
+    const TYPE_ANY_OTHER_BUSINESS_ENTITY = 'ANY_OTHER_BUSINESS_ENTITY';
 
     /** The association. */
-    public const TYPE_ASSOCIATION = 'ASSOCIATION';
+    const TYPE_ASSOCIATION = 'ASSOCIATION';
 
     /** The corporation. */
-    public const TYPE_CORPORATION = 'CORPORATION';
+    const TYPE_CORPORATION = 'CORPORATION';
 
     /** The general partnership. */
-    public const TYPE_GENERAL_PARTNERSHIP = 'GENERAL_PARTNERSHIP';
+    const TYPE_GENERAL_PARTNERSHIP = 'GENERAL_PARTNERSHIP';
 
     /** The government. */
-    public const TYPE_GOVERNMENT = 'GOVERNMENT';
+    const TYPE_GOVERNMENT = 'GOVERNMENT';
 
     /** The individual. */
-    public const TYPE_INDIVIDUAL = 'INDIVIDUAL';
+    const TYPE_INDIVIDUAL = 'INDIVIDUAL';
 
     /** The limited liability partnership. */
-    public const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'LIMITED_LIABILITY_PARTNERSHIP';
+    const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'LIMITED_LIABILITY_PARTNERSHIP';
 
     /** The limited liability proprietors. */
-    public const TYPE_LIMITED_LIABILITY_PROPRIETORS = 'LIMITED_LIABILITY_PROPRIETORS';
+    const TYPE_LIMITED_LIABILITY_PROPRIETORS = 'LIMITED_LIABILITY_PROPRIETORS';
 
     /** The limited liability private corporation. */
-    public const TYPE_LIMITED_LIABILITY_PRIVATE_CORPORATION = 'LIMITED_LIABILITY_PRIVATE_CORPORATION';
+    const TYPE_LIMITED_LIABILITY_PRIVATE_CORPORATION = 'LIMITED_LIABILITY_PRIVATE_CORPORATION';
 
     /** The limited partnership. */
-    public const TYPE_LIMITED_PARTNERSHIP = 'LIMITED_PARTNERSHIP';
+    const TYPE_LIMITED_PARTNERSHIP = 'LIMITED_PARTNERSHIP';
 
     /** The limited partnership private corporation. */
-    public const TYPE_LIMITED_PARTNERSHIP_PRIVATE_CORPORATION = 'LIMITED_PARTNERSHIP_PRIVATE_CORPORATION';
+    const TYPE_LIMITED_PARTNERSHIP_PRIVATE_CORPORATION = 'LIMITED_PARTNERSHIP_PRIVATE_CORPORATION';
 
     /** The nonprofit. */
-    public const TYPE_NONPROFIT = 'NONPROFIT';
+    const TYPE_NONPROFIT = 'NONPROFIT';
 
     /** The only buy and send money. */
-    public const TYPE_ONLY_BUY_OR_SEND_MONEY = 'ONLY_BUY_OR_SEND_MONEY';
+    const TYPE_ONLY_BUY_OR_SEND_MONEY = 'ONLY_BUY_OR_SEND_MONEY';
 
     /** The other corporate body. */
-    public const TYPE_OTHER_CORPORATE_BODY = 'OTHER_CORPORATE_BODY';
+    const TYPE_OTHER_CORPORATE_BODY = 'OTHER_CORPORATE_BODY';
 
     /** The partnership. */
-    public const TYPE_PARTNERSHIP = 'PARTNERSHIP';
+    const TYPE_PARTNERSHIP = 'PARTNERSHIP';
 
     /** The private partnership. */
-    public const TYPE_PRIVATE_PARTNERSHIP = 'PRIVATE_PARTNERSHIP';
+    const TYPE_PRIVATE_PARTNERSHIP = 'PRIVATE_PARTNERSHIP';
 
     /** The proprietorship. */
-    public const TYPE_PROPRIETORSHIP = 'PROPRIETORSHIP';
+    const TYPE_PROPRIETORSHIP = 'PROPRIETORSHIP';
 
     /** The proprietorship craftsman. */
-    public const TYPE_PROPRIETORSHIP_CRAFTSMAN = 'PROPRIETORSHIP_CRAFTSMAN';
+    const TYPE_PROPRIETORSHIP_CRAFTSMAN = 'PROPRIETORSHIP_CRAFTSMAN';
 
     /** The proprietory company. */
-    public const TYPE_PROPRIETORY_COMPANY = 'PROPRIETORY_COMPANY';
+    const TYPE_PROPRIETORY_COMPANY = 'PROPRIETORY_COMPANY';
 
     /** The private corporation. */
-    public const TYPE_PRIVATE_CORPORATION = 'PRIVATE_CORPORATION';
+    const TYPE_PRIVATE_CORPORATION = 'PRIVATE_CORPORATION';
 
     /** The public company. */
-    public const TYPE_PUBLIC_COMPANY = 'PUBLIC_COMPANY';
+    const TYPE_PUBLIC_COMPANY = 'PUBLIC_COMPANY';
 
     /** The public corporation. */
-    public const TYPE_PUBLIC_CORPORATION = 'PUBLIC_CORPORATION';
+    const TYPE_PUBLIC_CORPORATION = 'PUBLIC_CORPORATION';
 
     /** The public partnership. */
-    public const TYPE_PUBLIC_PARTNERSHIP = 'PUBLIC_PARTNERSHIP';
+    const TYPE_PUBLIC_PARTNERSHIP = 'PUBLIC_PARTNERSHIP';
 
     /** A group of private owners who have registered their bsuiness. */
-    public const TYPE_REGISTERED_COOPERATIVE = 'REGISTERED_COOPERATIVE';
+    const TYPE_REGISTERED_COOPERATIVE = 'REGISTERED_COOPERATIVE';
 
     /**
      * Names of business.

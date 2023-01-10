@@ -23,28 +23,28 @@ class StoredPaymentSource implements JsonSerializable
     use BaseModel;
 
     /** Payment is initiated with the active engagement of the customer. e.g. a customer checking out on a merchant website. */
-    public const PAYMENT_INITIATOR_CUSTOMER = 'CUSTOMER';
+    const PAYMENT_INITIATOR_CUSTOMER = 'CUSTOMER';
 
     /** Payment is initiated by merchant on behalf of the customer without the active engagement of customer. e.g. a merchant charging the monthly payment of a subscription to the customer. */
-    public const PAYMENT_INITIATOR_MERCHANT = 'MERCHANT';
+    const PAYMENT_INITIATOR_MERCHANT = 'MERCHANT';
 
     /** One Time payment such as online purchase or donation. (e.g. Checkout with one-click). */
-    public const PAYMENT_TYPE_ONE_TIME = 'ONE_TIME';
+    const PAYMENT_TYPE_ONE_TIME = 'ONE_TIME';
 
     /** Payment which is part of a series of payments with fixed or variable amounts, following a fixed time interval. (e.g. Subscription payments). */
-    public const PAYMENT_TYPE_RECURRING = 'RECURRING';
+    const PAYMENT_TYPE_RECURRING = 'RECURRING';
 
     /** Payment which is part of a series of payments that occur on a non-fixed schedule and/or have variable amounts. (e.g. Account Topup payments). */
-    public const PAYMENT_TYPE_UNSCHEDULED = 'UNSCHEDULED';
+    const PAYMENT_TYPE_UNSCHEDULED = 'UNSCHEDULED';
 
     /** Indicates the Initial/First payment with a payment_source that is intended to be stored upon successful processing of the payment. */
-    public const USAGE_FIRST = 'FIRST';
+    const USAGE_FIRST = 'FIRST';
 
     /** Indicates a payment using a stored payment_source which has been successfully used previously for a payment. */
-    public const USAGE_SUBSEQUENT = 'SUBSEQUENT';
+    const USAGE_SUBSEQUENT = 'SUBSEQUENT';
 
     /** Indicates that PayPal will derive the value of `FIRST` or `SUBSEQUENT` based on data available to PayPal. */
-    public const USAGE_DERIVED = 'DERIVED';
+    const USAGE_DERIVED = 'DERIVED';
 
     /**
      * The person or party who initiated or triggered the payment.

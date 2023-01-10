@@ -104,7 +104,7 @@ class Catalog extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function updateProduct($productId, array $patchRequest): void
+    public function updateProduct($productId, array $patchRequest)
     {
         $path = "/products/{$productId}";
 

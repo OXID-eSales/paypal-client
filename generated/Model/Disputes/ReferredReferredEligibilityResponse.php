@@ -17,25 +17,25 @@ class ReferredReferredEligibilityResponse implements JsonSerializable
     use BaseModel;
 
     /** A customer and merchant interact in an attempt to resolve a dispute without escalation to PayPal. Occurs when a customer has not received goods or a service, the goods or service are not as described, or the customer needs additional details on a transaction, such as a copy of the transaction or a receipt */
-    public const ALLOWABLE_LIFE_CYCLE_INQUIRY = 'INQUIRY';
+    const ALLOWABLE_LIFE_CYCLE_INQUIRY = 'INQUIRY';
 
     /** This stage occurs when a customer or merchant escalates an inquiry to a claim. Claims give PayPal the authority to investigate the case and determine an outcome if the dispute channel is `INTERNAL`. This state is a PayPal dispute lifecycle stage and is not to be interpreted as a credit card or debit card charge back */
-    public const ALLOWABLE_LIFE_CYCLE_CHARGEBACK = 'CHARGEBACK';
+    const ALLOWABLE_LIFE_CYCLE_CHARGEBACK = 'CHARGEBACK';
 
     /** The item category passed in is not disputable. */
-    public const INELIGIBILITY_REASON_ITEM_CATEGORY_NOT_DISPUTABLE = 'ITEM_CATEGORY_NOT_DISPUTABLE';
+    const INELIGIBILITY_REASON_ITEM_CATEGORY_NOT_DISPUTABLE = 'ITEM_CATEGORY_NOT_DISPUTABLE';
 
     /** Transaction Type is not disputable. */
-    public const INELIGIBILITY_REASON_TRANSACTION_TYPE_NOT_DISPUTABLE = 'TRANSACTION_TYPE_NOT_DISPUTABLE';
+    const INELIGIBILITY_REASON_TRANSACTION_TYPE_NOT_DISPUTABLE = 'TRANSACTION_TYPE_NOT_DISPUTABLE';
 
     /** Counterparty transaction is not disputable */
-    public const INELIGIBILITY_REASON_COUNTERPARTY_NOT_DISPUTABLE = 'COUNTERPARTY_NOT_DISPUTABLE';
+    const INELIGIBILITY_REASON_COUNTERPARTY_NOT_DISPUTABLE = 'COUNTERPARTY_NOT_DISPUTABLE';
 
     /** Dispute already exists for a Transaction. */
-    public const INELIGIBILITY_REASON_DISPUTE_ALREADY_EXISTS = 'DISPUTE_ALREADY_EXISTS';
+    const INELIGIBILITY_REASON_DISPUTE_ALREADY_EXISTS = 'DISPUTE_ALREADY_EXISTS';
 
     /** Invalid Transaction Status. */
-    public const INELIGIBILITY_REASON_INVALID_TRANSACTION_STATUS = 'INVALID_TRANSACTION_STATUS';
+    const INELIGIBILITY_REASON_INVALID_TRANSACTION_STATUS = 'INVALID_TRANSACTION_STATUS';
 
     /**
      * Indicates whether the transaction can be disputed.

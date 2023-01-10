@@ -16,31 +16,31 @@ class RequestAcceptClaim implements JsonSerializable
     use BaseModel;
 
     /** Merchant is accepting customer's claim as they could not ship the item back to the customer */
-    public const ACCEPT_CLAIM_REASON_DID_NOT_SHIP_ITEM = 'DID_NOT_SHIP_ITEM';
+    const ACCEPT_CLAIM_REASON_DID_NOT_SHIP_ITEM = 'DID_NOT_SHIP_ITEM';
 
     /** Merchant is accepting customer's claim as it is taking too long for merchant to fulfil the order */
-    public const ACCEPT_CLAIM_REASON_TOO_TIME_CONSUMING = 'TOO_TIME_CONSUMING';
+    const ACCEPT_CLAIM_REASON_TOO_TIME_CONSUMING = 'TOO_TIME_CONSUMING';
 
     /** Merchant is accepting customer's claim as the item is lost in mail or transit */
-    public const ACCEPT_CLAIM_REASON_LOST_IN_MAIL = 'LOST_IN_MAIL';
+    const ACCEPT_CLAIM_REASON_LOST_IN_MAIL = 'LOST_IN_MAIL';
 
     /** Merchant is accepting customer's claim as the merchant is not able to find sufficient evidence to win this dispute */
-    public const ACCEPT_CLAIM_REASON_NOT_ABLE_TO_WIN = 'NOT_ABLE_TO_WIN';
+    const ACCEPT_CLAIM_REASON_NOT_ABLE_TO_WIN = 'NOT_ABLE_TO_WIN';
 
     /** Merchant is accepting customer’s claims to follow their internal company policy */
-    public const ACCEPT_CLAIM_REASON_COMPANY_POLICY = 'COMPANY_POLICY';
+    const ACCEPT_CLAIM_REASON_COMPANY_POLICY = 'COMPANY_POLICY';
 
     /** This is the default value merchant can use if none of the above reasons apply */
-    public const ACCEPT_CLAIM_REASON_REASON_NOT_SET = 'REASON_NOT_SET';
+    const ACCEPT_CLAIM_REASON_REASON_NOT_SET = 'REASON_NOT_SET';
 
     /** The merchant must refund the customer without any item replacement or return. This type is applicable when a merchant is willing to refund the entire dispute amount without any further action from customer. Omit the <code>refund_amount</code> and <code>return_shipping_address</code> parameters from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
-    public const ACCEPT_CLAIM_TYPE_REFUND = 'REFUND';
+    const ACCEPT_CLAIM_TYPE_REFUND = 'REFUND';
 
     /** The customer must return the item to the merchant and then merchant will refund the money. This type is applicable when a merchant is willing to refund the dispute amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter in but omit the <code>refund_amount</code> parameter from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
-    public const ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
+    const ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
 
     /** The merchant proposes a partial refund for the dispute.This type is applicable when a merchant is willing to refund an amount lesser than dispute amount. Include the <code>refund_amount</code> parameter. */
-    public const ACCEPT_CLAIM_TYPE_PARTIAL_REFUND = 'PARTIAL_REFUND';
+    const ACCEPT_CLAIM_TYPE_PARTIAL_REFUND = 'PARTIAL_REFUND';
 
     /**
      * The merchant's notes about the claim. PayPal can, but the customer cannot, view these notes.

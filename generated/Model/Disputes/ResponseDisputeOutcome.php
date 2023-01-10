@@ -16,25 +16,25 @@ class ResponseDisputeOutcome implements JsonSerializable
     use BaseModel;
 
     /** The dispute was resolved in the customer's favor. */
-    public const OUTCOME_CODE_RESOLVED_BUYER_FAVOUR = 'RESOLVED_BUYER_FAVOUR';
+    const OUTCOME_CODE_RESOLVED_BUYER_FAVOUR = 'RESOLVED_BUYER_FAVOUR';
 
     /** The dispute was resolved in the merchant's favor. */
-    public const OUTCOME_CODE_RESOLVED_SELLER_FAVOUR = 'RESOLVED_SELLER_FAVOUR';
+    const OUTCOME_CODE_RESOLVED_SELLER_FAVOUR = 'RESOLVED_SELLER_FAVOUR';
 
     /** PayPal provided the merchant or customer with protection and the case is resolved. */
-    public const OUTCOME_CODE_RESOLVED_WITH_PAYOUT = 'RESOLVED_WITH_PAYOUT';
+    const OUTCOME_CODE_RESOLVED_WITH_PAYOUT = 'RESOLVED_WITH_PAYOUT';
 
     /** The customer canceled the dispute. */
-    public const OUTCOME_CODE_CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
+    const OUTCOME_CODE_CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
 
     /** DEPRECATED. PayPal accepted the dispute. */
-    public const OUTCOME_CODE_ACCEPTED = 'ACCEPTED';
+    const OUTCOME_CODE_ACCEPTED = 'ACCEPTED';
 
     /** DEPRECATED. PayPal denied the dispute. */
-    public const OUTCOME_CODE_DENIED = 'DENIED';
+    const OUTCOME_CODE_DENIED = 'DENIED';
 
     /** A dispute was created for the same transaction ID, and the previous dispute was closed without any decision. */
-    public const OUTCOME_CODE_NONE = 'NONE';
+    const OUTCOME_CODE_NONE = 'NONE';
 
     /**
      * The outcome of a resolved dispute.

@@ -16,19 +16,19 @@ class RequestAcknowledgeReturnItem implements JsonSerializable
     use BaseModel;
 
     /** The merchant has received the item returned by the customer. */
-    public const ACKNOWLEDGEMENT_TYPE_ITEM_RECEIVED = 'ITEM_RECEIVED';
+    const ACKNOWLEDGEMENT_TYPE_ITEM_RECEIVED = 'ITEM_RECEIVED';
 
     /** The merchant has not received the item. */
-    public const ACKNOWLEDGEMENT_TYPE_ITEM_NOT_RECEIVED = 'ITEM_NOT_RECEIVED';
+    const ACKNOWLEDGEMENT_TYPE_ITEM_NOT_RECEIVED = 'ITEM_NOT_RECEIVED';
 
     /** The items returned by the customer were damaged. */
-    public const ACKNOWLEDGEMENT_TYPE_DAMAGED = 'DAMAGED';
+    const ACKNOWLEDGEMENT_TYPE_DAMAGED = 'DAMAGED';
 
     /** The package was empty or the goods were different from what was expected. */
-    public const ACKNOWLEDGEMENT_TYPE_EMPTY_PACKAGE_OR_DIFFERENT = 'EMPTY_PACKAGE_OR_DIFFERENT';
+    const ACKNOWLEDGEMENT_TYPE_EMPTY_PACKAGE_OR_DIFFERENT = 'EMPTY_PACKAGE_OR_DIFFERENT';
 
     /** The package did not have all the items that were expected. */
-    public const ACKNOWLEDGEMENT_TYPE_MISSING_ITEMS = 'MISSING_ITEMS';
+    const ACKNOWLEDGEMENT_TYPE_MISSING_ITEMS = 'MISSING_ITEMS';
 
     /**
      * The type of acknowledgement allowed for the merchant after the customer has returned the item. The merchant

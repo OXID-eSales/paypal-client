@@ -16,10 +16,10 @@ class CreditFinancingOffer implements JsonSerializable
     use BaseModel;
 
     /** Issued by PayPal. */
-    public const ISSUER_PAYPAL = 'PAYPAL';
+    const ISSUER_PAYPAL = 'PAYPAL';
 
     /** Issued by card issuer. */
-    public const ISSUER_CARD_ISSUER_INSTALLMENTS = 'CARD_ISSUER_INSTALLMENTS';
+    const ISSUER_CARD_ISSUER_INSTALLMENTS = 'CARD_ISSUER_INSTALLMENTS';
 
     /**
      * The issuer of the credit financing offer.

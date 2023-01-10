@@ -16,46 +16,46 @@ class ResponseItemInfo implements JsonSerializable
     use BaseModel;
 
     /** The customer did not receive the merchandise or service. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The customer did not authorize purchase of the merchandise or service. */
-    public const REASON_UNAUTHORISED = 'UNAUTHORISED';
+    const REASON_UNAUTHORISED = 'UNAUTHORISED';
 
     /** The refund or credit was not processed for the customer. */
-    public const REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
+    const REASON_CREDIT_NOT_PROCESSED = 'CREDIT_NOT_PROCESSED';
 
     /** The transaction was a duplicate. */
-    public const REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
+    const REASON_DUPLICATE_TRANSACTION = 'DUPLICATE_TRANSACTION';
 
     /** The customer was charged an incorrect amount. */
-    public const REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
+    const REASON_INCORRECT_AMOUNT = 'INCORRECT_AMOUNT';
 
     /** The customer paid for the transaction through other means. */
-    public const REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
+    const REASON_PAYMENT_BY_OTHER_MEANS = 'PAYMENT_BY_OTHER_MEANS';
 
     /** The customer was being charged for a subscription or a recurring transaction that was canceled. */
-    public const REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
+    const REASON_CANCELED_RECURRING_BILLING = 'CANCELED_RECURRING_BILLING';
 
     /** A problem occurred with the remittance. */
-    public const REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
+    const REASON_PROBLEM_WITH_REMITTANCE = 'PROBLEM_WITH_REMITTANCE';
 
     /** Other. */
-    public const REASON_OTHER = 'OTHER';
+    const REASON_OTHER = 'OTHER';
 
     /** The product has an issue. */
-    public const ITEM_TYPE_PRODUCT = 'PRODUCT';
+    const ITEM_TYPE_PRODUCT = 'PRODUCT';
 
     /** The service has an issue. */
-    public const ITEM_TYPE_SERVICE = 'SERVICE';
+    const ITEM_TYPE_SERVICE = 'SERVICE';
 
     /** The booking has an issue. */
-    public const ITEM_TYPE_BOOKING = 'BOOKING';
+    const ITEM_TYPE_BOOKING = 'BOOKING';
 
     /** The digital download has an issue. */
-    public const ITEM_TYPE_DIGITAL_DOWNLOAD = 'DIGITAL_DOWNLOAD';
+    const ITEM_TYPE_DIGITAL_DOWNLOAD = 'DIGITAL_DOWNLOAD';
 
     /**
      * The item ID. If the merchant provides multiple pieces of evidence and the transaction has multiple item IDs,

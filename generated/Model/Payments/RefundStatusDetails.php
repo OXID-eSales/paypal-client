@@ -16,7 +16,7 @@ class RefundStatusDetails implements JsonSerializable
     use BaseModel;
 
     /** The customer's account is funded through an eCheck, which has not yet cleared. */
-    public const REASON_ECHECK = 'ECHECK';
+    const REASON_ECHECK = 'ECHECK';
 
     /**
      * The reason why the refund has the `PENDING` or `FAILED` status.

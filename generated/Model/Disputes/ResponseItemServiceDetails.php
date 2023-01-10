@@ -16,37 +16,37 @@ class ResponseItemServiceDetails implements JsonSerializable
     use BaseModel;
 
     /** The Customer did not receive the service. */
-    public const SUB_REASON_NOT_RECEIVED = 'NOT_RECEIVED';
+    const SUB_REASON_NOT_RECEIVED = 'NOT_RECEIVED';
 
     /** The service was different from what was expected. */
-    public const SUB_REASON_DIFFERENT = 'DIFFERENT';
+    const SUB_REASON_DIFFERENT = 'DIFFERENT';
 
     /** The service was incomplete. */
-    public const SUB_REASON_INCOMPLETE = 'INCOMPLETE';
+    const SUB_REASON_INCOMPLETE = 'INCOMPLETE';
 
     /** The service was unusable. */
-    public const SUB_REASON_UNUSABLE = 'UNUSABLE';
+    const SUB_REASON_UNUSABLE = 'UNUSABLE';
 
     /** The service was delayed or rescheduled. */
-    public const SUB_REASON_DELAYED = 'DELAYED';
+    const SUB_REASON_DELAYED = 'DELAYED';
 
     /** The service was cancelled. */
-    public const SUB_REASON_CANCELLED = 'CANCELLED';
+    const SUB_REASON_CANCELLED = 'CANCELLED';
 
     /** The repair service. */
-    public const CATEGORY_REPAIR = 'REPAIR';
+    const CATEGORY_REPAIR = 'REPAIR';
 
     /** The installation service. */
-    public const CATEGORY_INSTALLATION = 'INSTALLATION';
+    const CATEGORY_INSTALLATION = 'INSTALLATION';
 
     /** Donations for charitable causes and so on. */
-    public const CATEGORY_DONATION = 'DONATION';
+    const CATEGORY_DONATION = 'DONATION';
 
     /** Financial products or investments. */
-    public const CATEGORY_INVESTMENT = 'INVESTMENT';
+    const CATEGORY_INVESTMENT = 'INVESTMENT';
 
     /** Other services. */
-    public const CATEGORY_OTHER = 'OTHER';
+    const CATEGORY_OTHER = 'OTHER';
 
     /**
      * The sub-reason for the service issue.

@@ -16,169 +16,169 @@ class PartnerTransactionInfo implements JsonSerializable
     use BaseModel;
 
     /** Auth type transactions for Auth or Auth void. */
-    public const TYPE_AUTH = 'AUTH';
+    const TYPE_AUTH = 'AUTH';
 
     /** Bonus type transactions. */
-    public const TYPE_BONUS = 'BONUS';
+    const TYPE_BONUS = 'BONUS';
 
     /** Chargeback type transactions for Chargeback fee or Chargeback fee reversal. */
-    public const TYPE_CHARGEBACK = 'CHARGEBACK';
+    const TYPE_CHARGEBACK = 'CHARGEBACK';
 
     /** Correction type transactions. */
-    public const TYPE_CORRECTION = 'CORRECTION';
+    const TYPE_CORRECTION = 'CORRECTION';
 
     /** Currency conversion type transactions. */
-    public const TYPE_CURRENCY_CONVERSION = 'CURRENCY_CONVERSION';
+    const TYPE_CURRENCY_CONVERSION = 'CURRENCY_CONVERSION';
 
     /** Deposit type transactions. */
-    public const TYPE_DEPOSIT = 'DEPOSIT';
+    const TYPE_DEPOSIT = 'DEPOSIT';
 
     /** Disbursement type transactions. */
-    public const TYPE_DISBURSEMENT = 'DISBURSEMENT';
+    const TYPE_DISBURSEMENT = 'DISBURSEMENT';
 
     /** Dispute type transactions. */
-    public const TYPE_DISPUTE = 'DISPUTE';
+    const TYPE_DISPUTE = 'DISPUTE';
 
     /** Fees type transactions for Partner Fee, Payment Fee or Fee Reversal. */
-    public const TYPE_FEES = 'FEES';
+    const TYPE_FEES = 'FEES';
 
     /** Hold type transactions. */
-    public const TYPE_HOLD = 'HOLD';
+    const TYPE_HOLD = 'HOLD';
 
     /** Hold release type transactions. */
-    public const TYPE_HOLD_RELEASE = 'HOLD_RELEASE';
+    const TYPE_HOLD_RELEASE = 'HOLD_RELEASE';
 
     /** Incentives type transactions. */
-    public const TYPE_INCENTIVES = 'INCENTIVES';
+    const TYPE_INCENTIVES = 'INCENTIVES';
 
     /** Others type transactions. */
-    public const TYPE_OTHERS = 'OTHERS';
+    const TYPE_OTHERS = 'OTHERS';
 
     /** Payment type transactions. */
-    public const TYPE_PAYMENT = 'PAYMENT';
+    const TYPE_PAYMENT = 'PAYMENT';
 
     /** Recoup type transactions done either from Bank or Loss Accounts */
-    public const TYPE_RECOUP = 'RECOUP';
+    const TYPE_RECOUP = 'RECOUP';
 
     /** Refund type transactions. */
-    public const TYPE_REFUND = 'REFUND';
+    const TYPE_REFUND = 'REFUND';
 
     /** Reversal type transactions. */
-    public const TYPE_REVERSAL = 'REVERSAL';
+    const TYPE_REVERSAL = 'REVERSAL';
 
     /** Withdrawal type transactions. */
-    public const TYPE_WITHDRAWAL = 'WITHDRAWAL';
+    const TYPE_WITHDRAWAL = 'WITHDRAWAL';
 
     /** Void subtype transactions, applicable for transaction type Auth. */
-    public const SUB_TYPE_VOID = 'VOID';
+    const SUB_TYPE_VOID = 'VOID';
 
     /** Fee subtype transactions, applicable for transaction type Chargeback. */
-    public const SUB_TYPE_FEE = 'FEE';
+    const SUB_TYPE_FEE = 'FEE';
 
     /** Reversal subtype transactions, applicable for transaction types Chargeback, Fees and Withdrawal. */
-    public const SUB_TYPE_REVERSAL = 'REVERSAL';
+    const SUB_TYPE_REVERSAL = 'REVERSAL';
 
     /** Partner fee subtype transactions, applicable for transaction type Fees. */
-    public const SUB_TYPE_PARTNER_FEE = 'PARTNER_FEE';
+    const SUB_TYPE_PARTNER_FEE = 'PARTNER_FEE';
 
     /** Payment fee subtype transactions, applicable for transaction type Fees. */
-    public const SUB_TYPE_PAYMENT_FEE = 'PAYMENT_FEE';
+    const SUB_TYPE_PAYMENT_FEE = 'PAYMENT_FEE';
 
     /** Masspay subtype transactions, applicable for transaction type Payment. */
-    public const SUB_TYPE_MASSPAY = 'MASSPAY';
+    const SUB_TYPE_MASSPAY = 'MASSPAY';
 
     /** Bank subtype transactions, applicable for transaction type Withdrawal. */
-    public const SUB_TYPE_BANK = 'BANK';
+    const SUB_TYPE_BANK = 'BANK';
 
     /** Loss account subtype transactions, applicable for transaction type Recoup. */
-    public const SUB_TYPE_LOSS_ACCOUNT = 'LOSS_ACCOUNT';
+    const SUB_TYPE_LOSS_ACCOUNT = 'LOSS_ACCOUNT';
 
     /** To subtype transactions, applicable for transaction type Currency conversion */
-    public const SUB_TYPE_TO = 'TO';
+    const SUB_TYPE_TO = 'TO';
 
     /** From subtype transactions, applicable for transaction type Currency conversion */
-    public const SUB_TYPE_FROM = 'FROM';
+    const SUB_TYPE_FROM = 'FROM';
 
     /** Refund subtype transactions, applicable for transaction type Fees. */
-    public const SUB_TYPE_REFUND = 'REFUND';
+    const SUB_TYPE_REFUND = 'REFUND';
 
     /** AMEX card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_AMEX = 'AMEX';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_AMEX = 'AMEX';
 
     /** CB_NATIONALE card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_CB_NATIONALE = 'CB_NATIONALE';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_CB_NATIONALE = 'CB_NATIONALE';
 
     /** CETELEM card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_CETELEM = 'CETELEM';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_CETELEM = 'CETELEM';
 
     /** COFIDIS card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_COFIDIS = 'COFIDIS';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_COFIDIS = 'COFIDIS';
 
     /** COFINOGA card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_COFINOGA = 'COFINOGA';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_COFINOGA = 'COFINOGA';
 
     /** CHINA_UNION_PAY card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /** DELTA card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_DELTA = 'DELTA';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_DELTA = 'DELTA';
 
     /** DISCOVER card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_DISCOVER = 'DISCOVER';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_DISCOVER = 'DISCOVER';
 
     /** ELECTRON card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_ELECTRON = 'ELECTRON';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_ELECTRON = 'ELECTRON';
 
     /** ELO card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_ELO = 'ELO';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_ELO = 'ELO';
 
     /** HIPER card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_HIPER = 'HIPER';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_HIPER = 'HIPER';
 
     /** HIPERCARD card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_HIPERCARD = 'HIPERCARD';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_HIPERCARD = 'HIPERCARD';
 
     /** JCB card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_JCB = 'JCB';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_JCB = 'JCB';
 
     /** MAESTRO card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_MAESTRO = 'MAESTRO';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_MAESTRO = 'MAESTRO';
 
     /** MASTER_CARD card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_MASTER_CARD = 'MASTER_CARD';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_MASTER_CARD = 'MASTER_CARD';
 
     /** SOLO card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_SOLO = 'SOLO';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_SOLO = 'SOLO';
 
     /** STAR card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_STAR = 'STAR';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_STAR = 'STAR';
 
     /** SWITCH card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_SWITCH = 'SWITCH';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_SWITCH = 'SWITCH';
 
     /** VISA card transaction */
-    public const PAYMENT_INSTRUMENT_SUB_TYPE_VISA = 'VISA';
+    const PAYMENT_INSTRUMENT_SUB_TYPE_VISA = 'VISA';
 
     /** Payout to Bank Account. */
-    public const PAYOUT_INSTRUMENT_TYPE_BANK = 'BANK';
+    const PAYOUT_INSTRUMENT_TYPE_BANK = 'BANK';
 
     /** Payment made using PayPal Here device. */
-    public const CHECKOUT_CHANNEL_POS_PPH = 'POS_PPH';
+    const CHECKOUT_CHANNEL_POS_PPH = 'POS_PPH';
 
     /** Online payment using e-commerce platform. */
-    public const CHECKOUT_CHANNEL_ONLINE_PAYMENT = 'ONLINE_PAYMENT';
+    const CHECKOUT_CHANNEL_ONLINE_PAYMENT = 'ONLINE_PAYMENT';
 
     /** Partial disbursement of amount. */
-    public const DISBURSEMENT_TYPE_PARTIAL = 'PARTIAL';
+    const DISBURSEMENT_TYPE_PARTIAL = 'PARTIAL';
 
     /** Full disbursement of amount. */
-    public const DISBURSEMENT_TYPE_FULL = 'FULL';
+    const DISBURSEMENT_TYPE_FULL = 'FULL';
 
     /** The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code> */
-    public const STATUS_PENDING = 'PENDING';
+    const STATUS_PENDING = 'PENDING';
 
     /** The transaction successfully completed without a denial and after any pending statuses. */
-    public const STATUS_SUCCESS = 'SUCCESS';
+    const STATUS_SUCCESS = 'SUCCESS';
 
     /**
      * The PayPal-generated transaction ID.

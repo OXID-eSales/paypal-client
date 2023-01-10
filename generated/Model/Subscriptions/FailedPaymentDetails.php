@@ -16,28 +16,28 @@ class FailedPaymentDetails implements JsonSerializable
     use BaseModel;
 
     /** PayPal declined the payment due to one or more customer issues. */
-    public const REASON_CODE_PAYMENT_DENIED = 'PAYMENT_DENIED';
+    const REASON_CODE_PAYMENT_DENIED = 'PAYMENT_DENIED';
 
     /** An internal server error has occurred. */
-    public const REASON_CODE_INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR';
+    const REASON_CODE_INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR';
 
     /** The payee account is not in good standing and cannot receive payments. */
-    public const REASON_CODE_PAYEE_ACCOUNT_RESTRICTED = 'PAYEE_ACCOUNT_RESTRICTED';
+    const REASON_CODE_PAYEE_ACCOUNT_RESTRICTED = 'PAYEE_ACCOUNT_RESTRICTED';
 
     /** The payer account is not in good standing and cannot make payments. */
-    public const REASON_CODE_PAYER_ACCOUNT_RESTRICTED = 'PAYER_ACCOUNT_RESTRICTED';
+    const REASON_CODE_PAYER_ACCOUNT_RESTRICTED = 'PAYER_ACCOUNT_RESTRICTED';
 
     /** Payer cannot pay for this transaction. */
-    public const REASON_CODE_PAYER_CANNOT_PAY = 'PAYER_CANNOT_PAY';
+    const REASON_CODE_PAYER_CANNOT_PAY = 'PAYER_CANNOT_PAY';
 
     /** The transaction exceeds the payer's sending limit. */
-    public const REASON_CODE_SENDING_LIMIT_EXCEEDED = 'SENDING_LIMIT_EXCEEDED';
+    const REASON_CODE_SENDING_LIMIT_EXCEEDED = 'SENDING_LIMIT_EXCEEDED';
 
     /** The transaction exceeds the receiver's receiving limit. */
-    public const REASON_CODE_TRANSACTION_RECEIVING_LIMIT_EXCEEDED = 'TRANSACTION_RECEIVING_LIMIT_EXCEEDED';
+    const REASON_CODE_TRANSACTION_RECEIVING_LIMIT_EXCEEDED = 'TRANSACTION_RECEIVING_LIMIT_EXCEEDED';
 
     /** The transaction is declined due to a currency mismatch. */
-    public const REASON_CODE_CURRENCY_MISMATCH = 'CURRENCY_MISMATCH';
+    const REASON_CODE_CURRENCY_MISMATCH = 'CURRENCY_MISMATCH';
 
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.

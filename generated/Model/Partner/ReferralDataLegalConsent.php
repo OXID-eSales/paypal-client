@@ -16,7 +16,7 @@ class ReferralDataLegalConsent implements JsonSerializable
     use BaseModel;
 
     /** The consent given by the customer to share their data with paypal. */
-    public const TYPE_SHARE_DATA_CONSENT = 'SHARE_DATA_CONSENT';
+    const TYPE_SHARE_DATA_CONSENT = 'SHARE_DATA_CONSENT';
 
     /**
      * The type of consent. `SHARE_DATA_CONSENT` gives consent to you to share your customer's data with PayPal.

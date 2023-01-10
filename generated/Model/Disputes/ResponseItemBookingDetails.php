@@ -16,25 +16,25 @@ class ResponseItemBookingDetails implements JsonSerializable
     use BaseModel;
 
     /** The booking confirmation was not received. */
-    public const SUB_REASON_NOT_RECEIVED = 'NOT_RECEIVED';
+    const SUB_REASON_NOT_RECEIVED = 'NOT_RECEIVED';
 
     /** The received booking was different. */
-    public const SUB_REASON_DIFFERENT = 'DIFFERENT';
+    const SUB_REASON_DIFFERENT = 'DIFFERENT';
 
     /** The booking was cancelled. */
-    public const SUB_REASON_CANCELLED = 'CANCELLED';
+    const SUB_REASON_CANCELLED = 'CANCELLED';
 
     /** Travel items and travel needs. */
-    public const CATEGORY_TRAVEL = 'TRAVEL';
+    const CATEGORY_TRAVEL = 'TRAVEL';
 
     /** Tickets for events, such as sports, concerts, and so on. */
-    public const CATEGORY_TICKETS = 'TICKETS';
+    const CATEGORY_TICKETS = 'TICKETS';
 
     /** Booking for hotels and similar accommodation. */
-    public const CATEGORY_ACCOMMODATION = 'ACCOMMODATION';
+    const CATEGORY_ACCOMMODATION = 'ACCOMMODATION';
 
     /** Other bookings. */
-    public const CATEGORY_OTHER = 'OTHER';
+    const CATEGORY_OTHER = 'OTHER';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

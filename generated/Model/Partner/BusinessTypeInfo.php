@@ -16,97 +16,97 @@ class BusinessTypeInfo implements JsonSerializable
     use BaseModel;
 
     /** The any other business entity. */
-    public const TYPE_ANY_OTHER_BUSINESS_ENTITY = 'ANY_OTHER_BUSINESS_ENTITY';
+    const TYPE_ANY_OTHER_BUSINESS_ENTITY = 'ANY_OTHER_BUSINESS_ENTITY';
 
     /** The association. */
-    public const TYPE_ASSOCIATION = 'ASSOCIATION';
+    const TYPE_ASSOCIATION = 'ASSOCIATION';
 
     /** The corporation. */
-    public const TYPE_CORPORATION = 'CORPORATION';
+    const TYPE_CORPORATION = 'CORPORATION';
 
     /** The general partnership. */
-    public const TYPE_GENERAL_PARTNERSHIP = 'GENERAL_PARTNERSHIP';
+    const TYPE_GENERAL_PARTNERSHIP = 'GENERAL_PARTNERSHIP';
 
     /** The government. */
-    public const TYPE_GOVERNMENT = 'GOVERNMENT';
+    const TYPE_GOVERNMENT = 'GOVERNMENT';
 
     /** The individual. */
-    public const TYPE_INDIVIDUAL = 'INDIVIDUAL';
+    const TYPE_INDIVIDUAL = 'INDIVIDUAL';
 
     /** The limited liability partnership. */
-    public const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'LIMITED_LIABILITY_PARTNERSHIP';
+    const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'LIMITED_LIABILITY_PARTNERSHIP';
 
     /** The limited liability proprietors. */
-    public const TYPE_LIMITED_LIABILITY_PROPRIETORS = 'LIMITED_LIABILITY_PROPRIETORS';
+    const TYPE_LIMITED_LIABILITY_PROPRIETORS = 'LIMITED_LIABILITY_PROPRIETORS';
 
     /** The limited liability private corporation. */
-    public const TYPE_LIMITED_LIABILITY_PRIVATE_CORPORATION = 'LIMITED_LIABILITY_PRIVATE_CORPORATION';
+    const TYPE_LIMITED_LIABILITY_PRIVATE_CORPORATION = 'LIMITED_LIABILITY_PRIVATE_CORPORATION';
 
     /** The limited partnership. */
-    public const TYPE_LIMITED_PARTNERSHIP = 'LIMITED_PARTNERSHIP';
+    const TYPE_LIMITED_PARTNERSHIP = 'LIMITED_PARTNERSHIP';
 
     /** The limited partnership private corporation. */
-    public const TYPE_LIMITED_PARTNERSHIP_PRIVATE_CORPORATION = 'LIMITED_PARTNERSHIP_PRIVATE_CORPORATION';
+    const TYPE_LIMITED_PARTNERSHIP_PRIVATE_CORPORATION = 'LIMITED_PARTNERSHIP_PRIVATE_CORPORATION';
 
     /** The nonprofit. */
-    public const TYPE_NONPROFIT = 'NONPROFIT';
+    const TYPE_NONPROFIT = 'NONPROFIT';
 
     /** The only buy and send money. */
-    public const TYPE_ONLY_BUY_OR_SEND_MONEY = 'ONLY_BUY_OR_SEND_MONEY';
+    const TYPE_ONLY_BUY_OR_SEND_MONEY = 'ONLY_BUY_OR_SEND_MONEY';
 
     /** The other corporate body. */
-    public const TYPE_OTHER_CORPORATE_BODY = 'OTHER_CORPORATE_BODY';
+    const TYPE_OTHER_CORPORATE_BODY = 'OTHER_CORPORATE_BODY';
 
     /** The partnership. */
-    public const TYPE_PARTNERSHIP = 'PARTNERSHIP';
+    const TYPE_PARTNERSHIP = 'PARTNERSHIP';
 
     /** The private partnership. */
-    public const TYPE_PRIVATE_PARTNERSHIP = 'PRIVATE_PARTNERSHIP';
+    const TYPE_PRIVATE_PARTNERSHIP = 'PRIVATE_PARTNERSHIP';
 
     /** The proprietorship. */
-    public const TYPE_PROPRIETORSHIP = 'PROPRIETORSHIP';
+    const TYPE_PROPRIETORSHIP = 'PROPRIETORSHIP';
 
     /** The proprietorship craftsman. */
-    public const TYPE_PROPRIETORSHIP_CRAFTSMAN = 'PROPRIETORSHIP_CRAFTSMAN';
+    const TYPE_PROPRIETORSHIP_CRAFTSMAN = 'PROPRIETORSHIP_CRAFTSMAN';
 
     /** The proprietory company. */
-    public const TYPE_PROPRIETORY_COMPANY = 'PROPRIETORY_COMPANY';
+    const TYPE_PROPRIETORY_COMPANY = 'PROPRIETORY_COMPANY';
 
     /** The private corporation. */
-    public const TYPE_PRIVATE_CORPORATION = 'PRIVATE_CORPORATION';
+    const TYPE_PRIVATE_CORPORATION = 'PRIVATE_CORPORATION';
 
     /** The public company. */
-    public const TYPE_PUBLIC_COMPANY = 'PUBLIC_COMPANY';
+    const TYPE_PUBLIC_COMPANY = 'PUBLIC_COMPANY';
 
     /** The public corporation. */
-    public const TYPE_PUBLIC_CORPORATION = 'PUBLIC_CORPORATION';
+    const TYPE_PUBLIC_CORPORATION = 'PUBLIC_CORPORATION';
 
     /** The public partnership. */
-    public const TYPE_PUBLIC_PARTNERSHIP = 'PUBLIC_PARTNERSHIP';
+    const TYPE_PUBLIC_PARTNERSHIP = 'PUBLIC_PARTNERSHIP';
 
     /** Registered Co-operative. */
-    public const TYPE_REGISTERED_COOPERATIVE = 'REGISTERED_COOPERATIVE';
+    const TYPE_REGISTERED_COOPERATIVE = 'REGISTERED_COOPERATIVE';
 
     /** The asso type incorporated. */
-    public const SUBTYPE_ASSO_TYPE_INCORPORATED = 'ASSO_TYPE_INCORPORATED';
+    const SUBTYPE_ASSO_TYPE_INCORPORATED = 'ASSO_TYPE_INCORPORATED';
 
     /** The asso type non incorporated. */
-    public const SUBTYPE_ASSO_TYPE_NON_INCORPORATED = 'ASSO_TYPE_NON_INCORPORATED';
+    const SUBTYPE_ASSO_TYPE_NON_INCORPORATED = 'ASSO_TYPE_NON_INCORPORATED';
 
     /** The govt type entity. */
-    public const SUBTYPE_GOVT_TYPE_ENTITY = 'GOVT_TYPE_ENTITY';
+    const SUBTYPE_GOVT_TYPE_ENTITY = 'GOVT_TYPE_ENTITY';
 
     /** The govt type emanation. */
-    public const SUBTYPE_GOVT_TYPE_EMANATION = 'GOVT_TYPE_EMANATION';
+    const SUBTYPE_GOVT_TYPE_EMANATION = 'GOVT_TYPE_EMANATION';
 
     /** The govt type estd comm. */
-    public const SUBTYPE_GOVT_TYPE_ESTD_COMM = 'GOVT_TYPE_ESTD_COMM';
+    const SUBTYPE_GOVT_TYPE_ESTD_COMM = 'GOVT_TYPE_ESTD_COMM';
 
     /** The govt type estd fc. */
-    public const SUBTYPE_GOVT_TYPE_ESTD_FC = 'GOVT_TYPE_ESTD_FC';
+    const SUBTYPE_GOVT_TYPE_ESTD_FC = 'GOVT_TYPE_ESTD_FC';
 
     /** The govt type estd st tr. */
-    public const SUBTYPE_GOVT_TYPE_ESTD_ST_TR = 'GOVT_TYPE_ESTD_ST_TR';
+    const SUBTYPE_GOVT_TYPE_ESTD_ST_TR = 'GOVT_TYPE_ESTD_ST_TR';
 
     /**
      * The business types classified

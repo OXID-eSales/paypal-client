@@ -16,22 +16,22 @@ class ResponseCancellationDetails implements JsonSerializable
     use BaseModel;
 
     /** Cancelled the billing agreement. */
-    public const CANCELLATION_MODE_CANCELLED_PAYPAL_BILLING_AGREEMENT = 'CANCELLED_PAYPAL_BILLING_AGREEMENT';
+    const CANCELLATION_MODE_CANCELLED_PAYPAL_BILLING_AGREEMENT = 'CANCELLED_PAYPAL_BILLING_AGREEMENT';
 
     /** The item was cancelled on the merchant's website. */
-    public const CANCELLATION_MODE_WEBSITE = 'WEBSITE';
+    const CANCELLATION_MODE_WEBSITE = 'WEBSITE';
 
     /** The item was cancelled through either phone or fax. */
-    public const CANCELLATION_MODE_PHONE = 'PHONE';
+    const CANCELLATION_MODE_PHONE = 'PHONE';
 
     /** The item was cancelled through either email or text message. */
-    public const CANCELLATION_MODE_EMAIL = 'EMAIL';
+    const CANCELLATION_MODE_EMAIL = 'EMAIL';
 
     /** The item was cancelled via written communication. */
-    public const CANCELLATION_MODE_WRITTEN = 'WRITTEN';
+    const CANCELLATION_MODE_WRITTEN = 'WRITTEN';
 
     /** The item was cancelled in person. */
-    public const CANCELLATION_MODE_IN_PERSON = 'IN_PERSON';
+    const CANCELLATION_MODE_IN_PERSON = 'IN_PERSON';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

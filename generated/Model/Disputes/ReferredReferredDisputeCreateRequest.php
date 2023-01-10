@@ -16,34 +16,34 @@ class ReferredReferredDisputeCreateRequest implements JsonSerializable
     use BaseModel;
 
     /** Third-party claim information that the dispute requires custom handling. */
-    public const DISPUTE_FLOW_THIRD_PARTY_CLAIM = 'THIRD_PARTY_CLAIM';
+    const DISPUTE_FLOW_THIRD_PARTY_CLAIM = 'THIRD_PARTY_CLAIM';
 
     /** Third-party claim information that the dispute does not require any special handling. Defaults to default procedures. */
-    public const DISPUTE_FLOW_THIRD_PARTY_DISPUTE = 'THIRD_PARTY_DISPUTE';
+    const DISPUTE_FLOW_THIRD_PARTY_DISPUTE = 'THIRD_PARTY_DISPUTE';
 
     /** The customer did not receive the merchandise or service. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The order is incomplete. It has missing parts or an incorrect quantity. */
-    public const SUB_REASON_INCOMPLETE_ORDER = 'INCOMPLETE_ORDER';
+    const SUB_REASON_INCOMPLETE_ORDER = 'INCOMPLETE_ORDER';
 
     /** The goods are damaged. */
-    public const SUB_REASON_DAMAGED = 'DAMAGED';
+    const SUB_REASON_DAMAGED = 'DAMAGED';
 
     /** The item is fake. */
-    public const SUB_REASON_FAKE = 'FAKE';
+    const SUB_REASON_FAKE = 'FAKE';
 
     /** The item is materially different. It is a different item, the wrong size or model,the wrong color, or used instead of new. */
-    public const SUB_REASON_MATERIALLY_DIFFERENT = 'MATERIALLY_DIFFERENT';
+    const SUB_REASON_MATERIALLY_DIFFERENT = 'MATERIALLY_DIFFERENT';
 
     /** The item is unusable or ruined. */
-    public const SUB_REASON_UNUSABLE = 'UNUSABLE';
+    const SUB_REASON_UNUSABLE = 'UNUSABLE';
 
     /** The surcharge is incorrect. */
-    public const SUB_REASON_EXCESSIVE_SURCHARGE = 'EXCESSIVE_SURCHARGE';
+    const SUB_REASON_EXCESSIVE_SURCHARGE = 'EXCESSIVE_SURCHARGE';
 
     /**
      * The flow ID for the dispute being created.

@@ -16,10 +16,10 @@ class PaypalWallet implements JsonSerializable
     use BaseModel;
 
     /** Accepts any type of payment from the customer. */
-    public const PAYMENT_METHOD_PREFERENCE_UNRESTRICTED = 'UNRESTRICTED';
+    const PAYMENT_METHOD_PREFERENCE_UNRESTRICTED = 'UNRESTRICTED';
 
     /** Accepts only immediate payment from the customer. For example, credit card, PayPal balance, or instant ACH. Ensures that at the time of capture, the payment does not have the `pending` status. */
-    public const PAYMENT_METHOD_PREFERENCE_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
+    const PAYMENT_METHOD_PREFERENCE_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
 
     /**
      * The merchant-preferred payment methods.

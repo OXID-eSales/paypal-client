@@ -16,7 +16,7 @@ class PaymentSessionRequest implements JsonSerializable
     use BaseModel;
 
     /** For Apple Pay Session. */
-    public const SESSION_TYPE_APPLE_PAY = 'APPLE_PAY';
+    const SESSION_TYPE_APPLE_PAY = 'APPLE_PAY';
 
     /**
      * Order Id for which transaction is being processed and payment session needs to be creeated..

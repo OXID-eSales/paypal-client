@@ -16,10 +16,10 @@ class Capture extends CaptureStatus implements JsonSerializable
     use BaseModel;
 
     /** The funds are released to the merchant immediately. */
-    public const DISBURSEMENT_MODE_INSTANT = 'INSTANT';
+    const DISBURSEMENT_MODE_INSTANT = 'INSTANT';
 
     /** The funds are held for a finite number of days. The actual duration depends on the region and type of integration. You can release the funds through a referenced payout. Otherwise, the funds disbursed automatically after the specified duration. */
-    public const DISBURSEMENT_MODE_DELAYED = 'DELAYED';
+    const DISBURSEMENT_MODE_DELAYED = 'DELAYED';
 
     /**
      * The PayPal-generated ID for the captured payment.

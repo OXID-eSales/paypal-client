@@ -53,7 +53,7 @@ class Disputes extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function sendADisputeEvent(EventDisputeCloudEvent $event): void
+    public function sendADisputeEvent(EventDisputeCloudEvent $event)
     {
         $path = "/dispute-events";
 
@@ -168,7 +168,7 @@ class Disputes extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function partiallyUpdateDispute($id, array $patchRequest, $prefer): void
+    public function partiallyUpdateDispute($id, array $patchRequest, $prefer)
     {
         $path = "/disputes/{$id}";
 
@@ -1014,7 +1014,7 @@ class Disputes extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function partiallyUpdateDisputeAction($id, $actionId, array $patchRequest, $prefer): void
+    public function partiallyUpdateDisputeAction($id, $actionId, array $patchRequest, $prefer)
     {
         $path = "/disputes/{$id}/partner-actions/{$actionId}";
 

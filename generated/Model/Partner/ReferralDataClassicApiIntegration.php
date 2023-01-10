@@ -16,19 +16,19 @@ class ReferralDataClassicApiIntegration implements JsonSerializable
     use BaseModel;
 
     /** The customer grants you, the partner, permission to use your API credentials to make API calls on their behalf. If you select this option, you must fill in details in <code>classic_third_party_details</code>. */
-    public const INTEGRATION_TYPE_THIRD_PARTY = 'THIRD_PARTY';
+    const INTEGRATION_TYPE_THIRD_PARTY = 'THIRD_PARTY';
 
     /** You (partner) retrieve the customer's API credentials by calling the Account Status API. If you select this option, you must fill in details in <code>classic_first_party_details</code>. */
-    public const INTEGRATION_TYPE_FIRST_PARTY_INTEGRATED = 'FIRST_PARTY_INTEGRATED';
+    const INTEGRATION_TYPE_FIRST_PARTY_INTEGRATED = 'FIRST_PARTY_INTEGRATED';
 
     /** The customer is prompted to provide their API credentials through the user interface at the end of the integrated sign-up flow. If you select this option, you must fill in details in <code>classic_first_party_details</code>. */
-    public const INTEGRATION_TYPE_FIRST_PARTY_NON_INTEGRATED = 'FIRST_PARTY_NON_INTEGRATED';
+    const INTEGRATION_TYPE_FIRST_PARTY_NON_INTEGRATED = 'FIRST_PARTY_NON_INTEGRATED';
 
     /** Signature. */
-    public const FIRST_PARTY_DETAILS_SIGNATURE = 'SIGNATURE';
+    const FIRST_PARTY_DETAILS_SIGNATURE = 'SIGNATURE';
 
     /** Certificate. */
-    public const FIRST_PARTY_DETAILS_CERTIFICATE = 'CERTIFICATE';
+    const FIRST_PARTY_DETAILS_CERTIFICATE = 'CERTIFICATE';
 
     /**
      * The classic API integration type.

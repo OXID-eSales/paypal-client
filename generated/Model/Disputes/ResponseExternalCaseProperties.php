@@ -16,91 +16,91 @@ class ResponseExternalCaseProperties implements JsonSerializable
     use BaseModel;
 
     /** The customer disputed the transaction at the issuing bank. */
-    public const EXTERNAL_TYPE_BANK_RETURN = 'BANK_RETURN';
+    const EXTERNAL_TYPE_BANK_RETURN = 'BANK_RETURN';
 
     /** The customer requested to reverse the ELV transaction at the issuing bank. */
-    public const EXTERNAL_TYPE_DIRECT_DEBIT_REVERSAL = 'DIRECT_DEBIT_REVERSAL';
+    const EXTERNAL_TYPE_DIRECT_DEBIT_REVERSAL = 'DIRECT_DEBIT_REVERSAL';
 
     /** The customer disputed the transaction with the credit card processor. */
-    public const EXTERNAL_TYPE_CREDIT_CARD_DISPUTE = 'CREDIT_CARD_DISPUTE';
+    const EXTERNAL_TYPE_CREDIT_CARD_DISPUTE = 'CREDIT_CARD_DISPUTE';
 
     /** The dispute amount is debited from the merchant. */
-    public const RECOVERY_TYPE_RECOVERED_FROM_SELLER = 'RECOVERED_FROM_SELLER';
+    const RECOVERY_TYPE_RECOVERED_FROM_SELLER = 'RECOVERED_FROM_SELLER';
 
     /** The dispute amount is debited from the customer. */
-    public const RECOVERY_TYPE_RECOVERED_FROM_BUYER = 'RECOVERED_FROM_BUYER';
+    const RECOVERY_TYPE_RECOVERED_FROM_BUYER = 'RECOVERED_FROM_BUYER';
 
     /** The merchant or customer is not liable for the dispute. */
-    public const RECOVERY_TYPE_NO_RECOVERY = 'NO_RECOVERY';
+    const RECOVERY_TYPE_NO_RECOVERY = 'NO_RECOVERY';
 
     /** Card Brand Amex. */
-    public const CARD_BRAND_AMEX = 'AMEX';
+    const CARD_BRAND_AMEX = 'AMEX';
 
     /** Card Brand CB_NATIONALE. */
-    public const CARD_BRAND_CB_NATIONALE = 'CB_NATIONALE';
+    const CARD_BRAND_CB_NATIONALE = 'CB_NATIONALE';
 
     /** Card Brand CETELEM. */
-    public const CARD_BRAND_CETELEM = 'CETELEM';
+    const CARD_BRAND_CETELEM = 'CETELEM';
 
     /** Card Brand COFIDIS. */
-    public const CARD_BRAND_COFIDIS = 'COFIDIS';
+    const CARD_BRAND_COFIDIS = 'COFIDIS';
 
     /** Card Brand COFINOGA. */
-    public const CARD_BRAND_COFINOGA = 'COFINOGA';
+    const CARD_BRAND_COFINOGA = 'COFINOGA';
 
     /** Card Brand CHINA_UNION_PAY. */
-    public const CARD_BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const CARD_BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /** Card Brand DELTA. */
-    public const CARD_BRAND_DELTA = 'DELTA';
+    const CARD_BRAND_DELTA = 'DELTA';
 
     /** Card Brand DISCOVER. */
-    public const CARD_BRAND_DISCOVER = 'DISCOVER';
+    const CARD_BRAND_DISCOVER = 'DISCOVER';
 
     /** Card Brand ELECTRON. */
-    public const CARD_BRAND_ELECTRON = 'ELECTRON';
+    const CARD_BRAND_ELECTRON = 'ELECTRON';
 
     /** Card Brand ELO. */
-    public const CARD_BRAND_ELO = 'ELO';
+    const CARD_BRAND_ELO = 'ELO';
 
     /** Card Brand HIPER. */
-    public const CARD_BRAND_HIPER = 'HIPER';
+    const CARD_BRAND_HIPER = 'HIPER';
 
     /** Card Brand HIPERCARD. */
-    public const CARD_BRAND_HIPERCARD = 'HIPERCARD';
+    const CARD_BRAND_HIPERCARD = 'HIPERCARD';
 
     /** Card Brand JCB. */
-    public const CARD_BRAND_JCB = 'JCB';
+    const CARD_BRAND_JCB = 'JCB';
 
     /** Card Brand MAESTRO. */
-    public const CARD_BRAND_MAESTRO = 'MAESTRO';
+    const CARD_BRAND_MAESTRO = 'MAESTRO';
 
     /** Card Brand MASTER_CARD. */
-    public const CARD_BRAND_MASTER_CARD = 'MASTER_CARD';
+    const CARD_BRAND_MASTER_CARD = 'MASTER_CARD';
 
     /** Card Brand SOLO. */
-    public const CARD_BRAND_SOLO = 'SOLO';
+    const CARD_BRAND_SOLO = 'SOLO';
 
     /** Card Brand STAR. */
-    public const CARD_BRAND_STAR = 'STAR';
+    const CARD_BRAND_STAR = 'STAR';
 
     /** Card Brand SWITCH. */
-    public const CARD_BRAND_SWITCH = 'SWITCH';
+    const CARD_BRAND_SWITCH = 'SWITCH';
 
     /** Card Brand VISA. */
-    public const CARD_BRAND_VISA = 'VISA';
+    const CARD_BRAND_VISA = 'VISA';
 
     /** Card Brand GE. */
-    public const CARD_BRAND_GE = 'GE';
+    const CARD_BRAND_GE = 'GE';
 
     /** Card Brand RUPAY. */
-    public const CARD_BRAND_RUPAY = 'RUPAY';
+    const CARD_BRAND_RUPAY = 'RUPAY';
 
     /** Card Brand SYNCHRONY. */
-    public const CARD_BRAND_SYNCHRONY = 'SYNCHRONY';
+    const CARD_BRAND_SYNCHRONY = 'SYNCHRONY';
 
     /** Card Brand DINERS. */
-    public const CARD_BRAND_DINERS = 'DINERS';
+    const CARD_BRAND_DINERS = 'DINERS';
 
     /**
      * The external claim ID.

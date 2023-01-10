@@ -16,7 +16,7 @@ class EventDisputeCloudEvent implements JsonSerializable
     use BaseModel;
 
     /** The supported content type of the dispute event. */
-    public const DATACONTENTTYPE_APPLICATION_JSON = 'application/json';
+    const DATACONTENTTYPE_APPLICATION_JSON = 'application/json';
 
     /**
      * The CloudEvent specification version that this event uses, as defined in the [CloudEvents

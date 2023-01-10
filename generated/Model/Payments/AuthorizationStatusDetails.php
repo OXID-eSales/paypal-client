@@ -16,7 +16,7 @@ class AuthorizationStatusDetails implements JsonSerializable
     use BaseModel;
 
     /** Authorization is pending manual review. */
-    public const REASON_PENDING_REVIEW = 'PENDING_REVIEW';
+    const REASON_PENDING_REVIEW = 'PENDING_REVIEW';
 
     /**
      * The reason why the authorized status is `PENDING`.

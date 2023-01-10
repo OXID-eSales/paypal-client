@@ -16,22 +16,22 @@ class OfficeBearer extends Person implements JsonSerializable
     use BaseModel;
 
     /** The ceo. */
-    public const ROLE_CEO = 'CEO';
+    const ROLE_CEO = 'CEO';
 
     /** The chairman. */
-    public const ROLE_CHAIRMAN = 'CHAIRMAN';
+    const ROLE_CHAIRMAN = 'CHAIRMAN';
 
     /** Director of the business */
-    public const ROLE_DIRECTOR = 'DIRECTOR';
+    const ROLE_DIRECTOR = 'DIRECTOR';
 
     /** The secretary. */
-    public const ROLE_SECRETARY = 'SECRETARY';
+    const ROLE_SECRETARY = 'SECRETARY';
 
     /** The treasurer. */
-    public const ROLE_TREASURER = 'TREASURER';
+    const ROLE_TREASURER = 'TREASURER';
 
     /** The trustee. */
-    public const ROLE_TRUSTEE = 'TRUSTEE';
+    const ROLE_TRUSTEE = 'TRUSTEE';
 
     /**
      * Role of the person party played in the business.

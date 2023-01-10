@@ -17,19 +17,19 @@ class PaymentMethod2 implements JsonSerializable
     use BaseModel;
 
     /** PayPal Credit. */
-    public const PAYER_SELECTED_PAYPAL_CREDIT = 'PAYPAL_CREDIT';
+    const PAYER_SELECTED_PAYPAL_CREDIT = 'PAYPAL_CREDIT';
 
     /** PayPal. */
-    public const PAYER_SELECTED_PAYPAL = 'PAYPAL';
+    const PAYER_SELECTED_PAYPAL = 'PAYPAL';
 
     /** PayPal Buy Now Pay Later. */
-    public const PAYER_SELECTED_PAYPAL_PAY_LATER = 'PAYPAL_PAY_LATER';
+    const PAYER_SELECTED_PAYPAL_PAY_LATER = 'PAYPAL_PAY_LATER';
 
     /** Accepts any type of payment from the customer. */
-    public const PAYEE_PREFERRED_UNRESTRICTED = 'UNRESTRICTED';
+    const PAYEE_PREFERRED_UNRESTRICTED = 'UNRESTRICTED';
 
     /** Accepts only immediate payment from the customer. For example, credit card, PayPal balance, or instant ACH. Ensures that at the time of capture, the payment does not have the `pending` status. */
-    public const PAYEE_PREFERRED_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
+    const PAYEE_PREFERRED_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
 
     /**
      * The customer-selected payment method on the merchant site.

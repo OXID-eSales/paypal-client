@@ -16,22 +16,22 @@ class ReferredReferredDisputeSummary implements JsonSerializable
     use BaseModel;
 
     /** The customer did not receive the merchandise or service. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_RECEIVED = 'MERCHANDISE_OR_SERVICE_NOT_RECEIVED';
 
     /** The customer reports that the merchandise or service is not as described. */
-    public const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
+    const REASON_MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED = 'MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED';
 
     /** The dispute is open. */
-    public const STATUS_OPEN = 'OPEN';
+    const STATUS_OPEN = 'OPEN';
 
     /** The dispute is resolved. */
-    public const STATUS_CLOSED = 'CLOSED';
+    const STATUS_CLOSED = 'CLOSED';
 
     /** A third-party claim. The dispute requires custom handling. */
-    public const DISPUTE_FLOW_THIRD_PARTY_CLAIM = 'THIRD_PARTY_CLAIM';
+    const DISPUTE_FLOW_THIRD_PARTY_CLAIM = 'THIRD_PARTY_CLAIM';
 
     /** A third-party dispute. The dispute does not require any special handling. Defaults to default procedures. */
-    public const DISPUTE_FLOW_THIRD_PARTY_DISPUTE = 'THIRD_PARTY_DISPUTE';
+    const DISPUTE_FLOW_THIRD_PARTY_DISPUTE = 'THIRD_PARTY_DISPUTE';
 
     /**
      * The ID of the PayPal-side dispute.

@@ -16,28 +16,28 @@ class RequestEscalate implements JsonSerializable
     use BaseModel;
 
     /** The merchant indicates that shipment would have arrived by now. */
-    public const BUYER_ESCALATION_REASON_SHIPMENT_NOT_ARRIVED = 'SHIPMENT_NOT_ARRIVED';
+    const BUYER_ESCALATION_REASON_SHIPMENT_NOT_ARRIVED = 'SHIPMENT_NOT_ARRIVED';
 
     /** The customer has evidence that the merchant might be fraudulent. */
-    public const BUYER_ESCALATION_REASON_FRAUDULENT_SELLER = 'FRAUDULENT_SELLER';
+    const BUYER_ESCALATION_REASON_FRAUDULENT_SELLER = 'FRAUDULENT_SELLER';
 
     /** The customer already failed to reach a resolution with the merchant before filing this dispute. */
-    public const BUYER_ESCALATION_REASON_FAILED_NEGOTIATION = 'FAILED_NEGOTIATION';
+    const BUYER_ESCALATION_REASON_FAILED_NEGOTIATION = 'FAILED_NEGOTIATION';
 
     /** The customer thinks he or she cannot reach a resolution with the merchant. */
-    public const BUYER_ESCALATION_REASON_INCONCLUSIVE_NEGOTIATION = 'INCONCLUSIVE_NEGOTIATION';
+    const BUYER_ESCALATION_REASON_INCONCLUSIVE_NEGOTIATION = 'INCONCLUSIVE_NEGOTIATION';
 
     /** The customer didn't receive refund as mentioned by merchant. */
-    public const BUYER_ESCALATION_REASON_REFUND_NOT_RECEIVED = 'REFUND_NOT_RECEIVED';
+    const BUYER_ESCALATION_REASON_REFUND_NOT_RECEIVED = 'REFUND_NOT_RECEIVED';
 
     /** The customer received lesser refund amount than expected. */
-    public const BUYER_ESCALATION_REASON_REFUND_AMOUNT_IS_DIFFERENT = 'REFUND_AMOUNT_IS_DIFFERENT';
+    const BUYER_ESCALATION_REASON_REFUND_AMOUNT_IS_DIFFERENT = 'REFUND_AMOUNT_IS_DIFFERENT';
 
     /** Tracking id received from merchant is invalid. */
-    public const BUYER_ESCALATION_REASON_TRACKING_ID_INVALID = 'TRACKING_ID_INVALID';
+    const BUYER_ESCALATION_REASON_TRACKING_ID_INVALID = 'TRACKING_ID_INVALID';
 
     /** The customer has other reasons, which are described in the comments. If OTHER is specified, customer needs to specify more information in the notes field. */
-    public const BUYER_ESCALATION_REASON_OTHER = 'OTHER';
+    const BUYER_ESCALATION_REASON_OTHER = 'OTHER';
 
     /**
      * The notes about the escalation of the dispute to a claim.

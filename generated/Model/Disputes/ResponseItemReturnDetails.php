@@ -16,10 +16,10 @@ class ResponseItemReturnDetails implements JsonSerializable
     use BaseModel;
 
     /** The customer shipped the product back to the merchant. */
-    public const MODE_SHIPPED = 'SHIPPED';
+    const MODE_SHIPPED = 'SHIPPED';
 
     /** The customer returned the item to the merchant in person. */
-    public const MODE_IN_PERSON = 'IN_PERSON';
+    const MODE_IN_PERSON = 'IN_PERSON';
 
     /**
      * If `true`, indicates that the item was returned but the seller refused to accept the return and if `false`,

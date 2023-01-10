@@ -16,10 +16,10 @@ class ShippingDetail implements JsonSerializable
     use BaseModel;
 
     /** The payer intends to receive the items at a specified address. */
-    public const TYPE_SHIPPING = 'SHIPPING';
+    const TYPE_SHIPPING = 'SHIPPING';
 
     /** The payer intends to pick up the items from the payee in person. */
-    public const TYPE_PICKUP_IN_PERSON = 'PICKUP_IN_PERSON';
+    const TYPE_PICKUP_IN_PERSON = 'PICKUP_IN_PERSON';
 
     /**
      * The name of the party.

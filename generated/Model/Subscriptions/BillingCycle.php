@@ -16,10 +16,10 @@ class BillingCycle implements JsonSerializable
     use BaseModel;
 
     /** A regular billing cycle. */
-    public const TENURE_TYPE_REGULAR = 'REGULAR';
+    const TENURE_TYPE_REGULAR = 'REGULAR';
 
     /** A trial billing cycle. */
-    public const TENURE_TYPE_TRIAL = 'TRIAL';
+    const TENURE_TYPE_TRIAL = 'TRIAL';
 
     /**
      * The pricing scheme details.

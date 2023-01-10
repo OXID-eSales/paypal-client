@@ -17,22 +17,22 @@ class IdentityDocument implements JsonSerializable
     use BaseModel;
 
     /** Social security number. */
-    public const TYPE_SOCIAL_SECURITY_NUMBER = 'SOCIAL_SECURITY_NUMBER';
+    const TYPE_SOCIAL_SECURITY_NUMBER = 'SOCIAL_SECURITY_NUMBER';
 
     /** Individual tax identification number. */
-    public const TYPE_INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = 'INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER';
+    const TYPE_INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = 'INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER';
 
     /** National identification number, such as CPF or AADHAR. */
-    public const TYPE_NATIONAL_IDENTIFICATION_NUMBER = 'NATIONAL_IDENTIFICATION_NUMBER';
+    const TYPE_NATIONAL_IDENTIFICATION_NUMBER = 'NATIONAL_IDENTIFICATION_NUMBER';
 
     /** The tax identification number, such as PAN CARD. */
-    public const TYPE_TAX_IDENTIFICATION_NUMBER = 'TAX_IDENTIFICATION_NUMBER';
+    const TYPE_TAX_IDENTIFICATION_NUMBER = 'TAX_IDENTIFICATION_NUMBER';
 
     /** The passport number. */
-    public const TYPE_PASSPORT_NUMBER = 'PASSPORT_NUMBER';
+    const TYPE_PASSPORT_NUMBER = 'PASSPORT_NUMBER';
 
     /** Last 4 digits of the social security number. */
-    public const TYPE_SSN4 = 'SSN4';
+    const TYPE_SSN4 = 'SSN4';
 
     /**
      * The identity document type.

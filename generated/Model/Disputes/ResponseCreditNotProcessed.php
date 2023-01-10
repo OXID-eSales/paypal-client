@@ -16,10 +16,10 @@ class ResponseCreditNotProcessed implements JsonSerializable
     use BaseModel;
 
     /** The product has an issue. */
-    public const ISSUE_TYPE_PRODUCT = 'PRODUCT';
+    const ISSUE_TYPE_PRODUCT = 'PRODUCT';
 
     /** The service has an issue. */
-    public const ISSUE_TYPE_SERVICE = 'SERVICE';
+    const ISSUE_TYPE_SERVICE = 'SERVICE';
 
     /**
      * The issue type.

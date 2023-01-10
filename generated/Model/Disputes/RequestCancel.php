@@ -16,19 +16,19 @@ class RequestCancel implements JsonSerializable
     use BaseModel;
 
     /** The customer already received the item. */
-    public const CANCELLATION_REASON_ITEM_RECEIVED = 'ITEM_RECEIVED';
+    const CANCELLATION_REASON_ITEM_RECEIVED = 'ITEM_RECEIVED';
 
     /** The customer already received a refund for the item. */
-    public const CANCELLATION_REASON_REFUND_RECEIVED = 'REFUND_RECEIVED';
+    const CANCELLATION_REASON_REFUND_RECEIVED = 'REFUND_RECEIVED';
 
     /** The customer cancelled the dispute for another reason. If OTHER is specified, customer needs to specify more information in the notes field. */
-    public const CANCELLATION_REASON_OTHER = 'OTHER';
+    const CANCELLATION_REASON_OTHER = 'OTHER';
 
     /** The customer received the provided shipping tracking information and agrees to cancel. */
-    public const CANCELLATION_REASON_SHIPMENT_INFO_RECEIVED = 'SHIPMENT_INFO_RECEIVED';
+    const CANCELLATION_REASON_SHIPMENT_INFO_RECEIVED = 'SHIPMENT_INFO_RECEIVED';
 
     /** The customer received the item replacement and agrees to cancel. */
-    public const CANCELLATION_REASON_REPLACEMENT_RECEIVED = 'REPLACEMENT_RECEIVED';
+    const CANCELLATION_REASON_REPLACEMENT_RECEIVED = 'REPLACEMENT_RECEIVED';
 
     /**
      * The note, if any, about why the merchant canceled the dispute.

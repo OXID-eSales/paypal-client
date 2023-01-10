@@ -16,31 +16,31 @@ class PaymentMethod implements JsonSerializable
     use BaseModel;
 
     /** PayPal Credit. */
-    public const PAYER_SELECTED_PAYPAL_CREDIT = 'PAYPAL_CREDIT';
+    const PAYER_SELECTED_PAYPAL_CREDIT = 'PAYPAL_CREDIT';
 
     /** PayPal. */
-    public const PAYER_SELECTED_PAYPAL = 'PAYPAL';
+    const PAYER_SELECTED_PAYPAL = 'PAYPAL';
 
     /** PayPal Buy Now Pay Later. */
-    public const PAYER_SELECTED_PAYPAL_PAY_LATER = 'PAYPAL_PAY_LATER';
+    const PAYER_SELECTED_PAYPAL_PAY_LATER = 'PAYPAL_PAY_LATER';
 
     /** Accepts any type of payment from the customer. */
-    public const PAYEE_PREFERRED_UNRESTRICTED = 'UNRESTRICTED';
+    const PAYEE_PREFERRED_UNRESTRICTED = 'UNRESTRICTED';
 
     /** Accepts only immediate payment from the customer. For example, credit card, PayPal balance, or instant ACH. Ensures that at the time of capture, the payment does not have the `pending` status. */
-    public const PAYEE_PREFERRED_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
+    const PAYEE_PREFERRED_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
 
     /** The API caller (merchant/partner) accepts authorization and payment information from a consumer over the telephone. */
-    public const STANDARD_ENTRY_CLASS_CODE_TEL = 'TEL';
+    const STANDARD_ENTRY_CLASS_CODE_TEL = 'TEL';
 
     /** The API caller (merchant/partner) accepts Debit transactions from a consumer on their website. */
-    public const STANDARD_ENTRY_CLASS_CODE_WEB = 'WEB';
+    const STANDARD_ENTRY_CLASS_CODE_WEB = 'WEB';
 
     /** Cash concentration and disbursement for corporate debit transaction. Used to disburse or consolidate funds. Entries are usually Optional high-dollar, low-volume, and time-critical. (e.g. intra-company transfers or invoice payments to suppliers). */
-    public const STANDARD_ENTRY_CLASS_CODE_CCD = 'CCD';
+    const STANDARD_ENTRY_CLASS_CODE_CCD = 'CCD';
 
     /** Prearranged payment and deposit entries. Used for debit payments authorized by a consumer account holder, and usually initiated by a company. These are usually recurring debits (such as insurance premiums). */
-    public const STANDARD_ENTRY_CLASS_CODE_PPD = 'PPD';
+    const STANDARD_ENTRY_CLASS_CODE_PPD = 'PPD';
 
     /**
      * The customer-selected payment method on the merchant site.

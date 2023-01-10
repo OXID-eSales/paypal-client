@@ -16,97 +16,97 @@ class ResponseAccountActivity implements JsonSerializable
     use BaseModel;
 
     /** The account change occurred to an email. */
-    public const ENTITY_TYPE_EMAIL = 'EMAIL';
+    const ENTITY_TYPE_EMAIL = 'EMAIL';
 
     /** The account change occurred to a phone number. */
-    public const ENTITY_TYPE_PHONE = 'PHONE';
+    const ENTITY_TYPE_PHONE = 'PHONE';
 
     /** The account change occurred to an address. */
-    public const ENTITY_TYPE_ADDRESS = 'ADDRESS';
+    const ENTITY_TYPE_ADDRESS = 'ADDRESS';
 
     /** The account change occurred to the account itself. */
-    public const ENTITY_TYPE_ACCOUNT = 'ACCOUNT';
+    const ENTITY_TYPE_ACCOUNT = 'ACCOUNT';
 
     /** The account change occurred to a funding instrument. */
-    public const ENTITY_TYPE_FUNDING_INSTRUMENT = 'FUNDING_INSTRUMENT';
+    const ENTITY_TYPE_FUNDING_INSTRUMENT = 'FUNDING_INSTRUMENT';
 
     /** The account change was other. */
-    public const ENTITY_TYPE_OTHER = 'OTHER';
+    const ENTITY_TYPE_OTHER = 'OTHER';
 
     /** The account change occurred to a device. */
-    public const ENTITY_TYPE_DEVICE = 'DEVICE';
+    const ENTITY_TYPE_DEVICE = 'DEVICE';
 
     /** The account change occurred to a credit card. */
-    public const ENTITY_SUBTYPE_CREDIT_CARD = 'CREDIT_CARD';
+    const ENTITY_SUBTYPE_CREDIT_CARD = 'CREDIT_CARD';
 
     /** The account change occurred to a bank account. */
-    public const ENTITY_SUBTYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
+    const ENTITY_SUBTYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
 
     /** The account change occurred to a debit card. */
-    public const ENTITY_SUBTYPE_DEBIT_CARD = 'DEBIT_CARD';
+    const ENTITY_SUBTYPE_DEBIT_CARD = 'DEBIT_CARD';
 
     /** The account change occurred to customer credit. */
-    public const ENTITY_SUBTYPE_BUYER_CREDIT = 'BUYER_CREDIT';
+    const ENTITY_SUBTYPE_BUYER_CREDIT = 'BUYER_CREDIT';
 
     /** The account change occurred to PayPal Smart Connect. */
-    public const ENTITY_SUBTYPE_PAYPAL_SMART_CONNECT = 'PAYPAL_SMART_CONNECT';
+    const ENTITY_SUBTYPE_PAYPAL_SMART_CONNECT = 'PAYPAL_SMART_CONNECT';
 
     /** The account change occurred to an ebay card. */
-    public const ENTITY_SUBTYPE_EBAY_CARD = 'EBAY_CARD';
+    const ENTITY_SUBTYPE_EBAY_CARD = 'EBAY_CARD';
 
     /** The account change occurred to a Plus card. */
-    public const ENTITY_SUBTYPE_PLUS_CARD = 'PLUS_CARD';
+    const ENTITY_SUBTYPE_PLUS_CARD = 'PLUS_CARD';
 
     /** The account change occurred to working capital. */
-    public const ENTITY_SUBTYPE_WORKING_CAPITAL = 'WORKING_CAPITAL';
+    const ENTITY_SUBTYPE_WORKING_CAPITAL = 'WORKING_CAPITAL';
 
     /** The account change occurred to revolving credit. */
-    public const ENTITY_SUBTYPE_REVOLVING_CREDIT = 'REVOLVING_CREDIT';
+    const ENTITY_SUBTYPE_REVOLVING_CREDIT = 'REVOLVING_CREDIT';
 
     /** The account change occurred to close-ended credit. */
-    public const ENTITY_SUBTYPE_CLOSE_ENDED_CREDIT = 'CLOSE_ENDED_CREDIT';
+    const ENTITY_SUBTYPE_CLOSE_ENDED_CREDIT = 'CLOSE_ENDED_CREDIT';
 
     /** The account change occurred to a virtual card. */
-    public const ENTITY_SUBTYPE_VIRTUAL_CARD = 'VIRTUAL_CARD';
+    const ENTITY_SUBTYPE_VIRTUAL_CARD = 'VIRTUAL_CARD';
 
     /** The entity was added. */
-    public const ACTION_PERFORMED_ADDED = 'ADDED';
+    const ACTION_PERFORMED_ADDED = 'ADDED';
 
     /** The entity was removed. */
-    public const ACTION_PERFORMED_REMOVED = 'REMOVED';
+    const ACTION_PERFORMED_REMOVED = 'REMOVED';
 
     /** The entity was marked as primary. */
-    public const ACTION_PERFORMED_MARKED_PRIMARY = 'MARKED_PRIMARY';
+    const ACTION_PERFORMED_MARKED_PRIMARY = 'MARKED_PRIMARY';
 
     /** The entity was edited. */
-    public const ACTION_PERFORMED_EDITED = 'EDITED';
+    const ACTION_PERFORMED_EDITED = 'EDITED';
 
     /** The entity was upgraded. */
-    public const ACTION_PERFORMED_UPGRADED = 'UPGRADED';
+    const ACTION_PERFORMED_UPGRADED = 'UPGRADED';
 
     /** The entity was downgraded. */
-    public const ACTION_PERFORMED_DOWNGRADED = 'DOWNGRADED';
+    const ACTION_PERFORMED_DOWNGRADED = 'DOWNGRADED';
 
     /** The entity was stolen or lost. */
-    public const ACTION_PERFORMED_STOLEN_OR_LOST = 'STOLEN_OR_LOST';
+    const ACTION_PERFORMED_STOLEN_OR_LOST = 'STOLEN_OR_LOST';
 
     /** The entity was closed. */
-    public const ACTION_PERFORMED_CLOSED = 'CLOSED';
+    const ACTION_PERFORMED_CLOSED = 'CLOSED';
 
     /** The entity was deactivated. */
-    public const ACTION_PERFORMED_DEACTIVATED = 'DEACTIVATED';
+    const ACTION_PERFORMED_DEACTIVATED = 'DEACTIVATED';
 
     /** The entity was reactivated. */
-    public const ACTION_PERFORMED_REACTIVATED = 'REACTIVATED';
+    const ACTION_PERFORMED_REACTIVATED = 'REACTIVATED';
 
     /** The entity was reopened. */
-    public const ACTION_PERFORMED_REOPENED = 'REOPENED';
+    const ACTION_PERFORMED_REOPENED = 'REOPENED';
 
     /** The entity was applied for. */
-    public const ACTION_PERFORMED_APPLIED = 'APPLIED';
+    const ACTION_PERFORMED_APPLIED = 'APPLIED';
 
     /** The entity was activated. */
-    public const ACTION_PERFORMED_ACTIVATED = 'ACTIVATED';
+    const ACTION_PERFORMED_ACTIVATED = 'ACTIVATED';
 
     /**
      * The ID of the activity log entry.

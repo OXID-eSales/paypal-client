@@ -16,34 +16,34 @@ class OdfiDetails implements JsonSerializable
     use BaseModel;
 
     /** Account Receivable Check. Converted checks received via the US mail or at a drop box location for the payment of goods or services. */
-    public const STANDARD_ENTRY_CLASS_CODE_ARC = 'ARC';
+    const STANDARD_ENTRY_CLASS_CODE_ARC = 'ARC';
 
     /** Back Office Conversion. Converted checks received by merchant at the point of purchase or at manned bill payment locations, and processed during back office operations. */
-    public const STANDARD_ENTRY_CLASS_CODE_BOC = 'BOC';
+    const STANDARD_ENTRY_CLASS_CODE_BOC = 'BOC';
 
     /** Corporate Credit or Debit. Transfer of funds where they are either distributed or consolidated between corporate entities. */
-    public const STANDARD_ENTRY_CLASS_CODE_CCD = 'CCD';
+    const STANDARD_ENTRY_CLASS_CODE_CCD = 'CCD';
 
     /** Corporate Trade Exchange. Application that supports the transfer of funds within a trading partner relationship. */
-    public const STANDARD_ENTRY_CLASS_CODE_CTX = 'CTX';
+    const STANDARD_ENTRY_CLASS_CODE_CTX = 'CTX';
 
     /** International ACH Transaction. Transaction involving a financial agency's office that is not located in the territorial jurisdiction of the United States. */
-    public const STANDARD_ENTRY_CLASS_CODE_IAT = 'IAT';
+    const STANDARD_ENTRY_CLASS_CODE_IAT = 'IAT';
 
     /** Point of Purchase Entry. Entry initiated by the consumer via a debit card for payment of goods or services. */
-    public const STANDARD_ENTRY_CLASS_CODE_POP = 'POP';
+    const STANDARD_ENTRY_CLASS_CODE_POP = 'POP';
 
     /** Prearranged Payment and Deposit Entry. Entry initiated by an organization based on a standing or single entry authorization from a receiver to transfer funds to or from a consumer account of the receiver. */
-    public const STANDARD_ENTRY_CLASS_CODE_PPD = 'PPD';
+    const STANDARD_ENTRY_CLASS_CODE_PPD = 'PPD';
 
     /** Represented Check Entry. Application used by originators to re-present a check that has been processed through the check collection system and returned because of insufficient or uncollected funds. */
-    public const STANDARD_ENTRY_CLASS_CODE_RCK = 'RCK';
+    const STANDARD_ENTRY_CLASS_CODE_RCK = 'RCK';
 
     /** Telephone Authorized Entry. Debit transaction to a consumer's account pursuant to an oral authorization obtained from the consumer via the telephone. */
-    public const STANDARD_ENTRY_CLASS_CODE_TEL = 'TEL';
+    const STANDARD_ENTRY_CLASS_CODE_TEL = 'TEL';
 
     /** Internet Authorized Entry. Entry used for the origination of debit entries to a consumer's account pursuant to an authorization that is obtained from the Receiver via the internet. */
-    public const STANDARD_ENTRY_CLASS_CODE_WEB = 'WEB';
+    const STANDARD_ENTRY_CLASS_CODE_WEB = 'WEB';
 
     /**
      * The Standard Entry Class (SEC) code is a three-character code included in the company/batch header record to

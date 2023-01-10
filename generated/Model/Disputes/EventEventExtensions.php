@@ -17,97 +17,97 @@ class EventEventExtensions implements JsonSerializable
     use BaseModel;
 
     /** The merchant must refund the customer without any item replacement or return. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount. Buyer acceptance is needed for partial refund offers and dispute is auto closed for full refunds. Include the <code>offer_amount</code> but omit the <code>return_shipping_address</code> parameters from the make offer request. */
-    public const MAKE_OFFER_TYPE_REFUND = 'REFUND';
+    const MAKE_OFFER_TYPE_REFUND = 'REFUND';
 
     /** The customer must return the item to the merchant and then merchant will refund the money. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter and the <code>offer_amount</code> parameter in the make offer request. */
-    public const MAKE_OFFER_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
+    const MAKE_OFFER_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
 
     /** The merchant must do a refund and then send a replacement item to the customer. This offer type is valid in the inquiry phase when a merchant is willing to refund a specific amount and send the replacement item. Include the <code>offer_amount</code> parameter in the make offer request. */
-    public const MAKE_OFFER_TYPE_REFUND_WITH_REPLACEMENT = 'REFUND_WITH_REPLACEMENT';
+    const MAKE_OFFER_TYPE_REFUND_WITH_REPLACEMENT = 'REFUND_WITH_REPLACEMENT';
 
     /** The merchant must send a replacement item to the customer with no additional refunds. This offer type is valid in the inquiry phase when a merchant is willing to replace the item without any refund. Omit the <code>offer_amount</code> parameter from the make offer request. */
-    public const MAKE_OFFER_TYPE_REPLACEMENT_WITHOUT_REFUND = 'REPLACEMENT_WITHOUT_REFUND';
+    const MAKE_OFFER_TYPE_REPLACEMENT_WITHOUT_REFUND = 'REPLACEMENT_WITHOUT_REFUND';
 
     /** The merchant must refund the customer without any item replacement or return. This type is applicable when a merchant is willing to refund the entire dispute amount without any further action from customer. Omit the <code>refund_amount</code> and <code>return_shipping_address</code> parameters from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
-    public const ACCEPT_CLAIM_TYPE_REFUND = 'REFUND';
+    const ACCEPT_CLAIM_TYPE_REFUND = 'REFUND';
 
     /** The customer must return the item to the merchant and then merchant will refund the money. This type is applicable when a merchant is willing to refund the dispute amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter in but omit the <code>refund_amount</code> parameter from the <a href="/docs/api/customer-disputes/v1/#disputes-actions_accept-claim">accept claim</a> call. */
-    public const ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
+    const ACCEPT_CLAIM_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
 
     /** The merchant proposes a partial refund for the dispute.This type is applicable when a merchant is willing to refund an amount lesser than dispute amount. Include the <code>refund_amount</code> parameter. */
-    public const ACCEPT_CLAIM_TYPE_PARTIAL_REFUND = 'PARTIAL_REFUND';
+    const ACCEPT_CLAIM_TYPE_PARTIAL_REFUND = 'PARTIAL_REFUND';
 
     /** Merchant is accepting customer's claim as they could not ship the item back to the customer */
-    public const ACCEPT_CLAIM_REASON_DID_NOT_SHIP_ITEM = 'DID_NOT_SHIP_ITEM';
+    const ACCEPT_CLAIM_REASON_DID_NOT_SHIP_ITEM = 'DID_NOT_SHIP_ITEM';
 
     /** Merchant is accepting customer's claim as it is taking too long for merchant to fulfil the order */
-    public const ACCEPT_CLAIM_REASON_TOO_TIME_CONSUMING = 'TOO_TIME_CONSUMING';
+    const ACCEPT_CLAIM_REASON_TOO_TIME_CONSUMING = 'TOO_TIME_CONSUMING';
 
     /** Merchant is accepting customer's claim as the item is lost in mail or transit */
-    public const ACCEPT_CLAIM_REASON_LOST_IN_MAIL = 'LOST_IN_MAIL';
+    const ACCEPT_CLAIM_REASON_LOST_IN_MAIL = 'LOST_IN_MAIL';
 
     /** Merchant is accepting customer's claim as the merchant is not able to find sufficient evidence to win this dispute */
-    public const ACCEPT_CLAIM_REASON_NOT_ABLE_TO_WIN = 'NOT_ABLE_TO_WIN';
+    const ACCEPT_CLAIM_REASON_NOT_ABLE_TO_WIN = 'NOT_ABLE_TO_WIN';
 
     /** Merchant is accepting customer’s claims to follow their internal company policy */
-    public const ACCEPT_CLAIM_REASON_COMPANY_POLICY = 'COMPANY_POLICY';
+    const ACCEPT_CLAIM_REASON_COMPANY_POLICY = 'COMPANY_POLICY';
 
     /** This is the default value merchant can use if none of the above reasons apply */
-    public const ACCEPT_CLAIM_REASON_REASON_NOT_SET = 'REASON_NOT_SET';
+    const ACCEPT_CLAIM_REASON_REASON_NOT_SET = 'REASON_NOT_SET';
 
     /** The customer already received the item. */
-    public const CANCELLATION_REASON_ITEM_RECEIVED = 'ITEM_RECEIVED';
+    const CANCELLATION_REASON_ITEM_RECEIVED = 'ITEM_RECEIVED';
 
     /** The customer already received a refund for the item. */
-    public const CANCELLATION_REASON_REFUND_RECEIVED = 'REFUND_RECEIVED';
+    const CANCELLATION_REASON_REFUND_RECEIVED = 'REFUND_RECEIVED';
 
     /** The customer cancelled the dispute for another reason. If OTHER is specified, customer needs to specify more information in the notes field. */
-    public const CANCELLATION_REASON_OTHER = 'OTHER';
+    const CANCELLATION_REASON_OTHER = 'OTHER';
 
     /** The customer received the provided shipping tracking information and agrees to cancel. */
-    public const CANCELLATION_REASON_SHIPMENT_INFO_RECEIVED = 'SHIPMENT_INFO_RECEIVED';
+    const CANCELLATION_REASON_SHIPMENT_INFO_RECEIVED = 'SHIPMENT_INFO_RECEIVED';
 
     /** The customer received the item replacement and agrees to cancel. */
-    public const CANCELLATION_REASON_REPLACEMENT_RECEIVED = 'REPLACEMENT_RECEIVED';
+    const CANCELLATION_REASON_REPLACEMENT_RECEIVED = 'REPLACEMENT_RECEIVED';
 
     /** The merchant indicates that shipment would have arrived by now. */
-    public const BUYER_ESCALATION_REASON_SHIPMENT_NOT_ARRIVED = 'SHIPMENT_NOT_ARRIVED';
+    const BUYER_ESCALATION_REASON_SHIPMENT_NOT_ARRIVED = 'SHIPMENT_NOT_ARRIVED';
 
     /** The customer has evidence that the merchant might be fraudulent. */
-    public const BUYER_ESCALATION_REASON_FRAUDULENT_SELLER = 'FRAUDULENT_SELLER';
+    const BUYER_ESCALATION_REASON_FRAUDULENT_SELLER = 'FRAUDULENT_SELLER';
 
     /** The customer already failed to reach a resolution with the merchant before filing this dispute. */
-    public const BUYER_ESCALATION_REASON_FAILED_NEGOTIATION = 'FAILED_NEGOTIATION';
+    const BUYER_ESCALATION_REASON_FAILED_NEGOTIATION = 'FAILED_NEGOTIATION';
 
     /** The customer thinks he or she cannot reach a resolution with the merchant. */
-    public const BUYER_ESCALATION_REASON_INCONCLUSIVE_NEGOTIATION = 'INCONCLUSIVE_NEGOTIATION';
+    const BUYER_ESCALATION_REASON_INCONCLUSIVE_NEGOTIATION = 'INCONCLUSIVE_NEGOTIATION';
 
     /** The customer didn't receive refund as mentioned by merchant. */
-    public const BUYER_ESCALATION_REASON_REFUND_NOT_RECEIVED = 'REFUND_NOT_RECEIVED';
+    const BUYER_ESCALATION_REASON_REFUND_NOT_RECEIVED = 'REFUND_NOT_RECEIVED';
 
     /** The customer received lesser refund amount than expected. */
-    public const BUYER_ESCALATION_REASON_REFUND_AMOUNT_IS_DIFFERENT = 'REFUND_AMOUNT_IS_DIFFERENT';
+    const BUYER_ESCALATION_REASON_REFUND_AMOUNT_IS_DIFFERENT = 'REFUND_AMOUNT_IS_DIFFERENT';
 
     /** Tracking id received from merchant is invalid. */
-    public const BUYER_ESCALATION_REASON_TRACKING_ID_INVALID = 'TRACKING_ID_INVALID';
+    const BUYER_ESCALATION_REASON_TRACKING_ID_INVALID = 'TRACKING_ID_INVALID';
 
     /** The customer has other reasons, which are described in the comments. If OTHER is specified, customer needs to specify more information in the notes field. */
-    public const BUYER_ESCALATION_REASON_OTHER = 'OTHER';
+    const BUYER_ESCALATION_REASON_OTHER = 'OTHER';
 
     /** The merchant has received the item returned by the customer. */
-    public const ACKNOWLEDGEMENT_TYPE_ITEM_RECEIVED = 'ITEM_RECEIVED';
+    const ACKNOWLEDGEMENT_TYPE_ITEM_RECEIVED = 'ITEM_RECEIVED';
 
     /** The merchant has not received the item. */
-    public const ACKNOWLEDGEMENT_TYPE_ITEM_NOT_RECEIVED = 'ITEM_NOT_RECEIVED';
+    const ACKNOWLEDGEMENT_TYPE_ITEM_NOT_RECEIVED = 'ITEM_NOT_RECEIVED';
 
     /** The items returned by the customer were damaged. */
-    public const ACKNOWLEDGEMENT_TYPE_DAMAGED = 'DAMAGED';
+    const ACKNOWLEDGEMENT_TYPE_DAMAGED = 'DAMAGED';
 
     /** The package was empty or the goods were different from what was expected. */
-    public const ACKNOWLEDGEMENT_TYPE_EMPTY_PACKAGE_OR_DIFFERENT = 'EMPTY_PACKAGE_OR_DIFFERENT';
+    const ACKNOWLEDGEMENT_TYPE_EMPTY_PACKAGE_OR_DIFFERENT = 'EMPTY_PACKAGE_OR_DIFFERENT';
 
     /** The package did not have all the items that were expected. */
-    public const ACKNOWLEDGEMENT_TYPE_MISSING_ITEMS = 'MISSING_ITEMS';
+    const ACKNOWLEDGEMENT_TYPE_MISSING_ITEMS = 'MISSING_ITEMS';
 
     /**
      * Customer or merchant posted evidences for the dispute.

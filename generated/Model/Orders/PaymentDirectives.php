@@ -16,28 +16,28 @@ class PaymentDirectives implements JsonSerializable
     use BaseModel;
 
     /** Instant Disbursement Type. */
-    public const DISBURSEMENT_TYPE_INSTANT = 'INSTANT';
+    const DISBURSEMENT_TYPE_INSTANT = 'INSTANT';
 
     /** Delayed Disbursement Type. */
-    public const DISBURSEMENT_TYPE_DELAYED = 'DELAYED';
+    const DISBURSEMENT_TYPE_DELAYED = 'DELAYED';
 
     /** Full liability for post payment events. The loss_account will be used for events including refunds, reversals, disputes etc. */
-    public const LIABILITY_TYPE_FULL = 'FULL';
+    const LIABILITY_TYPE_FULL = 'FULL';
 
     /** Partial liability for post payment events. The loss_account will be used for limited cases like UNAUTH. */
-    public const LIABILITY_TYPE_PARTIAL = 'PARTIAL';
+    const LIABILITY_TYPE_PARTIAL = 'PARTIAL';
 
     /** Accept payment after auto currency conversion. */
-    public const CURRENCY_RECEIVING_DIRECTIVE_ACCEPT = 'ACCEPT';
+    const CURRENCY_RECEIVING_DIRECTIVE_ACCEPT = 'ACCEPT';
 
     /** Deny payment. */
-    public const CURRENCY_RECEIVING_DIRECTIVE_DENY = 'DENY';
+    const CURRENCY_RECEIVING_DIRECTIVE_DENY = 'DENY';
 
     /** Pend payment for seller's approval. */
-    public const CURRENCY_RECEIVING_DIRECTIVE_HOLD = 'HOLD';
+    const CURRENCY_RECEIVING_DIRECTIVE_HOLD = 'HOLD';
 
     /** Accept payment after opening a new currency holding. */
-    public const CURRENCY_RECEIVING_DIRECTIVE_ACCEPT_OPEN = 'ACCEPT_OPEN';
+    const CURRENCY_RECEIVING_DIRECTIVE_ACCEPT_OPEN = 'ACCEPT_OPEN';
 
     /**
      * Disbursement type.

@@ -16,28 +16,28 @@ class RequestMetricsRequest implements JsonSerializable
     use BaseModel;
 
     /** Shows the results of metrics by the <code>STATUS</code> dimension. For example, if the measure is <code>COUNT</code>, shows the count of disputes by different status. */
-    public const DIMENSION_STATUS = 'STATUS';
+    const DIMENSION_STATUS = 'STATUS';
 
     /** Shows the results of metrics by the <code>REASON</code> dimension. For example if the measure is <code>COUNT</code>, shows the count of disputes by different reason. */
-    public const DIMENSION_REASON = 'REASON';
+    const DIMENSION_REASON = 'REASON';
 
     /** Shows the results of metrics by the <code>OUTCOME</code> dimension. For example if the measure is <code>COUNT</code>, shows the count of disputes by different outcome. */
-    public const DIMENSION_DISPUTE_OUTCOME = 'DISPUTE_OUTCOME';
+    const DIMENSION_DISPUTE_OUTCOME = 'DISPUTE_OUTCOME';
 
     /** Shows the results of metrics by the <code>DISPUTE_STATE</code> dimension. For example if the measure is <code>COUNT</code>, shows the count of disputes by different dispute states. */
-    public const DIMENSION_DISPUTE_STATE = 'DISPUTE_STATE';
+    const DIMENSION_DISPUTE_STATE = 'DISPUTE_STATE';
 
     /** Shows the count of disputes by the dimension in the request. */
-    public const MEASURE_COUNT = 'COUNT';
+    const MEASURE_COUNT = 'COUNT';
 
     /** Shows the sum of dispute amount of the disputes by the dimension in the request. */
-    public const MEASURE_DISPUTE_AMOUNT_SUM = 'DISPUTE_AMOUNT_SUM';
+    const MEASURE_DISPUTE_AMOUNT_SUM = 'DISPUTE_AMOUNT_SUM';
 
     /** Shows the sum of transaction amount of associated disputes by the dimension in the request. */
-    public const MEASURE_TRANSACTION_AMOUNT_SUM = 'TRANSACTION_AMOUNT_SUM';
+    const MEASURE_TRANSACTION_AMOUNT_SUM = 'TRANSACTION_AMOUNT_SUM';
 
     /** Shows the sum of refund amount of associated disputes by the dimension in the request. */
-    public const MEASURE_REFUND_AMOUNT_SUM = 'REFUND_AMOUNT_SUM';
+    const MEASURE_REFUND_AMOUNT_SUM = 'REFUND_AMOUNT_SUM';
 
     /**
      * The dimension for which to list metrics.

@@ -17,25 +17,25 @@ class ResponseActionInfo implements JsonSerializable
     use BaseModel;
 
     /** The evidence corresponds to action `acknowledge_return_item`. */
-    public const ACTION_ACKNOWLEDGE_RETURN_ITEM = 'ACKNOWLEDGE_RETURN_ITEM';
+    const ACTION_ACKNOWLEDGE_RETURN_ITEM = 'ACKNOWLEDGE_RETURN_ITEM';
 
     /** The evidence corresponds to action `accept_claim`. */
-    public const ACTION_ACCEPT_CLAIM = 'ACCEPT_CLAIM';
+    const ACTION_ACCEPT_CLAIM = 'ACCEPT_CLAIM';
 
     /** The evidence corresponds to action `provide_evidence`. */
-    public const ACTION_PROVIDE_EVIDENCE = 'PROVIDE_EVIDENCE';
+    const ACTION_PROVIDE_EVIDENCE = 'PROVIDE_EVIDENCE';
 
     /** The evidence corresponds to action `appeal`. */
-    public const ACTION_APPEAL = 'APPEAL';
+    const ACTION_APPEAL = 'APPEAL';
 
     /** The evidence corresponds to action `cancel`. */
-    public const ACTION_CANCEL = 'CANCEL';
+    const ACTION_CANCEL = 'CANCEL';
 
     /** The evidence corresponds to action `change_reason`. */
-    public const ACTION_CHANGE_REASON = 'CHANGE_REASON';
+    const ACTION_CHANGE_REASON = 'CHANGE_REASON';
 
     /** The evidence corresponds to action `escalate`. */
-    public const ACTION_ESCALATE = 'ESCALATE';
+    const ACTION_ESCALATE = 'ESCALATE';
 
     /**
      * The action for which the evidence was requested or submitted.

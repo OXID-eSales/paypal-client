@@ -17,22 +17,22 @@ class ResponseFeePolicy implements JsonSerializable
     use BaseModel;
 
     /** No fee needs to be retained. */
-    public const TRANSACTION_FEE_RETAIN_NO_FEE = 'RETAIN_NO_FEE';
+    const TRANSACTION_FEE_RETAIN_NO_FEE = 'RETAIN_NO_FEE';
 
     /** All fees need to be retained. */
-    public const TRANSACTION_FEE_RETAIN_ALL_FEE = 'RETAIN_ALL_FEE';
+    const TRANSACTION_FEE_RETAIN_ALL_FEE = 'RETAIN_ALL_FEE';
 
     /** Fixed fee associated to the transaction needs to be retained and all other fees need to be returned. */
-    public const TRANSACTION_FEE_RETAIN_FIXED_FEE = 'RETAIN_FIXED_FEE';
+    const TRANSACTION_FEE_RETAIN_FIXED_FEE = 'RETAIN_FIXED_FEE';
 
     /** Standard tier dispute fee needs to be charged. */
-    public const DISPUTE_FEE_CHARGE_STANDARD_TIER_FEE = 'CHARGE_STANDARD_TIER_FEE';
+    const DISPUTE_FEE_CHARGE_STANDARD_TIER_FEE = 'CHARGE_STANDARD_TIER_FEE';
 
     /** High tier dispute fee needs to be charged. */
-    public const DISPUTE_FEE_CHARGE_HIGH_TIER_FEE = 'CHARGE_HIGH_TIER_FEE';
+    const DISPUTE_FEE_CHARGE_HIGH_TIER_FEE = 'CHARGE_HIGH_TIER_FEE';
 
     /** Chargeback fee needs to be charged. */
-    public const DISPUTE_FEE_CHARGE_CHARGEBACK_FEE = 'CHARGE_CHARGEBACK_FEE';
+    const DISPUTE_FEE_CHARGE_CHARGEBACK_FEE = 'CHARGE_CHARGEBACK_FEE';
 
     /**
      * Transaction fee policy.

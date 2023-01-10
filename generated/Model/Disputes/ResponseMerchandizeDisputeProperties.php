@@ -16,13 +16,13 @@ class ResponseMerchandizeDisputeProperties implements JsonSerializable
     use BaseModel;
 
     /** The product has an issue. */
-    public const ISSUE_TYPE_PRODUCT = 'PRODUCT';
+    const ISSUE_TYPE_PRODUCT = 'PRODUCT';
 
     /** The service has an issue. */
-    public const ISSUE_TYPE_SERVICE = 'SERVICE';
+    const ISSUE_TYPE_SERVICE = 'SERVICE';
 
     /** The policy allows free return shipping for buyers */
-    public const RETURN_POLICY_BUYER_FREE_RETURN_SHIPPING = 'BUYER_FREE_RETURN_SHIPPING';
+    const RETURN_POLICY_BUYER_FREE_RETURN_SHIPPING = 'BUYER_FREE_RETURN_SHIPPING';
 
     /**
      * The issue type.

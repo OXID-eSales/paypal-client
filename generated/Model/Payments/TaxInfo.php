@@ -17,10 +17,10 @@ class TaxInfo implements JsonSerializable
     use BaseModel;
 
     /** The individual tax ID type, typically is 11 characters long. */
-    public const TAX_ID_TYPE_BR_CPF = 'BR_CPF';
+    const TAX_ID_TYPE_BR_CPF = 'BR_CPF';
 
     /** The business tax ID type, typically is 14 characters long. */
-    public const TAX_ID_TYPE_BR_CNPJ = 'BR_CNPJ';
+    const TAX_ID_TYPE_BR_CNPJ = 'BR_CNPJ';
 
     /**
      * The customer's tax ID value.

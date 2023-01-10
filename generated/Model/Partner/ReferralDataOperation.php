@@ -16,16 +16,16 @@ class ReferralDataOperation implements JsonSerializable
     use BaseModel;
 
     /** The operation used by partner request permission for customers api access. */
-    public const OPERATION_API_INTEGRATION = 'API_INTEGRATION';
+    const OPERATION_API_INTEGRATION = 'API_INTEGRATION';
 
     /** Captured state of an order. */
-    public const OPERATION_BANK_ADDITION = 'BANK_ADDITION';
+    const OPERATION_BANK_ADDITION = 'BANK_ADDITION';
 
     /** The operation to create a billing agreement. */
-    public const OPERATION_BILLING_AGREEMENT = 'BILLING_AGREEMENT';
+    const OPERATION_BILLING_AGREEMENT = 'BILLING_AGREEMENT';
 
     /** The operation to create a contextual marketing consent. */
-    public const OPERATION_CONTEXTUAL_MARKETING_CONSENT = 'CONTEXTUAL_MARKETING_CONSENT';
+    const OPERATION_CONTEXTUAL_MARKETING_CONSENT = 'CONTEXTUAL_MARKETING_CONSENT';
 
     /**
      * The operation to enable for the customer. To enable the collection of the API permissions that you require to

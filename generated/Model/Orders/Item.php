@@ -16,13 +16,13 @@ class Item implements JsonSerializable
     use BaseModel;
 
     /** Goods that are stored, delivered, and used in their electronic format. This value is not currently supported for API callers that leverage the <a href="https://www.paypal.com/us/webapps/mpp/commerce-platform">PayPal for Commerce Platform</a> product. */
-    public const CATEGORY_DIGITAL_GOODS = 'DIGITAL_GOODS';
+    const CATEGORY_DIGITAL_GOODS = 'DIGITAL_GOODS';
 
     /** A tangible item that can be shipped with proof of delivery. */
-    public const CATEGORY_PHYSICAL_GOODS = 'PHYSICAL_GOODS';
+    const CATEGORY_PHYSICAL_GOODS = 'PHYSICAL_GOODS';
 
     /** A contribution or gift for which no good or service is exchanged, usually to a not for profit organization. */
-    public const CATEGORY_DONATION = 'DONATION';
+    const CATEGORY_DONATION = 'DONATION';
 
     /**
      * The item name or title.

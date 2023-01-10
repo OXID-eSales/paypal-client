@@ -16,16 +16,16 @@ class PaypalCredit implements JsonSerializable
     use BaseModel;
 
     /** Bill Me Later. */
-    public const TYPE_BILL_ME_LATER = 'BILL_ME_LATER';
+    const TYPE_BILL_ME_LATER = 'BILL_ME_LATER';
 
     /** PayPal Smart Connect. */
-    public const TYPE_PAYPAL_SMART_CONNECT = 'PAYPAL_SMART_CONNECT';
+    const TYPE_PAYPAL_SMART_CONNECT = 'PAYPAL_SMART_CONNECT';
 
     /** EBAY MasterCard. */
-    public const TYPE_EBAY_MASTERCARD = 'EBAY_MASTERCARD';
+    const TYPE_EBAY_MASTERCARD = 'EBAY_MASTERCARD';
 
     /** PayPal Extras MasterCard. */
-    public const TYPE_PAYPAL_EXTRAS_MASTERCARD = 'PAYPAL_EXTRAS_MASTERCARD';
+    const TYPE_PAYPAL_EXTRAS_MASTERCARD = 'PAYPAL_EXTRAS_MASTERCARD';
 
     /**
      * The PayPal-generated ID for the credit instrument.

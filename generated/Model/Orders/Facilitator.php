@@ -16,13 +16,13 @@ class Facilitator extends Participant implements JsonSerializable
     use BaseModel;
 
     /** A party who sets up the context and eventually owns or controls the payment. */
-    public const TYPE_API_CALLER = 'API_CALLER';
+    const TYPE_API_CALLER = 'API_CALLER';
 
     /** A checkout participant involved in the transaction who is setup as a partner. */
-    public const TYPE_PARTNER = 'PARTNER';
+    const TYPE_PARTNER = 'PARTNER';
 
     /** Internal applications or actors. */
-    public const TYPE_INTERNAL = 'INTERNAL';
+    const TYPE_INTERNAL = 'INTERNAL';
 
     /**
      * Facilitator type.

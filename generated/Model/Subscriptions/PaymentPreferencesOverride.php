@@ -16,10 +16,10 @@ class PaymentPreferencesOverride implements JsonSerializable
     use BaseModel;
 
     /** Continues the subscription if the initial payment for the setup fails. */
-    public const SETUP_FEE_FAILURE_ACTION_CONTINUE = 'CONTINUE';
+    const SETUP_FEE_FAILURE_ACTION_CONTINUE = 'CONTINUE';
 
     /** Cancels the subscription if the initial payment for the setup fails. */
-    public const SETUP_FEE_FAILURE_ACTION_CANCEL = 'CANCEL';
+    const SETUP_FEE_FAILURE_ACTION_CANCEL = 'CANCEL';
 
     /**
      * Indicates whether to automatically bill the outstanding amount in the next billing cycle.

@@ -16,10 +16,10 @@ class RequestAdjudicate implements JsonSerializable
     use BaseModel;
 
     /** Resolves the case in the customer's favor. Outcome is set to <code>RESOLVED_BUYER_FAVOR</code>. */
-    public const ADJUDICATION_OUTCOME_BUYER_FAVOR = 'BUYER_FAVOR';
+    const ADJUDICATION_OUTCOME_BUYER_FAVOR = 'BUYER_FAVOR';
 
     /** Resolves the case in the merchant's favor. Outcome is set to <code>RESOLVED_SELLER_FAVOR</code>. */
-    public const ADJUDICATION_OUTCOME_SELLER_FAVOR = 'SELLER_FAVOR';
+    const ADJUDICATION_OUTCOME_SELLER_FAVOR = 'SELLER_FAVOR';
 
     /**
      * The outcome of the adjudication.

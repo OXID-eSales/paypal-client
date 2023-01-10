@@ -16,13 +16,13 @@ class ResponseServiceDetails implements JsonSerializable
     use BaseModel;
 
     /** The service was started. */
-    public const SERVICE_STARTED_YES = 'YES';
+    const SERVICE_STARTED_YES = 'YES';
 
     /** The service was not started. */
-    public const SERVICE_STARTED_NO = 'NO';
+    const SERVICE_STARTED_NO = 'NO';
 
     /** The service was cancelled. */
-    public const SERVICE_STARTED_CANCELLED = 'CANCELLED';
+    const SERVICE_STARTED_CANCELLED = 'CANCELLED';
 
     /**
      * The service description.

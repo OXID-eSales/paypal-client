@@ -16,13 +16,13 @@ class ResponseMessage implements JsonSerializable
     use BaseModel;
 
     /** The customer posted the message. */
-    public const POSTED_BY_BUYER = 'BUYER';
+    const POSTED_BY_BUYER = 'BUYER';
 
     /** The merchant posted the message. */
-    public const POSTED_BY_SELLER = 'SELLER';
+    const POSTED_BY_SELLER = 'SELLER';
 
     /** The arbiter of the dispute posted the message. */
-    public const POSTED_BY_ARBITER = 'ARBITER';
+    const POSTED_BY_ARBITER = 'ARBITER';
 
     /**
      * Indicates whether the customer, merchant, or dispute arbiter posted the message.

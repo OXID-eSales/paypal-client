@@ -16,25 +16,25 @@ class ReferredReferredRefundInfo implements JsonSerializable
     use BaseModel;
 
     /** The customer received the refund. */
-    public const RECIPIENT_BUYER = 'BUYER';
+    const RECIPIENT_BUYER = 'BUYER';
 
     /** The merchant received the refund. */
-    public const RECIPIENT_SELLER = 'SELLER';
+    const RECIPIENT_SELLER = 'SELLER';
 
     /** The payout was made with the reversal of the original transaction, from the merchant to the customer. */
-    public const PAYOUT_TYPE_REVERSAL = 'REVERSAL';
+    const PAYOUT_TYPE_REVERSAL = 'REVERSAL';
 
     /** The payout was made through a courtesy credit. */
-    public const PAYOUT_TYPE_COURTESY_CREDIT = 'COURTESY_CREDIT';
+    const PAYOUT_TYPE_COURTESY_CREDIT = 'COURTESY_CREDIT';
 
     /** The payout was made through Seller Protection coverage. */
-    public const PAYOUT_TYPE_SELLER_PROTECTION_COVERAGE = 'SELLER_PROTECTION_COVERAGE';
+    const PAYOUT_TYPE_SELLER_PROTECTION_COVERAGE = 'SELLER_PROTECTION_COVERAGE';
 
     /** The transaction occurred on PayPal. */
-    public const TRANSACTION_SOURCE_PAYPAL = 'PAYPAL';
+    const TRANSACTION_SOURCE_PAYPAL = 'PAYPAL';
 
     /** The transaction occurred on a third-party site other than PayPal. */
-    public const TRANSACTION_SOURCE_OTHER = 'OTHER';
+    const TRANSACTION_SOURCE_OTHER = 'OTHER';
 
     /**
      * The payout recipient information.

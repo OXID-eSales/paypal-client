@@ -16,34 +16,34 @@ class SubscriptionStatus implements JsonSerializable
     use BaseModel;
 
     /** The subscription is created but not yet approved by the buyer. */
-    public const STATUS_APPROVAL_PENDING = 'APPROVAL_PENDING';
+    const STATUS_APPROVAL_PENDING = 'APPROVAL_PENDING';
 
     /** The buyer has approved the subscription. */
-    public const STATUS_APPROVED = 'APPROVED';
+    const STATUS_APPROVED = 'APPROVED';
 
     /** The subscription is active. */
-    public const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_ACTIVE = 'ACTIVE';
 
     /** The subscription is suspended. */
-    public const STATUS_SUSPENDED = 'SUSPENDED';
+    const STATUS_SUSPENDED = 'SUSPENDED';
 
     /** The subscription is cancelled. */
-    public const STATUS_CANCELLED = 'CANCELLED';
+    const STATUS_CANCELLED = 'CANCELLED';
 
     /** The subscription is expired. */
-    public const STATUS_EXPIRED = 'EXPIRED';
+    const STATUS_EXPIRED = 'EXPIRED';
 
     /** The subscription status bas been updated by the system. */
-    public const STATUS_CHANGED_BY_SYSTEM = 'SYSTEM';
+    const STATUS_CHANGED_BY_SYSTEM = 'SYSTEM';
 
     /** The subscription status bas been updated by the buyer. */
-    public const STATUS_CHANGED_BY_BUYER = 'BUYER';
+    const STATUS_CHANGED_BY_BUYER = 'BUYER';
 
     /** The subscription status bas been updated by the merchant. */
-    public const STATUS_CHANGED_BY_MERCHANT = 'MERCHANT';
+    const STATUS_CHANGED_BY_MERCHANT = 'MERCHANT';
 
     /** The subscription status bas been updated by the facilitator. Facilitators ca be a third party or channel partner that integrates with PayPal. */
-    public const STATUS_CHANGED_BY_FACILITATOR = 'FACILITATOR';
+    const STATUS_CHANGED_BY_FACILITATOR = 'FACILITATOR';
 
     /**
      * The status of the subscription.

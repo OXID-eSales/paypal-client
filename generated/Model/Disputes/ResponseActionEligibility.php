@@ -16,13 +16,13 @@ class ResponseActionEligibility implements JsonSerializable
     use BaseModel;
 
     /** The dispute case escalation action. */
-    public const ACTION_TYPE_ESCALATE = 'ESCALATE';
+    const ACTION_TYPE_ESCALATE = 'ESCALATE';
 
     /** The customer can perform the action after the eligible date and time. */
-    public const ACTOR_BUYER = 'BUYER';
+    const ACTOR_BUYER = 'BUYER';
 
     /** The merchant can perform the action after the eligible date and time. */
-    public const ACTOR_SELLER = 'SELLER';
+    const ACTOR_SELLER = 'SELLER';
 
     /**
      * The action which the actor can perform after given date and time.

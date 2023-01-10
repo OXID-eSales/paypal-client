@@ -18,10 +18,10 @@ class Initiator implements JsonSerializable
     use BaseModel;
 
     /** The payment acceptance solution is express checkout. */
-    public const PRODUCT_CODE_EXPRESS_CHECKOUT = 'EXPRESS_CHECKOUT';
+    const PRODUCT_CODE_EXPRESS_CHECKOUT = 'EXPRESS_CHECKOUT';
 
     /** The payment acceptance solution is website payment standard. */
-    public const PRODUCT_CODE_WEBSITE_PAYMENTS_STANDARD = 'WEBSITE_PAYMENTS_STANDARD';
+    const PRODUCT_CODE_WEBSITE_PAYMENTS_STANDARD = 'WEBSITE_PAYMENTS_STANDARD';
 
     /**
      * Types of the payment acceptance solution. The values for this field should be subset of original product_code,

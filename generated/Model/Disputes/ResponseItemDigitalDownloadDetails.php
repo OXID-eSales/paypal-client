@@ -16,22 +16,22 @@ class ResponseItemDigitalDownloadDetails implements JsonSerializable
     use BaseModel;
 
     /** Did not receive the digital download. */
-    public const SUB_REASON_NOT_DOWNLOADABLE = 'NOT_DOWNLOADABLE';
+    const SUB_REASON_NOT_DOWNLOADABLE = 'NOT_DOWNLOADABLE';
 
     /** Could not access or use the digital download or content. */
-    public const SUB_REASON_INACCESSIBLE = 'INACCESSIBLE';
+    const SUB_REASON_INACCESSIBLE = 'INACCESSIBLE';
 
     /** Charged for an incomplete or incompatible download. */
-    public const SUB_REASON_INCOMPLETE = 'INCOMPLETE';
+    const SUB_REASON_INCOMPLETE = 'INCOMPLETE';
 
     /** Non-physical objects, such as online games. */
-    public const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
+    const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
 
     /** Gift or pre-paid cards. */
-    public const CATEGORY_GIFT_CARD = 'GIFT_CARD';
+    const CATEGORY_GIFT_CARD = 'GIFT_CARD';
 
     /** Other digital downloads. */
-    public const CATEGORY_OTHER = 'OTHER';
+    const CATEGORY_OTHER = 'OTHER';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

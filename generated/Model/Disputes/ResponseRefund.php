@@ -16,10 +16,10 @@ class ResponseRefund implements JsonSerializable
     use BaseModel;
 
     /** The refund was successful. */
-    public const STATUS_COMPLETED = 'COMPLETED';
+    const STATUS_COMPLETED = 'COMPLETED';
 
     /** The refund had failed. */
-    public const STATUS_FAILED = 'FAILED';
+    const STATUS_FAILED = 'FAILED';
 
     /**
      * The currency and amount for a financial transaction, such as a balance or payment due.

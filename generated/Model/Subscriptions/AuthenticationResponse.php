@@ -16,16 +16,16 @@ class AuthenticationResponse implements JsonSerializable
     use BaseModel;
 
     /** Liability has shifted to the card issuer. Available only after order is authorized or captured. */
-    public const LIABILITY_SHIFT_YES = 'YES';
+    const LIABILITY_SHIFT_YES = 'YES';
 
     /** Liability is with the merchant. */
-    public const LIABILITY_SHIFT_NO = 'NO';
+    const LIABILITY_SHIFT_NO = 'NO';
 
     /** Liability may shift to the card issuer. Available only before order is authorized or captured. */
-    public const LIABILITY_SHIFT_POSSIBLE = 'POSSIBLE';
+    const LIABILITY_SHIFT_POSSIBLE = 'POSSIBLE';
 
     /** The authentication system is not available. */
-    public const LIABILITY_SHIFT_UNKNOWN = 'UNKNOWN';
+    const LIABILITY_SHIFT_UNKNOWN = 'UNKNOWN';
 
     /**
      * Liability shift indicator. The outcome of the issuer's authentication.

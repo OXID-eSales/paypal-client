@@ -16,16 +16,16 @@ class ReferredReferredOutcome implements JsonSerializable
     use BaseModel;
 
     /** The customer is at fault. */
-    public const FAULTY_PARTY_BUYER = 'BUYER';
+    const FAULTY_PARTY_BUYER = 'BUYER';
 
     /** The merchant is at fault. */
-    public const FAULTY_PARTY_SELLER = 'SELLER';
+    const FAULTY_PARTY_SELLER = 'SELLER';
 
     /** The partner is at fault. */
-    public const FAULTY_PARTY_PARTNER = 'PARTNER';
+    const FAULTY_PARTY_PARTNER = 'PARTNER';
 
     /** No specific party is at fault. */
-    public const FAULTY_PARTY_NONE = 'NONE';
+    const FAULTY_PARTY_NONE = 'NONE';
 
     /**
      * The party that was at fault.

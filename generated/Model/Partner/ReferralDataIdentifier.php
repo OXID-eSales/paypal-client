@@ -16,40 +16,40 @@ class ReferralDataIdentifier implements JsonSerializable
     use BaseModel;
 
     /** The bank code. */
-    public const TYPE_BANK_CODE = 'BANK_CODE';
+    const TYPE_BANK_CODE = 'BANK_CODE';
 
     /** The BI code. */
-    public const TYPE_BI_CODE = 'BI_CODE';
+    const TYPE_BI_CODE = 'BI_CODE';
 
     /** Branch code. */
-    public const TYPE_BRANCH_CODE = 'BRANCH_CODE';
+    const TYPE_BRANCH_CODE = 'BRANCH_CODE';
 
     /** The bank routing number. */
-    public const TYPE_ROUTING_NUMBER_1 = 'ROUTING_NUMBER_1';
+    const TYPE_ROUTING_NUMBER_1 = 'ROUTING_NUMBER_1';
 
     /** The bank routing number. */
-    public const TYPE_ROUTING_NUMBER_2 = 'ROUTING_NUMBER_2';
+    const TYPE_ROUTING_NUMBER_2 = 'ROUTING_NUMBER_2';
 
     /** The bank routing number. */
-    public const TYPE_ROUTING_NUMBER_3 = 'ROUTING_NUMBER_3';
+    const TYPE_ROUTING_NUMBER_3 = 'ROUTING_NUMBER_3';
 
     /** The bank swift code. */
-    public const TYPE_SWIFT_CODE = 'SWIFT_CODE';
+    const TYPE_SWIFT_CODE = 'SWIFT_CODE';
 
     /** Swift code. */
-    public const TYPE_INTERMEDIARY_SWIFT_CODE = 'INTERMEDIARY_SWIFT_CODE';
+    const TYPE_INTERMEDIARY_SWIFT_CODE = 'INTERMEDIARY_SWIFT_CODE';
 
     /** BBAN. */
-    public const TYPE_BBAN = 'BBAN';
+    const TYPE_BBAN = 'BBAN';
 
     /** BBAN enrypted. */
-    public const TYPE_BBAN_ENCRYPTED = 'BBAN_ENCRYPTED';
+    const TYPE_BBAN_ENCRYPTED = 'BBAN_ENCRYPTED';
 
     /** BBAN HMAC. */
-    public const TYPE_BBAN_HMAC = 'BBAN_HMAC';
+    const TYPE_BBAN_HMAC = 'BBAN_HMAC';
 
     /** Aggregator Yodlee. */
-    public const TYPE_AGGREGATOR_YODLEE = 'AGGREGATOR_YODLEE';
+    const TYPE_AGGREGATOR_YODLEE = 'AGGREGATOR_YODLEE';
 
     /**
      * The bank account ID type.

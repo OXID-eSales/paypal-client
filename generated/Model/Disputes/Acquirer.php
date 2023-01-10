@@ -16,70 +16,70 @@ class Acquirer implements JsonSerializable
     use BaseModel;
 
     /** Acquirer American Express. */
-    public const NAME_AMEX = 'AMEX';
+    const NAME_AMEX = 'AMEX';
 
     /** Acquirer BBVA Bancomer. */
-    public const NAME_BANCOMER = 'BANCOMER';
+    const NAME_BANCOMER = 'BANCOMER';
 
     /** Acquirer El Banco Fuerte de México. */
-    public const NAME_BANORTE = 'BANORTE';
+    const NAME_BANORTE = 'BANORTE';
 
     /** Acquirer Cielo SA. */
-    public const NAME_CIELO = 'CIELO';
+    const NAME_CIELO = 'CIELO';
 
     /** Acquirer Hongkong and Shanghai Banking Corporation. */
-    public const NAME_HSBC = 'HSBC';
+    const NAME_HSBC = 'HSBC';
 
     /** Acquirer Japan Credit Bureau. */
-    public const NAME_JAPAN_CREDIT_BUREAU = 'JAPAN_CREDIT_BUREAU';
+    const NAME_JAPAN_CREDIT_BUREAU = 'JAPAN_CREDIT_BUREAU';
 
     /** Acquirer Phnom Penh Commercial Bank. */
-    public const NAME_PHNOM_PENH_COMMERCIAL = 'PHNOM_PENH_COMMERCIAL';
+    const NAME_PHNOM_PENH_COMMERCIAL = 'PHNOM_PENH_COMMERCIAL';
 
     /** Acquirer Royal Bank Of Scotland. */
-    public const NAME_ROYAL_BANK_OF_SCOTLAND = 'ROYAL_BANK_OF_SCOTLAND';
+    const NAME_ROYAL_BANK_OF_SCOTLAND = 'ROYAL_BANK_OF_SCOTLAND';
 
     /** Acquirer Rede Card. */
-    public const NAME_REDE_CARD = 'REDE_CARD';
+    const NAME_REDE_CARD = 'REDE_CARD';
 
     /** Acquirer Bancorp. */
-    public const NAME_BANCORP = 'BANCORP';
+    const NAME_BANCORP = 'BANCORP';
 
     /** Acquirer Wells Fargo. */
-    public const NAME_WELLS_FARGO = 'WELLS_FARGO';
+    const NAME_WELLS_FARGO = 'WELLS_FARGO';
 
     /** Acquirer Westpac. */
-    public const NAME_WESTPAC = 'WESTPAC';
+    const NAME_WESTPAC = 'WESTPAC';
 
     /** Acquirer Türk Ekonomi Bankası(Turkish Economy Bank). */
-    public const NAME_TURKISH_ECONOMY_BANK = 'TURKISH_ECONOMY_BANK';
+    const NAME_TURKISH_ECONOMY_BANK = 'TURKISH_ECONOMY_BANK';
 
     /** Acquirer VTB Bank Russia. */
-    public const NAME_VTB24 = 'VTB24';
+    const NAME_VTB24 = 'VTB24';
 
     /** Acquirer Pulse Payments Network. */
-    public const NAME_PULSE = 'PULSE';
+    const NAME_PULSE = 'PULSE';
 
     /** Acquirer Accel Interbank Network. */
-    public const NAME_ACCEL = 'ACCEL';
+    const NAME_ACCEL = 'ACCEL';
 
     /** Acquirer Sumitomo Mitsui Card Company. */
-    public const NAME_SMCC = 'SMCC';
+    const NAME_SMCC = 'SMCC';
 
     /** Acquirer Industrial Credit and Investment Corporation of India Bank. */
-    public const NAME_ICICI = 'ICICI';
+    const NAME_ICICI = 'ICICI';
 
     /** Acquirer Infrastructure Development Finance Company Bank. */
-    public const NAME_IDFC = 'IDFC';
+    const NAME_IDFC = 'IDFC';
 
     /** Acquirer Getnet - internet banking Santender. */
-    public const NAME_GETNET = 'GETNET';
+    const NAME_GETNET = 'GETNET';
 
     /** Acquirer Mercado Libre. */
-    public const NAME_MERCADO_LIBRE = 'MERCADO_LIBRE';
+    const NAME_MERCADO_LIBRE = 'MERCADO_LIBRE';
 
     /** Acquirer Ratepay. */
-    public const NAME_RATEPAY = 'RATEPAY';
+    const NAME_RATEPAY = 'RATEPAY';
 
     /**
      * The name of the acquirer.

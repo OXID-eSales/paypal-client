@@ -16,13 +16,13 @@ class PartnerPartnerFeeInfo implements JsonSerializable
     use BaseModel;
 
     /** Partner fee on transaction amount. */
-    public const TYPE_PARTNER = 'PARTNER';
+    const TYPE_PARTNER = 'PARTNER';
 
     /** PayPal fee on transaction amount. */
-    public const TYPE_PAYPAL = 'PAYPAL';
+    const TYPE_PAYPAL = 'PAYPAL';
 
     /** Chargeback fee on transaction amount. */
-    public const TYPE_CHARGEBACK = 'CHARGEBACK';
+    const TYPE_CHARGEBACK = 'CHARGEBACK';
 
     /**
      * Type of the Fee. E.g. `PARTNER` or `PAYPAL` or `CHARGEBACK`.

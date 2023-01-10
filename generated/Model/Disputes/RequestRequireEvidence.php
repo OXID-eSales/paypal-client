@@ -19,10 +19,10 @@ class RequestRequireEvidence implements JsonSerializable
     use BaseModel;
 
     /** Changes the status of the dispute to <code>WAITING_FOR_BUYER_RESPONSE</code>. */
-    public const ACTION_BUYER_EVIDENCE = 'BUYER_EVIDENCE';
+    const ACTION_BUYER_EVIDENCE = 'BUYER_EVIDENCE';
 
     /** Changes the status of the dispute to <code>WAITING_FOR_SELLER_RESPONSE</code>. */
-    public const ACTION_SELLER_EVIDENCE = 'SELLER_EVIDENCE';
+    const ACTION_SELLER_EVIDENCE = 'SELLER_EVIDENCE';
 
     /**
      * The action. Indicates whether the state change enables the customer or merchant to submit evidence.

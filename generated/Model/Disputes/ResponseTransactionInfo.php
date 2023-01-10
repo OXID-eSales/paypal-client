@@ -16,64 +16,64 @@ class ResponseTransactionInfo implements JsonSerializable
     use BaseModel;
 
     /** The transaction processing completed. */
-    public const TRANSACTION_STATUS_COMPLETED = 'COMPLETED';
+    const TRANSACTION_STATUS_COMPLETED = 'COMPLETED';
 
     /** The items in the transaction are unclaimed. If they are not claimed within 30 days, the funds are returned to the sender. */
-    public const TRANSACTION_STATUS_UNCLAIMED = 'UNCLAIMED';
+    const TRANSACTION_STATUS_UNCLAIMED = 'UNCLAIMED';
 
     /** The transaction was denied. */
-    public const TRANSACTION_STATUS_DENIED = 'DENIED';
+    const TRANSACTION_STATUS_DENIED = 'DENIED';
 
     /** The transaction failed. */
-    public const TRANSACTION_STATUS_FAILED = 'FAILED';
+    const TRANSACTION_STATUS_FAILED = 'FAILED';
 
     /** The transaction is on hold. */
-    public const TRANSACTION_STATUS_HELD = 'HELD';
+    const TRANSACTION_STATUS_HELD = 'HELD';
 
     /** The transaction is waiting to be processed. */
-    public const TRANSACTION_STATUS_PENDING = 'PENDING';
+    const TRANSACTION_STATUS_PENDING = 'PENDING';
 
     /** The payment for the transaction was partially refunded. */
-    public const TRANSACTION_STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
+    const TRANSACTION_STATUS_PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED';
 
     /** The payment for the transaction was successfully refunded. */
-    public const TRANSACTION_STATUS_REFUNDED = 'REFUNDED';
+    const TRANSACTION_STATUS_REFUNDED = 'REFUNDED';
 
     /** The payment for the transaction was reversed due to a chargeback or other reversal type. */
-    public const TRANSACTION_STATUS_REVERSED = 'REVERSED';
+    const TRANSACTION_STATUS_REVERSED = 'REVERSED';
 
     /** The transaction is cancelled. */
-    public const TRANSACTION_STATUS_CANCELLED = 'CANCELLED';
+    const TRANSACTION_STATUS_CANCELLED = 'CANCELLED';
 
     /** Merchants are covered under seller protection provided they have responded with valid evidence. */
-    public const SELLER_PROTECTION_TYPE_EXPANDED_SELLER_PROTECTION = 'EXPANDED_SELLER_PROTECTION';
+    const SELLER_PROTECTION_TYPE_EXPANDED_SELLER_PROTECTION = 'EXPANDED_SELLER_PROTECTION';
 
     /** Merchants are eligible for seller protection irrespective of them responding with the proof of shipment/delivery. */
-    public const SELLER_PROTECTION_TYPE_EFFORTLESS_SELLER_PROTECTION = 'EFFORTLESS_SELLER_PROTECTION';
+    const SELLER_PROTECTION_TYPE_EFFORTLESS_SELLER_PROTECTION = 'EFFORTLESS_SELLER_PROTECTION';
 
     /** Merchants are protected in the subsequent case if an internal case is communicated as resolved in merchant favor. */
-    public const SELLER_PROTECTION_TYPE_DOUBLE_JEOPARDY_PROTECTION = 'DOUBLE_JEOPARDY_PROTECTION';
+    const SELLER_PROTECTION_TYPE_DOUBLE_JEOPARDY_PROTECTION = 'DOUBLE_JEOPARDY_PROTECTION';
 
     /** Merchants who are covered need not respond and paypal takes the loss for all unbranded external unuath chargebacks. */
-    public const SELLER_PROTECTION_TYPE_EFFORTLESS_CHARGEBACK_PROTECTION = 'EFFORTLESS_CHARGEBACK_PROTECTION';
+    const SELLER_PROTECTION_TYPE_EFFORTLESS_CHARGEBACK_PROTECTION = 'EFFORTLESS_CHARGEBACK_PROTECTION';
 
     /** Merchants who are covered need to provide proof of fulfillment and paypal takes the loss(unless paypal contests the case and wins) for all unbranded external unuath chargebacks. */
-    public const SELLER_PROTECTION_TYPE_CHARGEBACK_PROTECTION = 'CHARGEBACK_PROTECTION';
+    const SELLER_PROTECTION_TYPE_CHARGEBACK_PROTECTION = 'CHARGEBACK_PROTECTION';
 
     /** Not applicable. */
-    public const PROVISIONAL_CREDIT_STATUS_NOT_APPLICABLE = 'NOT_APPLICABLE';
+    const PROVISIONAL_CREDIT_STATUS_NOT_APPLICABLE = 'NOT_APPLICABLE';
 
     /** The provisional credit was applied. */
-    public const PROVISIONAL_CREDIT_STATUS_APPLIED = 'APPLIED';
+    const PROVISIONAL_CREDIT_STATUS_APPLIED = 'APPLIED';
 
     /** The provisional credit was not applied. */
-    public const PROVISIONAL_CREDIT_STATUS_NOT_APPLIED = 'NOT_APPLIED';
+    const PROVISIONAL_CREDIT_STATUS_NOT_APPLIED = 'NOT_APPLIED';
 
     /** The provisional credit was refunded. */
-    public const PROVISIONAL_CREDIT_STATUS_REVERSED = 'REVERSED';
+    const PROVISIONAL_CREDIT_STATUS_REVERSED = 'REVERSED';
 
     /** The provisional credit in pending debit. */
-    public const PROVISIONAL_CREDIT_STATUS_PENDING_DEBIT = 'PENDING_DEBIT';
+    const PROVISIONAL_CREDIT_STATUS_PENDING_DEBIT = 'PENDING_DEBIT';
 
     /**
      * The ID, as seen by the customer, for this transaction.

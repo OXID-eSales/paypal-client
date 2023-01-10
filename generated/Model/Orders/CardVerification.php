@@ -17,10 +17,10 @@ class CardVerification implements JsonSerializable
     use BaseModel;
 
     /** The contingency surfaced as an additional security layer that helps prevent unauthorized card-not-present transactions and protects the merchant from exposure to fraud. */
-    public const METHOD_3D_SECURE = '3D_SECURE';
+    const METHOD_3D_SECURE = '3D_SECURE';
 
     /** Places a temporary hold on the card to ensure its validity. This process protects the merchant from exposure to fraud. This verification method will confirm that the address information or CVV included matches what the issuing bank has on file for the associated card, ensuring that only authorized card users are able to make purchases from you. */
-    public const METHOD_AVS_CVV = 'AVS_CVV';
+    const METHOD_AVS_CVV = 'AVS_CVV';
 
     /**
      * The method used for card verification.

@@ -16,7 +16,7 @@ class BusinessAddressDetail2 extends AddressPortable implements JsonSerializable
     use BaseModel;
 
     /** The address of the business. */
-    public const TYPE_WORK = 'WORK';
+    const TYPE_WORK = 'WORK';
 
     /**
      * Address type under which the provided address is tagged

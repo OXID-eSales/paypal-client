@@ -16,16 +16,16 @@ class ReferralDataRestApiIntegration implements JsonSerializable
     use BaseModel;
 
     /** Braintree integration method. */
-    public const INTEGRATION_METHOD_BRAINTREE = 'BRAINTREE';
+    const INTEGRATION_METHOD_BRAINTREE = 'BRAINTREE';
 
     /** PayPal integration method. */
-    public const INTEGRATION_METHOD_PAYPAL = 'PAYPAL';
+    const INTEGRATION_METHOD_PAYPAL = 'PAYPAL';
 
     /** A first-party integration. */
-    public const INTEGRATION_TYPE_FIRST_PARTY = 'FIRST_PARTY';
+    const INTEGRATION_TYPE_FIRST_PARTY = 'FIRST_PARTY';
 
     /** A third-party integration. */
-    public const INTEGRATION_TYPE_THIRD_PARTY = 'THIRD_PARTY';
+    const INTEGRATION_TYPE_THIRD_PARTY = 'THIRD_PARTY';
 
     /**
      * The REST-credential integration method.

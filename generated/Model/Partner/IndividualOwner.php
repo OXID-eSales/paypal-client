@@ -16,7 +16,7 @@ class IndividualOwner extends Person implements JsonSerializable
     use BaseModel;
 
     /** Primary account holder. */
-    public const TYPE_PRIMARY = 'PRIMARY';
+    const TYPE_PRIMARY = 'PRIMARY';
 
     /**
      * Role of the person party played in the account.

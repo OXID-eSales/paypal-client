@@ -16,10 +16,10 @@ class ResponseEligibleDisputeReasonAllowableLifeCycle implements JsonSerializabl
     use BaseModel;
 
     /** Dispute is allowed in the <code>INQUIRY</code> lifecycle stage. */
-    public const STAGE_INQUIRY = 'INQUIRY';
+    const STAGE_INQUIRY = 'INQUIRY';
 
     /** Dispute is allowed in the <code>CHARGEBACK</code> lifecycle stage. */
-    public const STAGE_CHARGEBACK = 'CHARGEBACK';
+    const STAGE_CHARGEBACK = 'CHARGEBACK';
 
     /**
      * The stage in the dispute life cycle where the dispute creation is allowed.

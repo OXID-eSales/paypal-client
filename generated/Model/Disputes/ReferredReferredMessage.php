@@ -16,10 +16,10 @@ class ReferredReferredMessage implements JsonSerializable
     use BaseModel;
 
     /** The customer posted the message. */
-    public const POSTED_BY_BUYER = 'BUYER';
+    const POSTED_BY_BUYER = 'BUYER';
 
     /** The merchant posted the message. */
-    public const POSTED_BY_SELLER = 'SELLER';
+    const POSTED_BY_SELLER = 'SELLER';
 
     /**
      * The customer or merchant who posted the message.

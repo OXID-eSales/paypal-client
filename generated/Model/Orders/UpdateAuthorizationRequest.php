@@ -16,25 +16,25 @@ class UpdateAuthorizationRequest implements JsonSerializable
     use BaseModel;
 
     /** The authorized payment is created. No captured payments have been made for this authorized payment. */
-    public const STATUS_CREATED = 'CREATED';
+    const STATUS_CREATED = 'CREATED';
 
     /** The authorized payment has one or more captures against it. The sum of these captured payments is greater than the amount of the original authorized payment. */
-    public const STATUS_CAPTURED = 'CAPTURED';
+    const STATUS_CAPTURED = 'CAPTURED';
 
     /** PayPal cannot authorize funds for this authorized payment. */
-    public const STATUS_DENIED = 'DENIED';
+    const STATUS_DENIED = 'DENIED';
 
     /** The authorized payment has expired. */
-    public const STATUS_EXPIRED = 'EXPIRED';
+    const STATUS_EXPIRED = 'EXPIRED';
 
     /** A captured payment was made for the authorized payment for an amount that is less than the amount of the original authorized payment. */
-    public const STATUS_PARTIALLY_CAPTURED = 'PARTIALLY_CAPTURED';
+    const STATUS_PARTIALLY_CAPTURED = 'PARTIALLY_CAPTURED';
 
     /** The authorized payment was voided. No more captured payments can be made against this authorized payment. */
-    public const STATUS_VOIDED = 'VOIDED';
+    const STATUS_VOIDED = 'VOIDED';
 
     /** The created authorization is in pending state. For more information, see <code>status.details</code> */
-    public const STATUS_PENDING = 'PENDING';
+    const STATUS_PENDING = 'PENDING';
 
     /**
      * The unique transaction ID for the authorized payment.

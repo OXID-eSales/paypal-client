@@ -16,40 +16,40 @@ class ThreeDSecureAuthenticationResponse implements JsonSerializable
     use BaseModel;
 
     /** Successful authentication. */
-    public const AUTHENTICATION_STATUS_Y = 'Y';
+    const AUTHENTICATION_STATUS_Y = 'Y';
 
     /** Failed authentication / account not verified / transaction denied. */
-    public const AUTHENTICATION_STATUS_N = 'N';
+    const AUTHENTICATION_STATUS_N = 'N';
 
     /** Unable to complete authentication. */
-    public const AUTHENTICATION_STATUS_U = 'U';
+    const AUTHENTICATION_STATUS_U = 'U';
 
     /** Successful attempts transaction. */
-    public const AUTHENTICATION_STATUS_A = 'A';
+    const AUTHENTICATION_STATUS_A = 'A';
 
     /** Challenge required for authentication. */
-    public const AUTHENTICATION_STATUS_C = 'C';
+    const AUTHENTICATION_STATUS_C = 'C';
 
     /** Authentication rejected (merchant must not submit for authorization). */
-    public const AUTHENTICATION_STATUS_R = 'R';
+    const AUTHENTICATION_STATUS_R = 'R';
 
     /** Challenge required; decoupled authentication confirmed. */
-    public const AUTHENTICATION_STATUS_D = 'D';
+    const AUTHENTICATION_STATUS_D = 'D';
 
     /** Informational only; 3DS requestor challenge preference acknowledged. */
-    public const AUTHENTICATION_STATUS_I = 'I';
+    const AUTHENTICATION_STATUS_I = 'I';
 
     /** Yes. The bank is participating in 3-D Secure protocol and will return the ACSUrl. */
-    public const ENROLLMENT_STATUS_Y = 'Y';
+    const ENROLLMENT_STATUS_Y = 'Y';
 
     /** No. The bank is not participating in 3-D Secure protocol. */
-    public const ENROLLMENT_STATUS_N = 'N';
+    const ENROLLMENT_STATUS_N = 'N';
 
     /** Unavailable. The DS or ACS is not available for authentication at the time of the request. */
-    public const ENROLLMENT_STATUS_U = 'U';
+    const ENROLLMENT_STATUS_U = 'U';
 
     /** Bypass. The merchant authentication rule is triggered to bypass authentication. */
-    public const ENROLLMENT_STATUS_B = 'B';
+    const ENROLLMENT_STATUS_B = 'B';
 
     /**
      * Transactions status result identifier. The outcome of the issuer's authentication.

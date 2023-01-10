@@ -16,43 +16,43 @@ class ResponseOfferHistory implements JsonSerializable
     use BaseModel;
 
     /** The actor is the customer. */
-    public const ACTOR_BUYER = 'BUYER';
+    const ACTOR_BUYER = 'BUYER';
 
     /** The actor is the merchant. */
-    public const ACTOR_SELLER = 'SELLER';
+    const ACTOR_SELLER = 'SELLER';
 
     /** The merchant or customer proposed an offer. */
-    public const EVENT_TYPE_PROPOSED = 'PROPOSED';
+    const EVENT_TYPE_PROPOSED = 'PROPOSED';
 
     /** The merchant or customer accepted the offer. */
-    public const EVENT_TYPE_ACCEPTED = 'ACCEPTED';
+    const EVENT_TYPE_ACCEPTED = 'ACCEPTED';
 
     /** The merchant or customer rejected the offer. */
-    public const EVENT_TYPE_DENIED = 'DENIED';
+    const EVENT_TYPE_DENIED = 'DENIED';
 
     /** The merchant must refund the customer without any item replacement or return. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount. Buyer acceptance is needed for partial refund offers and dispute is auto closed for full refunds. Include the <code>offer_amount</code> but omit the <code>return_shipping_address</code> parameters from the make offer request. */
-    public const OFFER_TYPE_REFUND = 'REFUND';
+    const OFFER_TYPE_REFUND = 'REFUND';
 
     /** The customer must return the item to the merchant and then merchant will refund the money. This offer type is valid in the inquiry phase and occurs when a merchant is willing to refund a specific amount and requires the customer to return the item. Include the <code>return_shipping_address</code> parameter and the <code>offer_amount</code> parameter in the make offer request. */
-    public const OFFER_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
+    const OFFER_TYPE_REFUND_WITH_RETURN = 'REFUND_WITH_RETURN';
 
     /** The merchant must do a refund and then send a replacement item to the customer. This offer type is valid in the inquiry phase when a merchant is willing to refund a specific amount and send the replacement item. Include the <code>offer_amount</code> parameter in the make offer request. */
-    public const OFFER_TYPE_REFUND_WITH_REPLACEMENT = 'REFUND_WITH_REPLACEMENT';
+    const OFFER_TYPE_REFUND_WITH_REPLACEMENT = 'REFUND_WITH_REPLACEMENT';
 
     /** The merchant must send a replacement item to the customer with no additional refunds. This offer type is valid in the inquiry phase when a merchant is willing to replace the item without any refund. Omit the <code>offer_amount</code> parameter from the make offer request. */
-    public const OFFER_TYPE_REPLACEMENT_WITHOUT_REFUND = 'REPLACEMENT_WITHOUT_REFUND';
+    const OFFER_TYPE_REPLACEMENT_WITHOUT_REFUND = 'REPLACEMENT_WITHOUT_REFUND';
 
     /** A customer and merchant interact in an attempt to resolve a dispute without escalation to PayPal. Occurs when the customer:<ul><li>Has not received goods or a service.</li><li>Reports that the received goods or service are not as described.</li><li>Needs more details, such as a copy of the transaction or a receipt.</li></ul> */
-    public const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
+    const DISPUTE_LIFE_CYCLE_STAGE_INQUIRY = 'INQUIRY';
 
     /** A customer or merchant escalates an inquiry to a claim, which authorizes PayPal to investigate the case and make a determination. Occurs only when the dispute channel is <code>INTERNAL</code>. This stage is a PayPal dispute lifecycle stage and not a credit card or debit card chargeback. All notes that the customer sends in this stage are visible to PayPal agents only. The customer must wait for PayPal’s response before the customer can take further action. In this stage, PayPal shares dispute details with the merchant, who can complete one of these actions:<ul><li>Accept the claim.</li><li>Submit evidence to challenge the claim.</li><li>Make an offer to the customer to resolve the claim.</li></ul> */
-    public const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
+    const DISPUTE_LIFE_CYCLE_STAGE_CHARGEBACK = 'CHARGEBACK';
 
     /** The first appeal stage for merchants. A merchant can appeal a chargeback if PayPal's decision is not in the merchant's favor. If the merchant does not appeal within the appeal period, PayPal considers the case resolved. */
-    public const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
+    const DISPUTE_LIFE_CYCLE_STAGE_PRE_ARBITRATION = 'PRE_ARBITRATION';
 
     /** The second appeal stage for merchants. A merchant can appeal a dispute for a second time if the first appeal was denied. If the merchant does not appeal within the appeal period, the case returns to a resolved status in pre-arbitration stage. */
-    public const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
+    const DISPUTE_LIFE_CYCLE_STAGE_ARBITRATION = 'ARBITRATION';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

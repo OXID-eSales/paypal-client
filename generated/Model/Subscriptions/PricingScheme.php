@@ -16,19 +16,19 @@ class PricingScheme implements JsonSerializable
     use BaseModel;
 
     /** The pricing scheme change is in progress. */
-    public const STATUS_IN_PROGRESS = 'IN_PROGRESS';
+    const STATUS_IN_PROGRESS = 'IN_PROGRESS';
 
     /** The pricing scheme change is active. */
-    public const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_ACTIVE = 'ACTIVE';
 
     /** The pricing scheme is inactive. */
-    public const STATUS_INACTIVE = 'INACTIVE';
+    const STATUS_INACTIVE = 'INACTIVE';
 
     /** A volume pricing model. */
-    public const PRICING_MODEL_VOLUME = 'VOLUME';
+    const PRICING_MODEL_VOLUME = 'VOLUME';
 
     /** A tiered pricing model. */
-    public const PRICING_MODEL_TIERED = 'TIERED';
+    const PRICING_MODEL_TIERED = 'TIERED';
 
     /**
      * The version of the pricing scheme.

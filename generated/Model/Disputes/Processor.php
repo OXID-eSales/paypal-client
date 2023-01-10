@@ -16,64 +16,64 @@ class Processor implements JsonSerializable
     use BaseModel;
 
     /** Processor BNP Paribas. */
-    public const NAME_BNP_PARIBAS = 'BNP_PARIBAS';
+    const NAME_BNP_PARIBAS = 'BNP_PARIBAS';
 
     /** Processor Chase Paymentech. */
-    public const NAME_CHASE = 'CHASE';
+    const NAME_CHASE = 'CHASE';
 
     /** Processor Netgiro Systems. Later changed to DigitalRiver, currently called as Worldline. */
-    public const NAME_NETGIRO = 'NETGIRO';
+    const NAME_NETGIRO = 'NETGIRO';
 
     /** Processor GE. */
-    public const NAME_GE = 'GE';
+    const NAME_GE = 'GE';
 
     /** Processor IPGPAY Online Payment Gateway Services. */
-    public const NAME_IPG = 'IPG';
+    const NAME_IPG = 'IPG';
 
     /** Processor Omnipay Payment gateway. */
-    public const NAME_OMNIPAY = 'OMNIPAY';
+    const NAME_OMNIPAY = 'OMNIPAY';
 
     /** Processor PaySecure Payment gateway. */
-    public const NAME_PAY_SECURE = 'PAY_SECURE';
+    const NAME_PAY_SECURE = 'PAY_SECURE';
 
     /** Processor American Express. */
-    public const NAME_AMEX = 'AMEX';
+    const NAME_AMEX = 'AMEX';
 
     /** Processor Discover financial services. */
-    public const NAME_DISCOVER = 'DISCOVER';
+    const NAME_DISCOVER = 'DISCOVER';
 
     /** Processor First Data Merchant Services. */
-    public const NAME_FISRT_DATA_MERCHANT_SERVICES = 'FISRT_DATA_MERCHANT_SERVICES';
+    const NAME_FISRT_DATA_MERCHANT_SERVICES = 'FISRT_DATA_MERCHANT_SERVICES';
 
     /** Processor CPS Pinless Debit. */
-    public const NAME_CPS = 'CPS';
+    const NAME_CPS = 'CPS';
 
     /** Processor Star Network. */
-    public const NAME_STAR = 'STAR';
+    const NAME_STAR = 'STAR';
 
     /** Processor China Union Pay. */
-    public const NAME_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const NAME_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /** Processor Sumitomo Mitsui Card Company. */
-    public const NAME_SMCC = 'SMCC';
+    const NAME_SMCC = 'SMCC';
 
     /** Processor Asseco Group. */
-    public const NAME_ASSECO = 'ASSECO';
+    const NAME_ASSECO = 'ASSECO';
 
     /** Processor Worldpay payment gateway. */
-    public const NAME_WORLDPAY = 'WORLDPAY';
+    const NAME_WORLDPAY = 'WORLDPAY';
 
     /** Processor Rede SA payment processing. */
-    public const NAME_REDE = 'REDE';
+    const NAME_REDE = 'REDE';
 
     /** Processor Synchrony Financial services. */
-    public const NAME_SYNCHRONY = 'SYNCHRONY';
+    const NAME_SYNCHRONY = 'SYNCHRONY';
 
     /** Processor Visa. */
-    public const NAME_VISA = 'VISA';
+    const NAME_VISA = 'VISA';
 
     /** Processor AltPay. */
-    public const NAME_ALTPAY = 'ALTPAY';
+    const NAME_ALTPAY = 'ALTPAY';
 
     /**
      * The name of the processor.

@@ -17,13 +17,13 @@ class DocumentReference implements JsonSerializable
     use BaseModel;
 
     /** The unique identifier of the document. Consumers can use this identifier to pay with, for example, a banking app. */
-    public const TYPE_DOCUMENT_ID = 'DOCUMENT_ID';
+    const TYPE_DOCUMENT_ID = 'DOCUMENT_ID';
 
     /** Numeric code of the document. This number needs to be displayed as a [Code 128 type barcode](https://www.iso.org/standard/43896.html). */
-    public const TYPE_BARCODE = 'BARCODE';
+    const TYPE_BARCODE = 'BARCODE';
 
     /** URL to the landing page that would render the document code. */
-    public const TYPE_BARCODE_URL = 'BARCODE_URL';
+    const TYPE_BARCODE_URL = 'BARCODE_URL';
 
     /**
      * The document reference type such as BARCODE or BARCODE_URL.

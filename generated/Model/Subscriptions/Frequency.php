@@ -16,19 +16,19 @@ class Frequency implements JsonSerializable
     use BaseModel;
 
     /** A daily billing cycle. */
-    public const INTERVAL_UNIT_DAY = 'DAY';
+    const INTERVAL_UNIT_DAY = 'DAY';
 
     /** A weekly billing cycle. */
-    public const INTERVAL_UNIT_WEEK = 'WEEK';
+    const INTERVAL_UNIT_WEEK = 'WEEK';
 
     /** A monthly billing cycle. */
-    public const INTERVAL_UNIT_SEMI_MONTH = 'SEMI_MONTH';
+    const INTERVAL_UNIT_SEMI_MONTH = 'SEMI_MONTH';
 
     /** A monthly billing cycle. */
-    public const INTERVAL_UNIT_MONTH = 'MONTH';
+    const INTERVAL_UNIT_MONTH = 'MONTH';
 
     /** A yearly billing cycle. */
-    public const INTERVAL_UNIT_YEAR = 'YEAR';
+    const INTERVAL_UNIT_YEAR = 'YEAR';
 
     /**
      * The interval at which the subscription is charged or billed.

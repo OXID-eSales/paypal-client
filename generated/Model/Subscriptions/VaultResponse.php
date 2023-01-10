@@ -16,10 +16,10 @@ class VaultResponse implements JsonSerializable
     use BaseModel;
 
     /** The payment source has been saved in your customer's vault. */
-    public const STATUS_CREATED = 'CREATED';
+    const STATUS_CREATED = 'CREATED';
 
     /** Customer has approved the action of saving the specified payment_source into their vault. Use v2/vault/approval-tokens/id/confirm-payment-token to save the payment_source in the vault. */
-    public const STATUS_APPROVED = 'APPROVED';
+    const STATUS_APPROVED = 'APPROVED';
 
     /**
      * The PayPal-generated ID for the saved payment source.

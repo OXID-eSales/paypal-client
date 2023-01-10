@@ -16,10 +16,10 @@ class Subscription extends SubscriptionStatus implements JsonSerializable
     use BaseModel;
 
     /** PayPal currency conversion. */
-    public const PREFERRED_CURRENCY_CONVERSION_PAYPAL = 'PAYPAL';
+    const PREFERRED_CURRENCY_CONVERSION_PAYPAL = 'PAYPAL';
 
     /** Vendor currency conversion. */
-    public const PREFERRED_CURRENCY_CONVERSION_VENDOR = 'VENDOR';
+    const PREFERRED_CURRENCY_CONVERSION_VENDOR = 'VENDOR';
 
     /**
      * The PayPal-generated ID for the subscription.

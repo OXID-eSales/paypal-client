@@ -16,115 +16,115 @@ class Card implements JsonSerializable
     use BaseModel;
 
     /** Visa card. */
-    public const CARD_TYPE_VISA = 'VISA';
+    const CARD_TYPE_VISA = 'VISA';
 
     /** Mastecard card. */
-    public const CARD_TYPE_MASTERCARD = 'MASTERCARD';
+    const CARD_TYPE_MASTERCARD = 'MASTERCARD';
 
     /** Discover card. */
-    public const CARD_TYPE_DISCOVER = 'DISCOVER';
+    const CARD_TYPE_DISCOVER = 'DISCOVER';
 
     /** American Express card. */
-    public const CARD_TYPE_AMEX = 'AMEX';
+    const CARD_TYPE_AMEX = 'AMEX';
 
     /** Solo debit card. */
-    public const CARD_TYPE_SOLO = 'SOLO';
+    const CARD_TYPE_SOLO = 'SOLO';
 
     /** Japan Credit Bureau card. */
-    public const CARD_TYPE_JCB = 'JCB';
+    const CARD_TYPE_JCB = 'JCB';
 
     /** Military Star card. */
-    public const CARD_TYPE_STAR = 'STAR';
+    const CARD_TYPE_STAR = 'STAR';
 
     /** Delta Airlines card. */
-    public const CARD_TYPE_DELTA = 'DELTA';
+    const CARD_TYPE_DELTA = 'DELTA';
 
     /** Switch credit card. */
-    public const CARD_TYPE_SWITCH = 'SWITCH';
+    const CARD_TYPE_SWITCH = 'SWITCH';
 
     /** Maestro credit card. */
-    public const CARD_TYPE_MAESTRO = 'MAESTRO';
+    const CARD_TYPE_MAESTRO = 'MAESTRO';
 
     /** Carte Bancaire (CB) credit card. */
-    public const CARD_TYPE_CB_NATIONALE = 'CB_NATIONALE';
+    const CARD_TYPE_CB_NATIONALE = 'CB_NATIONALE';
 
     /** Configoga credit card. */
-    public const CARD_TYPE_CONFIGOGA = 'CONFIGOGA';
+    const CARD_TYPE_CONFIGOGA = 'CONFIGOGA';
 
     /** Confidis credit card. */
-    public const CARD_TYPE_CONFIDIS = 'CONFIDIS';
+    const CARD_TYPE_CONFIDIS = 'CONFIDIS';
 
     /** Visa Electron credit card. */
-    public const CARD_TYPE_ELECTRON = 'ELECTRON';
+    const CARD_TYPE_ELECTRON = 'ELECTRON';
 
     /** Cetelem credit card. */
-    public const CARD_TYPE_CETELEM = 'CETELEM';
+    const CARD_TYPE_CETELEM = 'CETELEM';
 
     /** China union pay credit card. */
-    public const CARD_TYPE_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const CARD_TYPE_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /** A credit card. */
-    public const TYPE_CREDIT = 'CREDIT';
+    const TYPE_CREDIT = 'CREDIT';
 
     /** A debit card. */
-    public const TYPE_DEBIT = 'DEBIT';
+    const TYPE_DEBIT = 'DEBIT';
 
     /** A Prepaid card. */
-    public const TYPE_PREPAID = 'PREPAID';
+    const TYPE_PREPAID = 'PREPAID';
 
     /** A store card. */
-    public const TYPE_STORE = 'STORE';
+    const TYPE_STORE = 'STORE';
 
     /** Card type cannot be determined. */
-    public const TYPE_UNKNOWN = 'UNKNOWN';
+    const TYPE_UNKNOWN = 'UNKNOWN';
 
     /** Visa card. */
-    public const BRAND_VISA = 'VISA';
+    const BRAND_VISA = 'VISA';
 
     /** Mastecard card. */
-    public const BRAND_MASTERCARD = 'MASTERCARD';
+    const BRAND_MASTERCARD = 'MASTERCARD';
 
     /** Discover card. */
-    public const BRAND_DISCOVER = 'DISCOVER';
+    const BRAND_DISCOVER = 'DISCOVER';
 
     /** American Express card. */
-    public const BRAND_AMEX = 'AMEX';
+    const BRAND_AMEX = 'AMEX';
 
     /** Solo debit card. */
-    public const BRAND_SOLO = 'SOLO';
+    const BRAND_SOLO = 'SOLO';
 
     /** Japan Credit Bureau card. */
-    public const BRAND_JCB = 'JCB';
+    const BRAND_JCB = 'JCB';
 
     /** Military Star card. */
-    public const BRAND_STAR = 'STAR';
+    const BRAND_STAR = 'STAR';
 
     /** Delta Airlines card. */
-    public const BRAND_DELTA = 'DELTA';
+    const BRAND_DELTA = 'DELTA';
 
     /** Switch credit card. */
-    public const BRAND_SWITCH = 'SWITCH';
+    const BRAND_SWITCH = 'SWITCH';
 
     /** Maestro credit card. */
-    public const BRAND_MAESTRO = 'MAESTRO';
+    const BRAND_MAESTRO = 'MAESTRO';
 
     /** Carte Bancaire (CB) credit card. */
-    public const BRAND_CB_NATIONALE = 'CB_NATIONALE';
+    const BRAND_CB_NATIONALE = 'CB_NATIONALE';
 
     /** Configoga credit card. */
-    public const BRAND_CONFIGOGA = 'CONFIGOGA';
+    const BRAND_CONFIGOGA = 'CONFIGOGA';
 
     /** Confidis credit card. */
-    public const BRAND_CONFIDIS = 'CONFIDIS';
+    const BRAND_CONFIDIS = 'CONFIDIS';
 
     /** Visa Electron credit card. */
-    public const BRAND_ELECTRON = 'ELECTRON';
+    const BRAND_ELECTRON = 'ELECTRON';
 
     /** Cetelem credit card. */
-    public const BRAND_CETELEM = 'CETELEM';
+    const BRAND_CETELEM = 'CETELEM';
 
     /** China union pay credit card. */
-    public const BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /**
      * The PayPal-generated ID for the card.

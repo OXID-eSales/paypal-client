@@ -16,10 +16,10 @@ class AchDebit implements JsonSerializable
     use BaseModel;
 
     /** Bank account of type CHECKING. */
-    public const ACCOUNT_TYPE_CHECKING = 'CHECKING';
+    const ACCOUNT_TYPE_CHECKING = 'CHECKING';
 
     /** Bank account of type SAVINGS. */
-    public const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
+    const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
 
     /**
      * The US bank account number from which the payment will be debited.

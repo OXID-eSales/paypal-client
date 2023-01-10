@@ -16,526 +16,526 @@ class ProcessorResponse implements JsonSerializable
     use BaseModel;
 
     /** For Visa, Mastercard, or Discover transactions, the address matches but the zip code does not match. For American Express transactions, the card holder address is correct. */
-    public const AVS_CODE_A = 'A';
+    const AVS_CODE_A = 'A';
 
     /** For Visa, Mastercard, or Discover transactions, the address matches. International A. */
-    public const AVS_CODE_B = 'B';
+    const AVS_CODE_B = 'B';
 
     /** For Visa, Mastercard, or Discover transactions, no values match. International N. */
-    public const AVS_CODE_C = 'C';
+    const AVS_CODE_C = 'C';
 
     /** For Visa, Mastercard, or Discover transactions, the address and postal code match. International X. */
-    public const AVS_CODE_D = 'D';
+    const AVS_CODE_D = 'D';
 
     /** For Visa, Mastercard, or Discover transactions, not allowed for Internet or phone transactions. For American Express card holder, the name is incorrect but the address and postal code match. */
-    public const AVS_CODE_E = 'E';
+    const AVS_CODE_E = 'E';
 
     /** For Visa, Mastercard, or Discover transactions, the address and postal code match. UK-specific X. For American Express card holder, the name is incorrect but the address matches. */
-    public const AVS_CODE_F = 'F';
+    const AVS_CODE_F = 'F';
 
     /** For Visa, Mastercard, or Discover transactions, global is unavailable. Nothing matches. */
-    public const AVS_CODE_G = 'G';
+    const AVS_CODE_G = 'G';
 
     /** For Visa, Mastercard, or Discover transactions, international is unavailable. Not applicable. */
-    public const AVS_CODE_I = 'I';
+    const AVS_CODE_I = 'I';
 
     /** For Visa, Mastercard, or Discover transactions, the address and postal code match. For American Express card holder, the name, address, and postal code match. */
-    public const AVS_CODE_M = 'M';
+    const AVS_CODE_M = 'M';
 
     /** For Visa, Mastercard, or Discover transactions, nothing matches. For American Express card holder, the address and postal code are both incorrect. */
-    public const AVS_CODE_N = 'N';
+    const AVS_CODE_N = 'N';
 
     /** For Visa, Mastercard, or Discover transactions, postal international Z. Postal code only. */
-    public const AVS_CODE_P = 'P';
+    const AVS_CODE_P = 'P';
 
     /** For Visa, Mastercard, or Discover transactions, re-try the request. For American Express, the system is unavailable. */
-    public const AVS_CODE_R = 'R';
+    const AVS_CODE_R = 'R';
 
     /** For Visa, Mastercard, Discover, or American Express, the service is not supported. */
-    public const AVS_CODE_S = 'S';
+    const AVS_CODE_S = 'S';
 
     /** For Visa, Mastercard, or Discover transactions, the service is unavailable. For American Express, information is not available. For Maestro, the address is not checked or the acquirer had no response. The service is not available. */
-    public const AVS_CODE_U = 'U';
+    const AVS_CODE_U = 'U';
 
     /** For Visa, Mastercard, or Discover transactions, whole ZIP code. For American Express, the card holder name, address, and postal code are all incorrect. */
-    public const AVS_CODE_W = 'W';
+    const AVS_CODE_W = 'W';
 
     /** For Visa, Mastercard, or Discover transactions, exact match of the address and the nine-digit ZIP code. For American Express, the card holder name, address, and postal code are all incorrect. */
-    public const AVS_CODE_X = 'X';
+    const AVS_CODE_X = 'X';
 
     /** For Visa, Mastercard, or Discover transactions, the address and five-digit ZIP code match. For American Express, the card holder address and postal code are both correct. */
-    public const AVS_CODE_Y = 'Y';
+    const AVS_CODE_Y = 'Y';
 
     /** For Visa, Mastercard, or Discover transactions, the five-digit ZIP code matches but no address. For American Express, only the card holder postal code is correct. */
-    public const AVS_CODE_Z = 'Z';
+    const AVS_CODE_Z = 'Z';
 
     /** For Maestro, no AVS response was obtained. */
-    public const AVS_CODE_NULL = 'Null';
+    const AVS_CODE_NULL = 'Null';
 
     /** For Maestro, all address information matches. */
-    public const AVS_CODE_0 = '0';
+    const AVS_CODE_0 = '0';
 
     /** For Maestro, none of the address information matches. */
-    public const AVS_CODE_1 = '1';
+    const AVS_CODE_1 = '1';
 
     /** For Maestro, part of the address information matches. */
-    public const AVS_CODE_2 = '2';
+    const AVS_CODE_2 = '2';
 
     /** For Maestro, the merchant did not provide AVS information. It was not processed. */
-    public const AVS_CODE_3 = '3';
+    const AVS_CODE_3 = '3';
 
     /** For Maestro, the address was not checked or the acquirer had no response. The service is not available. */
-    public const AVS_CODE_4 = '4';
+    const AVS_CODE_4 = '4';
 
     /** For Visa, Mastercard, Discover, or American Express, error - unrecognized or unknown response. */
-    public const CVV_CODE_E = 'E';
+    const CVV_CODE_E = 'E';
 
     /** For Visa, Mastercard, Discover, or American Express, invalid or null. */
-    public const CVV_CODE_I = 'I';
+    const CVV_CODE_I = 'I';
 
     /** For Visa, Mastercard, Discover, or American Express, the CVV2/CSC matches. */
-    public const CVV_CODE_M = 'M';
+    const CVV_CODE_M = 'M';
 
     /** For Visa, Mastercard, Discover, or American Express, the CVV2/CSC does not match. */
-    public const CVV_CODE_N = 'N';
+    const CVV_CODE_N = 'N';
 
     /** For Visa, Mastercard, Discover, or American Express, it was not processed. */
-    public const CVV_CODE_P = 'P';
+    const CVV_CODE_P = 'P';
 
     /** For Visa, Mastercard, Discover, or American Express, the service is not supported. */
-    public const CVV_CODE_S = 'S';
+    const CVV_CODE_S = 'S';
 
     /** For Visa, Mastercard, Discover, or American Express, unknown - the issuer is not certified. */
-    public const CVV_CODE_U = 'U';
+    const CVV_CODE_U = 'U';
 
     /** For Visa, Mastercard, Discover, or American Express, no response. For Maestro, the service is not available. */
-    public const CVV_CODE_X = 'X';
+    const CVV_CODE_X = 'X';
 
     /** For Visa, Mastercard, Discover, or American Express, error. */
-    public const CVV_CODE_ALL_OTHERS = 'All others';
+    const CVV_CODE_ALL_OTHERS = 'All others';
 
     /** For Maestro, the CVV2 matched. */
-    public const CVV_CODE_0 = '0';
+    const CVV_CODE_0 = '0';
 
     /** For Maestro, the CVV2 did not match. */
-    public const CVV_CODE_1 = '1';
+    const CVV_CODE_1 = '1';
 
     /** For Maestro, the merchant has not implemented CVV2 code handling. */
-    public const CVV_CODE_2 = '2';
+    const CVV_CODE_2 = '2';
 
     /** For Maestro, the merchant has indicated that CVV2 is not present on card. */
-    public const CVV_CODE_3 = '3';
+    const CVV_CODE_3 = '3';
 
     /** For Maestro, the service is not available. */
-    public const CVV_CODE_4 = '4';
+    const CVV_CODE_4 = '4';
 
     /** APPROVED. */
-    public const RESPONSE_CODE_0000 = '0000';
+    const RESPONSE_CODE_0000 = '0000';
 
     /** REFERRAL. */
-    public const RESPONSE_CODE_0100 = '0100';
+    const RESPONSE_CODE_0100 = '0100';
 
     /** BAD_RESPONSE_REVERSAL_REQUIRED. */
-    public const RESPONSE_CODE_0800 = '0800';
+    const RESPONSE_CODE_0800 = '0800';
 
     /** PARTIAL_AUTHORIZATION. */
-    public const RESPONSE_CODE_1000 = '1000';
+    const RESPONSE_CODE_1000 = '1000';
 
     /** INVALID_DATA_FORMAT. */
-    public const RESPONSE_CODE_1300 = '1300';
+    const RESPONSE_CODE_1300 = '1300';
 
     /** INVALID_AMOUNT. */
-    public const RESPONSE_CODE_1310 = '1310';
+    const RESPONSE_CODE_1310 = '1310';
 
     /** INVALID_TRANSACTION_CARD_ISSUER_ACQUIRER. */
-    public const RESPONSE_CODE_1312 = '1312';
+    const RESPONSE_CODE_1312 = '1312';
 
     /** INVALID_CAPTURE_DATE. */
-    public const RESPONSE_CODE_1317 = '1317';
+    const RESPONSE_CODE_1317 = '1317';
 
     /** INVALID_CURRENCY_CODE. */
-    public const RESPONSE_CODE_1320 = '1320';
+    const RESPONSE_CODE_1320 = '1320';
 
     /** INVALID_ACCOUNT. */
-    public const RESPONSE_CODE_1330 = '1330';
+    const RESPONSE_CODE_1330 = '1330';
 
     /** INVALID_ACCOUNT_RECURRING. */
-    public const RESPONSE_CODE_1335 = '1335';
+    const RESPONSE_CODE_1335 = '1335';
 
     /** INVALID_TERMINAL. */
-    public const RESPONSE_CODE_1340 = '1340';
+    const RESPONSE_CODE_1340 = '1340';
 
     /** INVALID_MERCHANT. */
-    public const RESPONSE_CODE_1350 = '1350';
+    const RESPONSE_CODE_1350 = '1350';
 
     /** BAD_PROCESSING_CODE. */
-    public const RESPONSE_CODE_1360 = '1360';
+    const RESPONSE_CODE_1360 = '1360';
 
     /** INVALID_MCC. */
-    public const RESPONSE_CODE_1370 = '1370';
+    const RESPONSE_CODE_1370 = '1370';
 
     /** INVALID_EXPIRATION. */
-    public const RESPONSE_CODE_1380 = '1380';
+    const RESPONSE_CODE_1380 = '1380';
 
     /** INVALID_CARD_VERIFICATION_VALUE. */
-    public const RESPONSE_CODE_1382 = '1382';
+    const RESPONSE_CODE_1382 = '1382';
 
     /** INVALID_LIFE_CYCLE_OF_TRANSACTION. */
-    public const RESPONSE_CODE_1384 = '1384';
+    const RESPONSE_CODE_1384 = '1384';
 
     /** INVALID_ORDER. */
-    public const RESPONSE_CODE_1390 = '1390';
+    const RESPONSE_CODE_1390 = '1390';
 
     /** TRANSACTION_CANNOT_BE_COMPLETED. */
-    public const RESPONSE_CODE_1393 = '1393';
+    const RESPONSE_CODE_1393 = '1393';
 
     /** DO_NOT_HONOR. */
-    public const RESPONSE_CODE_0500 = '0500';
+    const RESPONSE_CODE_0500 = '0500';
 
     /** GENERIC_DECLINE. */
-    public const RESPONSE_CODE_5100 = '5100';
+    const RESPONSE_CODE_5100 = '5100';
 
     /** CVV2_FAILURE. */
-    public const RESPONSE_CODE_5110 = '5110';
+    const RESPONSE_CODE_5110 = '5110';
 
     /** INSUFFICIENT_FUNDS. */
-    public const RESPONSE_CODE_5120 = '5120';
+    const RESPONSE_CODE_5120 = '5120';
 
     /** INVALID_PIN. */
-    public const RESPONSE_CODE_5130 = '5130';
+    const RESPONSE_CODE_5130 = '5130';
 
     /** CARD_CLOSED. */
-    public const RESPONSE_CODE_5140 = '5140';
+    const RESPONSE_CODE_5140 = '5140';
 
     /** PICKUP_CARD_SPECIAL_CONDITIONS. Try using another card. Do not retry the same card. */
-    public const RESPONSE_CODE_5150 = '5150';
+    const RESPONSE_CODE_5150 = '5150';
 
     /** UNAUTHORIZED_USER. */
-    public const RESPONSE_CODE_5160 = '5160';
+    const RESPONSE_CODE_5160 = '5160';
 
     /** AVS_FAILURE. */
-    public const RESPONSE_CODE_5170 = '5170';
+    const RESPONSE_CODE_5170 = '5170';
 
     /** INVALID_OR_RESTRICTED_CARD. Try using another card. Do not retry the same card. */
-    public const RESPONSE_CODE_5180 = '5180';
+    const RESPONSE_CODE_5180 = '5180';
 
     /** SOFT_AVS. */
-    public const RESPONSE_CODE_5190 = '5190';
+    const RESPONSE_CODE_5190 = '5190';
 
     /** DUPLICATE_TRANSACTION. */
-    public const RESPONSE_CODE_5200 = '5200';
+    const RESPONSE_CODE_5200 = '5200';
 
     /** INVALID_TRANSACTION. */
-    public const RESPONSE_CODE_5210 = '5210';
+    const RESPONSE_CODE_5210 = '5210';
 
     /** EXPIRED_CARD. */
-    public const RESPONSE_CODE_5400 = '5400';
+    const RESPONSE_CODE_5400 = '5400';
 
     /** INCORRECT_PIN_REENTER. */
-    public const RESPONSE_CODE_5500 = '5500';
+    const RESPONSE_CODE_5500 = '5500';
 
     /** REVERSAL_REJECTED. */
-    public const RESPONSE_CODE_5800 = '5800';
+    const RESPONSE_CODE_5800 = '5800';
 
     /** INVALID_ISSUE. */
-    public const RESPONSE_CODE_5900 = '5900';
+    const RESPONSE_CODE_5900 = '5900';
 
     /** ISSUER_NOT_AVAILABLE_NOT_RETRIABLE. */
-    public const RESPONSE_CODE_5910 = '5910';
+    const RESPONSE_CODE_5910 = '5910';
 
     /** ISSUER_NOT_AVAILABLE_RETRIABLE. */
-    public const RESPONSE_CODE_5920 = '5920';
+    const RESPONSE_CODE_5920 = '5920';
 
     /** ACCOUNT_NOT_ON_FILE. */
-    public const RESPONSE_CODE_6300 = '6300';
+    const RESPONSE_CODE_6300 = '6300';
 
     /** APPROVED_NON_CAPTURE. */
-    public const RESPONSE_CODE_7600 = '7600';
+    const RESPONSE_CODE_7600 = '7600';
 
     /** ERROR_3DS. */
-    public const RESPONSE_CODE_7700 = '7700';
+    const RESPONSE_CODE_7700 = '7700';
 
     /** AUTHENTICATION_FAILED. */
-    public const RESPONSE_CODE_7710 = '7710';
+    const RESPONSE_CODE_7710 = '7710';
 
     /** BIN_ERROR. */
-    public const RESPONSE_CODE_7800 = '7800';
+    const RESPONSE_CODE_7800 = '7800';
 
     /** PIN_ERROR. */
-    public const RESPONSE_CODE_7900 = '7900';
+    const RESPONSE_CODE_7900 = '7900';
 
     /** PROCESSOR_SYSTEM_ERROR. */
-    public const RESPONSE_CODE_8000 = '8000';
+    const RESPONSE_CODE_8000 = '8000';
 
     /** HOST_KEY_ERROR. */
-    public const RESPONSE_CODE_8010 = '8010';
+    const RESPONSE_CODE_8010 = '8010';
 
     /** CONFIGURATION_ERROR. */
-    public const RESPONSE_CODE_8020 = '8020';
+    const RESPONSE_CODE_8020 = '8020';
 
     /** UNSUPPORTED_OPERATION. */
-    public const RESPONSE_CODE_8030 = '8030';
+    const RESPONSE_CODE_8030 = '8030';
 
     /** FATAL_COMMUNICATION_ERROR. */
-    public const RESPONSE_CODE_8100 = '8100';
+    const RESPONSE_CODE_8100 = '8100';
 
     /** RETRIABLE_COMMUNICATION_ERROR. */
-    public const RESPONSE_CODE_8110 = '8110';
+    const RESPONSE_CODE_8110 = '8110';
 
     /** SYSTEM_UNAVAILABLE. */
-    public const RESPONSE_CODE_8220 = '8220';
+    const RESPONSE_CODE_8220 = '8220';
 
     /** DECLINED_PLEASE_RETRY. Retry. */
-    public const RESPONSE_CODE_9100 = '9100';
+    const RESPONSE_CODE_9100 = '9100';
 
     /** SUSPECTED_FRAUD. Try using another card. Do not retry the same card. */
-    public const RESPONSE_CODE_9500 = '9500';
+    const RESPONSE_CODE_9500 = '9500';
 
     /** SECURITY_VIOLATION. */
-    public const RESPONSE_CODE_9510 = '9510';
+    const RESPONSE_CODE_9510 = '9510';
 
     /** LOST_OR_STOLEN. Try using another card. Do not retry the same card. */
-    public const RESPONSE_CODE_9520 = '9520';
+    const RESPONSE_CODE_9520 = '9520';
 
     /** HOLD_CALL_CENTER. The merchant must call the number on the back of the card. POS scenario. */
-    public const RESPONSE_CODE_9530 = '9530';
+    const RESPONSE_CODE_9530 = '9530';
 
     /** REFUSED_CARD. */
-    public const RESPONSE_CODE_9540 = '9540';
+    const RESPONSE_CODE_9540 = '9540';
 
     /** UNRECOGNIZED_RESPONSE_CODE. */
-    public const RESPONSE_CODE_9600 = '9600';
+    const RESPONSE_CODE_9600 = '9600';
 
     /** CARD_NOT_ACTIVATED. */
-    public const RESPONSE_CODE_5930 = '5930';
+    const RESPONSE_CODE_5930 = '5930';
 
     /** PPMD. */
-    public const RESPONSE_CODE_PPMD = 'PPMD';
+    const RESPONSE_CODE_PPMD = 'PPMD';
 
     /** CE_REGISTRATION_INCOMPLETE. */
-    public const RESPONSE_CODE_PPCE = 'PPCE';
+    const RESPONSE_CODE_PPCE = 'PPCE';
 
     /** NETWORK_ERROR. */
-    public const RESPONSE_CODE_PPNT = 'PPNT';
+    const RESPONSE_CODE_PPNT = 'PPNT';
 
     /** CARD_TYPE_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPCT = 'PPCT';
+    const RESPONSE_CODE_PPCT = 'PPCT';
 
     /** TRANSACTION_TYPE_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPTT = 'PPTT';
+    const RESPONSE_CODE_PPTT = 'PPTT';
 
     /** CURRENCY_USED_INVALID. */
-    public const RESPONSE_CODE_PPCU = 'PPCU';
+    const RESPONSE_CODE_PPCU = 'PPCU';
 
     /** QUASI_CASH_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPQC = 'PPQC';
+    const RESPONSE_CODE_PPQC = 'PPQC';
 
     /** VALIDATION_ERROR. */
-    public const RESPONSE_CODE_PPVE = 'PPVE';
+    const RESPONSE_CODE_PPVE = 'PPVE';
 
     /** VIRTUAL_TERMINAL_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPVT = 'PPVT';
+    const RESPONSE_CODE_PPVT = 'PPVT';
 
     /** DCC_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPDC = 'PPDC';
+    const RESPONSE_CODE_PPDC = 'PPDC';
 
     /** INTERNAL_SYSTEM_ERROR. */
-    public const RESPONSE_CODE_PPER = 'PPER';
+    const RESPONSE_CODE_PPER = 'PPER';
 
     /** ID_MISMATCH. */
-    public const RESPONSE_CODE_PPIM = 'PPIM';
+    const RESPONSE_CODE_PPIM = 'PPIM';
 
     /** H1_ERROR. */
-    public const RESPONSE_CODE_PPH1 = 'PPH1';
+    const RESPONSE_CODE_PPH1 = 'PPH1';
 
     /** STATUS_DESCRIPTION. */
-    public const RESPONSE_CODE_PPSD = 'PPSD';
+    const RESPONSE_CODE_PPSD = 'PPSD';
 
     /** ADULT_GAMING_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPAG = 'PPAG';
+    const RESPONSE_CODE_PPAG = 'PPAG';
 
     /** LARGE_STATUS_CODE. */
-    public const RESPONSE_CODE_PPLS = 'PPLS';
+    const RESPONSE_CODE_PPLS = 'PPLS';
 
     /** COUNTRY. */
-    public const RESPONSE_CODE_PPCO = 'PPCO';
+    const RESPONSE_CODE_PPCO = 'PPCO';
 
     /** BILLING_ADDRESS. */
-    public const RESPONSE_CODE_PPAD = 'PPAD';
+    const RESPONSE_CODE_PPAD = 'PPAD';
 
     /** MCC_CODE. */
-    public const RESPONSE_CODE_PPAU = 'PPAU';
+    const RESPONSE_CODE_PPAU = 'PPAU';
 
     /** CURRENCY_CODE_UNSUPPORTED. */
-    public const RESPONSE_CODE_PPUC = 'PPUC';
+    const RESPONSE_CODE_PPUC = 'PPUC';
 
     /** UNSUPPORTED_REVERSAL. */
-    public const RESPONSE_CODE_PPUR = 'PPUR';
+    const RESPONSE_CODE_PPUR = 'PPUR';
 
     /** VALIDATE_CURRENCY. */
-    public const RESPONSE_CODE_PPVC = 'PPVC';
+    const RESPONSE_CODE_PPVC = 'PPVC';
 
     /** BANKAUTH_ROW_MISMATCH. */
-    public const RESPONSE_CODE_PPS0 = 'PPS0';
+    const RESPONSE_CODE_PPS0 = 'PPS0';
 
     /** BANKAUTH_ROW_SETTLED. */
-    public const RESPONSE_CODE_PPS1 = 'PPS1';
+    const RESPONSE_CODE_PPS1 = 'PPS1';
 
     /** BANKAUTH_ROW_VOIDED. */
-    public const RESPONSE_CODE_PPS2 = 'PPS2';
+    const RESPONSE_CODE_PPS2 = 'PPS2';
 
     /** BANKAUTH_EXPIRED. */
-    public const RESPONSE_CODE_PPS3 = 'PPS3';
+    const RESPONSE_CODE_PPS3 = 'PPS3';
 
     /** CURRENCY_MISMATCH. */
-    public const RESPONSE_CODE_PPS4 = 'PPS4';
+    const RESPONSE_CODE_PPS4 = 'PPS4';
 
     /** CREDITCARD_MISMATCH. */
-    public const RESPONSE_CODE_PPS5 = 'PPS5';
+    const RESPONSE_CODE_PPS5 = 'PPS5';
 
     /** AMOUNT_MISMATCH. */
-    public const RESPONSE_CODE_PPS6 = 'PPS6';
+    const RESPONSE_CODE_PPS6 = 'PPS6';
 
     /** INVALID_PARENT_TRANSACTION_STATUS. */
-    public const RESPONSE_CODE_PPRF = 'PPRF';
+    const RESPONSE_CODE_PPRF = 'PPRF';
 
     /** EXPIRY_DATE. */
-    public const RESPONSE_CODE_PPEX = 'PPEX';
+    const RESPONSE_CODE_PPEX = 'PPEX';
 
     /** AMOUNT_EXCEEDED. */
-    public const RESPONSE_CODE_PPAX = 'PPAX';
+    const RESPONSE_CODE_PPAX = 'PPAX';
 
     /** AUTH_MESSAGE. */
-    public const RESPONSE_CODE_PPDV = 'PPDV';
+    const RESPONSE_CODE_PPDV = 'PPDV';
 
     /** DINERS_REJECT. */
-    public const RESPONSE_CODE_PPDI = 'PPDI';
+    const RESPONSE_CODE_PPDI = 'PPDI';
 
     /** AUTH_RESULT. */
-    public const RESPONSE_CODE_PPAR = 'PPAR';
+    const RESPONSE_CODE_PPAR = 'PPAR';
 
     /** BAD_GAMING. */
-    public const RESPONSE_CODE_PPBG = 'PPBG';
+    const RESPONSE_CODE_PPBG = 'PPBG';
 
     /** GAMING_REFUND_ERROR. */
-    public const RESPONSE_CODE_PPGR = 'PPGR';
+    const RESPONSE_CODE_PPGR = 'PPGR';
 
     /** CREDIT_ERROR. */
-    public const RESPONSE_CODE_PPCR = 'PPCR';
+    const RESPONSE_CODE_PPCR = 'PPCR';
 
     /** AMOUNT_INCOMPATIBLE. */
-    public const RESPONSE_CODE_PPAI = 'PPAI';
+    const RESPONSE_CODE_PPAI = 'PPAI';
 
     /** IDEMPOTENCY_FAILURE. */
-    public const RESPONSE_CODE_PPIF = 'PPIF';
+    const RESPONSE_CODE_PPIF = 'PPIF';
 
     /** BLOCKED_Mastercard. */
-    public const RESPONSE_CODE_PPMC = 'PPMC';
+    const RESPONSE_CODE_PPMC = 'PPMC';
 
     /** AMEX_DISABLED. */
-    public const RESPONSE_CODE_PPAE = 'PPAE';
+    const RESPONSE_CODE_PPAE = 'PPAE';
 
     /** FIELD_VALIDATION_FAILED. */
-    public const RESPONSE_CODE_PPFV = 'PPFV';
+    const RESPONSE_CODE_PPFV = 'PPFV';
 
     /** INVALID_INPUT_FAILURE. */
-    public const RESPONSE_CODE_PPII = 'PPII';
+    const RESPONSE_CODE_PPII = 'PPII';
 
     /** INVALID_PAYMENT_METHOD. */
-    public const RESPONSE_CODE_PPPM = 'PPPM';
+    const RESPONSE_CODE_PPPM = 'PPPM';
 
     /** USER_NOT_AUTHORIZED. */
-    public const RESPONSE_CODE_PPUA = 'PPUA';
+    const RESPONSE_CODE_PPUA = 'PPUA';
 
     /** INVALID_FUNDING_INSTRUMENT. */
-    public const RESPONSE_CODE_PPFI = 'PPFI';
+    const RESPONSE_CODE_PPFI = 'PPFI';
 
     /** EXPIRED_FUNDING_INSTRUMENT. */
-    public const RESPONSE_CODE_PPEF = 'PPEF';
+    const RESPONSE_CODE_PPEF = 'PPEF';
 
     /** RESTRICTED_FUNDING_INSTRUMENT. */
-    public const RESPONSE_CODE_PPFR = 'PPFR';
+    const RESPONSE_CODE_PPFR = 'PPFR';
 
     /** EXCEEDS_FREQUENCY_LIMIT. */
-    public const RESPONSE_CODE_PPEL = 'PPEL';
+    const RESPONSE_CODE_PPEL = 'PPEL';
 
     /** CVV_FAILURE. */
-    public const RESPONSE_CODE_PCVV = 'PCVV';
+    const RESPONSE_CODE_PCVV = 'PCVV';
 
     /** INVALID_VERIFICATION_TOKEN. */
-    public const RESPONSE_CODE_PPTV = 'PPTV';
+    const RESPONSE_CODE_PPTV = 'PPTV';
 
     /** VERIFICATION_TOKEN_EXPIRED. */
-    public const RESPONSE_CODE_PPTE = 'PPTE';
+    const RESPONSE_CODE_PPTE = 'PPTE';
 
     /** INVALID_PRODUCT. */
-    public const RESPONSE_CODE_PPPI = 'PPPI';
+    const RESPONSE_CODE_PPPI = 'PPPI';
 
     /** INVALID_TRACE_ID. */
-    public const RESPONSE_CODE_PPIT = 'PPIT';
+    const RESPONSE_CODE_PPIT = 'PPIT';
 
     /** INVALID_TRACE_REFERENCE. */
-    public const RESPONSE_CODE_PPTF = 'PPTF';
+    const RESPONSE_CODE_PPTF = 'PPTF';
 
     /** FUNDING_SOURCE_ALREADY_EXISTS. */
-    public const RESPONSE_CODE_PPFE = 'PPFE';
+    const RESPONSE_CODE_PPFE = 'PPFE';
 
     /** VERIFICATION_TOKEN_REVOKED. */
-    public const RESPONSE_CODE_PPTR = 'PPTR';
+    const RESPONSE_CODE_PPTR = 'PPTR';
 
     /** INVALID_TRANSACTION_ID. */
-    public const RESPONSE_CODE_PPTI = 'PPTI';
+    const RESPONSE_CODE_PPTI = 'PPTI';
 
     /** SECURE_ERROR_3DS. */
-    public const RESPONSE_CODE_PPD3 = 'PPD3';
+    const RESPONSE_CODE_PPD3 = 'PPD3';
 
     /** NO_PHONE_FOR_DCC_TRANSACTION. */
-    public const RESPONSE_CODE_PPPH = 'PPPH';
+    const RESPONSE_CODE_PPPH = 'PPPH';
 
     /** ARC_AVS. */
-    public const RESPONSE_CODE_PPAV = 'PPAV';
+    const RESPONSE_CODE_PPAV = 'PPAV';
 
     /** ARC_CVV. */
-    public const RESPONSE_CODE_PPC2 = 'PPC2';
+    const RESPONSE_CODE_PPC2 = 'PPC2';
 
     /** LATE_REVERSAL. */
-    public const RESPONSE_CODE_PPLR = 'PPLR';
+    const RESPONSE_CODE_PPLR = 'PPLR';
 
     /** NOT_SUPPORTED_NRC. */
-    public const RESPONSE_CODE_PPNC = 'PPNC';
+    const RESPONSE_CODE_PPNC = 'PPNC';
 
     /** MERCHANT_NOT_REGISTERED. */
-    public const RESPONSE_CODE_PPRR = 'PPRR';
+    const RESPONSE_CODE_PPRR = 'PPRR';
 
     /** ARC_SCORE. */
-    public const RESPONSE_CODE_PPSC = 'PPSC';
+    const RESPONSE_CODE_PPSC = 'PPSC';
 
     /** AMEX_DENIED. */
-    public const RESPONSE_CODE_PPSE = 'PPSE';
+    const RESPONSE_CODE_PPSE = 'PPSE';
 
     /** UNSUPPORT_ENTITY. */
-    public const RESPONSE_CODE_PPUE = 'PPUE';
+    const RESPONSE_CODE_PPUE = 'PPUE';
 
     /** UNSUPPORT_INSTALLMENT. */
-    public const RESPONSE_CODE_PPUI = 'PPUI';
+    const RESPONSE_CODE_PPUI = 'PPUI';
 
     /** UNSUPPORT_POS_FLAG. */
-    public const RESPONSE_CODE_PPUP = 'PPUP';
+    const RESPONSE_CODE_PPUP = 'PPUP';
 
     /** UNSUPPORT_REFUND_ON_PENDING_BC. */
-    public const RESPONSE_CODE_PPRE = 'PPRE';
+    const RESPONSE_CODE_PPRE = 'PPRE';
 
     /** For Mastercard, expired card account upgrade or portfolio sale conversion. Obtain new account information before next billing cycle. */
-    public const PAYMENT_ADVICE_CODE_01 = '01';
+    const PAYMENT_ADVICE_CODE_01 = '01';
 
     /** For Mastercard, over credit limit or insufficient funds. Retry the transaction 72 hours later. For Visa, the card holder wants to stop only one specific payment in the recurring payment relationship. The merchant must NOT resubmit the same transaction. The merchant can continue the billing process in the subsequent billing period. */
-    public const PAYMENT_ADVICE_CODE_02 = '02';
+    const PAYMENT_ADVICE_CODE_02 = '02';
 
     /** For Mastercard, account closed as fraudulent. Obtain another type of payment from customer due to account being closed or fraud. Possible reason: Account closed as fraudulent. For Visa, the card holder wants to stop all recurring payment transactions for a specific merchant. Stop recurring payment requests. */
-    public const PAYMENT_ADVICE_CODE_03 = '03';
+    const PAYMENT_ADVICE_CODE_03 = '03';
 
     /** For Mastercard, the card holder has been unsuccessful at canceling recurring payment through merchant. Stop recurring payment requests. For Visa, all recurring payments were canceled for the card number requested. Stop recurring payment requests. */
-    public const PAYMENT_ADVICE_CODE_21 = '21';
+    const PAYMENT_ADVICE_CODE_21 = '21';
 
     /**
      * The address verification code for Visa, Discover, Mastercard, or American Express transactions.

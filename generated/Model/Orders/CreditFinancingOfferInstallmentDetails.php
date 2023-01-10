@@ -16,7 +16,7 @@ class CreditFinancingOfferInstallmentDetails implements JsonSerializable
     use BaseModel;
 
     /** Payments are monthly. */
-    public const PERIOD_MONTHLY = 'MONTHLY';
+    const PERIOD_MONTHLY = 'MONTHLY';
 
     /**
      * The frequency with which the payer has agreed to make the payment.

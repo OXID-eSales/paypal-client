@@ -16,64 +16,64 @@ class ResponseHistory implements JsonSerializable
     use BaseModel;
 
     /** The actor is the customer. */
-    public const ACTOR_BUYER = 'BUYER';
+    const ACTOR_BUYER = 'BUYER';
 
     /** The actor is the merchant. */
-    public const ACTOR_SELLER = 'SELLER';
+    const ACTOR_SELLER = 'SELLER';
 
     /** The actor is PayPal. */
-    public const ACTOR_PAYPAL = 'PAYPAL';
+    const ACTOR_PAYPAL = 'PAYPAL';
 
     /** The dispute was created in PayPal system. */
-    public const EVENT_TYPE_CREATED = 'CREATED';
+    const EVENT_TYPE_CREATED = 'CREATED';
 
     /** The customer opened the dispute with PayPal. */
-    public const EVENT_TYPE_OPEN = 'OPEN';
+    const EVENT_TYPE_OPEN = 'OPEN';
 
     /** The dispute moved to waiting for customer's response. */
-    public const EVENT_TYPE_WAITING_FOR_BUYER_RESPONSE = 'WAITING_FOR_BUYER_RESPONSE';
+    const EVENT_TYPE_WAITING_FOR_BUYER_RESPONSE = 'WAITING_FOR_BUYER_RESPONSE';
 
     /** The dispute moved to waiting for merchant's response. */
-    public const EVENT_TYPE_WAITING_FOR_SELLER_RESPONSE = 'WAITING_FOR_SELLER_RESPONSE';
+    const EVENT_TYPE_WAITING_FOR_SELLER_RESPONSE = 'WAITING_FOR_SELLER_RESPONSE';
 
     /** The dispute moved to a state where it is being reviewed by PayPal. */
-    public const EVENT_TYPE_UNDER_REVIEW = 'UNDER_REVIEW';
+    const EVENT_TYPE_UNDER_REVIEW = 'UNDER_REVIEW';
 
     /** The dispute was resolved. */
-    public const EVENT_TYPE_RESOLVED = 'RESOLVED';
+    const EVENT_TYPE_RESOLVED = 'RESOLVED';
 
     /** The dispute status moved to the <code>OTHER</code> status. */
-    public const EVENT_TYPE_OTHER = 'OTHER';
+    const EVENT_TYPE_OTHER = 'OTHER';
 
     /** The customer was notified about dispute through email. */
-    public const EVENT_TYPE_EMAIL_SENT_TO_BUYER = 'EMAIL_SENT_TO_BUYER';
+    const EVENT_TYPE_EMAIL_SENT_TO_BUYER = 'EMAIL_SENT_TO_BUYER';
 
     /** The merchant was notified about dispute through email. */
-    public const EVENT_TYPE_EMAIL_SENT_TO_SELLER = 'EMAIL_SENT_TO_SELLER';
+    const EVENT_TYPE_EMAIL_SENT_TO_SELLER = 'EMAIL_SENT_TO_SELLER';
 
     /** The customer provided an evidence document for the dispute. */
-    public const EVENT_TYPE_EVIDENCE_PROVIDED_BUYER = 'EVIDENCE_PROVIDED_BUYER';
+    const EVENT_TYPE_EVIDENCE_PROVIDED_BUYER = 'EVIDENCE_PROVIDED_BUYER';
 
     /** The merchant provided an evidence document for the dispute. */
-    public const EVENT_TYPE_EVIDENCE_PROVIDED_SELLER = 'EVIDENCE_PROVIDED_SELLER';
+    const EVENT_TYPE_EVIDENCE_PROVIDED_SELLER = 'EVIDENCE_PROVIDED_SELLER';
 
     /** The customer appealed the dispute outcome. */
-    public const EVENT_TYPE_APPEALED_BUYER = 'APPEALED_BUYER';
+    const EVENT_TYPE_APPEALED_BUYER = 'APPEALED_BUYER';
 
     /** The merchant appealed the dispute outcome. */
-    public const EVENT_TYPE_APPEALED_SELLER = 'APPEALED_SELLER';
+    const EVENT_TYPE_APPEALED_SELLER = 'APPEALED_SELLER';
 
     /** The customer changed the reason for the dispute. */
-    public const EVENT_TYPE_REASON_CHANGED = 'REASON_CHANGED';
+    const EVENT_TYPE_REASON_CHANGED = 'REASON_CHANGED';
 
     /** The dispute was escalated for PayPal's review. */
-    public const EVENT_TYPE_ESCALATED = 'ESCALATED';
+    const EVENT_TYPE_ESCALATED = 'ESCALATED';
 
     /** The merchant accepted the claim and refunded the customer. */
-    public const EVENT_TYPE_ACCEPTED_CLAIM = 'ACCEPTED_CLAIM';
+    const EVENT_TYPE_ACCEPTED_CLAIM = 'ACCEPTED_CLAIM';
 
     /** The customer cancelled the dispute. */
-    public const EVENT_TYPE_CANCELLED = 'CANCELLED';
+    const EVENT_TYPE_CANCELLED = 'CANCELLED';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

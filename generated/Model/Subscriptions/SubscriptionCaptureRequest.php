@@ -16,7 +16,7 @@ class SubscriptionCaptureRequest implements JsonSerializable
     use BaseModel;
 
     /** The outstanding balance that the subscriber must clear. */
-    public const CAPTURE_TYPE_OUTSTANDING_BALANCE = 'OUTSTANDING_BALANCE';
+    const CAPTURE_TYPE_OUTSTANDING_BALANCE = 'OUTSTANDING_BALANCE';
 
     /**
      * The reason or note for the subscription charge.

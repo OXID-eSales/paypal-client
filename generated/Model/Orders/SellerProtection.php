@@ -17,13 +17,13 @@ class SellerProtection implements JsonSerializable
     use BaseModel;
 
     /** Your PayPal balance remains intact if the customer claims that they did not receive an item or the account holder claims that they did not authorize the payment. */
-    public const STATUS_ELIGIBLE = 'ELIGIBLE';
+    const STATUS_ELIGIBLE = 'ELIGIBLE';
 
     /** Your PayPal balance remains intact if the customer claims that they did not receive an item. */
-    public const STATUS_PARTIALLY_ELIGIBLE = 'PARTIALLY_ELIGIBLE';
+    const STATUS_PARTIALLY_ELIGIBLE = 'PARTIALLY_ELIGIBLE';
 
     /** This transaction is not eligible for seller protection. */
-    public const STATUS_NOT_ELIGIBLE = 'NOT_ELIGIBLE';
+    const STATUS_NOT_ELIGIBLE = 'NOT_ELIGIBLE';
 
     /**
      * Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller

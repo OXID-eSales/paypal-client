@@ -16,22 +16,22 @@ class PhoneInfo implements JsonSerializable
     use BaseModel;
 
     /** A fax machine. */
-    public const PHONE_TYPE_FAX = 'FAX';
+    const PHONE_TYPE_FAX = 'FAX';
 
     /** A home phone. */
-    public const PHONE_TYPE_HOME = 'HOME';
+    const PHONE_TYPE_HOME = 'HOME';
 
     /** A mobile phone. */
-    public const PHONE_TYPE_MOBILE = 'MOBILE';
+    const PHONE_TYPE_MOBILE = 'MOBILE';
 
     /** Other. */
-    public const PHONE_TYPE_OTHER = 'OTHER';
+    const PHONE_TYPE_OTHER = 'OTHER';
 
     /** A pager. */
-    public const PHONE_TYPE_PAGER = 'PAGER';
+    const PHONE_TYPE_PAGER = 'PAGER';
 
     /** A work phone. */
-    public const PHONE_TYPE_WORK = 'WORK';
+    const PHONE_TYPE_WORK = 'WORK';
 
     /**
      * The phone number in its canonical international [E.164 numbering plan

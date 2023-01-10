@@ -16,19 +16,19 @@ class ReferredReferredTrackingInfo implements JsonSerializable
     use BaseModel;
 
     /** The tracking information is invalid. */
-    public const TRACKING_STATUS_INVALID = 'INVALID';
+    const TRACKING_STATUS_INVALID = 'INVALID';
 
     /** The tracking information is not available. */
-    public const TRACKING_STATUS_NO_TRACKING = 'NO_TRACKING';
+    const TRACKING_STATUS_NO_TRACKING = 'NO_TRACKING';
 
     /** The disputed item is in transit. */
-    public const TRACKING_STATUS_IN_TRANSIT = 'IN_TRANSIT';
+    const TRACKING_STATUS_IN_TRANSIT = 'IN_TRANSIT';
 
     /** The disputed item is lost. */
-    public const TRACKING_STATUS_LOST = 'LOST';
+    const TRACKING_STATUS_LOST = 'LOST';
 
     /** The disputed item was delivered to the customer. */
-    public const TRACKING_STATUS_DELIVERED = 'DELIVERED';
+    const TRACKING_STATUS_DELIVERED = 'DELIVERED';
 
     /**
      * The name of the carrier for the shipment of the transaction for this dispute.

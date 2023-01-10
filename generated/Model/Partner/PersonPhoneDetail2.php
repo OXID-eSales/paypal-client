@@ -17,19 +17,19 @@ class PersonPhoneDetail2 extends Phone implements JsonSerializable
     use BaseModel;
 
     /** A fax machine. */
-    public const TYPE_FAX = 'FAX';
+    const TYPE_FAX = 'FAX';
 
     /** A home phone. */
-    public const TYPE_HOME = 'HOME';
+    const TYPE_HOME = 'HOME';
 
     /** A mobile phone. */
-    public const TYPE_MOBILE = 'MOBILE';
+    const TYPE_MOBILE = 'MOBILE';
 
     /** Other. */
-    public const TYPE_OTHER = 'OTHER';
+    const TYPE_OTHER = 'OTHER';
 
     /** A pager. */
-    public const TYPE_PAGER = 'PAGER';
+    const TYPE_PAGER = 'PAGER';
 
     /**
      * The phone type.

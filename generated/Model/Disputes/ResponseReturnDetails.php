@@ -16,10 +16,10 @@ class ResponseReturnDetails implements JsonSerializable
     use BaseModel;
 
     /** The customer shipped the product back to the merchant. */
-    public const MODE_SHIPPED = 'SHIPPED';
+    const MODE_SHIPPED = 'SHIPPED';
 
     /** The customer returned the item to the merchant in person. */
-    public const MODE_IN_PERSON = 'IN_PERSON';
+    const MODE_IN_PERSON = 'IN_PERSON';
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).

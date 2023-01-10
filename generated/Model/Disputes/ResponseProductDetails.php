@@ -16,13 +16,13 @@ class ResponseProductDetails implements JsonSerializable
     use BaseModel;
 
     /** The product was received. */
-    public const PRODUCT_RECEIVED_YES = 'YES';
+    const PRODUCT_RECEIVED_YES = 'YES';
 
     /** The product was not received. */
-    public const PRODUCT_RECEIVED_NO = 'NO';
+    const PRODUCT_RECEIVED_NO = 'NO';
 
     /** The product was returned. */
-    public const PRODUCT_RECEIVED_RETURNED = 'RETURNED';
+    const PRODUCT_RECEIVED_RETURNED = 'RETURNED';
 
     /**
      * The product description.

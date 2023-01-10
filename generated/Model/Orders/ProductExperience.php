@@ -17,187 +17,187 @@ class ProductExperience implements JsonSerializable
     use BaseModel;
 
     /** The consumer's browser does a 302 redirect to <a href="https://www.paypal.com/us/home">paypal.com</a> from the third-party site. */
-    public const USER_EXPERIENCE_FLOW_FULL_PAGE_REDIRECT = 'FULL_PAGE_REDIRECT';
+    const USER_EXPERIENCE_FLOW_FULL_PAGE_REDIRECT = 'FULL_PAGE_REDIRECT';
 
     /** The buyer interacts with <a href="https://www.paypal.com/us/home">paypal.com</a> in an iframe or pop up window, which is a modal that is outside or hovers over the existing merchant experience. */
-    public const USER_EXPERIENCE_FLOW_INCONTEXT = 'INCONTEXT';
+    const USER_EXPERIENCE_FLOW_INCONTEXT = 'INCONTEXT';
 
     /** The buyer interacts with <a href="https://www.paypal.com/us/home">paypal.com</a> through an iframe on the merchant site, and is in line with the existing merchant experience. */
-    public const USER_EXPERIENCE_FLOW_INLINE = 'INLINE';
+    const USER_EXPERIENCE_FLOW_INLINE = 'INLINE';
 
     /** The buyer interacts with PayPal through PayPal's native SDK. */
-    public const USER_EXPERIENCE_FLOW_NATIVE = 'NATIVE';
+    const USER_EXPERIENCE_FLOW_NATIVE = 'NATIVE';
 
     /** The buyer interacts with PayPal by opening PayPal.com directly on browser */
-    public const USER_EXPERIENCE_FLOW_FULL_PAGE = 'FULL_PAGE';
+    const USER_EXPERIENCE_FLOW_FULL_PAGE = 'FULL_PAGE';
 
     /** The transaction is initiated from Venmo. */
-    public const ENTRY_POINT_PAY_WITH_VENMO = 'PAY_WITH_VENMO';
+    const ENTRY_POINT_PAY_WITH_VENMO = 'PAY_WITH_VENMO';
 
     /** The transaction is initiated from a credit card. */
-    public const ENTRY_POINT_PAY_WITH_CARD = 'PAY_WITH_CARD';
+    const ENTRY_POINT_PAY_WITH_CARD = 'PAY_WITH_CARD';
 
     /** The transaction is initiated from PayPal. */
-    public const ENTRY_POINT_PAY_WITH_PAYPAL = 'PAY_WITH_PAYPAL';
+    const ENTRY_POINT_PAY_WITH_PAYPAL = 'PAY_WITH_PAYPAL';
 
     /** The transaction is initiated from PayPal credit. */
-    public const ENTRY_POINT_PAY_WITH_PAYPAL_CREDIT = 'PAY_WITH_PAYPAL_CREDIT';
+    const ENTRY_POINT_PAY_WITH_PAYPAL_CREDIT = 'PAY_WITH_PAYPAL_CREDIT';
 
     /** The transaction is initiated from Pay With SEPA. */
-    public const ENTRY_POINT_PAY_WITH_SEPA = 'PAY_WITH_SEPA';
+    const ENTRY_POINT_PAY_WITH_SEPA = 'PAY_WITH_SEPA';
 
     /** The transaction is initiated from Alternative Payment AliPay. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_ALIPAY = 'PAY_WITH_ALTPAY_ALIPAY';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_ALIPAY = 'PAY_WITH_ALTPAY_ALIPAY';
 
     /** The transaction is initiated from Alternative Payment Bancontact. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_BANCONTACT = 'PAY_WITH_ALTPAY_BANCONTACT';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_BANCONTACT = 'PAY_WITH_ALTPAY_BANCONTACT';
 
     /** The transaction is initiated from Alternative Payment Boleto. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_BOLETO = 'PAY_WITH_ALTPAY_BOLETO';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_BOLETO = 'PAY_WITH_ALTPAY_BOLETO';
 
     /** The transaction is initiated from Alternative Payment EPS. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_EPS = 'PAY_WITH_ALTPAY_EPS';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_EPS = 'PAY_WITH_ALTPAY_EPS';
 
     /** The transaction is initiated from Alternative Payment Giropay. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_GIROPAY = 'PAY_WITH_ALTPAY_GIROPAY';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_GIROPAY = 'PAY_WITH_ALTPAY_GIROPAY';
 
     /** The transaction is initiated from Alternative Payment iDeal. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_IDEAL = 'PAY_WITH_ALTPAY_IDEAL';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_IDEAL = 'PAY_WITH_ALTPAY_IDEAL';
 
     /** The transaction is initiated from Alternative Payment MyBank. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_MYBANK = 'PAY_WITH_ALTPAY_MYBANK';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_MYBANK = 'PAY_WITH_ALTPAY_MYBANK';
 
     /** The transaction is initiated from Alternative Payment OXXO. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_OXXO = 'PAY_WITH_ALTPAY_OXXO';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_OXXO = 'PAY_WITH_ALTPAY_OXXO';
 
     /** The transaction is initiated from Alternative Payment P24. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_P24 = 'PAY_WITH_ALTPAY_P24';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_P24 = 'PAY_WITH_ALTPAY_P24';
 
     /** The transaction is initiated from Alternative Payment Sofort. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_SOFORT = 'PAY_WITH_ALTPAY_SOFORT';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_SOFORT = 'PAY_WITH_ALTPAY_SOFORT';
 
     /** The transaction is initiated from Alternative Payment WeChatPay. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_WECHATPAY = 'PAY_WITH_ALTPAY_WECHATPAY';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_WECHATPAY = 'PAY_WITH_ALTPAY_WECHATPAY';
 
     /** The transaction is initiated from Alternative Payment Zimpler. */
-    public const ENTRY_POINT_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
+    const ENTRY_POINT_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
 
     /** The transaction source is unknown. */
-    public const ENTRY_POINT_UNKNOWN = 'UNKNOWN';
+    const ENTRY_POINT_UNKNOWN = 'UNKNOWN';
 
     /** The transaction is completed through Venmo. */
-    public const PAYMENT_METHOD_PAY_WITH_VENMO = 'PAY_WITH_VENMO';
+    const PAYMENT_METHOD_PAY_WITH_VENMO = 'PAY_WITH_VENMO';
 
     /** The transaction is completed through a credit card. */
-    public const PAYMENT_METHOD_PAY_WITH_CARD = 'PAY_WITH_CARD';
+    const PAYMENT_METHOD_PAY_WITH_CARD = 'PAY_WITH_CARD';
 
     /** The transaction is completed through PayPal. */
-    public const PAYMENT_METHOD_PAY_WITH_PAYPAL = 'PAY_WITH_PAYPAL';
+    const PAYMENT_METHOD_PAY_WITH_PAYPAL = 'PAY_WITH_PAYPAL';
 
     /** The transaction is completed through PayPal credit. */
-    public const PAYMENT_METHOD_PAY_WITH_PAYPAL_CREDIT = 'PAY_WITH_PAYPAL_CREDIT';
+    const PAYMENT_METHOD_PAY_WITH_PAYPAL_CREDIT = 'PAY_WITH_PAYPAL_CREDIT';
 
     /** The transaction is completed through Pay With SEPA. */
-    public const PAYMENT_METHOD_PAY_WITH_SEPA = 'PAY_WITH_SEPA';
+    const PAYMENT_METHOD_PAY_WITH_SEPA = 'PAY_WITH_SEPA';
 
     /** The transaction is completed through Alternative Payment AliPay. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_ALIPAY = 'PAY_WITH_ALTPAY_ALIPAY';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_ALIPAY = 'PAY_WITH_ALTPAY_ALIPAY';
 
     /** The transaction is completed through Alternative Payment Bancontact. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_BANCONTACT = 'PAY_WITH_ALTPAY_BANCONTACT';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_BANCONTACT = 'PAY_WITH_ALTPAY_BANCONTACT';
 
     /** The transaction is completed through Alternative Payment Boleto. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_BOLETO = 'PAY_WITH_ALTPAY_BOLETO';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_BOLETO = 'PAY_WITH_ALTPAY_BOLETO';
 
     /** The transaction is completed through Alternative Payment EPS. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_EPS = 'PAY_WITH_ALTPAY_EPS';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_EPS = 'PAY_WITH_ALTPAY_EPS';
 
     /** The transaction is completed through Alternative Payment Giropay. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_GIROPAY = 'PAY_WITH_ALTPAY_GIROPAY';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_GIROPAY = 'PAY_WITH_ALTPAY_GIROPAY';
 
     /** The transaction is completed through Alternative Payment iDeal. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_IDEAL = 'PAY_WITH_ALTPAY_IDEAL';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_IDEAL = 'PAY_WITH_ALTPAY_IDEAL';
 
     /** The transaction is completed through Alternative Payment MyBank. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_MYBANK = 'PAY_WITH_ALTPAY_MYBANK';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_MYBANK = 'PAY_WITH_ALTPAY_MYBANK';
 
     /** The transaction is completed through Alternative Payment OXXO. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_OXXO = 'PAY_WITH_ALTPAY_OXXO';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_OXXO = 'PAY_WITH_ALTPAY_OXXO';
 
     /** The transaction is completed through Alternative Payment P24. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_P24 = 'PAY_WITH_ALTPAY_P24';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_P24 = 'PAY_WITH_ALTPAY_P24';
 
     /** The transaction is completed through Alternative Payment Sofort. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_SOFORT = 'PAY_WITH_ALTPAY_SOFORT';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_SOFORT = 'PAY_WITH_ALTPAY_SOFORT';
 
     /** The transaction is completed through Alternative Payment WeChatPay. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_WECHATPAY = 'PAY_WITH_ALTPAY_WECHATPAY';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_WECHATPAY = 'PAY_WITH_ALTPAY_WECHATPAY';
 
     /** The transaction is completed through Alternative Payment Zimpler. */
-    public const PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
+    const PAYMENT_METHOD_PAY_WITH_ALTPAY_ZIMPLER = 'PAY_WITH_ALTPAY_ZIMPLER';
 
     /** The transaction is essentially funded by Crypto. */
-    public const PAYMENT_METHOD_PAY_WITH_CRYPTO = 'PAY_WITH_CRYPTO';
+    const PAYMENT_METHOD_PAY_WITH_CRYPTO = 'PAY_WITH_CRYPTO';
 
     /** The transaction payment method is unknown. */
-    public const PAYMENT_METHOD_UNKNOWN = 'UNKNOWN';
+    const PAYMENT_METHOD_UNKNOWN = 'UNKNOWN';
 
     /** A browser on a PC. */
-    public const CHANNEL_WEB = 'WEB';
+    const CHANNEL_WEB = 'WEB';
 
     /** A browser on a mobile device. */
-    public const CHANNEL_MOBILE_WEB = 'MOBILE_WEB';
+    const CHANNEL_MOBILE_WEB = 'MOBILE_WEB';
 
     /** A native app in a mobile device. */
-    public const CHANNEL_MOBILE_APP = 'MOBILE_APP';
+    const CHANNEL_MOBILE_APP = 'MOBILE_APP';
 
     /** A batch invocation */
-    public const CHANNEL_BATCH = 'BATCH';
+    const CHANNEL_BATCH = 'BATCH';
 
     /** A legacy checkout API flow. */
-    public const PRODUCT_FLOW_CLASSIC = 'CLASSIC';
+    const PRODUCT_FLOW_CLASSIC = 'CLASSIC';
 
     /** A web application handles the user's checkout interaction. */
-    public const PRODUCT_FLOW_HERMES = 'HERMES';
+    const PRODUCT_FLOW_HERMES = 'HERMES';
 
     /** An eBay application handles the user's PayPal checkout experience. */
-    public const PRODUCT_FLOW_PROX = 'PROX';
+    const PRODUCT_FLOW_PROX = 'PROX';
 
     /** A web application handles the user's checkout interaction. */
-    public const PRODUCT_FLOW_SMART_PAYMENT_BUTTONS = 'SMART_PAYMENT_BUTTONS';
+    const PRODUCT_FLOW_SMART_PAYMENT_BUTTONS = 'SMART_PAYMENT_BUTTONS';
 
     /** A buyer signing up for a billing agreement */
-    public const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_CREATE = 'BUYER_APPROVAL_BILLING_AGREEMENT_CREATE';
+    const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_CREATE = 'BUYER_APPROVAL_BILLING_AGREEMENT_CREATE';
 
     /** A billing agreement modification flow initiated by consumer on paypal.com */
-    public const PRODUCT_FLOW_CONSUMER_EXP_BILLING_AGREEMENT_MODIFY = 'CONSUMER_EXP_BILLING_AGREEMENT_MODIFY';
+    const PRODUCT_FLOW_CONSUMER_EXP_BILLING_AGREEMENT_MODIFY = 'CONSUMER_EXP_BILLING_AGREEMENT_MODIFY';
 
     /** A flow allowing consumer to change funding for a transaction, while buyer is present for the transaction */
-    public const PRODUCT_FLOW_ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT = 'ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT';
+    const PRODUCT_FLOW_ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT = 'ONE_TIME_PAYMENT_USING_BILLING_AGREEMENT';
 
     /** A purchase flow which buyer also approves creation of a billing agreement */
-    public const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE = 'BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE';
+    const PRODUCT_FLOW_BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE = 'BUYER_APPROVAL_BILLING_AGREEMENT_WITH_PURCHASE';
 
     /** A buyer signing up for a Subscription. */
-    public const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS = 'BUYER_APPROVAL_SUBSCRIPTIONS';
+    const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS = 'BUYER_APPROVAL_SUBSCRIPTIONS';
 
     /** A subscription modification flow intiated by consumer on paypal.com. */
-    public const PRODUCT_FLOW_CONSUMER_EXP_SUBSCRIPTIONS_MODIFY = 'CONSUMER_EXP_SUBSCRIPTIONS_MODIFY';
+    const PRODUCT_FLOW_CONSUMER_EXP_SUBSCRIPTIONS_MODIFY = 'CONSUMER_EXP_SUBSCRIPTIONS_MODIFY';
 
     /** A subscription modification flow intiated by consumer on merchant site. */
-    public const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS_REVISE = 'BUYER_APPROVAL_SUBSCRIPTIONS_REVISE';
+    const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS_REVISE = 'BUYER_APPROVAL_SUBSCRIPTIONS_REVISE';
 
     /** A buyer consenting changes made to a plan of the subscription */
-    public const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS_PRICING_CHANGE = 'BUYER_APPROVAL_SUBSCRIPTIONS_PRICING_CHANGE';
+    const PRODUCT_FLOW_BUYER_APPROVAL_SUBSCRIPTIONS_PRICING_CHANGE = 'BUYER_APPROVAL_SUBSCRIPTIONS_PRICING_CHANGE';
 
     /** Additional factor authentication flow for Billing Agreements. */
-    public const PRODUCT_FLOW_BUYER_INSTRUMENT_AUTHENTICATION_BILLING_AGREEMENT = 'BUYER_INSTRUMENT_AUTHENTICATION_BILLING_AGREEMENT';
+    const PRODUCT_FLOW_BUYER_INSTRUMENT_AUTHENTICATION_BILLING_AGREEMENT = 'BUYER_INSTRUMENT_AUTHENTICATION_BILLING_AGREEMENT';
 
     /** Collection flow with the system initiating payments to resolve negative balance on sink accounts. */
-    public const PRODUCT_FLOW_NEGATIVE_BALANCE_COLLECTION = 'NEGATIVE_BALANCE_COLLECTION';
+    const PRODUCT_FLOW_NEGATIVE_BALANCE_COLLECTION = 'NEGATIVE_BALANCE_COLLECTION';
 
     /** Identifies give at checkout transactions - customer consents and initiates a donation when checkout with paypal. */
-    public const PRODUCT_FLOW_GIVE_AT_CHECKOUT = 'GIVE_AT_CHECKOUT';
+    const PRODUCT_FLOW_GIVE_AT_CHECKOUT = 'GIVE_AT_CHECKOUT';
 
     /**
      * The user experience flow for the PayPal transaction.

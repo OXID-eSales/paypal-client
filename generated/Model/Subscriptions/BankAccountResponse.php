@@ -16,10 +16,10 @@ class BankAccountResponse implements JsonSerializable
     use BaseModel;
 
     /** A savings account. */
-    public const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
+    const ACCOUNT_TYPE_SAVINGS = 'SAVINGS';
 
     /** A checking account. */
-    public const ACCOUNT_TYPE_CHECKING = 'CHECKING';
+    const ACCOUNT_TYPE_CHECKING = 'CHECKING';
 
     /**
      * The PayPal-generated ID for the bank account.

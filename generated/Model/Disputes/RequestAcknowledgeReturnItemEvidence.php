@@ -16,22 +16,22 @@ class RequestAcknowledgeReturnItemEvidence implements JsonSerializable
     use BaseModel;
 
     /** Documentation supporting the claim that the item is damaged. */
-    public const EVIDENCE_TYPE_PROOF_OF_DAMAGE = 'PROOF_OF_DAMAGE';
+    const EVIDENCE_TYPE_PROOF_OF_DAMAGE = 'PROOF_OF_DAMAGE';
 
     /** Proof should be provided by an unbiased third-party, such as a dealer, appraiser or another individual or organisation that's qualified in the area of the item in question (other than yourself), and detail the extent of the damage or clearly explain how the item received significantly differs from the item advertised. */
-    public const EVIDENCE_TYPE_THIRDPARTY_PROOF_FOR_DAMAGE_OR_SIGNIFICANT_DIFFERENCE = 'THIRDPARTY_PROOF_FOR_DAMAGE_OR_SIGNIFICANT_DIFFERENCE';
+    const EVIDENCE_TYPE_THIRDPARTY_PROOF_FOR_DAMAGE_OR_SIGNIFICANT_DIFFERENCE = 'THIRDPARTY_PROOF_FOR_DAMAGE_OR_SIGNIFICANT_DIFFERENCE';
 
     /** Signed declaration about the information provided. */
-    public const EVIDENCE_TYPE_DECLARATION = 'DECLARATION';
+    const EVIDENCE_TYPE_DECLARATION = 'DECLARATION';
 
     /** Image of open box with returned items and shipping label clearly visible. */
-    public const EVIDENCE_TYPE_PROOF_OF_MISSING_ITEMS = 'PROOF_OF_MISSING_ITEMS';
+    const EVIDENCE_TYPE_PROOF_OF_MISSING_ITEMS = 'PROOF_OF_MISSING_ITEMS';
 
     /** Image of empty box or returned items that are different from what were expected and shipping label clearly visible. */
-    public const EVIDENCE_TYPE_PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM = 'PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM';
+    const EVIDENCE_TYPE_PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM = 'PROOF_OF_EMPTY_PACKAGE_OR_DIFFERENT_ITEM';
 
     /** Any proof about the non receipt of the item, such as screenshot of tracking info. */
-    public const EVIDENCE_TYPE_PROOF_OF_ITEM_NOT_RECEIVED = 'PROOF_OF_ITEM_NOT_RECEIVED';
+    const EVIDENCE_TYPE_PROOF_OF_ITEM_NOT_RECEIVED = 'PROOF_OF_ITEM_NOT_RECEIVED';
 
     /**
      * The evidence type.

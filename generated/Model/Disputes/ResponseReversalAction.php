@@ -17,43 +17,43 @@ class ResponseReversalAction implements JsonSerializable
     use BaseModel;
 
     /** An email address. */
-    public const ENTITY_TYPE_EMAIL = 'EMAIL';
+    const ENTITY_TYPE_EMAIL = 'EMAIL';
 
     /** A phone numbr. */
-    public const ENTITY_TYPE_PHONE = 'PHONE';
+    const ENTITY_TYPE_PHONE = 'PHONE';
 
     /** An address. */
-    public const ENTITY_TYPE_ADDRESS = 'ADDRESS';
+    const ENTITY_TYPE_ADDRESS = 'ADDRESS';
 
     /** An account. */
-    public const ENTITY_TYPE_ACCOUNT = 'ACCOUNT';
+    const ENTITY_TYPE_ACCOUNT = 'ACCOUNT';
 
     /** A funding instrument. */
-    public const ENTITY_TYPE_FUNDING_INSTRUMENT = 'FUNDING_INSTRUMENT';
+    const ENTITY_TYPE_FUNDING_INSTRUMENT = 'FUNDING_INSTRUMENT';
 
     /** A credit card. */
-    public const ENTITY_SUBTYPE_CREDIT_CARD = 'CREDIT_CARD';
+    const ENTITY_SUBTYPE_CREDIT_CARD = 'CREDIT_CARD';
 
     /** A bank account. */
-    public const ENTITY_SUBTYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
+    const ENTITY_SUBTYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
 
     /** The entity was added. */
-    public const ACTION_PERFORMED_ADDED = 'ADDED';
+    const ACTION_PERFORMED_ADDED = 'ADDED';
 
     /** The entity was removed. */
-    public const ACTION_PERFORMED_REMOVED = 'REMOVED';
+    const ACTION_PERFORMED_REMOVED = 'REMOVED';
 
     /** The entity was marked as primary. */
-    public const ACTION_PERFORMED_MARKED_PRIMARY = 'MARKED_PRIMARY';
+    const ACTION_PERFORMED_MARKED_PRIMARY = 'MARKED_PRIMARY';
 
     /** The entity was edited. */
-    public const ACTION_PERFORMED_EDITED = 'EDITED';
+    const ACTION_PERFORMED_EDITED = 'EDITED';
 
     /** The entity was upgraded. */
-    public const ACTION_PERFORMED_UPGRADED = 'UPGRADED';
+    const ACTION_PERFORMED_UPGRADED = 'UPGRADED';
 
     /** The entity was downgraded. */
-    public const ACTION_PERFORMED_DOWNGRADED = 'DOWNGRADED';
+    const ACTION_PERFORMED_DOWNGRADED = 'DOWNGRADED';
 
     /**
      * The ID of the entity that was changed as part of the reversal action.

@@ -17,64 +17,64 @@ class CardResponse2 implements JsonSerializable
     use BaseModel;
 
     /** Visa card. */
-    public const BRAND_VISA = 'VISA';
+    const BRAND_VISA = 'VISA';
 
     /** Mastecard card. */
-    public const BRAND_MASTERCARD = 'MASTERCARD';
+    const BRAND_MASTERCARD = 'MASTERCARD';
 
     /** Discover card. */
-    public const BRAND_DISCOVER = 'DISCOVER';
+    const BRAND_DISCOVER = 'DISCOVER';
 
     /** American Express card. */
-    public const BRAND_AMEX = 'AMEX';
+    const BRAND_AMEX = 'AMEX';
 
     /** Solo debit card. */
-    public const BRAND_SOLO = 'SOLO';
+    const BRAND_SOLO = 'SOLO';
 
     /** Japan Credit Bureau card. */
-    public const BRAND_JCB = 'JCB';
+    const BRAND_JCB = 'JCB';
 
     /** Military Star card. */
-    public const BRAND_STAR = 'STAR';
+    const BRAND_STAR = 'STAR';
 
     /** Delta Airlines card. */
-    public const BRAND_DELTA = 'DELTA';
+    const BRAND_DELTA = 'DELTA';
 
     /** Switch credit card. */
-    public const BRAND_SWITCH = 'SWITCH';
+    const BRAND_SWITCH = 'SWITCH';
 
     /** Maestro credit card. */
-    public const BRAND_MAESTRO = 'MAESTRO';
+    const BRAND_MAESTRO = 'MAESTRO';
 
     /** Carte Bancaire (CB) credit card. */
-    public const BRAND_CB_NATIONALE = 'CB_NATIONALE';
+    const BRAND_CB_NATIONALE = 'CB_NATIONALE';
 
     /** Configoga credit card. */
-    public const BRAND_CONFIGOGA = 'CONFIGOGA';
+    const BRAND_CONFIGOGA = 'CONFIGOGA';
 
     /** Confidis credit card. */
-    public const BRAND_CONFIDIS = 'CONFIDIS';
+    const BRAND_CONFIDIS = 'CONFIDIS';
 
     /** Visa Electron credit card. */
-    public const BRAND_ELECTRON = 'ELECTRON';
+    const BRAND_ELECTRON = 'ELECTRON';
 
     /** Cetelem credit card. */
-    public const BRAND_CETELEM = 'CETELEM';
+    const BRAND_CETELEM = 'CETELEM';
 
     /** China union pay credit card. */
-    public const BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
+    const BRAND_CHINA_UNION_PAY = 'CHINA_UNION_PAY';
 
     /** A credit card. */
-    public const TYPE_CREDIT = 'CREDIT';
+    const TYPE_CREDIT = 'CREDIT';
 
     /** A debit card. */
-    public const TYPE_DEBIT = 'DEBIT';
+    const TYPE_DEBIT = 'DEBIT';
 
     /** A Prepaid card. */
-    public const TYPE_PREPAID = 'PREPAID';
+    const TYPE_PREPAID = 'PREPAID';
 
     /** Card type cannot be determined. */
-    public const TYPE_UNKNOWN = 'UNKNOWN';
+    const TYPE_UNKNOWN = 'UNKNOWN';
 
     /**
      * The card holder's name as it appears on the card.

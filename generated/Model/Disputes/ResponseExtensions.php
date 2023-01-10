@@ -17,28 +17,28 @@ class ResponseExtensions implements JsonSerializable
     use BaseModel;
 
     /** The merchant did not respond to the customer. */
-    public const MERCHANT_CONTACTED_OUTCOME_NO_RESPONSE = 'NO_RESPONSE';
+    const MERCHANT_CONTACTED_OUTCOME_NO_RESPONSE = 'NO_RESPONSE';
 
     /** The merchant agreed to fix the issue but did not fix it yet. */
-    public const MERCHANT_CONTACTED_OUTCOME_FIXED = 'FIXED';
+    const MERCHANT_CONTACTED_OUTCOME_FIXED = 'FIXED';
 
     /** The merchant could not fix the issue. */
-    public const MERCHANT_CONTACTED_OUTCOME_NOT_FIXED = 'NOT_FIXED';
+    const MERCHANT_CONTACTED_OUTCOME_NOT_FIXED = 'NOT_FIXED';
 
     /** The merchant was contacted through his website. */
-    public const MERCHANT_CONTACTED_MODE_WEBSITE = 'WEBSITE';
+    const MERCHANT_CONTACTED_MODE_WEBSITE = 'WEBSITE';
 
     /** The merchant was contacted through either phone or fax. */
-    public const MERCHANT_CONTACTED_MODE_PHONE = 'PHONE';
+    const MERCHANT_CONTACTED_MODE_PHONE = 'PHONE';
 
     /** The merchant was contacted through either email or text message. */
-    public const MERCHANT_CONTACTED_MODE_EMAIL = 'EMAIL';
+    const MERCHANT_CONTACTED_MODE_EMAIL = 'EMAIL';
 
     /** The merchant was contacted through a written communication. */
-    public const MERCHANT_CONTACTED_MODE_WRITTEN = 'WRITTEN';
+    const MERCHANT_CONTACTED_MODE_WRITTEN = 'WRITTEN';
 
     /** The merchant was contacted in person. */
-    public const MERCHANT_CONTACTED_MODE_IN_PERSON = 'IN_PERSON';
+    const MERCHANT_CONTACTED_MODE_IN_PERSON = 'IN_PERSON';
 
     /**
      * Indicates that the merchant was contacted.

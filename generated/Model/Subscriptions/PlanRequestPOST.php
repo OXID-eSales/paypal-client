@@ -16,19 +16,19 @@ class PlanRequestPOST implements JsonSerializable
     use BaseModel;
 
     /** The plan was created. You cannot create subscriptions for a plan in this state. */
-    public const STATUS_CREATED = 'CREATED';
+    const STATUS_CREATED = 'CREATED';
 
     /** The plan is inactive. */
-    public const STATUS_INACTIVE = 'INACTIVE';
+    const STATUS_INACTIVE = 'INACTIVE';
 
     /** The plan is active. You can only create subscriptions for a plan in this state. */
-    public const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_ACTIVE = 'ACTIVE';
 
     /** A licensed plan. Has a fixed billing amount. */
-    public const USAGE_TYPE_LICENSED = 'LICENSED';
+    const USAGE_TYPE_LICENSED = 'LICENSED';
 
     /** A metered plan. Billed based on service consumption. */
-    public const USAGE_TYPE_METERED = 'METERED';
+    const USAGE_TYPE_METERED = 'METERED';
 
     /**
      * The ID of the product created through Catalog Products API.

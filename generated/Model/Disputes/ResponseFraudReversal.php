@@ -16,46 +16,46 @@ class ResponseFraudReversal implements JsonSerializable
     use BaseModel;
 
     /** The reversal is due to suspicious credit card use. */
-    public const REVERSAL_REASON_SUSPICIOUS_CREDIT_CARD_USE = 'SUSPICIOUS_CREDIT_CARD_USE';
+    const REVERSAL_REASON_SUSPICIOUS_CREDIT_CARD_USE = 'SUSPICIOUS_CREDIT_CARD_USE';
 
     /** The reversal is due to suspicious bank account. */
-    public const REVERSAL_REASON_SUSPICIOUS_BANK_ACCOUNT_USE = 'SUSPICIOUS_BANK_ACCOUNT_USE';
+    const REVERSAL_REASON_SUSPICIOUS_BANK_ACCOUNT_USE = 'SUSPICIOUS_BANK_ACCOUNT_USE';
 
     /** The reversal is due to suspicious balance payment. */
-    public const REVERSAL_REASON_SUSPICIOUS_BALANCE_PAYMENT = 'SUSPICIOUS_BALANCE_PAYMENT';
+    const REVERSAL_REASON_SUSPICIOUS_BALANCE_PAYMENT = 'SUSPICIOUS_BALANCE_PAYMENT';
 
     /** The reversal is due to probable Not as Described seller. */
-    public const REVERSAL_REASON_PROBABLE_NOT_AS_DESCRIBED_SELLER = 'PROBABLE_NOT_AS_DESCRIBED_SELLER';
+    const REVERSAL_REASON_PROBABLE_NOT_AS_DESCRIBED_SELLER = 'PROBABLE_NOT_AS_DESCRIBED_SELLER';
 
     /** The reversal is due to probable Non-Receipt seller. */
-    public const REVERSAL_REASON_PROBABLE_NON_RECEIPT_SELLER = 'PROBABLE_NON_RECEIPT_SELLER';
+    const REVERSAL_REASON_PROBABLE_NON_RECEIPT_SELLER = 'PROBABLE_NON_RECEIPT_SELLER';
 
     /** The reversal is due to probable unauthorized account access. */
-    public const REVERSAL_REASON_PROBABLE_UNAUTHORIZED_ACCOUNT_ACCESS = 'PROBABLE_UNAUTHORIZED_ACCOUNT_ACCESS';
+    const REVERSAL_REASON_PROBABLE_UNAUTHORIZED_ACCOUNT_ACCESS = 'PROBABLE_UNAUTHORIZED_ACCOUNT_ACCESS';
 
     /** The reversal is due to stolen credit card. */
-    public const REVERSAL_REASON_STOLEN_CREDIT_CARD = 'STOLEN_CREDIT_CARD';
+    const REVERSAL_REASON_STOLEN_CREDIT_CARD = 'STOLEN_CREDIT_CARD';
 
     /** The reversal is due to stolen bank account. */
-    public const REVERSAL_REASON_STOLEN_BANK_ACCOUNT = 'STOLEN_BANK_ACCOUNT';
+    const REVERSAL_REASON_STOLEN_BANK_ACCOUNT = 'STOLEN_BANK_ACCOUNT';
 
     /** The reversal is due to stolen other funding instruments such as buyer credit etc. */
-    public const REVERSAL_REASON_STOLEN_OTHER_FUNDING_INSTRUMENT = 'STOLEN_OTHER_FUNDING_INSTRUMENT';
+    const REVERSAL_REASON_STOLEN_OTHER_FUNDING_INSTRUMENT = 'STOLEN_OTHER_FUNDING_INSTRUMENT';
 
     /** The reversal is due to Marketplace Item Removal. */
-    public const REVERSAL_REASON_MARKETPLACE_ITEM_REMOVAL = 'MARKETPLACE_ITEM_REMOVAL';
+    const REVERSAL_REASON_MARKETPLACE_ITEM_REMOVAL = 'MARKETPLACE_ITEM_REMOVAL';
 
     /** The reversal is due to capture fraud. */
-    public const REVERSAL_REASON_CAPTURE_FRAUD = 'CAPTURE_FRAUD';
+    const REVERSAL_REASON_CAPTURE_FRAUD = 'CAPTURE_FRAUD';
 
     /** The reversal is due to suspicious capture fraud. */
-    public const REVERSAL_REASON_SUSPICIOUS_CAPTURE_FRAUD = 'SUSPICIOUS_CAPTURE_FRAUD';
+    const REVERSAL_REASON_SUSPICIOUS_CAPTURE_FRAUD = 'SUSPICIOUS_CAPTURE_FRAUD';
 
     /** The reversal is due to capture credit. */
-    public const REVERSAL_REASON_CAPTURE_CREDIT = 'CAPTURE_CREDIT';
+    const REVERSAL_REASON_CAPTURE_CREDIT = 'CAPTURE_CREDIT';
 
     /** The reversal is due to chargeback alert. */
-    public const REVERSAL_REASON_CHARGEBACK_ALERT = 'CHARGEBACK_ALERT';
+    const REVERSAL_REASON_CHARGEBACK_ALERT = 'CHARGEBACK_ALERT';
 
     /**
      * The fraud reversal reason.

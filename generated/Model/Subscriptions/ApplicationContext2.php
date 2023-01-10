@@ -17,13 +17,13 @@ class ApplicationContext2 implements JsonSerializable
     use BaseModel;
 
     /** Get the customer-provided shipping address on the PayPal site. */
-    public const SHIPPING_PREFERENCE_GET_FROM_FILE = 'GET_FROM_FILE';
+    const SHIPPING_PREFERENCE_GET_FROM_FILE = 'GET_FROM_FILE';
 
     /** Redacts the shipping address from the PayPal site. Recommended for digital goods. */
-    public const SHIPPING_PREFERENCE_NO_SHIPPING = 'NO_SHIPPING';
+    const SHIPPING_PREFERENCE_NO_SHIPPING = 'NO_SHIPPING';
 
     /** Get the merchant-provided address. The customer cannot change this address on the PayPal site. If merchant does not pass an address, customer can choose the address on PayPal pages. */
-    public const SHIPPING_PREFERENCE_SET_PROVIDED_ADDRESS = 'SET_PROVIDED_ADDRESS';
+    const SHIPPING_PREFERENCE_SET_PROVIDED_ADDRESS = 'SET_PROVIDED_ADDRESS';
 
     /**
      * The label that overrides the business name in the PayPal account on the PayPal site.

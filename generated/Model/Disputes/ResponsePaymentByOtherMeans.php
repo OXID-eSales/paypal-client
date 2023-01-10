@@ -16,25 +16,25 @@ class ResponsePaymentByOtherMeans implements JsonSerializable
     use BaseModel;
 
     /** The payment method was cash. */
-    public const PAYMENT_METHOD_CASH = 'CASH';
+    const PAYMENT_METHOD_CASH = 'CASH';
 
     /** The payment method was a credit card. */
-    public const PAYMENT_METHOD_CREDIT_CARD = 'CREDIT_CARD';
+    const PAYMENT_METHOD_CREDIT_CARD = 'CREDIT_CARD';
 
     /** The payment method was a check. */
-    public const PAYMENT_METHOD_CHECK = 'CHECK';
+    const PAYMENT_METHOD_CHECK = 'CHECK';
 
     /** The payment method was PayPal. */
-    public const PAYMENT_METHOD_PAYPAL = 'PAYPAL';
+    const PAYMENT_METHOD_PAYPAL = 'PAYPAL';
 
     /** The payment method was a debit card. */
-    public const PAYMENT_METHOD_DEBIT_CARD = 'DEBIT_CARD';
+    const PAYMENT_METHOD_DEBIT_CARD = 'DEBIT_CARD';
 
     /** The payment method was a gift card. */
-    public const PAYMENT_METHOD_GIFT_CARD = 'GIFT_CARD';
+    const PAYMENT_METHOD_GIFT_CARD = 'GIFT_CARD';
 
     /** The payment method was through bank transfer. */
-    public const PAYMENT_METHOD_BANK_TRANSFER = 'BANK_TRANSFER';
+    const PAYMENT_METHOD_BANK_TRANSFER = 'BANK_TRANSFER';
 
     /**
      * If `true`, indicates that a charge was made that is different from the original charge.

@@ -16,49 +16,49 @@ class ResponseRemittanceDisputeProperties implements JsonSerializable
     use BaseModel;
 
     /** Refund is preferred by the customer. */
-    public const PREFERRED_RESOLUTION_REFUND = 'REFUND';
+    const PREFERRED_RESOLUTION_REFUND = 'REFUND';
 
     /** The remittance should be retried as the preferred resolution. */
-    public const PREFERRED_RESOLUTION_RETRY_REMITTANCE = 'RETRY_REMITTANCE';
+    const PREFERRED_RESOLUTION_RETRY_REMITTANCE = 'RETRY_REMITTANCE';
 
     /** The remittance amount sent is incorrect. */
-    public const ISSUE_TYPE_INCORRECT_AMOUNT_SENT = 'INCORRECT_AMOUNT_SENT';
+    const ISSUE_TYPE_INCORRECT_AMOUNT_SENT = 'INCORRECT_AMOUNT_SENT';
 
     /** The remittance amount received is incorrect. */
-    public const ISSUE_TYPE_INCORRECT_AMOUNT_RECEIVED = 'INCORRECT_AMOUNT_RECEIVED';
+    const ISSUE_TYPE_INCORRECT_AMOUNT_RECEIVED = 'INCORRECT_AMOUNT_RECEIVED';
 
     /** The exchange rate applied on the remittance is incorrect. */
-    public const ISSUE_TYPE_INCORRECT_EXCHANGE_RATE = 'INCORRECT_EXCHANGE_RATE';
+    const ISSUE_TYPE_INCORRECT_EXCHANGE_RATE = 'INCORRECT_EXCHANGE_RATE';
 
     /** The remittance fees is incorrect. */
-    public const ISSUE_TYPE_INCORRECT_TAX_AND_FEES = 'INCORRECT_TAX_AND_FEES';
+    const ISSUE_TYPE_INCORRECT_TAX_AND_FEES = 'INCORRECT_TAX_AND_FEES';
 
     /** The remittance amount received late. */
-    public const ISSUE_TYPE_FUNDS_RECEIVED_LATE = 'FUNDS_RECEIVED_LATE';
+    const ISSUE_TYPE_FUNDS_RECEIVED_LATE = 'FUNDS_RECEIVED_LATE';
 
     /** The remittance transaction was done twice. */
-    public const ISSUE_TYPE_DUPLICATE_PAYMENT = 'DUPLICATE_PAYMENT';
+    const ISSUE_TYPE_DUPLICATE_PAYMENT = 'DUPLICATE_PAYMENT';
 
     /** Amount is not credited after remittance cancellation. */
-    public const ISSUE_TYPE_REMITTANCE_CANCELLED_CREDIT_NOT_PROCESSED = 'REMITTANCE_CANCELLED_CREDIT_NOT_PROCESSED';
+    const ISSUE_TYPE_REMITTANCE_CANCELLED_CREDIT_NOT_PROCESSED = 'REMITTANCE_CANCELLED_CREDIT_NOT_PROCESSED';
 
     /** The remittance amount is not received. */
-    public const ISSUE_TYPE_FUNDS_NOT_RECEIVED = 'FUNDS_NOT_RECEIVED';
+    const ISSUE_TYPE_FUNDS_NOT_RECEIVED = 'FUNDS_NOT_RECEIVED';
 
     /** The remittance recipient is incorrect. */
-    public const ISSUE_TYPE_MONEY_REMITTED_TO_WRONG_RECIPIENT = 'MONEY_REMITTED_TO_WRONG_RECIPIENT';
+    const ISSUE_TYPE_MONEY_REMITTED_TO_WRONG_RECIPIENT = 'MONEY_REMITTED_TO_WRONG_RECIPIENT';
 
     /** Transaction details is missing for the remittance. */
-    public const ISSUE_TYPE_MISSING_TRANSACTION_DETAILS = 'MISSING_TRANSACTION_DETAILS';
+    const ISSUE_TYPE_MISSING_TRANSACTION_DETAILS = 'MISSING_TRANSACTION_DETAILS';
 
     /** Transaction receipt is missing for the remittance. */
-    public const ISSUE_TYPE_MISSING_TRANSACTION_RECEIPT = 'MISSING_TRANSACTION_RECEIPT';
+    const ISSUE_TYPE_MISSING_TRANSACTION_RECEIPT = 'MISSING_TRANSACTION_RECEIPT';
 
     /** The issue in remittance is due to an error from sender. */
-    public const ISSUE_TYPE_SENDER_ERROR = 'SENDER_ERROR';
+    const ISSUE_TYPE_SENDER_ERROR = 'SENDER_ERROR';
 
     /** Other remittance issues. */
-    public const ISSUE_TYPE_OTHER = 'OTHER';
+    const ISSUE_TYPE_OTHER = 'OTHER';
 
     /**
      * The internationalized email address.<blockquote><strong>Note:</strong> Up to 64 characters are allowed before

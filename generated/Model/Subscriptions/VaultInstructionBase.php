@@ -16,7 +16,7 @@ class VaultInstructionBase implements JsonSerializable
     use BaseModel;
 
     /** Defines that the payer's payment-source should be vaulted only when at least one payment (authorization/capture) using that payment-source is successful. */
-    public const CONFIRM_PAYMENT_TOKEN_ON_ORDER_COMPLETION = 'ON_ORDER_COMPLETION';
+    const CONFIRM_PAYMENT_TOKEN_ON_ORDER_COMPLETION = 'ON_ORDER_COMPLETION';
 
     /**
      * Defines how and when the payment source gets vaulted.

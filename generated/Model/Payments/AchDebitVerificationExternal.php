@@ -16,10 +16,10 @@ class AchDebitVerificationExternal implements JsonSerializable
     use BaseModel;
 
     /** ACH Debit payment source has been verified by an external party. */
-    public const STATUS_VERIFIED = 'VERIFIED';
+    const STATUS_VERIFIED = 'VERIFIED';
 
     /** ACH Debit payment source has been not been verified by an external party. */
-    public const STATUS_NOT_VERIFIED = 'NOT_VERIFIED';
+    const STATUS_NOT_VERIFIED = 'NOT_VERIFIED';
 
     /**
      * The ach debit verification status.

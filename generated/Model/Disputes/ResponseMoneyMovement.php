@@ -16,31 +16,31 @@ class ResponseMoneyMovement implements JsonSerializable
     use BaseModel;
 
     /** The money movement is related to the seller. */
-    public const AFFECTED_PARTY_SELLER = 'SELLER';
+    const AFFECTED_PARTY_SELLER = 'SELLER';
 
     /** The money movement is related to the buyer. */
-    public const AFFECTED_PARTY_BUYER = 'BUYER';
+    const AFFECTED_PARTY_BUYER = 'BUYER';
 
     /** The money movement is related to the payment processing tenants such as PayPal, Venmo, Braintree etc. */
-    public const AFFECTED_PARTY_PAYMENT_PROCESSOR = 'PAYMENT_PROCESSOR';
+    const AFFECTED_PARTY_PAYMENT_PROCESSOR = 'PAYMENT_PROCESSOR';
 
     /** The money movement is a debit transaction. */
-    public const TYPE_DEBIT = 'DEBIT';
+    const TYPE_DEBIT = 'DEBIT';
 
     /** The money movement is a credit transaction. */
-    public const TYPE_CREDIT = 'CREDIT';
+    const TYPE_CREDIT = 'CREDIT';
 
     /** The fee is for dispute settlement. */
-    public const REASON_DISPUTE_SETTLEMENT_FEE = 'DISPUTE_SETTLEMENT_FEE';
+    const REASON_DISPUTE_SETTLEMENT_FEE = 'DISPUTE_SETTLEMENT_FEE';
 
     /** The money movement is for dispute settlement. */
-    public const REASON_DISPUTE_SETTLEMENT = 'DISPUTE_SETTLEMENT';
+    const REASON_DISPUTE_SETTLEMENT = 'DISPUTE_SETTLEMENT';
 
     /** The money movement is for dispute fee which PayPal charges to sellers for facilitating the online dispute resolution process for transactions that are processed either through a buyer’s PayPal account or through a PayPal guest checkout. */
-    public const REASON_DISPUTE_FEE = 'DISPUTE_FEE';
+    const REASON_DISPUTE_FEE = 'DISPUTE_FEE';
 
     /** The money movement is for chargeback fee which PayPal charges to sellers for facilitating the chargeback process for transactions that are not processed either through a buyer’s PayPal account or through a guest checkout, and where the buyer pursues a chargeback for the transaction with their card issuer. */
-    public const REASON_CHARGEBACK_FEE = 'CHARGEBACK_FEE';
+    const REASON_CHARGEBACK_FEE = 'CHARGEBACK_FEE';
 
     /**
      * The affected party in the money movement.

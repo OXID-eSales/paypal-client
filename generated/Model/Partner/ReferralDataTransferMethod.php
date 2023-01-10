@@ -16,16 +16,16 @@ class ReferralDataTransferMethod implements JsonSerializable
     use BaseModel;
 
     /** Transfer method type- Bank Account */
-    public const TRANSFER_METHOD_TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
+    const TRANSFER_METHOD_TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
 
     /** Transfer method type- Bank Account */
-    public const TRANSFER_METHOD_TYPE_PAYPAL = 'PAYPAL';
+    const TRANSFER_METHOD_TYPE_PAYPAL = 'PAYPAL';
 
     /** Transfer method type- Bank Account */
-    public const TRANSFER_METHOD_TYPE_VENMO = 'VENMO';
+    const TRANSFER_METHOD_TYPE_VENMO = 'VENMO';
 
     /** Transfer method type- Bank Account */
-    public const TRANSFER_METHOD_TYPE_WIRE_ACCOUNT = 'WIRE_ACCOUNT';
+    const TRANSFER_METHOD_TYPE_WIRE_ACCOUNT = 'WIRE_ACCOUNT';
 
     /**
      * Transfer Method type.

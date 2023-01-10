@@ -16,37 +16,37 @@ class ReferredReferredEligibilityRequestItem implements JsonSerializable
     use BaseModel;
 
     /** Computer or related accessories. */
-    public const CATEGORY_COMPUTERS = 'COMPUTERS';
+    const CATEGORY_COMPUTERS = 'COMPUTERS';
 
     /** Home appliances. */
-    public const CATEGORY_HOME = 'HOME';
+    const CATEGORY_HOME = 'HOME';
 
     /** Decorative items, ornaments, and so on. */
-    public const CATEGORY_JEWELRY = 'JEWELRY';
+    const CATEGORY_JEWELRY = 'JEWELRY';
 
     /** Antiques and collectible items. */
-    public const CATEGORY_ANTIQUES = 'ANTIQUES';
+    const CATEGORY_ANTIQUES = 'ANTIQUES';
 
     /** Entertainment goods, such as video games, DVDs, and so on. */
-    public const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
+    const CATEGORY_ENTERTAINMENT = 'ENTERTAINMENT';
 
     /** Other material goods. */
-    public const CATEGORY_OTHER_TANGIBLES = 'OTHER_TANGIBLES';
+    const CATEGORY_OTHER_TANGIBLES = 'OTHER_TANGIBLES';
 
     /** Travel items and travel needs. */
-    public const CATEGORY_TRAVEL = 'TRAVEL';
+    const CATEGORY_TRAVEL = 'TRAVEL';
 
     /** Services, such as installation, repair, and so on. */
-    public const CATEGORY_SERVICE = 'SERVICE';
+    const CATEGORY_SERVICE = 'SERVICE';
 
     /** Non-physical objects, such as online games. */
-    public const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
+    const CATEGORY_VIRTUAL_GOODS = 'VIRTUAL_GOODS';
 
     /** Other intangible goods. */
-    public const CATEGORY_OTHER_INTANGIBLES = 'OTHER_INTANGIBLES';
+    const CATEGORY_OTHER_INTANGIBLES = 'OTHER_INTANGIBLES';
 
     /** Tickets for events, such as sports, concerts, and so on. */
-    public const CATEGORY_TICKETS = 'TICKETS';
+    const CATEGORY_TICKETS = 'TICKETS';
 
     /**
      * The ID of the item.

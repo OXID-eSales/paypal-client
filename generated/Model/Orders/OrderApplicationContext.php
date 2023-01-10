@@ -19,28 +19,28 @@ class OrderApplicationContext implements JsonSerializable
     use BaseModel;
 
     /** When the customer clicks <strong>PayPal Checkout</strong>, the customer is redirected to a page to log in to PayPal and approve the payment. */
-    public const LANDING_PAGE_LOGIN = 'LOGIN';
+    const LANDING_PAGE_LOGIN = 'LOGIN';
 
     /** When the customer clicks <strong>PayPal Checkout</strong>, the customer is redirected to a page to enter credit or debit card and other relevant billing information required to complete the purchase. */
-    public const LANDING_PAGE_BILLING = 'BILLING';
+    const LANDING_PAGE_BILLING = 'BILLING';
 
     /** When the customer clicks <strong>PayPal Checkout</strong>, the customer is redirected to either a page to log in to PayPal and approve the payment or to a page to enter credit or debit card and other relevant billing information required to complete the purchase, depending on their previous interaction with PayPal. */
-    public const LANDING_PAGE_NO_PREFERENCE = 'NO_PREFERENCE';
+    const LANDING_PAGE_NO_PREFERENCE = 'NO_PREFERENCE';
 
     /** Use the customer-provided shipping address on the PayPal site. */
-    public const SHIPPING_PREFERENCE_GET_FROM_FILE = 'GET_FROM_FILE';
+    const SHIPPING_PREFERENCE_GET_FROM_FILE = 'GET_FROM_FILE';
 
     /** Redact the shipping address from the PayPal site. Recommended for digital goods. */
-    public const SHIPPING_PREFERENCE_NO_SHIPPING = 'NO_SHIPPING';
+    const SHIPPING_PREFERENCE_NO_SHIPPING = 'NO_SHIPPING';
 
     /** Use the merchant-provided address. The customer cannot change this address on the PayPal site. */
-    public const SHIPPING_PREFERENCE_SET_PROVIDED_ADDRESS = 'SET_PROVIDED_ADDRESS';
+    const SHIPPING_PREFERENCE_SET_PROVIDED_ADDRESS = 'SET_PROVIDED_ADDRESS';
 
     /** After you redirect the customer to the PayPal payment page, a <strong>Continue</strong> button appears. Use this option when the final amount is not known when the checkout flow is initiated and you want to redirect the customer to the merchant page without processing the payment. */
-    public const USER_ACTION_CONTINUE = 'CONTINUE';
+    const USER_ACTION_CONTINUE = 'CONTINUE';
 
     /** After you redirect the customer to the PayPal payment page, a <strong>Pay Now</strong> button appears. Use this option when the final amount is known when the checkout is initiated and you want to process the payment immediately when the customer clicks <strong>Pay Now</strong>. */
-    public const USER_ACTION_PAY_NOW = 'PAY_NOW';
+    const USER_ACTION_PAY_NOW = 'PAY_NOW';
 
     /**
      * The label that overrides the business name in the PayPal account on the PayPal site.
