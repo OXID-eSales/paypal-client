@@ -2,7 +2,7 @@ name: Push Tag
 
 on:
   push:
-    tags: ['v*']
+    tags: ['v2*']
 
 jobs:
 
