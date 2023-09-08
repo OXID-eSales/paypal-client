@@ -206,7 +206,7 @@ class Client
      */
     public function getTokenResponse()
     {
-        if (is_null($this->tokenResponse)) {
+        if (is_null($this->tokenResponse) && file_exists($this->tokenCacheFilename)) {
             $tokenResponse = file_get_contents($this->tokenCacheFilename);
             if ($tokenResponse) {
                 $this->tokenResponse = $tokenResponse;
