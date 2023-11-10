@@ -2,11 +2,6 @@
 
 namespace OxidSolutionCatalysts\PayPalApi;
 
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\Operation;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralData;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegration;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegrationFirstPartyDetails;
-use OxidSolutionCatalysts\PayPalApi\Service\Partner;
 use Psr\Log\LoggerInterface;
 
 class Onboarding extends Client

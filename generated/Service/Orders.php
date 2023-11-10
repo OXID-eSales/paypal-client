@@ -111,16 +111,21 @@ class Orders extends BaseService
      *
      * @param $patchRequest mixed
      *
-     * @throws ApiException
+     * @param $payPalPartnerAttributionId string
+     *
      * @return void
+     *@throws ApiException
      */
-    public function updateOrder($id, array $patchRequest): void
+    public function updateOrder($id, array $patchRequest, string $payPalPartnerAttributionId = ''): void
     {
         $path = "/orders/{$id}";
 
         $headers = [];
         $headers['Content-Type'] = 'application/json';
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($patchRequest, true);
         $response = $this->send('PATCH', $path, [], $headers, $body);
@@ -146,7 +151,6 @@ class Orders extends BaseService
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Content-Type'] = 'application/json';
 
-
         $body = json_encode($orderValidateRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
@@ -162,16 +166,18 @@ class Orders extends BaseService
      *
      * @param $confirmOrderRequest mixed
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
      * and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource
      * representation, including the current state of the resource.</li></ul>
      *
-     * @throws ApiException
      * @return Order
+     *@throws ApiException
      */
-    public function confirmTheOrder($payPalClientMetadataId, $id, ConfirmOrderRequest $confirmOrderRequest, $prefer = 'return=minimal'): Order
+    public function confirmTheOrder($payPalClientMetadataId, $id, ConfirmOrderRequest $confirmOrderRequest, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal',): Order
     {
         $path = "/orders/{$id}/confirm-payment-source";
 
@@ -180,6 +186,9 @@ class Orders extends BaseService
         $headers['Content-Type'] = 'application/json';
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($confirmOrderRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -204,6 +213,8 @@ class Orders extends BaseService
      * merchant. For details, see <a
      * href="/docs/api/reference/api-requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -213,7 +224,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return Order
      */
-    public function authorizePaymentForOrder($payPalClientMetadataId, $id, OrderAuthorizeRequest $authorizeRequest, $payPalAuthAssertion, $prefer = 'return=minimal'): Order
+    public function authorizePaymentForOrder($payPalClientMetadataId, $id, OrderAuthorizeRequest $authorizeRequest, $payPalAuthAssertion, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Order
     {
         $path = "/orders/{$id}/authorize";
 
@@ -223,6 +234,9 @@ class Orders extends BaseService
         $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($authorizeRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -247,6 +261,8 @@ class Orders extends BaseService
      * merchant. For details, see <a
      * href="/docs/api/reference/api-requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>.
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -256,7 +272,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return Order
      */
-    public function capturePaymentForOrder($payPalClientMetadataId, $id, OrderCaptureRequest $orderCaptureRequest, $payPalAuthAssertion, $prefer = 'return=minimal'): Order
+    public function capturePaymentForOrder($payPalClientMetadataId, $id, OrderCaptureRequest $orderCaptureRequest, $payPalAuthAssertion, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Order
     {
         $path = "/orders/{$id}/capture";
 
@@ -266,6 +282,9 @@ class Orders extends BaseService
         $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($orderCaptureRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -280,6 +299,8 @@ class Orders extends BaseService
      *
      * @param $id string The ID of the order to save.
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -289,7 +310,7 @@ class Orders extends BaseService
      * @throws ApiException
      * @return Order
      */
-    public function saveOrder($payPalClientMetadataId, $id, $prefer = 'return=minimal'): Order
+    public function saveOrder($payPalClientMetadataId, $id, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Order
     {
         $path = "/orders/{$id}/save";
 
@@ -297,6 +318,9 @@ class Orders extends BaseService
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = null;
         $response = $this->send('POST', $path, [], $headers, $body);
