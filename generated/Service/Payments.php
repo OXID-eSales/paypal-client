@@ -25,6 +25,8 @@ class Payments extends BaseService
      *
      * @param $authorizeRequest mixed
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -34,7 +36,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return Authorization
      */
-    public function authorizePayment(AuthorizationRequest $authorizeRequest, $prefer = 'return=minimal'): Authorization
+    public function authorizePayment(AuthorizationRequest $authorizeRequest, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Authorization
     {
         $path = "/authorizations";
 
@@ -42,6 +44,9 @@ class Payments extends BaseService
         $headers['Content-Type'] = 'application/json';
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($authorizeRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -76,6 +81,8 @@ class Payments extends BaseService
      *
      * @param $capture mixed
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -85,7 +92,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return Capture
      */
-    public function captureAuthorizedPayment($authorizationId, CaptureRequest $capture, $prefer = 'return=minimal'): Capture
+    public function captureAuthorizedPayment($authorizationId, CaptureRequest $capture, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Capture
     {
         $path = "/authorizations/{$authorizationId}/capture";
 
@@ -93,6 +100,9 @@ class Payments extends BaseService
         $headers['Content-Type'] = 'application/json';
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($capture, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -115,16 +125,18 @@ class Payments extends BaseService
      *
      * @param $reauthorizeRequest mixed
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
      * and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource
      * representation, including the current state of the resource.</li></ul>
      *
-     * @throws ApiException
      * @return Authorization
+     *@throws ApiException
      */
-    public function reauthorizeAuthorizedPayment($authorizationId, ReauthorizeRequest $reauthorizeRequest, $prefer = 'return=minimal'): Authorization
+    public function reauthorizeAuthorizedPayment($authorizationId, ReauthorizeRequest $reauthorizeRequest, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Authorization
     {
         $path = "/authorizations/{$authorizationId}/reauthorize";
 
@@ -132,6 +144,9 @@ class Payments extends BaseService
         $headers['Content-Type'] = 'application/json';
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($reauthorizeRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -155,7 +170,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function voidAuthorizedPayment($authorizationId, $payPalAuthAssertion)
+    public function voidAuthorizedPayment($authorizationId, $payPalAuthAssertion): void
     {
         $path = "/authorizations/{$authorizationId}/void";
 
@@ -172,6 +187,8 @@ class Payments extends BaseService
      *
      * @param $capture mixed
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -181,7 +198,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return Capture
      */
-    public function captureSavedOrderDirectly(OrderCaptureRequest $capture, $prefer = 'return=minimal'): Capture
+    public function captureSavedOrderDirectly(OrderCaptureRequest $capture, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Capture
     {
         $path = "/captures";
 
@@ -189,6 +206,9 @@ class Payments extends BaseService
         $headers['Content-Type'] = 'application/json';
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($capture, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -231,6 +251,8 @@ class Payments extends BaseService
      * must identify the merchant using either a PayPal-Auth-Assertion header or an access token with
      * target_subject.</blockquote>
      *
+     * @param $payPalPartnerAttributionId string
+     *
      * @param $prefer string The preferred server response upon successful completion of the request. Value
      * is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication
      * between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code>
@@ -240,7 +262,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return Refund
      */
-    public function refundCapturedPayment($captureId, RefundRequest $refundRequest, $payPalAuthAssertion, $prefer = 'return=minimal'): Refund
+    public function refundCapturedPayment($captureId, RefundRequest $refundRequest, $payPalAuthAssertion, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Refund
     {
         $path = "/captures/{$captureId}/refund";
 
@@ -249,6 +271,9 @@ class Payments extends BaseService
         $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
+        if ($payPalPartnerAttributionId) {
+            $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
+        }
 
         $body = json_encode($refundRequest, true);
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -296,7 +321,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function voidAuthorizedPaymentUsingAlternateIdentifier(AuthorizationVoidRequest $paymentVoid, $payPalAuthAssertion, $prefer = 'return=minimal')
+    public function voidAuthorizedPaymentUsingAlternateIdentifier(AuthorizationVoidRequest $paymentVoid, $payPalAuthAssertion, $prefer = 'return=minimal'): void
     {
         $path = "/void";
 

@@ -2,11 +2,6 @@
 
 namespace OxidSolutionCatalysts\PayPalApi;
 
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\Operation;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\ReferralData;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegration;
-use OxidSolutionCatalysts\PayPalApi\Model\Partner\RestApiIntegrationFirstPartyDetails;
-use OxidSolutionCatalysts\PayPalApi\Service\Partner;
 use Psr\Log\LoggerInterface;
 
 class Onboarding extends Client
@@ -36,13 +31,13 @@ class Onboarding extends Client
      */
     public function __construct(
         LoggerInterface $logger,
-        $endpoint,
-        $oxidClientId,
-        $oxidClientSecret,
-        $oxidPartnerId,
-        $sellerId,
-        $tokenCacheFilename,
-        $debug = false
+                        $endpoint,
+                        $oxidClientId,
+                        $oxidClientSecret,
+                        $oxidPartnerId,
+                        $sellerId,
+                        $tokenCacheFilename,
+                        $debug = false
     ) {
         $this->partnerId = $oxidPartnerId;
         $this->sellerId = $sellerId;
