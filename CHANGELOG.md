@@ -4,10 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.7] - 2022-12-XX
+## [3.0.8] - 2023-11-17
 
-- split Version to be compatible OXID >= 7.1
-- cache the token 
+- split Version for OXID7
+
+## [2.0.8] - 2023-09-08
+
+- Avoid PHP warning on non existing cache file
+
+## [2.0.7] - 2023-01-02
+
+- split Version to be compatible PHP >= 7.1
+- cache the token
 
 ## [1.0.6] - 2022-06-01
 
