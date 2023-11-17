@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.7] - 2022-12-XX
+
+## [1.0.9] -2023-11-17
+
+- add PartnerAttributionId to API-Calls
+
+## [1.0.8] -2023-09-08
+
+- Avoid PHP warning on non existing cache file
+
+## [1.0.7] - 2023-01-02
 
 - Version compatible with PHP 7.0
 - cache the token

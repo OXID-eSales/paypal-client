@@ -170,7 +170,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function voidAuthorizedPayment($authorizationId, $payPalAuthAssertion): void
+    public function voidAuthorizedPayment($authorizationId, $payPalAuthAssertion)
     {
         $path = "/authorizations/{$authorizationId}/void";
 
@@ -321,7 +321,7 @@ class Payments extends BaseService
      * @throws ApiException
      * @return void
      */
-    public function voidAuthorizedPaymentUsingAlternateIdentifier(AuthorizationVoidRequest $paymentVoid, $payPalAuthAssertion, $prefer = 'return=minimal'): void
+    public function voidAuthorizedPaymentUsingAlternateIdentifier(AuthorizationVoidRequest $paymentVoid, $payPalAuthAssertion, $prefer = 'return=minimal')
     {
         $path = "/void";
 
