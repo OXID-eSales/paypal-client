@@ -177,7 +177,7 @@ class Orders extends BaseService
      * @return Order
      *@throws ApiException
      */
-    public function confirmTheOrder($payPalClientMetadataId, $id, ConfirmOrderRequest $confirmOrderRequest, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal',): Order
+    public function confirmTheOrder($payPalClientMetadataId, $id, ConfirmOrderRequest $confirmOrderRequest, string $payPalPartnerAttributionId = '', $prefer = 'return=minimal'): Order
     {
         $path = "/orders/{$id}/confirm-payment-source";
 
