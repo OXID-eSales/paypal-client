@@ -8,14 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - split Version for OXID7
 
-## [2.0.8] - 2023-09-08
+## [2.0.9] -2023-11-17
+
+- add PartnerAttributionId to API-Calls
+
+## [2.0.8] -2023-09-08
 
 - Avoid PHP warning on non existing cache file
 
 ## [2.0.7] - 2023-01-02
 
 - split Version to be compatible PHP >= 7.1
-- cache the token
+- cache the token 
 
 ## [1.0.6] - 2022-06-01
 
