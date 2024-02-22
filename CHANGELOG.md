@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.10] -2024-01-26
+
+- add Vaulting to API-Calls
+- add Debug-Logging for send-Requests
+
 ## [2.0.9] -2023-11-17
 
 - add PartnerAttributionId to API-Calls
@@ -15,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.7] - 2023-01-02
 
 - split Version to be compatible PHP >= 7.1
-- cache the token 
+- cache the token
 
 ## [1.0.6] - 2022-06-01
 
