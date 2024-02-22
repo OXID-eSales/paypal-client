@@ -42,6 +42,10 @@ class VaultResponse implements JsonSerializable
      */
     public $status;
 
+    public $customer;
+
+    public $links;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
