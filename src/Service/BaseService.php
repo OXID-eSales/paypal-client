@@ -55,14 +55,7 @@ class BaseService
             $response = $this->client->send($request);
         } catch (GuzzleException $exception) {
             $logger->log('error', $exception->getMessage(), [$exception]);
-            $this->sendErrorResponse();
         }
         return $response;
-    }
-
-    private function sendErrorResponse(): void
-    {
-        header('Content-Type: text/html', true, 500);
-        exit;
     }
 }
