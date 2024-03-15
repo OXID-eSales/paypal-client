@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.11] -2024-03-15
+
+- remove 500-redirect if some API Calls not work correctly
+
 ## [2.0.10] -2024-01-26
 
 - add Vaulting to API-Calls
