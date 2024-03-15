@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.11] -2024-03-15
 
 - remove 500-redirect if some API Calls not work correctly
+- introduce PayPal-Request-Id for api-calls
 
 ## [2.0.10] -2024-01-26
 
