@@ -6,6 +6,7 @@ use Error;
 
 trait BaseModel
 {
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return (object) array_filter((array) $this, static function ($var) {
