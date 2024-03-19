@@ -2,10 +2,17 @@
 
 namespace OxidSolutionCatalysts\PayPalApi;
 
+use GuzzleHttp\Exception\GuzzleException;
+use JsonException;
+use OxidSolutionCatalysts\PayPal\Service\Logger;
+use OxidSolutionCatalysts\PayPal\Traits\ServiceContainer;
+use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
 use Psr\Log\LoggerInterface;
 
 class Onboarding extends Client
 {
+    use ServiceContainer;
+
     /**
      * @var string
      */
@@ -55,8 +62,9 @@ class Onboarding extends Client
      * @param $authCode string this is returned by paypal in the call back function
      * @param $sharedId string this is returned by paypal in the call back function
      * @param $sellerNonce string the random number that was used to generate the paypal register/login link
+     * @throws ApiException
      */
-    public function authAfterWebLogin($authCode, $sharedId, $sellerNonce)
+    public function authAfterWebLogin(string $authCode, string $sharedId, string $sellerNonce): void
     {
         //fixme: test this by using register link and callback see 2.1.3.1 in paypal sdd 1.0
         $authBase64 = base64_encode("$sharedId:");
@@ -67,21 +75,33 @@ class Onboarding extends Client
             "Accept" => self::CONTENT_TYPE_JSON
         ];
 
-        $res = $client->post($url, [
-            "headers" => $headers,
-            'form_params' => [
-                "grant_type" => "authorization_code",
-                "code" => $authCode,
-                "code_verifier" => $sellerNonce,
-            ]
-        ]);
+        try {
+            $res = $client->post($url, [
+                "headers" => $headers,
+                'form_params' => [
+                    "grant_type" => "authorization_code",
+                    "code" => $authCode,
+                    "code_verifier" => $sellerNonce,
+                ]
+            ]);
+            $rawTokenResponse = (array)json_decode('' . $res->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
-        $rawTokenResponse = json_decode('' . $res->getBody(), true);
+        } catch (GuzzleException $exception) {
+            /** @var Logger $logger */
+            $logger = $this->getServiceFromContainer(Logger::class);
+            $logger->log('error', $exception->getMessage(), [$exception]);
+            throw new ApiException($exception);
+        } catch (JsonException $e) {
+            $rawTokenResponse = [];
+        }
 
-        $this->setTokenResponse($rawTokenResponse['access_token']);
+        $this->setTokenResponse($rawTokenResponse['access_token'] ?: '');
     }
 
-    public function getCredentials()
+    /**
+     * @throws ApiException
+     */
+    public function getCredentials(): array
     {
         $partnerId = $this->partnerId;
         $request = $this->createRequest(
@@ -89,11 +109,22 @@ class Onboarding extends Client
             "/v1/customer/partners/{$partnerId}/merchant-integrations/credentials",
             []
         );
-        $response = $this->send($request);
-        return json_decode($response->getBody(), true);
+
+        try {
+            $response = $this->send($request);
+            $result = (array) json_decode($response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (GuzzleException $exception) {
+            /** @var Logger $logger */
+            $logger = $this->getServiceFromContainer(Logger::class);
+            $logger->log('error', $exception->getMessage(), [$exception]);
+            throw new ApiException($exception);
+        } catch (JsonException $e) {
+            $result = [];
+        }
+        return $result;
     }
 
-    public function getMerchantInformations()
+    public function getMerchantInformations(): array
     {
         $partnerId = $this->partnerId;
         $sellerId = $this->sellerId;
@@ -102,7 +133,18 @@ class Onboarding extends Client
             "/v1/customer/partners/{$partnerId}/merchant-integrations/{$sellerId}",
             []
         );
-        $response = $this->send($request);
-        return json_decode($response->getBody(), true);
+
+        try {
+            $response = $this->send($request);
+            $result = (array) json_decode($response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (GuzzleException $exception) {
+            /** @var Logger $logger */
+            $logger = $this->getServiceFromContainer(Logger::class);
+            $logger->log('error', $exception->getMessage(), [$exception]);
+            throw new ApiException($exception);
+        } catch (JsonException $e) {
+            $result = [];
+        }
+        return $result;
     }
 }
