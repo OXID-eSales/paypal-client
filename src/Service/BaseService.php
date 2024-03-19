@@ -55,6 +55,7 @@ class BaseService
             $response = $this->client->send($request);
         } catch (GuzzleException $exception) {
             $logger->log('error', $exception->getMessage(), [$exception]);
+            throw new ApiException($exception);
         }
         return $response;
     }
