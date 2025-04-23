@@ -37,6 +37,7 @@ class WechatpayRequest implements JsonSerializable
      */
     public $country_code;
 
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

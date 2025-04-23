@@ -40,6 +40,7 @@ class PaypalWallet implements JsonSerializable
      */
     public $attributes;
 
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

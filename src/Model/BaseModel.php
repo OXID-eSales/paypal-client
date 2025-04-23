@@ -6,6 +6,11 @@ use Error;
 
 trait BaseModel
 {
+
+    /** @var ExperienceContext | null */
+    public $experience_context;
+
+
     public function jsonSerialize()
     {
         return (object) array_filter((array) $this, static function ($var) {
