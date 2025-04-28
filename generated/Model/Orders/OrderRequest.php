@@ -4,6 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Model\Orders;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Pui\ExperienceContext;
 use Webmozart\Assert\Assert;
 
 /**
@@ -137,9 +138,9 @@ class OrderRequest implements JsonSerializable
             "payment_source in OrderRequest must be instance of PaymentSource $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderRequest::class);
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
-            OrderApplicationContext::class,
+        !isset($this->experience_context) || Assert::isInstanceOf(
+            $this->experience_context,
+            OrderExperienceContext::class,
             "application_context in OrderRequest must be instance of OrderApplicationContext $within"
         );
         !isset($this->application_context) ||  $this->application_context->validate(OrderRequest::class);
@@ -165,8 +166,8 @@ class OrderRequest implements JsonSerializable
         if (isset($data['payment_source'])) {
             $this->payment_source = new PaymentSource($data['payment_source']);
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderApplicationContext($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->experience_context = new OrderExperienceContext($data['application_context']);
         }
     }
 

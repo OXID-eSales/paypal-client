@@ -3,6 +3,7 @@
 namespace OxidSolutionCatalysts\PayPalApi\Model;
 
 use Error;
+use OxidSolutionCatalysts\PayPalApi\Pui\ExperienceContext;
 
 trait BaseModel
 {

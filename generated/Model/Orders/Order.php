@@ -164,9 +164,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
      * and <code>shipping_preference</code> during partner account setup, which overrides the request
      * values.</blockquote>
      *
-     * @var OrderApplicationContext2 | null
+     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext | null
      */
-    public $application_context;
+    public $experience_context;
 
     public function validate($from = null)
     {
@@ -243,12 +243,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
         !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
-            OrderApplicationContext2::class,
+        !isset($this->experience_context) || Assert::isInstanceOf(
+            $this->experience_context,
+            OrderExperienceContext::class,
             "application_context in Order must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(Order::class);
+        !isset($this->experience_context) ||  $this->experience_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -289,8 +289,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['credit_financing_offer'])) {
             $this->credit_financing_offer = new CreditFinancingOffer($data['credit_financing_offer']);
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderApplicationContext2($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->experience_context = new OrderExperienceContext($data['application_context']);
         }
     }
 
