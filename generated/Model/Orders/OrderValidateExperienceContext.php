@@ -14,7 +14,7 @@ use Webmozart\Assert\Assert;
  *
  * generated from: order_validate_application_context.json
  */
-class OrderValidateApplicationContext implements JsonSerializable
+class OrderValidateExperienceContext implements JsonSerializable
 {
     use BaseModel;
 

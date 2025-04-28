@@ -3,14 +3,10 @@
 namespace OxidSolutionCatalysts\PayPalApi\Model;
 
 use Error;
+use OxidSolutionCatalysts\PayPalApi\Pui\ExperienceContext;
 
 trait BaseModel
 {
-
-    /** @var ExperienceContext | null */
-    public $experience_context;
-
-
     public function jsonSerialize()
     {
         return (object) array_filter((array) $this, static function ($var) {

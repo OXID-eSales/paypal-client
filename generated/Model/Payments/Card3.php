@@ -212,6 +212,16 @@ class Card3 implements JsonSerializable
      */
     public $billing_address;
 
+    /**
+     * Customizes the payer experience during the approval process for the payment with
+     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+     * and <code>shipping_preference</code> during partner account setup, which overrides the request
+     * values.</blockquote>
+     *
+     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext
+     */
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
