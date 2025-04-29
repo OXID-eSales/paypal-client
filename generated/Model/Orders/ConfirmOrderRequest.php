@@ -75,7 +75,7 @@ class ConfirmOrderRequest implements JsonSerializable
             OrderExperienceContext::class,
             "application_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(ConfirmOrderRequest::class);
+        !isset($this->experience_context) ||  $this->experience_context->validate(ConfirmOrderRequest::class);
     }
 
     private function map(array $data)
