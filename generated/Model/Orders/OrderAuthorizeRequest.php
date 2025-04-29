@@ -73,12 +73,12 @@ class OrderAuthorizeRequest implements JsonSerializable
             "amount in OrderAuthorizeRequest must be instance of Money $within"
         );
         !isset($this->amount) ||  $this->amount->validate(OrderAuthorizeRequest::class);
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
+        !isset($this->experience_context) || Assert::isInstanceOf(
+            $this->experience_context,
             OrderApplicationContext2::class,
-            "application_context in OrderAuthorizeRequest must be instance of OrderApplicationContext2 $within"
+            "experience_context in OrderAuthorizeRequest must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(OrderAuthorizeRequest::class);
+        !isset($this->experience_context) ||  $this->experience_context->validate(OrderAuthorizeRequest::class);
     }
 
     private function map(array $data)

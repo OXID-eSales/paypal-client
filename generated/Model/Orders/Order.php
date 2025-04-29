@@ -246,7 +246,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
         !isset($this->experience_context) || Assert::isInstanceOf(
             $this->experience_context,
             OrderExperienceContext::class,
-            "application_context in Order must be instance of OrderApplicationContext2 $within"
+            "experience_context in Order must be instance of OrderApplicationContext2 $within"
         );
         !isset($this->experience_context) ||  $this->experience_context->validate(Order::class);
     }
@@ -290,7 +290,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
             $this->credit_financing_offer = new CreditFinancingOffer($data['credit_financing_offer']);
         }
         if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['application_context']);
+            $this->experience_context = new OrderExperienceContext($data['experience_context']);
         }
     }
 
@@ -320,6 +320,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
 
     public function initApplicationContext(): OrderApplicationContext2
     {
-        return $this->application_context = new OrderApplicationContext2();
+        return $this->experience_context = new OrderApplicationContext2();
     }
 }

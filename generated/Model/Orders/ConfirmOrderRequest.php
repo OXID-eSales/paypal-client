@@ -73,7 +73,7 @@ class ConfirmOrderRequest implements JsonSerializable
         !isset($this->experience_context) || Assert::isInstanceOf(
             $this->experience_context,
             OrderExperienceContext::class,
-            "application_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
+            "experience_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
         );
         !isset($this->experience_context) ||  $this->experience_context->validate(ConfirmOrderRequest::class);
     }
