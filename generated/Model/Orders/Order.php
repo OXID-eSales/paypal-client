@@ -318,8 +318,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return $this->credit_financing_offer = new CreditFinancingOffer();
     }
 
-    public function initApplicationContext(): OrderApplicationContext2
+    public function initApplicationContext(): OrderExperienceContext2
     {
-        return $this->experience_context = new OrderApplicationContext2();
+        return $this->experience_context = new OrderExperienceContext2();
     }
 }

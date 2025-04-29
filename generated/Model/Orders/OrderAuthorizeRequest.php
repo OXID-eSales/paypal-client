@@ -44,7 +44,7 @@ class OrderAuthorizeRequest implements JsonSerializable
      * and <code>shipping_preference</code> during partner account setup, which overrides the request
      * values.</blockquote>
      *
-     * @var OrderApplicationContext2 | null
+     * @var OrderExperienceContext2 | null
      */
     public $application_context;
 
@@ -75,7 +75,7 @@ class OrderAuthorizeRequest implements JsonSerializable
         !isset($this->amount) ||  $this->amount->validate(OrderAuthorizeRequest::class);
         !isset($this->experience_context) || Assert::isInstanceOf(
             $this->experience_context,
-            OrderApplicationContext2::class,
+            OrderExperienceContext2::class,
             "experience_context in OrderAuthorizeRequest must be instance of OrderApplicationContext2 $within"
         );
         !isset($this->experience_context) ||  $this->experience_context->validate(OrderAuthorizeRequest::class);
@@ -93,7 +93,7 @@ class OrderAuthorizeRequest implements JsonSerializable
             $this->amount = new Money($data['amount']);
         }
         if (isset($data['application_context'])) {
-            $this->application_context = new OrderApplicationContext2($data['application_context']);
+            $this->application_context = new OrderExperienceContext2($data['application_context']);
         }
     }
 
@@ -114,8 +114,8 @@ class OrderAuthorizeRequest implements JsonSerializable
         return $this->amount = new Money();
     }
 
-    public function initApplicationContext(): OrderApplicationContext2
+    public function initApplicationContext(): OrderExperienceContext2
     {
-        return $this->application_context = new OrderApplicationContext2();
+        return $this->application_context = new OrderExperienceContext2();
     }
 }
