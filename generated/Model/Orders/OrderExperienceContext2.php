@@ -14,7 +14,7 @@ use Webmozart\Assert\Assert;
  *
  * generated from: customized_x_unsupported_8990_order_application_context.json
  */
-class OrderApplicationContext2 implements JsonSerializable
+class OrderExperienceContext2 implements JsonSerializable
 {
     use BaseModel;
 
@@ -40,7 +40,7 @@ class OrderApplicationContext2 implements JsonSerializable
             StoredPaymentSource::class,
             "stored_payment_source in OrderApplicationContext2 must be instance of StoredPaymentSource $within"
         );
-        !isset($this->stored_payment_source) ||  $this->stored_payment_source->validate(OrderApplicationContext2::class);
+        !isset($this->stored_payment_source) ||  $this->stored_payment_source->validate(OrderExperienceContext2::class);
     }
 
     private function map(array $data)

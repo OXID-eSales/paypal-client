@@ -4,6 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Model\Subscriptions;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext;
 use Webmozart\Assert\Assert;
 
 /**
@@ -64,14 +65,6 @@ class SubscriptionRequestPost implements JsonSerializable
      * @var boolean | null
      */
     public $auto_renewal = false;
-
-    /**
-     * The application context, which customizes the payer experience during the subscription approval process with
-     * PayPal.
-     *
-     * @var ApplicationContext | null
-     */
-    public $application_context;
 
     /**
      * Client configuration that captures the product flows and specific experiences that a user completes a paypal
@@ -156,12 +149,12 @@ class SubscriptionRequestPost implements JsonSerializable
             "subscriber in SubscriptionRequestPost must be instance of SubscriberRequest $within"
         );
         !isset($this->subscriber) ||  $this->subscriber->validate(SubscriptionRequestPost::class);
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
-            ApplicationContext::class,
-            "application_context in SubscriptionRequestPost must be instance of ApplicationContext $within"
+        !isset($this->experience_context) || Assert::isInstanceOf(
+            $this->experience_context,
+            OrderExperienceContext::class,
+            "experience_context in SubscriptionRequestPost must be instance of OrderExperienceContext $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(SubscriptionRequestPost::class);
+        !isset($this->experience_context) ||  $this->experience_context->validate(SubscriptionRequestPost::class);
         !isset($this->client_configuration) || Assert::isInstanceOf(
             $this->client_configuration,
             ClientConfiguration::class,
@@ -216,8 +209,8 @@ class SubscriptionRequestPost implements JsonSerializable
         if (isset($data['auto_renewal'])) {
             $this->auto_renewal = $data['auto_renewal'];
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new ApplicationContext($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->experience_context = new OrderExperienceContext($data['experience_context']);
         }
         if (isset($data['client_configuration'])) {
             $this->client_configuration = new ClientConfiguration($data['client_configuration']);
@@ -250,9 +243,9 @@ class SubscriptionRequestPost implements JsonSerializable
         return $this->subscriber = new SubscriberRequest();
     }
 
-    public function initApplicationContext(): ApplicationContext
+    public function initExperienceContext(): OrderExperienceContext
     {
-        return $this->application_context = new ApplicationContext();
+        return $this->experience_context = new OrderExperienceContext();
     }
 
     public function initClientConfiguration(): ClientConfiguration
