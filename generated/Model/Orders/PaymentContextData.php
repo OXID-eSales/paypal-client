@@ -39,7 +39,7 @@ class PaymentContextData implements JsonSerializable
      *
      * @var OrderApplicationContext | null
      */
-    public $application_context;
+    public $experience_context;
 
     /**
      * List of facilitators involved in the payment[s].
@@ -62,12 +62,12 @@ class PaymentContextData implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
+        !isset($this->experience_context) || Assert::isInstanceOf(
+            $this->experience_context,
             OrderApplicationContext::class,
-            "application_context in PaymentContextData must be instance of OrderApplicationContext $within"
+            "experience_context in PaymentContextData must be instance of OrderApplicationContext $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(PaymentContextData::class);
+        !isset($this->experience_context) ||  $this->experience_context->validate(PaymentContextData::class);
         Assert::notNull($this->facilitators, "facilitators in PaymentContextData must not be NULL $within");
         Assert::minCount(
             $this->facilitators,
@@ -115,8 +115,8 @@ class PaymentContextData implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderApplicationContext($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->experience_context = new OrderExperienceContext($data['experience_context']);
         }
         if (isset($data['facilitators'])) {
             $this->facilitators = [];
@@ -141,8 +141,8 @@ class PaymentContextData implements JsonSerializable
         }
     }
 
-    public function initApplicationContext(): OrderApplicationContext
+    public function initExperienceContext(): OrderExperienceContext
     {
-        return $this->application_context = new OrderApplicationContext();
+        return $this->experience_context = new OrderExperienceContext();
     }
 }

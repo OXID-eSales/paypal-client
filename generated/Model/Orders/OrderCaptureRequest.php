@@ -35,7 +35,7 @@ class OrderCaptureRequest implements JsonSerializable
         !isset($this->experience_context) || Assert::isInstanceOf(
             $this->experience_context,
             OrderExperienceContext2::class,
-            "application_context in OrderCaptureRequest must be instance of OrderApplicationContext2 $within"
+            "experience_context in OrderCaptureRequest must be instance of OrderApplicationContext2 $within"
         );
         !isset($this->experience_context) ||  $this->experience_context->validate(OrderCaptureRequest::class);
     }

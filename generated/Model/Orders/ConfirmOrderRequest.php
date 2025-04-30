@@ -99,7 +99,7 @@ class ConfirmOrderRequest implements JsonSerializable
         }
     }
 
-    public function initApplicationContext(): OrderConfirmExperienceContext
+    public function initExperienceContext(): OrderConfirmExperienceContext
     {
         return $this->experience_context = new OrderConfirmExperienceContext();
     }

@@ -82,15 +82,6 @@ class OrderRequest implements JsonSerializable
      */
     public $payment_source;
 
-    /**
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
-     * and <code>shipping_preference</code> during partner account setup, which overrides the request
-     * values.</blockquote>
-     *
-     * @var OrderApplicationContext | null
-     */
-    public $application_context;
 
     public function validate($from = null)
     {
@@ -140,7 +131,7 @@ class OrderRequest implements JsonSerializable
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderRequest::class);
         !isset($this->experience_context) || Assert::isInstanceOf(
             $this->experience_context,
-            ExperienceContext::class,
+            OrderExperienceContext::class,
             "experience_context in OrderRequest must be instance of ExperienceContext $within"
         );
         !isset($this->experience_context) ||  $this->experience_context->validate(OrderRequest::class);

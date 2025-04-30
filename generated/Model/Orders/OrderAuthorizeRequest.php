@@ -38,15 +38,6 @@ class OrderAuthorizeRequest implements JsonSerializable
      */
     public $amount;
 
-    /**
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
-     * and <code>shipping_preference</code> during partner account setup, which overrides the request
-     * values.</blockquote>
-     *
-     * @var OrderExperienceContext2 | null
-     */
-    public $application_context;
 
     public function validate($from = null)
     {
@@ -85,15 +76,15 @@ class OrderAuthorizeRequest implements JsonSerializable
     {
         if (isset($data['payment_source'])) {
             $this->payment_source = new PaymentSource($data['payment_source']);
+            if (isset($data['experience_context'])) {
+                $this->payment_source->experience_context = new OrderExperienceContext2($data['experience_context']);
+            }
         }
         if (isset($data['reference_id'])) {
             $this->reference_id = $data['reference_id'];
         }
         if (isset($data['amount'])) {
             $this->amount = new Money($data['amount']);
-        }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderExperienceContext2($data['application_context']);
         }
     }
 
@@ -116,6 +107,6 @@ class OrderAuthorizeRequest implements JsonSerializable
 
     public function initApplicationContext(): OrderExperienceContext2
     {
-        return $this->application_context = new OrderExperienceContext2();
+        return $this->experience_context = new OrderExperienceContext2();
     }
 }
