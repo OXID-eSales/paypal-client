@@ -341,7 +341,7 @@ class PaymentSource implements JsonSerializable
 
     private function map(array $data)
     {
-        if (isset($data['card'])) {
+        if (isset($data['oscpaypal_acdc'])) {
             $this->card = new Card($data['card']);
         }
         if (isset($data['token'])) {
@@ -412,6 +412,9 @@ class PaymentSource implements JsonSerializable
         }
         if (isset($data['apple_pay'])) {
             $this->apple_pay = new ApplePayRequest($data['apple_pay']);
+        }
+        if (isset($data['google_pay'])) {
+            $this->google_pay = new GooglePayRequest($data['google_pay']);
         }
     }
 

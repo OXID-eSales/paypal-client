@@ -302,9 +302,10 @@ class OrderExperienceContext implements JsonSerializable
         }
     }
 
-    public function __construct(array $data = null)
+    public function __construct($data = null)
     {
         if (isset($data)) {
+            $data = get_object_vars($data);
             $this->map($data);
         }
     }
