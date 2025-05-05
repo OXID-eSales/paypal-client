@@ -46,7 +46,7 @@ class OrderValidateRequest implements JsonSerializable
             $this->payment_source = new ExtendedPaymentSource($data['payment_source']);
         }
         if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderValidateExperienceContext($data['experience_context']);
+            $this->payment_source->experience_context = new OrderValidateExperienceContext($data['experience_context']);
         }
     }
 
@@ -64,6 +64,6 @@ class OrderValidateRequest implements JsonSerializable
 
     public function initExperienceContext(): OrderValidateExperienceContext
     {
-        return $this->experience_context = new OrderValidateExperienceContext();
+        return $this->payment_source->experience_context = new OrderValidateExperienceContext();
     }
 }
