@@ -341,7 +341,7 @@ class PaymentSource implements JsonSerializable
 
     private function map(array $data)
     {
-        if (isset($data['oscpaypal_acdc'])) {
+        if (isset($data['card'])) {
             $this->card = new Card($data['card']);
         }
         if (isset($data['token'])) {
