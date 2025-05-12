@@ -58,6 +58,8 @@ class SubscriptionReviseRequest implements JsonSerializable
      */
     public $plan;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

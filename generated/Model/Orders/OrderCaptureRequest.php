@@ -32,12 +32,12 @@ class OrderCaptureRequest implements JsonSerializable
             "payment_source in OrderCaptureRequest must be instance of PaymentSource $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderCaptureRequest::class);
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
             OrderExperienceContext2::class,
             "application_context in OrderCaptureRequest must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->experience_context) ||  $this->experience_context->validate(OrderCaptureRequest::class);
+        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(OrderCaptureRequest::class);
     }
 
     private function map(array $data)
@@ -46,7 +46,7 @@ class OrderCaptureRequest implements JsonSerializable
             $this->payment_source = new PaymentSource($data['payment_source']);
         }
         if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext2($data['experience_context']);
+            $this->payment_source->experience_context = new OrderExperienceContext2($data['experience_context']);
         }
     }
 
@@ -64,6 +64,6 @@ class OrderCaptureRequest implements JsonSerializable
 
     public function initApplicationContext(): OrderExperienceContext2
     {
-        return $this->experience_context = new OrderExperienceContext2();
+        return $this->payment_source->experience_context = new OrderExperienceContext2();
     }
 }

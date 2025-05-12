@@ -32,8 +32,8 @@ class OrderValidateRequest implements JsonSerializable
             "payment_source in OrderValidateRequest must be instance of ExtendedPaymentSource $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderValidateRequest::class);
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
             OrderValidateExperienceContext::class,
             "experience_context in OrderValidateRequest must be instance of OrderValidateApplicationContext $within"
         );

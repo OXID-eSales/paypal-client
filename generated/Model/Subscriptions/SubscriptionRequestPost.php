@@ -103,6 +103,9 @@ class SubscriptionRequestPost implements JsonSerializable
      */
     public $plan;
 
+    /** @var OrderExperienceContext */
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

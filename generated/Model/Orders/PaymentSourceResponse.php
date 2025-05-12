@@ -189,6 +189,8 @@ class PaymentSourceResponse implements JsonSerializable
      */
     public $google_pay;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
