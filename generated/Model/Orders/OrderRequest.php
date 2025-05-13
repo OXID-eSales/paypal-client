@@ -81,15 +81,6 @@ class OrderRequest implements JsonSerializable
      */
     public $payment_source;
 
-    /**
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
-     * and <code>shipping_preference</code> during partner account setup, which overrides the request
-     * values.</blockquote>
-     *
-     * @var OrderApplicationContext | null
-     */
-    public $application_context;
 
     public function validate($from = null)
     {
@@ -137,12 +128,12 @@ class OrderRequest implements JsonSerializable
             "payment_source in OrderRequest must be instance of PaymentSource $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(OrderRequest::class);
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
-            OrderApplicationContext::class,
-            "application_context in OrderRequest must be instance of OrderApplicationContext $within"
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
+            OrderExperienceContext::class,
+            "experience_context in OrderRequest must be instance of OrderExperienceContext $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(OrderRequest::class);
+        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(OrderRequest::class);
     }
 
     private function map(array $data)
@@ -165,8 +156,8 @@ class OrderRequest implements JsonSerializable
         if (isset($data['payment_source'])) {
             $this->payment_source = new PaymentSource($data['payment_source']);
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderApplicationContext($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->payment_source->experience_context = new OrderExperienceContext($data['experience_context']);
         }
     }
 
@@ -188,8 +179,8 @@ class OrderRequest implements JsonSerializable
         return $this->payment_source = new PaymentSource();
     }
 
-    public function initApplicationContext(): OrderApplicationContext
+    public function initApplicationContext(): OrderExperienceContext
     {
-        return $this->application_context = new OrderApplicationContext();
+        return $this->payment_source->experience_context = new OrderExperienceContext();
     }
 }

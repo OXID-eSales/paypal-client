@@ -9,8 +9,6 @@ use Webmozart\Assert\Assert;
 /**
  * The application context, which customizes the payer experience during the subscription approval process with
  * PayPal.
- *
- * generated from: customized_x_unsupported_7455_application_context.json
  */
 class ApplicationContext2 implements JsonSerializable
 {
