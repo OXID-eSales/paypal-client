@@ -50,6 +50,9 @@ class PaymentContextData implements JsonSerializable
      */
     public $payment_units;
 
+
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

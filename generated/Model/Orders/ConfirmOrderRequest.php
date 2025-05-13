@@ -70,12 +70,12 @@ class ConfirmOrderRequest implements JsonSerializable
             36,
             "processing_instruction in ConfirmOrderRequest must have maxlength of 36 $within"
         );
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
             OrderExperienceContext::class,
             "experience_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
         );
-        !isset($this->experience_context) ||  $this->experience_context->validate(ConfirmOrderRequest::class);
+        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(ConfirmOrderRequest::class);
     }
 
     private function map(array $data)
@@ -87,7 +87,7 @@ class ConfirmOrderRequest implements JsonSerializable
             $this->processing_instruction = $data['processing_instruction'];
         }
         if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderConfirmExperienceContext($data['experience_context']);
+            $this->payment_source->experience_context = new OrderConfirmExperienceContext($data['experience_context']);
         }
     }
 
@@ -101,6 +101,6 @@ class ConfirmOrderRequest implements JsonSerializable
 
     public function initApplicationContext(): OrderConfirmExperienceContext
     {
-        return $this->experience_context = new OrderConfirmExperienceContext();
+        return $this->payment_source->experience_context = new OrderConfirmExperienceContext();
     }
 }

@@ -158,15 +158,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
-    /**
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
-     * and <code>shipping_preference</code> during partner account setup, which overrides the request
-     * values.</blockquote>
-     *
-     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext | null
-     */
-    public $experience_context;
 
     public function validate($from = null)
     {
@@ -243,12 +234,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
         !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
             OrderExperienceContext::class,
             "experience_context in Order must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->experience_context) ||  $this->experience_context->validate(Order::class);
+        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -290,7 +281,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
             $this->credit_financing_offer = new CreditFinancingOffer($data['credit_financing_offer']);
         }
         if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['experience_context']);
+            $this->payment_source->experience_context = new OrderExperienceContext($data['experience_context']);
         }
     }
 
@@ -320,6 +311,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
 
     public function initApplicationContext(): OrderExperienceContext2
     {
-        return $this->experience_context = new OrderExperienceContext2();
+        return $this->payment_source->experience_context = new OrderExperienceContext2();
     }
 }
