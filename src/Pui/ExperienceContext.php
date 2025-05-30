@@ -61,5 +61,4 @@ class ExperienceContext implements JsonSerializable
 
     /** @var array  */
     public $customer_service_instructions = [];
-
 }

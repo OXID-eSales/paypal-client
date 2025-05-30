@@ -9,7 +9,6 @@ use Psr\Log\LoggerInterface;
 
 class Onboarding extends Client
 {
-
     /**
      * @var string
      */
