@@ -263,13 +263,17 @@ class Client
 
         $joseHeader = base64_encode('{"alg":"none"}');
 
-        $payerId = $this->merchantPayerId;
-        if ($payerId !== "") {
-            $partnerClientId = $this->merchantClientId;
-            $payload = base64_encode("{\"iss\": \"$partnerClientId\", \"payer_id\":\"$payerId\"}");
-
-            $headers['PayPal-Auth-Assertion'] = "{$joseHeader}.{$payload}.";
-        }
+        /*
+         * deprecated: PayPal-Auth-Assertion is not needed any more
+         *
+         * $payerId = $this->merchantPayerId;
+         * if ($payerId !== "") {
+         *    $partnerClientId = $this->merchantClientId;
+         *    $payload = base64_encode("{\"iss\": \"$partnerClientId\", \"payer_id\":\"$payerId\"}");
+         *
+         *   $headers['PayPal-Auth-Assertion'] = "{$joseHeader}.{$payload}.";
+         * }
+         */
 
         foreach ($headers as $headerName => $headerValue) {
             $request = $request->withHeader($headerName, $headerValue);
