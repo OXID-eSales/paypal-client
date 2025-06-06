@@ -236,7 +236,8 @@ class Orders extends BaseService
         $headers = [];
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Content-Type'] = 'application/json';
-        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
+        // deprecated: PayPal-Auth-Assertion is not needed any more
+        // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
         if ($payPalPartnerAttributionId) {
@@ -284,7 +285,8 @@ class Orders extends BaseService
         $headers = [];
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Content-Type'] = 'application/json';
-        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
+        // deprecated: PayPal-Auth-Assertion is not needed any more
+        // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
         if ($payPalPartnerAttributionId) {

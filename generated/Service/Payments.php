@@ -175,8 +175,8 @@ class Payments extends BaseService
         $path = "/authorizations/{$authorizationId}/void";
 
         $headers = [];
-        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
-
+        // deprecated: PayPal-Auth-Assertion is not needed any more
+        // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
 
         $body = null;
         $response = $this->send('POST', $path, [], $headers, $body);
@@ -268,7 +268,8 @@ class Payments extends BaseService
 
         $headers = [];
         $headers['Content-Type'] = 'application/json';
-        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
+        // deprecated: PayPal-Auth-Assertion is not needed any more
+        // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
 
         if ($payPalPartnerAttributionId) {
@@ -327,9 +328,9 @@ class Payments extends BaseService
 
         $headers = [];
         $headers['Content-Type'] = 'application/json';
-        $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
+        // deprecated: PayPal-Auth-Assertion is not needed any more
+        // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
         $headers['Prefer'] = $prefer;
-
 
         $body = json_encode($paymentVoid, true);
         $response = $this->send('POST', $path, [], $headers, $body);
