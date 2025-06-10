@@ -22,6 +22,12 @@ class ExtendedPaymentSource extends PaymentSource implements JsonSerializable
      */
     public $contingencies;
 
+    /**
+     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext
+     */
+    public $experience_context;
+
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

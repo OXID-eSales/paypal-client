@@ -4,6 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Model\Orders;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Pui\ExperienceContext;
 use Webmozart\Assert\Assert;
 
 /**
@@ -48,12 +49,6 @@ class ConfirmOrderRequest implements JsonSerializable
      */
     public $processing_instruction = 'NO_INSTRUCTION';
 
-    /**
-     * Customizes the payer confirmation experience.
-     *
-     * @var OrderConfirmApplicationContext | null
-     */
-    public $application_context;
 
     public function validate($from = null)
     {
@@ -75,12 +70,12 @@ class ConfirmOrderRequest implements JsonSerializable
             36,
             "processing_instruction in ConfirmOrderRequest must have maxlength of 36 $within"
         );
-        !isset($this->application_context) || Assert::isInstanceOf(
-            $this->application_context,
-            OrderConfirmApplicationContext::class,
-            "application_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
+        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
+            $this->payment_source->experience_context,
+            OrderExperienceContext::class,
+            "experience_context in ConfirmOrderRequest must be instance of OrderConfirmApplicationContext $within"
         );
-        !isset($this->application_context) ||  $this->application_context->validate(ConfirmOrderRequest::class);
+        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(ConfirmOrderRequest::class);
     }
 
     private function map(array $data)
@@ -91,8 +86,8 @@ class ConfirmOrderRequest implements JsonSerializable
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
         }
-        if (isset($data['application_context'])) {
-            $this->application_context = new OrderConfirmApplicationContext($data['application_context']);
+        if (isset($data['experience_context'])) {
+            $this->payment_source->experience_context = new OrderConfirmExperienceContext($data['experience_context']);
         }
     }
 
@@ -104,8 +99,8 @@ class ConfirmOrderRequest implements JsonSerializable
         }
     }
 
-    public function initApplicationContext(): OrderConfirmApplicationContext
+    public function initApplicationContext(): OrderConfirmExperienceContext
     {
-        return $this->application_context = new OrderConfirmApplicationContext();
+        return $this->payment_source->experience_context = new OrderConfirmExperienceContext();
     }
 }

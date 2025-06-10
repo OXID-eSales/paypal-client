@@ -413,6 +413,9 @@ class PaymentSource implements JsonSerializable
         if (isset($data['apple_pay'])) {
             $this->apple_pay = new ApplePayRequest($data['apple_pay']);
         }
+        if (isset($data['google_pay'])) {
+            $this->google_pay = new GooglePayRequest($data['google_pay']);
+        }
     }
 
     public function __construct(array $data = null)
