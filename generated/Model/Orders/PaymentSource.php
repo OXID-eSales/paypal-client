@@ -190,11 +190,6 @@ class PaymentSource implements JsonSerializable
      */
     public $google_pay;
 
-    /**
-     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext
-     */
-    public $experience_context;
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";

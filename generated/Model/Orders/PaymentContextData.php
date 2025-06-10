@@ -32,6 +32,16 @@ class PaymentContextData implements JsonSerializable
     public $intent;
 
     /**
+     * Customizes the payer experience during the approval process for the payment with
+     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+     * and <code>shipping_preference</code> during partner account setup, which overrides the request
+     * values.</blockquote>
+     *
+     * @var OrderApplicationContext | null
+     */
+    public $application_context;
+
+    /**
      * List of facilitators involved in the payment[s].
      *
      * @var Facilitator[]
@@ -52,7 +62,12 @@ class PaymentContextData implements JsonSerializable
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-
+        !isset($this->application_context) || Assert::isInstanceOf(
+            $this->application_context,
+            OrderApplicationContext::class,
+            "application_context in PaymentContextData must be instance of OrderApplicationContext $within"
+        );
+        !isset($this->application_context) ||  $this->application_context->validate(PaymentContextData::class);
         Assert::notNull($this->facilitators, "facilitators in PaymentContextData must not be NULL $within");
         Assert::minCount(
             $this->facilitators,
@@ -100,6 +115,9 @@ class PaymentContextData implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
+        if (isset($data['application_context'])) {
+            $this->application_context = new OrderApplicationContext($data['application_context']);
+        }
         if (isset($data['facilitators'])) {
             $this->facilitators = [];
             foreach ($data['facilitators'] as $item) {
@@ -121,5 +139,10 @@ class PaymentContextData implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
+    }
+
+    public function initApplicationContext(): OrderApplicationContext
+    {
+        return $this->application_context = new OrderApplicationContext();
     }
 }

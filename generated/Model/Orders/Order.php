@@ -139,6 +139,13 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public $status;
 
     /**
+     * An array of request-related HATEOAS links. To complete payer approval, use the `approve` link to redirect the
+     * payer. The API caller has 3 hours (default setting, this which can be changed by your account manager to
+     * 24/48/72 hours to accommodate your use case) from the time the order is created, to redirect your payer. Once
+     * redirected, the API caller has 3 hours for the payer to approve the order and either authorize or capture the
+     * order. If you are not using the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you
+     * include `application_context.return_url` is specified or you will get "We're sorry, Things don't appear to be
+     * working at the moment" after the payer approves the payment.
      *
      * @var array | null
      */
@@ -151,6 +158,15 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
+    /**
+     * Customizes the payer experience during the approval process for the payment with
+     * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+     * and <code>shipping_preference</code> during partner account setup, which overrides the request
+     * values.</blockquote>
+     *
+     * @var OrderApplicationContext2 | null
+     */
+    public $application_context;
 
     public function validate($from = null)
     {
@@ -227,12 +243,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
         !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
-        !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
-            $this->payment_source->experience_context,
+        !isset($this->application_context) || Assert::isInstanceOf(
+            $this->application_context,
             OrderApplicationContext2::class,
-            "experience_context in Order must be instance of OrderApplicationContext2 $within"
+            "application_context in Order must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->experience_context) ||  $this->experience_context->validate(Order::class);
+        !isset($this->application_context) ||  $this->application_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -273,8 +289,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['credit_financing_offer'])) {
             $this->credit_financing_offer = new CreditFinancingOffer($data['credit_financing_offer']);
         }
-        if (isset($data['experience_context'])) {
-            $this->payment_source->experience_context = new OrderExperienceContext2($data['experience_context']);
+        if (isset($data['application_context'])) {
+            $this->application_context = new OrderApplicationContext2($data['application_context']);
         }
     }
 
@@ -302,8 +318,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return $this->credit_financing_offer = new CreditFinancingOffer();
     }
 
-    public function initExperienceContext(): OrderExperienceContext2
+    public function initApplicationContext(): OrderApplicationContext2
     {
-        return $this->payment_source->experience_context = new OrderExperienceContext2();
+        return $this->application_context = new OrderApplicationContext2();
     }
 }

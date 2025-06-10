@@ -12,8 +12,9 @@ use Webmozart\Assert\Assert;
  * and <code>shipping_preference</code> during partner account setup, which overrides the request
  * values.</blockquote>
  *
+ * generated from: order_application_context.json
  */
-class OrderExperienceContext implements JsonSerializable
+class OrderApplicationContext implements JsonSerializable
 {
     use BaseModel;
 
@@ -227,7 +228,7 @@ class OrderExperienceContext implements JsonSerializable
             PaymentMethod::class,
             "payment_method in OrderApplicationContext must be instance of PaymentMethod $within"
         );
-        !isset($this->payment_method) ||  $this->payment_method->validate(OrderExperienceContext::class);
+        !isset($this->payment_method) ||  $this->payment_method->validate(OrderApplicationContext::class);
         !isset($this->payment_token) || Assert::minLength(
             $this->payment_token,
             1,
@@ -243,19 +244,19 @@ class OrderExperienceContext implements JsonSerializable
             ClientConfiguration::class,
             "client_configuration in OrderApplicationContext must be instance of ClientConfiguration $within"
         );
-        !isset($this->client_configuration) ||  $this->client_configuration->validate(OrderExperienceContext::class);
+        !isset($this->client_configuration) ||  $this->client_configuration->validate(OrderApplicationContext::class);
         !isset($this->preferred_payment_source) || Assert::isInstanceOf(
             $this->preferred_payment_source,
             PaymentSource2::class,
             "preferred_payment_source in OrderApplicationContext must be instance of PaymentSource2 $within"
         );
-        !isset($this->preferred_payment_source) ||  $this->preferred_payment_source->validate(OrderExperienceContext::class);
+        !isset($this->preferred_payment_source) ||  $this->preferred_payment_source->validate(OrderApplicationContext::class);
         !isset($this->stored_payment_source) || Assert::isInstanceOf(
             $this->stored_payment_source,
             StoredPaymentSource::class,
             "stored_payment_source in OrderApplicationContext must be instance of StoredPaymentSource $within"
         );
-        !isset($this->stored_payment_source) ||  $this->stored_payment_source->validate(OrderExperienceContext::class);
+        !isset($this->stored_payment_source) ||  $this->stored_payment_source->validate(OrderApplicationContext::class);
     }
 
     private function map(array $data)

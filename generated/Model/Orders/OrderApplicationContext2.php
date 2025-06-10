@@ -12,8 +12,9 @@ use Webmozart\Assert\Assert;
  * and <code>shipping_preference</code> during partner account setup, which overrides the request
  * values.</blockquote>
  *
+ * generated from: customized_x_unsupported_8990_order_application_context.json
  */
-class OrderExperienceContext2 implements JsonSerializable
+class OrderApplicationContext2 implements JsonSerializable
 {
     use BaseModel;
 
