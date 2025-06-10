@@ -7,22 +7,22 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * Customizes the payer confirmation experience.
- *
- * generated from: order_confirm_application_context.json
+ * Customizes the payer experience during the approval process for the payment with
+ * PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code>
+ * and <code>shipping_preference</code> during partner account setup, which overrides the request
+ * values.</blockquote>
  */
-class OrderConfirmApplicationContext implements JsonSerializable
+class OrderValidateExperienceContext implements JsonSerializable
 {
     use BaseModel;
 
     /**
-     * Label to present to your payer as part of the PayPal hosted web experience.
+     * Signals to vault the payment source upon successful validation. The payment source is vaulted upon successful
+     * capture when INTENT=SALE and authorization when INTENT=AUTHORIZE.
      *
-     * @var string | null
-     * minLength: 1
-     * maxLength: 127
+     * @var boolean | null
      */
-    public $brand_name;
+    public $vault = false;
 
     /**
      * The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to localize the
@@ -41,8 +41,8 @@ class OrderConfirmApplicationContext implements JsonSerializable
      * The URL where the customer is redirected after the customer approves the payment.
      *
      * @var string | null
-     * minLength: 10
-     * maxLength: 4000
+     * minLength: 1
+     * maxLength: 2048
      */
     public $return_url;
 
@@ -50,60 +50,50 @@ class OrderConfirmApplicationContext implements JsonSerializable
      * The URL where the customer is redirected after the customer cancels the payment.
      *
      * @var string | null
-     * minLength: 10
-     * maxLength: 4000
+     * minLength: 1
+     * maxLength: 2048
      */
     public $cancel_url;
 
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->brand_name) || Assert::minLength(
-            $this->brand_name,
-            1,
-            "brand_name in OrderConfirmApplicationContext must have minlength of 1 $within"
-        );
-        !isset($this->brand_name) || Assert::maxLength(
-            $this->brand_name,
-            127,
-            "brand_name in OrderConfirmApplicationContext must have maxlength of 127 $within"
-        );
         !isset($this->locale) || Assert::minLength(
             $this->locale,
             2,
-            "locale in OrderConfirmApplicationContext must have minlength of 2 $within"
+            "locale in OrderValidateApplicationContext must have minlength of 2 $within"
         );
         !isset($this->locale) || Assert::maxLength(
             $this->locale,
             10,
-            "locale in OrderConfirmApplicationContext must have maxlength of 10 $within"
+            "locale in OrderValidateApplicationContext must have maxlength of 10 $within"
         );
         !isset($this->return_url) || Assert::minLength(
             $this->return_url,
-            10,
-            "return_url in OrderConfirmApplicationContext must have minlength of 10 $within"
+            1,
+            "return_url in OrderValidateApplicationContext must have minlength of 1 $within"
         );
         !isset($this->return_url) || Assert::maxLength(
             $this->return_url,
-            4000,
-            "return_url in OrderConfirmApplicationContext must have maxlength of 4000 $within"
+            2048,
+            "return_url in OrderValidateApplicationContext must have maxlength of 2048 $within"
         );
         !isset($this->cancel_url) || Assert::minLength(
             $this->cancel_url,
-            10,
-            "cancel_url in OrderConfirmApplicationContext must have minlength of 10 $within"
+            1,
+            "cancel_url in OrderValidateApplicationContext must have minlength of 1 $within"
         );
         !isset($this->cancel_url) || Assert::maxLength(
             $this->cancel_url,
-            4000,
-            "cancel_url in OrderConfirmApplicationContext must have maxlength of 4000 $within"
+            2048,
+            "cancel_url in OrderValidateApplicationContext must have maxlength of 2048 $within"
         );
     }
 
     private function map(array $data)
     {
-        if (isset($data['brand_name'])) {
-            $this->brand_name = $data['brand_name'];
+        if (isset($data['vault'])) {
+            $this->vault = $data['vault'];
         }
         if (isset($data['locale'])) {
             $this->locale = $data['locale'];
