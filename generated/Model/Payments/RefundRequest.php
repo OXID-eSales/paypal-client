@@ -121,4 +121,18 @@ class RefundRequest implements JsonSerializable
     {
         return $this->amount = new Money();
     }
+
+    public function jsonSerialize(): object
+    {
+        $data = (array) $this;
+
+        // Remove note_to_payer if it's null or empty
+        if (!isset($this->note_to_payer) || $this->note_to_payer === '') {
+            unset($data['note_to_payer']);
+        }
+
+        return (object) array_filter($data, static function ($var) {
+            return isset($var);
+        });
+    }
 }
