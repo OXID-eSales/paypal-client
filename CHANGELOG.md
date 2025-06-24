@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.21] - 2025-06-24
+
+- Refund request: Remove note_to_payer if it's null or empty
+- Fix type exceptions in Request-Call
+
 ## [2.0.20] - 2025-06-10
 
 - set PayPal-Auth-Assertion as deprecated

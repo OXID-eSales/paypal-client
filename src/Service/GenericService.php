@@ -61,7 +61,12 @@ class GenericService extends BaseService
         $body = $body == null ?: json_encode($body);
 
         $response = $this->send($method, $this->path, $params, $requestHeaders, $body);
+        $return = json_decode($response->getBody(), true);
 
-        return json_decode($response->getBody(), true);
+        if (is_bool($return) || is_null($return)) {
+            $return = [];
+        }
+
+        return $return;
     }
 }
