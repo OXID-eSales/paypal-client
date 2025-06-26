@@ -47,7 +47,7 @@ class Subscriptions extends BaseService
 
 
         $body = json_encode($planRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Plan($jsonData);
     }
@@ -116,7 +116,7 @@ class Subscriptions extends BaseService
         $params['page_size'] = $pageSize;
 
         $body = null;
-        $response = $this->send('GET', $path, $params, $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new PlanCollection($jsonData);
     }
@@ -148,8 +148,7 @@ class Subscriptions extends BaseService
         $params['version'] = $version;
         $params['fields'] = $fields;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, $headers, null);
         $jsonData = json_decode($response->getBody(), true);
         return new Plan($jsonData);
     }
@@ -175,7 +174,7 @@ class Subscriptions extends BaseService
 
 
         $body = json_encode($patchRequest, true);
-        $response = $this->send('PATCH', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('PATCH', $path, [], $headers, $body);
     }
 
     /**
@@ -197,7 +196,7 @@ class Subscriptions extends BaseService
 
 
         $body = json_encode($plan, true);
-        $response = $this->send('PUT', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('PUT', $path, [], $headers, $body);
     }
 
     /**
@@ -212,10 +211,7 @@ class Subscriptions extends BaseService
     {
         $path = "/plans/{$id}/activate";
 
-
-
-        $body = null;
-        $response = $this->send('POST', $path, [], [], $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], [], null);
     }
 
     /**
@@ -230,10 +226,7 @@ class Subscriptions extends BaseService
     {
         $path = "/plans/{$id}/deactivate";
 
-
-
-        $body = null;
-        $response = $this->send('POST', $path, [], [], $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], [], null);
     }
 
     /**
@@ -256,7 +249,7 @@ class Subscriptions extends BaseService
 
 
         $body = json_encode($updatePricingSchemesListRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
     }
 
     /**
@@ -575,7 +568,6 @@ class Subscriptions extends BaseService
     public function listTransactionsForSubscription($id, $startTime, $endTime): TransactionsList
     {
         $path = "/subscriptions/{$id}/transactions";
-
 
         $params = [];
         $params['start_time'] = $startTime;

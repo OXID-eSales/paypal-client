@@ -157,8 +157,7 @@ class TransactionSearch extends BaseService
         $params['balance_affecting_records_only'] = $balanceAffectingRecordsOnly;
         $params['fields'] = $fields;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new SearchResponse($jsonData);
     }
@@ -192,8 +191,7 @@ class TransactionSearch extends BaseService
         $params['currency_code'] = $currencyCode;
         $params['include_crypto_currencies'] = var_export($includeCryptoCurrencies, true);
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new BalancesResponse($jsonData);
     }
@@ -239,8 +237,7 @@ class TransactionSearch extends BaseService
         $params['page'] = $page;
         $params['page_size'] = $pageSize;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new PartnerPartnerSearchResponse($jsonData);
     }

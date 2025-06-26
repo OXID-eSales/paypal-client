@@ -49,7 +49,7 @@ class Payments extends BaseService
         }
 
         $body = json_encode($authorizeRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Authorization($jsonData);
     }
@@ -67,9 +67,7 @@ class Payments extends BaseService
         $path = "/authorizations/{$authorizationId}";
 
 
-
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new Authorization($jsonData);
     }
@@ -105,7 +103,7 @@ class Payments extends BaseService
         }
 
         $body = json_encode($capture, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Capture($jsonData);
     }
@@ -149,7 +147,7 @@ class Payments extends BaseService
         }
 
         $body = json_encode($reauthorizeRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Authorization($jsonData);
     }
@@ -178,8 +176,7 @@ class Payments extends BaseService
         // deprecated: PayPal-Auth-Assertion is not needed any more
         // $headers['PayPal-Auth-Assertion'] = $payPalAuthAssertion;
 
-        $body = null;
-        $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, null);
     }
 
     /**
@@ -211,7 +208,7 @@ class Payments extends BaseService
         }
 
         $body = json_encode($capture, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Capture($jsonData);
     }
@@ -229,9 +226,7 @@ class Payments extends BaseService
         $path = "/captures/{$captureId}";
 
 
-
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new Capture($jsonData);
     }
@@ -277,7 +272,7 @@ class Payments extends BaseService
         }
 
         $body = json_encode($refundRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Refund($jsonData);
     }
@@ -295,9 +290,7 @@ class Payments extends BaseService
         $path = "/refunds/{$refundId}";
 
 
-
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new Refund($jsonData);
     }
@@ -334,6 +327,6 @@ class Payments extends BaseService
 
 
         $body = json_encode($paymentVoid, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
     }
 }
