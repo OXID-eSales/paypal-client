@@ -44,6 +44,20 @@ class OrderRequest implements JsonSerializable
     public $intent;
 
     /**
+     * The instruction to process an order.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL
+     * @see PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL
+     * @see PROCESSING_INSTRUCTION_NO_INSTRUCTION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 36
+     */
+    public $processing_instruction = 'NO_INSTRUCTION';
+
+    /**
      * An array of purchase units. Each purchase unit establishes a contract between a payer and the payee. Each
      * purchase unit represents either a full or partial order that the payer intends to purchase from the payee.
      *
@@ -64,6 +78,16 @@ class OrderRequest implements JsonSerializable
     {
         $within = isset($from) ? "within $from" : "";
         Assert::notNull($this->intent, "intent in OrderRequest must not be NULL $within");
+        !isset($this->processing_instruction) || Assert::minLength(
+            $this->processing_instruction,
+            1,
+            "processing_instruction in OrderRequest must have minlength of 1 $within"
+        );
+        !isset($this->processing_instruction) || Assert::maxLength(
+            $this->processing_instruction,
+            36,
+            "processing_instruction in OrderRequest must have maxlength of 36 $within"
+        );
         Assert::notNull($this->purchase_units, "purchase_units in OrderRequest must not be NULL $within");
         Assert::minCount(
             $this->purchase_units,
@@ -103,6 +127,9 @@ class OrderRequest implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
+        if (isset($data['processing_instruction'])) {
+            $this->processing_instruction = $data['processing_instruction'];
+        }
         if (isset($data['purchase_units'])) {
             $this->purchase_units = [];
             foreach ($data['purchase_units'] as $item) {
@@ -120,11 +147,6 @@ class OrderRequest implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
-    }
-
-    public function initPayer(): Payer
-    {
-        return $this->payer = new Payer();
     }
 
     public function initPaymentSource(): PaymentSource

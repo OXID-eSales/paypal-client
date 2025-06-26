@@ -79,6 +79,20 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public $intent;
 
     /**
+     * The instruction to process an order.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL
+     * @see PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL
+     * @see PROCESSING_INSTRUCTION_NO_INSTRUCTION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 36
+     */
+    public $processing_instruction = 'NO_INSTRUCTION';
+
+    /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
      * Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular
      * expression provides guidance but does not reject all invalid dates.</blockquote>
@@ -147,6 +161,21 @@ class Order extends ActivityTimestamps implements JsonSerializable
             "payment_source in Order must be instance of PaymentSourceResponse $within"
         );
         !isset($this->payment_source) ||  $this->payment_source->validate(Order::class);
+        !isset($this->processing_instruction) || Assert::minLength(
+            $this->processing_instruction,
+            1,
+            "processing_instruction in Order must have minlength of 1 $within"
+        );
+        !isset($this->processing_instruction) || Assert::maxLength(
+            $this->processing_instruction,
+            36,
+            "processing_instruction in Order must have maxlength of 36 $within"
+        );
+        !isset($this->expiration_time) || Assert::minLength(
+            $this->expiration_time,
+            20,
+            "expiration_time in Order must have minlength of 20 $within"
+        );
         !isset($this->expiration_time) || Assert::maxLength(
             $this->expiration_time,
             64,
@@ -211,6 +240,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
+        if (isset($data['processing_instruction'])) {
+            $this->processing_instruction = $data['processing_instruction'];
+        }
         if (isset($data['expiration_time'])) {
             $this->expiration_time = $data['expiration_time'];
         }
@@ -251,10 +283,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return $this->payment_source = new PaymentSourceResponse();
     }
 
-    public function initPayer(): Payer
-    {
-        return $this->payer = new Payer();
-    }
+
 
     public function initCreditFinancingOffer(): CreditFinancingOffer
     {

@@ -12,7 +12,6 @@ namespace OxidSolutionCatalysts\PayPalApi\Pui;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
-use OxidSolutionCatalysts\PayPalApi\Model\Orders\PaypalWalletAttributes;
 
 /**
  * src: https://developer.paypal.com/docs/api/orders/v2/

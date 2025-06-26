@@ -35,6 +35,20 @@ class ConfirmOrderRequest implements JsonSerializable
      */
     public $payment_source;
 
+    /**
+     * The instruction to process an order.
+     *
+     * use one of constants defined in this class to set the value:
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_EXPLICITLY
+     * @see PROCESSING_INSTRUCTION_ORDER_SAVED_ON_BUYER_APPROVAL
+     * @see PROCESSING_INSTRUCTION_ORDER_COMPLETE_ON_PAYMENT_APPROVAL
+     * @see PROCESSING_INSTRUCTION_NO_INSTRUCTION
+     * @var string | null
+     * minLength: 1
+     * maxLength: 36
+     */
+    public $processing_instruction = 'NO_INSTRUCTION';
+
 
     public function validate($from = null)
     {
@@ -46,6 +60,16 @@ class ConfirmOrderRequest implements JsonSerializable
             "payment_source in ConfirmOrderRequest must be instance of PaymentSource $within"
         );
          $this->payment_source->validate(ConfirmOrderRequest::class);
+        !isset($this->processing_instruction) || Assert::minLength(
+            $this->processing_instruction,
+            1,
+            "processing_instruction in ConfirmOrderRequest must have minlength of 1 $within"
+        );
+        !isset($this->processing_instruction) || Assert::maxLength(
+            $this->processing_instruction,
+            36,
+            "processing_instruction in ConfirmOrderRequest must have maxlength of 36 $within"
+        );
         !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
             $this->payment_source->experience_context,
             OrderExperienceContext::class,
@@ -58,6 +82,9 @@ class ConfirmOrderRequest implements JsonSerializable
     {
         if (isset($data['payment_source'])) {
             $this->payment_source = new PaymentSource($data['payment_source']);
+        }
+        if (isset($data['processing_instruction'])) {
+            $this->processing_instruction = $data['processing_instruction'];
         }
         if (isset($data['experience_context'])) {
             $this->payment_source->experience_context = new OrderConfirmExperienceContext($data['experience_context']);
