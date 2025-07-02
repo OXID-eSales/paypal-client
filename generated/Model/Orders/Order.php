@@ -160,7 +160,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
             PaymentSourceResponse::class,
             "payment_source in Order must be instance of PaymentSourceResponse $within"
         );
-        !isset($this->payment_source) ||  $this->payment_source->validate(Order::class);
+        !isset($this->payment_source) || $this->payment_source->validate(Order::class);
         !isset($this->processing_instruction) || Assert::minLength(
             $this->processing_instruction,
             1,
@@ -220,13 +220,13 @@ class Order extends ActivityTimestamps implements JsonSerializable
             CreditFinancingOffer::class,
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
-        !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
+        !isset($this->credit_financing_offer) || $this->credit_financing_offer->validate(Order::class);
         !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
             $this->payment_source->experience_context,
             OrderExperienceContext::class,
             "experience_context in Order must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(Order::class);
+        !isset($this->payment_source->experience_context) || $this->payment_source->experience_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -284,7 +284,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
     }
 
 
-
     public function initCreditFinancingOffer(): CreditFinancingOffer
     {
         return $this->credit_financing_offer = new CreditFinancingOffer();
@@ -294,4 +293,32 @@ class Order extends ActivityTimestamps implements JsonSerializable
     {
         return $this->payment_source->experience_context = new OrderExperienceContext2();
     }
+
+    /**
+     * Get the capture payment status based on the intent of the order.
+     * The simplest indicator weather payment is likely ok or not.
+     *
+     * @return bool
+     */
+    public function getCapturePaymentStatus(): bool
+    {
+        if ($this->intent === self::INTENT_CAPTURE) {
+            if (!isset($this->purchase_units[0]->payments->captures[0]->status)) {
+                return false;
+            }
+
+            return $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED';
+        }
+
+        if ($this->intent === self::INTENT_AUTHORIZE) {
+            if (!isset($this->purchase_units[0]->payments->authorizations[0]->status)) {
+                return false;
+            }
+
+            return $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED';
+        }
+
+        return false;
+    }
+
 }
