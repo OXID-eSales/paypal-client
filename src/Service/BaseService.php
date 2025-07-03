@@ -3,8 +3,6 @@
 namespace OxidSolutionCatalysts\PayPalApi\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
-use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidSolutionCatalysts\PayPal\Service\ModuleSettings;
 use OxidSolutionCatalysts\PayPalApi\Client;
 use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
 use Psr\Http\Message\ResponseInterface;
@@ -88,10 +86,7 @@ class BaseService
     protected function sendWithRequestResponseLogging(string $method, string $path, array $params = [], array $headers = [], $body = null): ResponseInterface
     {
         $logger = $this->getLogger();
-        $moduleSettings = ContainerFactory::getInstance()
-            ->getContainer()
-            ->get(ModuleSettings::class);
-        $debugLevel = $moduleSettings->getPayPalDebugLevel();
+        $debugLevel = $this->client->getDebugLevel();
 
         // Create a copy of the request for logging purposes
         $params_copy = array_filter($params);
