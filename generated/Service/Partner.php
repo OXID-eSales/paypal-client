@@ -29,7 +29,7 @@ class Partner extends BaseService
 
 
         $body = json_encode($referralData, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new ReferralDataCreateReferralDataResponse($jsonData);
     }
@@ -48,8 +48,7 @@ class Partner extends BaseService
 
 
 
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new ReferralDataReferralDataResponse($jsonData);
     }

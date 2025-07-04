@@ -86,6 +86,11 @@ class Client
     protected $logger;
 
     /**
+     * @var string
+     */
+    private $debugLevel;
+
+    /**
      * Client constructor.
      * @param LoggerInterface $logger
      * @param string $endpoint
@@ -97,17 +102,17 @@ class Client
      * @param string $tokenCacheFilename the filename for the cached token
      * @param string $actionHash - An hash to help generate a unique PayPal-Request-Id
      * @param string $payerId the technical oxid paypal account client id used as meta information in requests
-     * @param bool $debug
+     * @param string $debugLevel
      */
     public function __construct(
         LoggerInterface $logger,
-                        $endpoint,
-                        $clientId,
-                        $clientSecret,
-                        $tokenCacheFilename,
-                        $actionHash = "",
-                        $payerId = "",
-                        $debug = false
+        string          $endpoint,
+        string          $clientId,
+        string          $clientSecret,
+        string          $tokenCacheFilename,
+        string          $actionHash = "",
+        string          $payerId = "",
+        string          $debugLevel = 'error'
     ) {
         $this->logger = $logger;
         $this->endpoint = $endpoint;
@@ -116,7 +121,11 @@ class Client
         $this->merchantPayerId = $payerId;
         $this->tokenCacheFilename = $tokenCacheFilename;
         $this->actionHash = $actionHash;
+        $this->debugLevel = $debugLevel;
         $stack = HandlerStack::create();
+        $debug = $debugLevel === 'debug';
+        // toDo fix the breaks if debug is true
+        $debug = false;
         if ($debug) {
             $stack->push(
                 Middleware::log($logger, new MessageFormatter(MessageFormatter::DEBUG))
@@ -331,5 +340,13 @@ class Client
     public function getActionHash(): string
     {
         return $this->actionHash;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDebugLevel(): string
+    {
+        return $this->debugLevel;
     }
 }

@@ -35,7 +35,7 @@ class Catalog extends BaseService
 
 
         $body = json_encode($productRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Product($jsonData);
     }
@@ -64,8 +64,7 @@ class Catalog extends BaseService
         $params['page'] = $page;
         $params['page_size'] = $pageSize;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new ProductCollection($jsonData);
     }
@@ -84,8 +83,7 @@ class Catalog extends BaseService
 
 
 
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new Product($jsonData);
     }
@@ -113,6 +111,6 @@ class Catalog extends BaseService
 
 
         $body = json_encode($patchRequest, true);
-        $response = $this->send('PATCH', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('PATCH', $path, [], $headers, $body);
     }
 }

@@ -7,7 +7,7 @@ use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
 use Webmozart\Assert\Assert;
 
 /**
- * A resource that identies that a PayPal Wallet is used for payment.
+ * A resource that identifies that a PayPal Wallet is used for payment.
  *
  * generated from: MerchantsCommonComponentsSpecification-v1-schema-paypal_wallet.json
  */
@@ -22,23 +22,13 @@ class PaypalWallet implements JsonSerializable
     public const PAYMENT_METHOD_PREFERENCE_IMMEDIATE_PAYMENT_REQUIRED = 'IMMEDIATE_PAYMENT_REQUIRED';
 
     /**
-     * The merchant-preferred payment methods.
-     *
-     * use one of constants defined in this class to set the value:
-     * @see PAYMENT_METHOD_PREFERENCE_UNRESTRICTED
-     * @see PAYMENT_METHOD_PREFERENCE_IMMEDIATE_PAYMENT_REQUIRED
-     * @var string | null
-     * minLength: 1
-     * maxLength: 255
-     */
-    public $payment_method_preference = 'UNRESTRICTED';
-
-    /**
      * Additional attributes associated with the use of this PayPal Wallet.
      *
      * @var PaypalWalletAttributes | null
      */
     public $attributes;
+
+    public $address;
 
     public function validate($from = null)
     {
@@ -63,6 +53,9 @@ class PaypalWallet implements JsonSerializable
 
     private function map(array $data)
     {
+        if (isset($data['address'])) {
+            $this->address = $data['address'];
+        }
         if (isset($data['payment_method_preference'])) {
             $this->payment_method_preference = $data['payment_method_preference'];
         }
