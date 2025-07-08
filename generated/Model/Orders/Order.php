@@ -69,6 +69,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public $payment_source;
 
     /**
+     * The payer source used to get payer information.
+     *
+     * @var Payer | null
+     */
+    public $payer;
+    /**
      * The intent to either capture payment immediately or authorize a payment for an order after order creation.
      *
      * use one of constants defined in this class to set the value:
@@ -171,6 +177,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
             36,
             "processing_instruction in Order must have maxlength of 36 $within"
         );
+        !isset($this->payer) || Assert::isInstanceOf(
+            $this->payer,
+            Payer::class,
+            "payer in Order must be instance of Payer $within"
+        );
+        !isset($this->payer) ||  $this->payer->validate(Order::class);
         !isset($this->expiration_time) || Assert::minLength(
             $this->expiration_time,
             20,
@@ -240,6 +252,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
+        if (isset($data['payer'])) {
+            $this->payer = new Payer($data['payer']);
+        }
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
         }
@@ -283,6 +298,10 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return $this->payment_source = new PaymentSourceResponse();
     }
 
+    public function initPayer(): Payer
+    {
+        return $this->payer = new Payer();
+    }
 
     public function initCreditFinancingOffer(): CreditFinancingOffer
     {
