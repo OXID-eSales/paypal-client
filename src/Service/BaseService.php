@@ -5,12 +5,15 @@ namespace OxidSolutionCatalysts\PayPalApi\Service;
 use GuzzleHttp\Exception\GuzzleException;
 use OxidSolutionCatalysts\PayPalApi\Client;
 use OxidSolutionCatalysts\PayPalApi\Exception\ApiException;
+use OxidSolutionCatalysts\PayPalApi\Traits\TrackingTrait;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Psr7\Query;
 use Psr\Log\LoggerInterface;
 
 class BaseService
 {
+    use TrackingTrait;
+
     public Client $client;
 
     protected string $basePath = '';
@@ -60,7 +63,7 @@ class BaseService
 
     /**
      * Get the logger instance
-     * 
+     *
      * @return \Psr\Log\LoggerInterface
      */
     protected function getLogger(): LoggerInterface
@@ -74,7 +77,7 @@ class BaseService
 
     /**
      * Sends a request with logging of request and response bodies
-     * 
+     *
      * @param string $method HTTP method (POST, GET, etc.)
      * @param string $path API endpoint path
      * @param array $params Query parameters
@@ -85,9 +88,6 @@ class BaseService
      */
     protected function sendWithRequestResponseLogging(string $method, string $path, array $params = [], array $headers = [], $body = null): ResponseInterface
     {
-        $logger = $this->getLogger();
-        $debugLevel = $this->client->getDebugLevel();
-
         // Create a copy of the request for logging purposes
         $params_copy = array_filter($params);
         if ($params_copy) {
@@ -102,34 +102,26 @@ class BaseService
         $headers_copy['PayPal-Request-Id'] = md5($path_with_query . serialize($body) . $this->client->getActionHash());
 
         $request = $this->client->createRequest($method, $fullPath, $headers_copy, $body);
-
-        // Log request if debug is enabled
-        if ($debugLevel === 'debug') {
-            $logger->log('debug', 'PayPal SEND request to ' . $path . ': ' . $request->getBody(), [
+        $logMessagePrefix = $method . str_repeat(" ", 5 - strlen($method)) . ' | ' . $path_with_query;
+        $requestBody = $request->getBody();
+        $this->log('debug', $logMessagePrefix . ' | ' . $requestBody ?? '{}',
+            [
                 'headers' => $request->getHeaders()
             ]);
-        }
 
         try {
             // Send the actual request
             $response = $this->send($method, $path, $params, $headers, $body);
+            $responseBody = $response->getBody();
 
-            // Log response if debug is enabled
-            if ($debugLevel === 'debug') {
-                // Log the response body
-                $responseBody = $response->getBody();
-                $logger->log('debug', 'PayPal RECEIVE response from ' . $path . ' with body: ' . $responseBody);
+            $this->log('debug', $logMessagePrefix . ' | ' . $responseBody);
 
-                // Reset the response body pointer to the beginning
-                $responseBody->rewind();
-            }
+            $responseBody->rewind();
 
             return $response;
         } catch (ApiException $exception) {
-            // Log error if debug or error level is enabled
-            if ($debugLevel === 'debug' || $debugLevel === 'error') {
-                $logger->log('error', $exception->getMessage(), [$exception]);
-            }
+            $this->log('error', $logMessagePrefix . ' | ' . $exception->getMessage(), [$exception]);
+
             throw $exception;
         }
     }
