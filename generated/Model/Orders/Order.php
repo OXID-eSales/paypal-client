@@ -157,6 +157,11 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
+    /**
+     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\Payer
+     */
+    public Payer $payer;
+
 
     public function validate($from = null)
     {
@@ -258,6 +263,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
         }
+        if (isset($data['payer'])) {
+            $this->payer = new Payer($data['payer']);
+        }
         if (isset($data['expiration_time'])) {
             $this->expiration_time = $data['expiration_time'];
         }
@@ -326,7 +334,11 @@ class Order extends ActivityTimestamps implements JsonSerializable
                 return false;
             }
 
-            return $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED';
+            //TODO: check PUI
+            return $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PARTIALLY_REFUNDED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'REFUNDED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PENDING';
         }
 
         if ($this->intent === self::INTENT_AUTHORIZE) {
@@ -334,10 +346,38 @@ class Order extends ActivityTimestamps implements JsonSerializable
                 return false;
             }
 
-            return $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED';
+            return
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED' ||
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CAPTURED';
         }
 
         return false;
+    }
+
+    /**
+     * Get the raw capture payment status string based on the intent of the order.
+     *
+     * @return string|null The raw status string or null if status is not available
+     */
+    public function getCapturePaymentStatusString(): ?string
+    {
+        if ($this->intent === self::INTENT_CAPTURE) {
+            if (!isset($this->purchase_units[0]->payments->captures[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->captures[0]->status;
+        }
+
+        if ($this->intent === self::INTENT_AUTHORIZE) {
+            if (!isset($this->purchase_units[0]->payments->authorizations[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->authorizations[0]->status;
+        }
+
+        return null;
     }
 
 }
