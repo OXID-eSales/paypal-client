@@ -151,6 +151,11 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
+    /**
+     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\Payer
+     */
+    public Payer $payer;
+
 
     public function validate($from = null)
     {
@@ -243,6 +248,9 @@ class Order extends ActivityTimestamps implements JsonSerializable
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
         }
+        if (isset($data['payer'])) {
+            $this->payer = new Payer($data['payer']);
+        }
         if (isset($data['expiration_time'])) {
             $this->expiration_time = $data['expiration_time'];
         }
@@ -283,6 +291,10 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return $this->payment_source = new PaymentSourceResponse();
     }
 
+    public function initPayer(): Payer
+    {
+        return $this->payer = new Payer();
+    }
 
     public function initCreditFinancingOffer(): CreditFinancingOffer
     {
