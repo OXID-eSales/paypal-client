@@ -157,12 +157,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
-    /**
-     * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\Payer
-     */
-    public Payer $payer;
-
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -256,9 +250,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
         }
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
-        }
-        if (isset($data['payer'])) {
-            $this->payer = new Payer($data['payer']);
         }
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
