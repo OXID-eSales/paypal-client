@@ -22,7 +22,7 @@ trait TrackingTrait
     {
         $this->trackingId = $trackingId;
     }
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = array(), $isResponse = false)
     {
         $logger = method_exists($this, 'getLogger') ? $this->getLogger() : null;
         if (null === $logger) {
@@ -30,7 +30,9 @@ trait TrackingTrait
         }
         $debugLevel = $this->client->getDebugLevel();
         $trackingId = $this->getTrackingId();
-        $messagePrefix = empty($trackingId) ? '' : $trackingId . ' | ';
+
+        $messagePrefix = $isResponse ? 'RES | ' : 'REQ | ';
+        $messagePrefix .= empty($trackingId) ? '' : $trackingId . ' | ';
         $tokenizedMessage = $messagePrefix . $message;
         if ($debugLevel === 'debug' || $debugLevel === $level) {
             $logger->log($level, $tokenizedMessage, $context);

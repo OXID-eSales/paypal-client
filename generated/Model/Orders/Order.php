@@ -309,6 +309,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
 
             //TODO: check PUI
             return $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PARTIALLY_REFUNDED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'REFUNDED'
                     || $this->purchase_units[0]->payments->captures[0]->status === 'PENDING';
         }
 
@@ -317,10 +319,38 @@ class Order extends ActivityTimestamps implements JsonSerializable
                 return false;
             }
 
-            return $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED';
+            return
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED' ||
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CAPTURED';
         }
 
         return false;
+    }
+
+    /**
+     * Get the raw capture payment status string based on the intent of the order.
+     *
+     * @return string|null The raw status string or null if status is not available
+     */
+    public function getCapturePaymentStatusString(): ?string
+    {
+        if ($this->intent === self::INTENT_CAPTURE) {
+            if (!isset($this->purchase_units[0]->payments->captures[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->captures[0]->status;
+        }
+
+        if ($this->intent === self::INTENT_AUTHORIZE) {
+            if (!isset($this->purchase_units[0]->payments->authorizations[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->authorizations[0]->status;
+        }
+
+        return null;
     }
 
 }

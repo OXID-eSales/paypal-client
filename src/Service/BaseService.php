@@ -114,13 +114,13 @@ class BaseService
             $response = $this->send($method, $path, $params, $headers, $body);
             $responseBody = $response->getBody();
 
-            $this->log('debug', $logMessagePrefix . ' | ' . $responseBody);
+            $this->log('debug', $logMessagePrefix . ' | ' . $responseBody, [], true);
 
             $responseBody->rewind();
 
             return $response;
         } catch (ApiException $exception) {
-            $this->log('error', $logMessagePrefix . ' | ' . $exception->getMessage(), [$exception]);
+            $this->log('error', $logMessagePrefix . ' | ' . $exception->getMessage(), [$exception], true);
 
             throw $exception;
         }
