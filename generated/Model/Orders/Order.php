@@ -326,10 +326,14 @@ class Order extends ActivityTimestamps implements JsonSerializable
             }
 
             //TODO: check PUI
-            return $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED'
+            return
+                (
+                    $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED'
                     || $this->purchase_units[0]->payments->captures[0]->status === 'PARTIALLY_REFUNDED'
                     || $this->purchase_units[0]->payments->captures[0]->status === 'REFUNDED'
-                    || $this->purchase_units[0]->payments->captures[0]->status === 'PENDING';
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PENDING'
+                )
+                    && $this->purchase_units[0]->payments->captures[0]->status !== 'DENIED';
         }
 
         if ($this->intent === self::INTENT_AUTHORIZE) {
