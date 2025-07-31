@@ -69,6 +69,12 @@ class Order extends ActivityTimestamps implements JsonSerializable
     public $payment_source;
 
     /**
+     * The payer source used to get payer information.
+     *
+     * @var Payer | null
+     */
+    public $payer;
+    /**
      * The intent to either capture payment immediately or authorize a payment for an order after order creation.
      *
      * use one of constants defined in this class to set the value:
@@ -91,13 +97,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
      * maxLength: 36
      */
     public $processing_instruction = 'NO_INSTRUCTION';
-
-    /**
-     * The customer who approves and pays for the order. The customer is also known as the payer.
-     *
-     * @var Payer | null
-     */
-    public $payer;
 
     /**
      * The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
@@ -158,7 +157,6 @@ class Order extends ActivityTimestamps implements JsonSerializable
      */
     public $credit_financing_offer;
 
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -167,7 +165,7 @@ class Order extends ActivityTimestamps implements JsonSerializable
             PaymentSourceResponse::class,
             "payment_source in Order must be instance of PaymentSourceResponse $within"
         );
-        !isset($this->payment_source) ||  $this->payment_source->validate(Order::class);
+        !isset($this->payment_source) || $this->payment_source->validate(Order::class);
         !isset($this->processing_instruction) || Assert::minLength(
             $this->processing_instruction,
             1,
@@ -233,13 +231,13 @@ class Order extends ActivityTimestamps implements JsonSerializable
             CreditFinancingOffer::class,
             "credit_financing_offer in Order must be instance of CreditFinancingOffer $within"
         );
-        !isset($this->credit_financing_offer) ||  $this->credit_financing_offer->validate(Order::class);
+        !isset($this->credit_financing_offer) || $this->credit_financing_offer->validate(Order::class);
         !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
             $this->payment_source->experience_context,
             OrderExperienceContext::class,
             "experience_context in Order must be instance of OrderApplicationContext2 $within"
         );
-        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(Order::class);
+        !isset($this->payment_source->experience_context) || $this->payment_source->experience_context->validate(Order::class);
     }
 
     private function map(array $data)
@@ -313,4 +311,68 @@ class Order extends ActivityTimestamps implements JsonSerializable
     {
         return $this->payment_source->experience_context = new OrderExperienceContext2();
     }
+
+    /**
+     * Get the capture payment status based on the intent of the order.
+     * The simplest indicator weather payment is likely ok or not.
+     *
+     * @return bool
+     */
+    public function getCapturePaymentStatus(): bool
+    {
+        if ($this->intent === self::INTENT_CAPTURE) {
+            if (!isset($this->purchase_units[0]->payments->captures[0]->status)) {
+                return false;
+            }
+
+            //TODO: check PUI
+            return
+                (
+                    $this->purchase_units[0]->payments->captures[0]->status === 'COMPLETED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PARTIALLY_REFUNDED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'REFUNDED'
+                    || $this->purchase_units[0]->payments->captures[0]->status === 'PENDING'
+                )
+                    && $this->purchase_units[0]->payments->captures[0]->status !== 'DENIED';
+        }
+
+        if ($this->intent === self::INTENT_AUTHORIZE) {
+            if (!isset($this->purchase_units[0]->payments->authorizations[0]->status)) {
+                return false;
+            }
+
+            return
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CREATED' ||
+                $this->purchase_units[0]->payments->authorizations[0]->status === 'CAPTURED';
+        }
+
+        return false;
+    }
+
+    /**
+     * Get the raw capture payment status string based on the intent of the order.
+     *
+     * @return string|null The raw status string or null if status is not available
+     */
+    public function getCapturePaymentStatusString(): ?string
+    {
+        if ($this->intent === self::INTENT_CAPTURE) {
+            if (!isset($this->purchase_units[0]->payments->captures[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->captures[0]->status;
+        }
+
+        if ($this->intent === self::INTENT_AUTHORIZE) {
+            if (!isset($this->purchase_units[0]->payments->authorizations[0]->status)) {
+                return null;
+            }
+
+            return $this->purchase_units[0]->payments->authorizations[0]->status;
+        }
+
+        return null;
+    }
+
 }

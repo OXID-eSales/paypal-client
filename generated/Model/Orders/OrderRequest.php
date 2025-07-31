@@ -58,13 +58,6 @@ class OrderRequest implements JsonSerializable
     public $processing_instruction = 'NO_INSTRUCTION';
 
     /**
-     * The customer who approves and pays for the order. The customer is also known as the payer.
-     *
-     * @var Payer | null
-     */
-    public $payer;
-
-    /**
      * An array of purchase units. Each purchase unit establishes a contract between a payer and the payee. Each
      * purchase unit represents either a full or partial order that the payer intends to purchase from the payee.
      *
@@ -126,13 +119,13 @@ class OrderRequest implements JsonSerializable
             PaymentSource::class,
             "payment_source in OrderRequest must be instance of PaymentSource $within"
         );
-        !isset($this->payment_source) ||  $this->payment_source->validate(OrderRequest::class);
+        !isset($this->payment_source) || $this->payment_source->validate(OrderRequest::class);
         !isset($this->payment_source->experience_context) || Assert::isInstanceOf(
             $this->payment_source->experience_context,
             OrderExperienceContext::class,
             "experience_context in OrderRequest must be instance of ExperienceContext $within"
         );
-        !isset($this->payment_source->experience_context) ||  $this->payment_source->experience_context->validate(OrderRequest::class);
+        !isset($this->payment_source->experience_context) || $this->payment_source->experience_context->validate(OrderRequest::class);
     }
 
     private function map(array $data)
@@ -178,5 +171,12 @@ class OrderRequest implements JsonSerializable
     public function initExperienceContext(): OrderExperienceContext
     {
         return $this->payment_source->experience_context = new OrderExperienceContext();
+    }
+
+    public function jsonSerialize()
+    {
+        return array_filter(get_object_vars($this), function ($value) {
+            return !empty($value) || $value === 0 || $value === '0';
+        });
     }
 }

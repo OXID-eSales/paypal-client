@@ -62,7 +62,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($event, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
     }
 
     /**
@@ -90,7 +90,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($acknowledgeReturnItemRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new ResponseSubsequentAction($jsonData);
     }
@@ -125,7 +125,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($evidenceRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new ResponseSubsequentAction($jsonData);
     }
@@ -145,9 +145,7 @@ class Disputes extends BaseService
         $path = "/disputes/{$id}";
 
 
-
-        $body = null;
-        $response = $this->send('GET', $path, [], [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, [], [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new ResponseDispute($jsonData);
     }
@@ -178,7 +176,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($patchRequest, true);
-        $response = $this->send('PATCH', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('PATCH', $path, [], $headers, $body);
     }
 
     /**
@@ -201,7 +199,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($cancelRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new ResponseSubsequentAction($jsonData);
     }
@@ -226,7 +224,7 @@ class Disputes extends BaseService
 
 
         $body = json_encode($eligibilityRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new ResponseDisputeEligibility($jsonData);
     }
