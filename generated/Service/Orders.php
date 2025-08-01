@@ -47,8 +47,8 @@ class Orders extends BaseService
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Prefer'] = $prefer;
 
-        $body = json_encode($order, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $requestBody = json_encode($order, true);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $requestBody);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -78,8 +78,7 @@ class Orders extends BaseService
         $params = [];
         $params['fields'] = $fields;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, $headers, null);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -129,7 +128,7 @@ class Orders extends BaseService
         }
 
         $body = json_encode($patchRequest, true);
-        $response = $this->send('PATCH', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('PATCH', $path, [], $headers, $body);
     }
 
     /**
@@ -153,7 +152,7 @@ class Orders extends BaseService
         $headers['Content-Type'] = 'application/json';
 
         $body = json_encode($orderValidateRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -192,7 +191,7 @@ class Orders extends BaseService
         }
 
         $body = json_encode($confirmOrderRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -241,7 +240,7 @@ class Orders extends BaseService
         }
 
         $body = json_encode($authorizeRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -290,7 +289,7 @@ class Orders extends BaseService
         }
 
         $body = json_encode($orderCaptureRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -325,8 +324,7 @@ class Orders extends BaseService
             $headers['PayPal-Partner-Attribution-Id'] = $payPalPartnerAttributionId;
         }
 
-        $body = null;
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, null);
         $jsonData = json_decode($response->getBody(), true);
         return new Order($jsonData);
     }
@@ -355,9 +353,7 @@ class Orders extends BaseService
         $headers['PayPal-Client-Metadata-Id'] = $payPalClientMetadataId;
         $headers['Prefer'] = $prefer;
 
-
-        $body = null;
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, null);
     }
 
     /**
@@ -376,8 +372,7 @@ class Orders extends BaseService
         $params = [];
         $params['order_id'] = $orderId;
 
-        $body = null;
-        $response = $this->send('GET', $path, $params, [], $body);
+        $response = $this->sendWithRequestResponseLogging('GET', $path, $params, [], null);
         $jsonData = json_decode($response->getBody(), true);
         return new PaymentContextData($jsonData);
     }
@@ -401,7 +396,7 @@ class Orders extends BaseService
 
 
         $body = json_encode($paymentDetails, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
     }
 
     /**
@@ -427,7 +422,7 @@ class Orders extends BaseService
 
 
         $body = json_encode($paymentSessionRequest, true);
-        $response = $this->send('POST', $path, [], $headers, $body);
+        $response = $this->sendWithRequestResponseLogging('POST', $path, [], $headers, $body);
         $jsonData = json_decode($response->getBody(), true);
         return new PaymentSessionResponse($jsonData);
     }

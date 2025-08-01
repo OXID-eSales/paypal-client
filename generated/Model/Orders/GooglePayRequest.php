@@ -85,6 +85,10 @@ class GooglePayRequest implements JsonSerializable
      * @var \OxidSolutionCatalysts\PayPalApi\Model\Orders\OrderExperienceContext
      */
     public $experience_context;
+    /**
+     * @var mixed
+     */
+    public array $attributes = [];
 
     public function validate($from = null)
     {
@@ -163,6 +167,9 @@ class GooglePayRequest implements JsonSerializable
         }
         if (isset($data['email_address'])) {
             $this->email_address = $data['email_address'];
+        }
+        if (isset($data['attributes'])) {
+            $this->attributes = $data['attributes'];
         }
         if (isset($data['phone_number'])) {
             $this->phone_number = new Phone3($data['phone_number']);

@@ -61,4 +61,27 @@ class ExperienceContext implements JsonSerializable
 
     /** @var array  */
     public $customer_service_instructions = [];
+
+    private function map(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    public function __construct(array $data = null)
+    {
+        if (isset($data)) {
+            $this->map($data);
+        }
+    }
+
+    public function jsonSerialize()
+    {
+        return array_filter(get_object_vars($this), function ($value) {
+            return !empty($value) || $value === 0 || $value === '0';
+        });
+    }
 }
