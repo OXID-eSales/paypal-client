@@ -375,4 +375,8 @@ class Order extends ActivityTimestamps implements JsonSerializable
         return null;
     }
 
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
 }
