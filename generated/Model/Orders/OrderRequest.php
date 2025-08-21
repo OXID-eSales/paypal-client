@@ -4,6 +4,7 @@ namespace OxidSolutionCatalysts\PayPalApi\Model\Orders;
 
 use JsonSerializable;
 use OxidSolutionCatalysts\PayPalApi\Model\BaseModel;
+use OxidSolutionCatalysts\PayPalApi\Model\Payments\PaymentSource as PaypalApiPaymentSource;
 use Webmozart\Assert\Assert;
 
 /**
@@ -41,7 +42,7 @@ class OrderRequest implements JsonSerializable
      * @see INTENT_AUTHORIZE
      * @var string
      */
-    public $intent;
+    public string $intent;
 
     /**
      * The instruction to process an order.
@@ -55,7 +56,7 @@ class OrderRequest implements JsonSerializable
      * minLength: 1
      * maxLength: 36
      */
-    public $processing_instruction = 'NO_INSTRUCTION';
+    public ?string $processing_instruction = 'NO_INSTRUCTION';
 
     /**
      * An array of purchase units. Each purchase unit establishes a contract between a payer and the payee. Each
@@ -65,13 +66,9 @@ class OrderRequest implements JsonSerializable
      * maxItems: 1
      * maxItems: 10
      */
-    public $purchase_units;
+    public array $purchase_units;
 
-    /**
-     * The payment source definition.
-     *
-     * @var PaymentSource | null
-     */
+    /** @var JsonSerializable|PaymentSource|array|null $payment_source */
     public $payment_source;
 
     public function validate($from = null)

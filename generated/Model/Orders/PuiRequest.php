@@ -81,6 +81,8 @@ class PuiRequest implements JsonSerializable
      * maxLength: 300
      */
     public $payment_reference;
+    public ?array $birthdate;
+    public string $phone;
 
     public function validate($from = null)
     {
@@ -186,6 +188,9 @@ class PuiRequest implements JsonSerializable
         }
         if (isset($data['payment_reference'])) {
             $this->payment_reference = $data['payment_reference'];
+        }
+        if (isset($data['birthdate'])) {
+            $this->birthdate = $data['birthdate'];
         }
     }
 
