@@ -29,6 +29,10 @@ class PaypalWallet implements JsonSerializable
     public $attributes;
 
     public $address;
+    /**
+     * @var mixed
+     */
+    public $experience_context;
 
     public function validate($from = null)
     {
@@ -49,6 +53,7 @@ class PaypalWallet implements JsonSerializable
             "attributes in PaypalWallet must be instance of PaypalWalletAttributes $within"
         );
         !isset($this->attributes) ||  $this->attributes->validate(PaypalWallet::class);
+        
     }
 
     private function map(array $data)
@@ -61,6 +66,9 @@ class PaypalWallet implements JsonSerializable
         }
         if (isset($data['attributes'])) {
             $this->attributes = new PaypalWalletAttributes($data['attributes']);
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 
