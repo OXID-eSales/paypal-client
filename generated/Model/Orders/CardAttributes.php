@@ -22,6 +22,8 @@ class CardAttributes implements JsonSerializable
      */
     public $customer;
 
+    public $vault;
+
     /**
      * The API caller can opt in to verify the card through PayPal offered verification services (e.g. Smart Dollar
      * Auth, 3DS).
@@ -70,6 +72,9 @@ class CardAttributes implements JsonSerializable
         }
         if (isset($data['installments'])) {
             $this->installments = new Installments($data['installments']);
+        }
+        if (isset($data['vault'])) {
+            $this->vault = $data['vault'];
         }
     }
 

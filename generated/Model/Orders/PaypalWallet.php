@@ -29,6 +29,7 @@ class PaypalWallet implements JsonSerializable
     public $attributes;
 
     public $address;
+    public $experience_context;
 
     public function validate($from = null)
     {
@@ -61,6 +62,9 @@ class PaypalWallet implements JsonSerializable
         }
         if (isset($data['attributes'])) {
             $this->attributes = new PaypalWalletAttributes($data['attributes']);
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 

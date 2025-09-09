@@ -82,6 +82,14 @@ class PuiRequest implements JsonSerializable
      */
     public $payment_reference;
 
+
+    /**
+     * @var array
+     *
+     * $birthdate['year' => int, 'month'=> int, 'day'=> int]
+     */
+    public array $birth_date;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -162,6 +170,31 @@ class PuiRequest implements JsonSerializable
             300,
             "payment_reference in PuiRequest must have maxlength of 300 $within"
         );
+
+        // birthdate validation
+        Assert::notNull($this->birthdate, "birthdate in PuiRequest must not be NULL $within");
+        Assert::isArray($this->birthdate, "birthdate in PuiRequest must be an array $within");
+        Assert::keyExists($this->birthdate, 'year', "birthdate.year in PuiRequest must exist $within");
+        Assert::keyExists($this->birthdate, 'month', "birthdate.month in PuiRequest must exist $within");
+        Assert::keyExists($this->birthdate, 'day', "birthdate.day in PuiRequest must exist $within");
+
+        $year = $this->birthdate['year'];
+        $month = $this->birthdate['month'];
+        $day = $this->birthdate['day'];
+
+        Assert::integerish($year, "birthdate.year in PuiRequest must be an integer $within");
+        Assert::integerish($month, "birthdate.month in PuiRequest must be an integer $within");
+        Assert::integerish($day, "birthdate.day in PuiRequest must be an integer $within");
+
+        $year = (int) $year;
+        $month = (int) $month;
+        $day = (int) $day;
+
+        $currentYear = (int) date('Y');
+        Assert::range($year, 1900, $currentYear, "birthdate.year in PuiRequest must be between 1900 and $currentYear $within");
+        Assert::range($month, 1, 12, "birthdate.month in PuiRequest must be between 1 and 12 $within");
+        Assert::range($day, 1, 31, "birthdate.day in PuiRequest must be between 1 and 31 $within");
+        Assert::true(checkdate($month, $day, $year), "birthdate in PuiRequest must be a valid calendar date $within");
     }
 
     private function map(array $data)
