@@ -50,18 +50,9 @@ class PaymentContextData implements JsonSerializable
      */
     public $payment_units;
 
-
-    public $experience_context;
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
-            OrderExperienceContext::class,
-            "experience_context in PaymentContextData must be instance of OrderExperienceContext $within"
-        );
-        !isset($this->experience_context) ||  $this->experience_context->validate(PaymentContextData::class);
         Assert::notNull($this->facilitators, "facilitators in PaymentContextData must not be NULL $within");
         Assert::minCount(
             $this->facilitators,
@@ -109,9 +100,6 @@ class PaymentContextData implements JsonSerializable
         if (isset($data['intent'])) {
             $this->intent = $data['intent'];
         }
-        if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['experience_context']);
-        }
         if (isset($data['facilitators'])) {
             $this->facilitators = [];
             foreach ($data['facilitators'] as $item) {
@@ -133,10 +121,5 @@ class PaymentContextData implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
-    }
-
-    public function initExperienceContext(): OrderExperienceContext
-    {
-        return $this->experience_context = new OrderExperienceContext();
     }
 }

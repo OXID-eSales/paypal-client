@@ -37,7 +37,6 @@ class OrderValidateRequest implements JsonSerializable
             OrderValidateExperienceContext::class,
             "experience_context in OrderValidateRequest must be instance of OrderValidateApplicationContext $within"
         );
-        !isset($this->experience_context) ||  $this->experience_context->validate(OrderValidateRequest::class);
     }
 
     private function map(array $data)

@@ -95,12 +95,7 @@ class SubscriptionReviseRequest implements JsonSerializable
             "shipping_address in SubscriptionReviseRequest must be instance of ShippingDetail $within"
         );
         !isset($this->shipping_address) ||  $this->shipping_address->validate(SubscriptionReviseRequest::class);
-        !isset($this->experience_context) || Assert::isInstanceOf(
-            $this->experience_context,
-            OrderExperienceContext::class,
-            "experience_context in SubscriptionReviseRequest must be instance of OrderExperienceContext $within"
-        );
-        !isset($this->experience_context) ||  $this->experience_context->validate(SubscriptionReviseRequest::class);
+
         !isset($this->plan) || Assert::isInstanceOf(
             $this->plan,
             PlanOverride::class,
@@ -122,9 +117,6 @@ class SubscriptionReviseRequest implements JsonSerializable
         }
         if (isset($data['shipping_address'])) {
             $this->shipping_address = new ShippingDetail($data['shipping_address']);
-        }
-        if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['experience_context']);
         }
         if (isset($data['plan'])) {
             $this->plan = new PlanOverride($data['plan']);
