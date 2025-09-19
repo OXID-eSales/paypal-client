@@ -76,6 +76,8 @@ class ApplePayRequest implements JsonSerializable
      */
     public $card;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -162,6 +164,9 @@ class ApplePayRequest implements JsonSerializable
         }
         if (isset($data['card'])) {
             $this->card = new Card3($data['card']);
+        }
+        if (isset($data['experience_context'])) {
+            $this->eperience_context = $data['experience_context'];
         }
     }
 
