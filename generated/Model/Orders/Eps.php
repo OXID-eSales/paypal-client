@@ -47,6 +47,7 @@ class Eps implements JsonSerializable
      */
     public $bic;
 
+    public $experience_context;
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -92,6 +93,9 @@ class Eps implements JsonSerializable
         }
         if (isset($data['bic'])) {
             $this->bic = $data['bic'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 
