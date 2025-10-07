@@ -65,6 +65,8 @@ class Bancontact implements JsonSerializable
      */
     public $card_last_digits;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -136,6 +138,9 @@ class Bancontact implements JsonSerializable
         }
         if (isset($data['card_last_digits'])) {
             $this->card_last_digits = $data['card_last_digits'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 
