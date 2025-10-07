@@ -49,6 +49,7 @@ class Blik implements JsonSerializable
      */
     public $email;
 
+    public $experience_context;
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -94,6 +95,9 @@ class Blik implements JsonSerializable
         }
         if (isset($data['email'])) {
             $this->email = $data['email'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 

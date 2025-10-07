@@ -22,8 +22,6 @@ class PaypalWalletAttributes implements JsonSerializable
      */
     public $customer;
 
-    public $vault;
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -39,9 +37,6 @@ class PaypalWalletAttributes implements JsonSerializable
     {
         if (isset($data['customer'])) {
             $this->customer = new Customer($data['customer']);
-        }
-        if (isset($data['vault'])) {
-            $this->vault = $data['vault'];
         }
     }
 

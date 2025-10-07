@@ -88,12 +88,6 @@ class OrderRequest implements JsonSerializable
             36,
             "processing_instruction in OrderRequest must have maxlength of 36 $within"
         );
-        !isset($this->payer) || Assert::isInstanceOf(
-            $this->payer,
-            Payer::class,
-            "payer in OrderRequest must be instance of Payer $within"
-        );
-        !isset($this->payer) ||  $this->payer->validate(OrderRequest::class);
         Assert::notNull($this->purchase_units, "purchase_units in OrderRequest must not be NULL $within");
         Assert::minCount(
             $this->purchase_units,
@@ -136,9 +130,6 @@ class OrderRequest implements JsonSerializable
         if (isset($data['processing_instruction'])) {
             $this->processing_instruction = $data['processing_instruction'];
         }
-        if (isset($data['payer'])) {
-            $this->payer = new Payer($data['payer']);
-        }
         if (isset($data['purchase_units'])) {
             $this->purchase_units = [];
             foreach ($data['purchase_units'] as $item) {
@@ -156,11 +147,6 @@ class OrderRequest implements JsonSerializable
         if (isset($data)) {
             $this->map($data);
         }
-    }
-
-    public function initPayer(): Payer
-    {
-        return $this->payer = new Payer();
     }
 
     public function initPaymentSource(): PaymentSource

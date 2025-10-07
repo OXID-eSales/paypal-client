@@ -37,6 +37,7 @@ class EpsRequest implements JsonSerializable
      */
     public $country_code;
 
+    public $experience_context;
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -71,6 +72,9 @@ class EpsRequest implements JsonSerializable
         }
         if (isset($data['country_code'])) {
             $this->country_code = $data['country_code'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 

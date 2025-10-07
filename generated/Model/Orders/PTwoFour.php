@@ -76,6 +76,8 @@ class PTwoFour implements JsonSerializable
      */
     public $method_description;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -160,6 +162,9 @@ class PTwoFour implements JsonSerializable
         }
         if (isset($data['method_description'])) {
             $this->method_description = $data['method_description'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 

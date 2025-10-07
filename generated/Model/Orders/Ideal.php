@@ -46,6 +46,8 @@ class Ideal implements JsonSerializable
      */
     public $iban_last_chars;
 
+    public $experience_context;
+
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -91,6 +93,9 @@ class Ideal implements JsonSerializable
         }
         if (isset($data['iban_last_chars'])) {
             $this->iban_last_chars = $data['iban_last_chars'];
+        }
+        if (isset($data['experience_context'])) {
+            $this->experience_context = $data['experience_context'];
         }
     }
 

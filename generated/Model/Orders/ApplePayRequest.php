@@ -166,7 +166,7 @@ class ApplePayRequest implements JsonSerializable
             $this->card = new Card3($data['card']);
         }
         if (isset($data['experience_context'])) {
-            $this->eperience_context = $data['experience_context'];
+            $this->experience_context = $data['experience_context'];
         }
     }
 

@@ -268,9 +268,6 @@ class Card implements JsonSerializable
      */
     public $attributes;
 
-    public $experience_context;
-    private $vault_id;
-
     public function validate($from = null)
     {
         $within = isset($from) ? "within $from" : "";
@@ -399,12 +396,6 @@ class Card implements JsonSerializable
         }
         if (isset($data['attributes'])) {
             $this->attributes = new CardAttributes($data['attributes']);
-        }
-        if (isset($data['experience_context'])) {
-            $this->experience_context = $data['experience_context'];
-        }
-        if (isset($data['vault_id'])) {
-            $this->vault_id = $data['vault_id'];
         }
     }
 

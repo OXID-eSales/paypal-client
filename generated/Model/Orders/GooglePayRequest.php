@@ -180,9 +180,6 @@ class GooglePayRequest implements JsonSerializable
         if (isset($data['card'])) {
             $this->card = new Card3($data['card']);
         }
-        if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['experience_context']);
-        }
     }
 
     public function __construct(array $data = null)

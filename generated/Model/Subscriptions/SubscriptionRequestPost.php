@@ -103,8 +103,6 @@ class SubscriptionRequestPost implements JsonSerializable
      */
     public $plan;
 
-    /** @var OrderExperienceContext */
-    public $experience_context;
 
     public function validate($from = null)
     {
@@ -212,9 +210,6 @@ class SubscriptionRequestPost implements JsonSerializable
         if (isset($data['auto_renewal'])) {
             $this->auto_renewal = $data['auto_renewal'];
         }
-        if (isset($data['experience_context'])) {
-            $this->experience_context = new OrderExperienceContext($data['experience_context']);
-        }
         if (isset($data['client_configuration'])) {
             $this->client_configuration = new ClientConfiguration($data['client_configuration']);
         }
@@ -244,11 +239,6 @@ class SubscriptionRequestPost implements JsonSerializable
     public function initSubscriber(): SubscriberRequest
     {
         return $this->subscriber = new SubscriberRequest();
-    }
-
-    public function initExperienceContext(): OrderExperienceContext
-    {
-        return $this->experience_context = new OrderExperienceContext();
     }
 
     public function initClientConfiguration(): ClientConfiguration
