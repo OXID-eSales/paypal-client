@@ -22,6 +22,7 @@ trait TrackingTrait
     {
         $this->trackingId = $trackingId;
     }
+
     public function log($level, $message, array $context = array(), $isResponse = false)
     {
         $logger = method_exists($this, 'getLogger') ? $this->getLogger() : null;

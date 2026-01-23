@@ -39,20 +39,24 @@ class ApiException extends \Exception
         if ($this->response) {
             $phrase = $this->response->getReasonPhrase();
             $message .= " returned: $code $phrase";
-
-            // Analyze response body for error details
-            $error = json_decode($this->response->getBody(), true, 512, JSON_THROW_ON_ERROR);
-            if ($error) {
-                if (isset($error['message'])) {
-                    $message .= "\nReturned Message: " . $error['message'];
+            try {
+                // Analyze response body for error details
+                $error = json_decode($this->response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+                if ($error) {
+                    if (isset($error['message'])) {
+                        $message .= "\nReturned Message: " . $error['message'];
+                    }
+                    if (isset($error['details'])) {
+                        $details = $error['details'];
+                        $message .= "\nError Details: \n" . json_encode($details, JSON_THROW_ON_ERROR) . "\n";
+                        unset($error['details']);
+                    }
+                    unset($error['message']);
+                    $message .= "\nResponse: \n" . json_encode($error, JSON_THROW_ON_ERROR) . "\n";
                 }
-                if (isset($error['details'])) {
-                    $details = $error['details'];
-                    $message .= "\nError Details: \n" . json_encode($details, JSON_THROW_ON_ERROR) . "\n";
-                    unset($error['details']);
-                }
-                unset($error['message']);
-                $message .= "\nResponse: \n" . json_encode($error, JSON_THROW_ON_ERROR) . "\n";
+            } catch (JsonException $e) {
+                // No response available (e.g. for ConnectException)
+                $message .= " failed: " . $e->getMessage();
             }
         } else {
             // No response available (e.g. for ConnectException)
